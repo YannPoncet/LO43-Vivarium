@@ -1,2 +1,5 @@
 .settings/
 .metadata
+/.classpath
+/.project
+/.gitignore
