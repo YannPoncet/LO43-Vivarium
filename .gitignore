@@ -1,5 +1,11 @@
 .settings/
 .metadata
+<<<<<<< HEAD
 /.classpath
 /.project
 /.gitignore
+=======
+.class
+/.project
+/.classpath
+>>>>>>> branch 'master' of https://github.com/UTBMRidd/LO43-Vivarium
