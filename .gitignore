@@ -1,3 +1,5 @@
 .settings/
 .metadata
 .class
+/.project
+/.classpath
