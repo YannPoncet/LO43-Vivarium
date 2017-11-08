@@ -10,6 +10,6 @@ public class DesktopApplication {
 	      config.width = 800;
 	      config.height = 480;
 	      new LwjglApplication(new Main(), config);
-	      //kjhjh
+	      //kjhjh vatfaire
 	   }
 }
