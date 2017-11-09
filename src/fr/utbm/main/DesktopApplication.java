@@ -8,7 +8,7 @@ public class DesktopApplication {
 	      LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 	      config.title = "UTBM - LO43 - Vivarium du futur";
 	      config.width = 800;
-	      config.height = 480;
+	      config.height = 600;
 	      new LwjglApplication(new Main(), config);
 
 	      //rodolphe dmr
