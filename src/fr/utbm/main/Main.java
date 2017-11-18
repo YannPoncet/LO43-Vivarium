@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import fr.utbm.render.RenderManager;
 import fr.utbm.render.Renderable;
+import fr.utbm.texture.TextureManager;
 
 public class Main extends ApplicationAdapter {
 	
@@ -22,12 +23,12 @@ public class Main extends ApplicationAdapter {
 	
    @Override
    public void create() {
-	   
+	   TextureManager.loadTextures();
 	   batch = new SpriteBatch();
 	   gameCam = new OrthographicCamera();
 	   gameCam.position.set(800 / 2f, 600 / 2f, 0);
 	   gamePort = new FitViewport(800,600,gameCam);
-	   test = new Texture(Gdx.files.internal("res/textures/UTStone.png"));
+	   test = TextureManager.getTexture(1);
 	   rm = new RenderManager(batch);
 	   for(int i = 0;i<70;i++){
 		   for(int j=0;j<5;j++){
