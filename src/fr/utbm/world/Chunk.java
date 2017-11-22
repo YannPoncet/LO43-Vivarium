@@ -14,12 +14,14 @@ public class Chunk {
 	{
 		chunkID = 0;
 		blocks = new Block[CHUNK_HEIGHT][CHUNK_WIDTH];
+		//biome = new Biome()
 	}
 	
-	public Chunk(int ID)
+	public Chunk(int ID /*Biome b*/)
 	{
 		chunkID = ID;
 		blocks = new Block[CHUNK_HEIGHT][CHUNK_WIDTH];
+		//biome = b;
 	}
 	
 	public int getID()
@@ -35,6 +37,17 @@ public class Chunk {
 	public void setBlock(int i, int j, Block block)
 	{
 		this.blocks[i][j] = block;
+	}
+	
+	public void render()
+	{
+		for(int i=0;i<CHUNK_HEIGHT;i++)
+		{
+			for(int j=0;j<CHUNK_WIDTH;j++)
+			{
+				//TODO RenderManager.blabla
+			}
+		}
 	}
 	
 }

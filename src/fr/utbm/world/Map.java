@@ -34,4 +34,27 @@ public class Map {
 		this.chunks[i/Chunk.CHUNK_WIDTH].setBlock(i%Chunk.CHUNK_WIDTH,j,block);
 	}
 	
+	public void render(int i)
+	{
+		this.chunks[i].render();
+		
+		if(i!=0)
+		{
+			this.chunks[i-1].render();
+			if(i!=1)
+			{
+				this.chunks[i-2].render();
+			}
+		}
+		
+		if(i!=NUMBER_OF_CHUNKS-1)
+		{
+			this.chunks[i+1].render();
+			if(i!=NUMBER_OF_CHUNKS-2)
+			{
+				this.chunks[i+2].render();
+			}
+		}	
+	}
+	
 }
