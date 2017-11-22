@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import fr.utbm.block.BlockGrass;
 import fr.utbm.render.RenderManager;
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
@@ -32,10 +33,9 @@ public class Main extends ApplicationAdapter {
 	   rm = new RenderManager(batch);
 	   for(int i = 0;i<70;i++){
 		   for(int j=0;j<5;j++){
-			   rm.addToBlockRender(new Renderable(16*i,16*j,test));
+			   rm.addToBlockRender(new BlockGrass(i,j));
 		   }
 	   }
-	   rm.addToBlockRender(new Renderable(16*69,16*5,test));
 	   
    }
    public void update(){
