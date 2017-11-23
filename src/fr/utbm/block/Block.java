@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
 
-public class Block extends Renderable{
+public abstract class Block extends Renderable{
 	
 	protected int blockId;
 	protected int maxHealth;

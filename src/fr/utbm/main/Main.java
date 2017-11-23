@@ -1,63 +1,43 @@
 package fr.utbm.main;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
-import fr.utbm.block.BlockGrass;
 import fr.utbm.render.RenderManager;
-import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.view.Camera;
+import fr.utbm.world.World;
 
 public class Main extends ApplicationAdapter {
 	
 	private Texture test;
 	private SpriteBatch batch;
-	private RenderManager rm;
-	private OrthographicCamera gameCam;
-	private Viewport gamePort;
-	
+	private Camera camera;
+	private World w;
+	private FPSLogger fps;
    @Override
    public void create() {
+	   fps = new FPSLogger();
 	   TextureManager.loadTextures();
 	   batch = new SpriteBatch();
-	   gameCam = new OrthographicCamera();
-	   gameCam.position.set(800 / 2f, 600 / 2f, 0);
-	   gamePort = new FitViewport(800,600,gameCam);
-	   test = TextureManager.getTexture(1);
-	   rm = new RenderManager(batch);
-	   for(int i = 0;i<70;i++){
-		   for(int j=0;j<5;j++){
-			   rm.addToBlockRender(new BlockGrass(i,j));
-		   }
-	   }
+	   RenderManager.setBatch(batch);
+	   camera = new Camera();
+	   w = new World();
 	   
    }
    public void update(){
-	   if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-		   gameCam.position.x += 3;
-	   }
-	   if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-		   gameCam.position.x -= 3;
-	   }
-	   if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-		   gameCam.position.y += 3;
-	   }
-	   if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-		   gameCam.position.y -= 3;
-	   }
-	   gameCam.update();
-	   batch.setProjectionMatrix(gameCam.combined);
+	   fps.log();
+	   w.update();
+	   camera.update();
+	   batch.setProjectionMatrix(camera.getProjectionMatrix());
+	   
    }
    @Override
    public void render() {
 	   update();
-	   rm.renderAll();
+	   RenderManager.renderAll();
    }
    @Override
    public void dispose() {
@@ -65,7 +45,7 @@ public class Main extends ApplicationAdapter {
    }
    @Override
    public void resize(int width,int height){
-	   gamePort.update(width,height);
+	   camera.resize(width,height);
    }
    
 }

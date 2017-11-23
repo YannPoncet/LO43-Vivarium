@@ -3,7 +3,9 @@ package fr.utbm.world;
 import java.util.ArrayList;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockGrass;
 import fr.utbm.entity.Entity;
+import fr.utbm.render.RenderManager;
 
 public class World {
 	
@@ -14,6 +16,7 @@ public class World {
 	{
 		map = new Map();
 		entities = new ArrayList<>();
+		this.create();
 	}
 	
 	public Block getBlock(int i, int j)
@@ -39,7 +42,13 @@ public class World {
 	
 	public void render()//ici mettre l'ID du chunk sur lequel se trouve la camera
 	{
-		map.render(5);
+		map.render(0);
+	}
+	
+	/* Call at the World creation */
+	public void create(){
+		MapGenerator.generate(this);
+		render();
 	}
 	
 	public void update()
@@ -48,6 +57,9 @@ public class World {
 		{
 			e.update();
 		}
+		
+	}
+	public void resize(){
 		
 	}
 	

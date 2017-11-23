@@ -1,6 +1,7 @@
 package fr.utbm.world;
 
 import fr.utbm.block.Block;
+import fr.utbm.render.RenderManager;
 
 public class Chunk {
 	public final static int CHUNK_WIDTH=50;
@@ -13,14 +14,14 @@ public class Chunk {
 	public Chunk()
 	{
 		chunkID = 0;
-		blocks = new Block[CHUNK_HEIGHT][CHUNK_WIDTH];
+		blocks = new Block[CHUNK_WIDTH][CHUNK_HEIGHT];
 		//biome = new Biome()
 	}
 	
 	public Chunk(int ID /*Biome b*/)
 	{
 		chunkID = ID;
-		blocks = new Block[CHUNK_HEIGHT][CHUNK_WIDTH];
+		blocks = new Block[CHUNK_WIDTH][CHUNK_HEIGHT];
 		//biome = b;
 	}
 	
@@ -45,7 +46,10 @@ public class Chunk {
 		{
 			for(int j=0;j<CHUNK_WIDTH;j++)
 			{
-				//TODO RenderManager.blabla
+				if(blocks[j][i] != null){
+					RenderManager.addToBlockRender(blocks[j][i]);
+				}
+
 			}
 		}
 	}
