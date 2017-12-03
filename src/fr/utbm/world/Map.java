@@ -34,7 +34,7 @@ public class Map {
 		this.chunks[i/Chunk.CHUNK_WIDTH].setBlock(i%Chunk.CHUNK_WIDTH,j,block);
 	}
 	
-	public void render(int i)
+	public void render(int i) //call render on the 5 chunks (2 left, this, and 2 right)
 	{
 		this.chunks[i].render();
 		
