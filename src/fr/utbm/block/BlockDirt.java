@@ -15,8 +15,8 @@ public class BlockDirt extends Block{
 	}
 	
 	public BlockDirt(float x, float y, int bH) {
-		super(x, y, TextureManager.getTexture(0));
-		this.blockId = 0;
+		super(x, y, TextureManager.getTexture(1));
+		this.blockId = 1;
 		this.maxHealth = 100;
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;

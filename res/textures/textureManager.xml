@@ -2,4 +2,5 @@
 	<texture id="0" file="default.png"></texture>
 	<texture id="1" file="UTStone.png"></texture>
 	<texture id="2" file="blockGrass.png"></texture>
+	<texture id="3" file="UTStone.png"></texture>
 </textures>
