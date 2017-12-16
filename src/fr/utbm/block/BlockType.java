@@ -7,6 +7,7 @@ public enum BlockType {
 	WOOD,
 	LIQUID,
 	NETHER,
+	GRAVITY,
 	CLOUD;
 
 }
