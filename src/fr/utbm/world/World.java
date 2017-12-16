@@ -6,6 +6,7 @@ import java.util.Iterator;
 import fr.utbm.block.Block;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
+import fr.utbm.entity.EntityHellDog;
 import fr.utbm.render.RenderManager;
 
 public class World {
@@ -14,6 +15,7 @@ public class World {
 	private ArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private EntityFallingBlock test2;
+	private EntityHellDog hd;
 	public World()
 	{
 		map = new Map();
@@ -59,8 +61,10 @@ public class World {
 		MapGenerator.generate(map);
 		test = new EntityFallingBlock(0,210,16,16,this);
 		test2 = new EntityFallingBlock(1,215,16,16,this);
+		hd =  new EntityHellDog(1,215,16,16,this);
 		entities.add(test);
 		entities.add(test2);
+		entities.add(hd);
 		render();
 	}
 	

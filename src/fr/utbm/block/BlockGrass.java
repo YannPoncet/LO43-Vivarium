@@ -5,7 +5,7 @@ import fr.utbm.texture.TextureManager;
 public class BlockGrass extends Block{
 
 	public BlockGrass(float x, float y) {
-		super(x, y, TextureManager.getTexture(1));
+		super(x, y, TextureManager.getTexture(2));
 		this.blockId = 1;
 		this.maxHealth = 100;
 		this.blockHealth = 100;
@@ -14,7 +14,7 @@ public class BlockGrass extends Block{
 	}
 	
 	public BlockGrass(float x, float y, int bH) {
-		super(x, y, TextureManager.getTexture(1));
+		super(x, y, TextureManager.getTexture(2));
 		this.blockId = 1;
 		this.maxHealth = 100;
 		this.blockHealth = bH;

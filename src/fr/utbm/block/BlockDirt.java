@@ -6,7 +6,7 @@ public class BlockDirt extends Block{
 	
 	public BlockDirt(float x, float y)
 	{
-		super(x, y, TextureManager.getTexture(0));
+		super(x, y, TextureManager.getTexture(1));
 		this.blockId = 0;
 		this.blockHealth = 100;
 		this.maxHealth = 100;
@@ -15,7 +15,7 @@ public class BlockDirt extends Block{
 	}
 	
 	public BlockDirt(float x, float y, int bH) {
-		super(x, y, TextureManager.getTexture(0));
+		super(x, y, TextureManager.getTexture(1));
 		this.blockId = 0;
 		this.maxHealth = 100;
 		this.blockHealth = bH;
