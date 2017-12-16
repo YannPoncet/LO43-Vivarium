@@ -22,11 +22,4 @@ public class BlockSand extends Block{
 		this.isGravitySensitive = true;
 		super.damage(maxHealth-blockHealth);
 	}
-	
-	@Override
-	public void update()
-	{
-		
-	}
-	
 }

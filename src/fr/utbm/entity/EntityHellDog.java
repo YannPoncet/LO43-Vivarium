@@ -28,7 +28,7 @@ public class EntityHellDog extends EntityAnimal{
 	}
 	public void create(){
 		
-		walkSheet = TextureManager.getTexture(10);
+		walkSheet = TextureManager.getTexture(50);
 		
 		TextureRegion[][] tmp = TextureRegion.split(walkSheet, 
 				walkSheet.getWidth() / 12,

@@ -3,5 +3,13 @@
 	<texture id="1" file="blockDirt.png"></texture>
 	<texture id="2" file="blockGrass.png"></texture>
 	<texture id="3" file="blockSand.png"></texture>
-	<texture id="10" file="hellDog/hell-hound-walk.png"></texture>
+	<texture id="4" file="blockWater.png"></texture>
+	<texture id="5" file="blockWater1.png"></texture>
+	<texture id="6" file="blockWater2.png"></texture>
+	<texture id="7" file="blockWater3.png"></texture>
+	<texture id="8" file="blockWater4.png"></texture>
+	<texture id="9" file="blockWater5.png"></texture>
+	<texture id="10" file="blockWater6.png"></texture>
+	<texture id="11" file="blockWater7.png"></texture>
+	<texture id="50" file="hellDog/hell-hound-walk.png"></texture>
 </textures>
