@@ -7,7 +7,7 @@ import fr.utbm.block.BlockGrass;
 import fr.utbm.world.Noise1D;
 
 public class MapGenerator {
-	public static void generate(World world)
+	public static void generate(Map m)
 	{
 			final int grassHeight = 2;
 			Noise1D noiseGen = new Noise1D();
@@ -21,11 +21,11 @@ public class MapGenerator {
 			{
 				for(int j=0; j<Chunk.CHUNK_HEIGHT/2+surface.get(i);j++)
 				{
-					world.setBlock(i, j, new BlockDirt(i,j));
+					m.setBlock(i, j, new BlockDirt(i,j));
 				}
 				for(int j=0; j<grassHeight;j++)
 				{
-					world.setBlock(i, Chunk.CHUNK_HEIGHT/2+surface.get(i)+j, new BlockGrass(i,Chunk.CHUNK_HEIGHT/2+surface.get(i)+j));
+					m.setBlock(i, Chunk.CHUNK_HEIGHT/2+surface.get(i)+j, new BlockGrass(i,Chunk.CHUNK_HEIGHT/2+surface.get(i)+j));
 				}
 			}
 	}

@@ -1,5 +1,6 @@
 <textures>
-	<texture id="0" file="default.png"></texture>
-	<texture id="1" file="UTStone.png"></texture>
-	<texture id="2" file="blockGrass.png"></texture>
+	<texture id="-1" file="default.png"></texture>
+	<texture id="0" file="blockDirt.png"></texture>
+	<texture id="1" file="blockGrass.png"></texture>
+	<texture id="2" file="blockSand.png"></texture>
 </textures>

@@ -28,7 +28,7 @@ public class Main extends ApplicationAdapter {
 	   
    }
    public void update(){
-	   fps.log();
+	   //fps.log();
 	   w.update();
 	   camera.update();
 	   batch.setProjectionMatrix(camera.getProjectionMatrix());

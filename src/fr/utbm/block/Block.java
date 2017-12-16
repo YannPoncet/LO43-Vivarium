@@ -40,5 +40,9 @@ public abstract class Block extends Renderable{
 			batch.draw(breakingStage, x, y);
 		}
 	}
+	public void setPosition(float x, float y){
+		this.x = x;
+		this.y = y;
+	}
 
 }

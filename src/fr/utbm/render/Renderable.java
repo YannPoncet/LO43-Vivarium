@@ -20,4 +20,7 @@ public abstract class Renderable {
 	public boolean isDead() {
 		return dead;
 	}
+	public Texture getTexture(){
+		return this.text;
+	}
 }
