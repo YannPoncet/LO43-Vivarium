@@ -1,7 +1,7 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
-import fr.utbm.block.BlockGrass;
+import fr.utbm.block.BlockSand;
 import fr.utbm.world.World;
 
 public class EntityFallingBlock extends Entity{
@@ -10,7 +10,8 @@ public class EntityFallingBlock extends Entity{
 	protected Block block;
 	public EntityFallingBlock(float x, float y, int w, int h, World worldIn) {
 		super(x, y, w, h, worldIn);
-		this.block = new BlockGrass(0,203);
+		this.block = new BlockSand(0,203);
+		this.text = block.getTexture();
 		this.isGrounded = false;
 	}
 	public void update(){
@@ -24,7 +25,7 @@ public class EntityFallingBlock extends Entity{
 			world.setBlock((int) x/16, (int) y/16, block);
 			dead = true;
 		}else{
-			y-=0.5f;
+			y-=2f;
 		}
 	}
 
