@@ -47,6 +47,7 @@ public class World {
 	
 	/* Call at the World creation */
 	public void create(){
+		MapGenerator gen = new MapGenerator();
 		MapGenerator.generate(this);
 		render();
 	}
