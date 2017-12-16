@@ -2,21 +2,18 @@ package fr.utbm.world;
 
 import java.util.ArrayList;
 
-public class Noise1D {
+public class Noise1DGenerator {
 	private double seed;
-	private long M = 4294967296L;
+	private long M;
 	private int A = 1664525;
 	private int C = 1;
 	private int width = Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;
 	private ArrayList<Integer> noise;
 	
-	public Noise1D(double seed) 
+	public Noise1DGenerator(double seed, long M) 
 	{
 		this.seed = seed;
-	}
-	public Noise1D() 
-	{
-		this.seed = Math.floor(Math.random() * M);
+		this.M = M;
 	}
 	
 	public ArrayList<Integer> generateAndGetNoise(double amp, double wl, int octaves, double divisor) 
