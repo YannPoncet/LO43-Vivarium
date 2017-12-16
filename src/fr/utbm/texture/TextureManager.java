@@ -58,6 +58,7 @@ public class TextureManager {
 		    nb++;
 		    
 		}
+		
 		System.out.println("TEXTURE-MANAGER : Successfully added " + nb + " textures");
 	}
 	

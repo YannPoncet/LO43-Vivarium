@@ -5,7 +5,7 @@ import fr.utbm.texture.TextureManager;
 public class BlockSand extends Block{
 
 	public BlockSand(float x, float y) {
-		super(x, y, TextureManager.getTexture(2));
+		super(x, y, TextureManager.getTexture(3));
 		this.blockId = 2;
 		this.maxHealth = 100;
 		this.blockHealth = 100;
@@ -14,7 +14,7 @@ public class BlockSand extends Block{
 	}
 	
 	public BlockSand(float x, float y, int bH) {
-		super(x, y, TextureManager.getTexture(2));
+		super(x, y, TextureManager.getTexture(3));
 		this.blockId = 2;
 		this.maxHealth = 100;
 		this.blockHealth = bH;
