@@ -42,12 +42,12 @@ public class MapGenerator {
 				{
 					if(caves.get(i).get(j) == 1) 
 					{
-						m.setBlock(i, j, new BlockDirt(i,j)); 
+						m.setBlock(i, j, new BlockDirt(i,j,m)); 
 					}
 				}
 				for(int j=0; j<grassHeight;j++)
 				{
-					m.setBlock(i, Chunk.CHUNK_HEIGHT/2+surface.get(i)+j, new BlockGrass(i,Chunk.CHUNK_HEIGHT/2+surface.get(i)+j));
+					m.setBlock(i, Chunk.CHUNK_HEIGHT/2+surface.get(i)+j, new BlockGrass(i,Chunk.CHUNK_HEIGHT/2+surface.get(i)+j,m));
 				}
 			}
 	}

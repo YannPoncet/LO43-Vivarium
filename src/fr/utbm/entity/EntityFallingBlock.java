@@ -10,7 +10,7 @@ public class EntityFallingBlock extends Entity{
 	protected Block block;
 	public EntityFallingBlock(float x, float y, int w, int h, World worldIn) {
 		super(x, y, w, h, worldIn);
-		this.block = new BlockSand(0,203);
+		this.block = new BlockSand(0,203, worldIn.getMap());
 		this.text = block.getTexture();
 		this.isGrounded = false;
 	}

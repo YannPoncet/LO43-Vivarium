@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.world.Map;
 
 public abstract class Block extends Renderable{
 	
+	protected Map map;
 	protected int blockId;
 	protected int maxHealth;
 	protected int blockHealth;
@@ -15,9 +17,10 @@ public abstract class Block extends Renderable{
 	protected boolean isGravitySensitive;
 	protected Texture breakingStage;
 	
-	public Block(float x, float y,Texture text) {
+	public Block(float x, float y,Texture text, Map mapIn) {
 		super(x*16, y*16, text);
 		breakingStage = null;
+		map = mapIn;
 	}
 	
 	public void update()

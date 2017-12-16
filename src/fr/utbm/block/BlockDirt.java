@@ -1,12 +1,13 @@
 package fr.utbm.block;
 
 import fr.utbm.texture.TextureManager;
+import fr.utbm.world.Map;
 
 public class BlockDirt extends Block{
 	
-	public BlockDirt(float x, float y)
+	public BlockDirt(float x, float y, Map mapIn)
 	{
-		super(x, y, TextureManager.getTexture(1));
+		super(x, y, TextureManager.getTexture(1), mapIn);
 		this.blockId = 1;
 		this.blockHealth = 100;
 		this.maxHealth = 100;
@@ -14,8 +15,8 @@ public class BlockDirt extends Block{
 		this.isGravitySensitive = false;
 	}
 	
-	public BlockDirt(float x, float y, int bH) {
-		super(x, y, TextureManager.getTexture(1));
+	public BlockDirt(float x, float y, int bH, Map mapIn) {
+		super(x, y, TextureManager.getTexture(1), mapIn);
 		this.blockId = 1;
 		this.maxHealth = 100;
 		this.blockHealth = bH;

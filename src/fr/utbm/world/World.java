@@ -46,6 +46,9 @@ public class World {
 	public ArrayList<Entity> getEntities(){
 		return entities;
 	}
+	public Map getMap(){
+		return map;
+	}
 	
 	public void render()//ici mettre l'ID du chunk sur lequel se trouve la camera
 	{
