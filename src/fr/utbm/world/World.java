@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockGrass;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
@@ -64,7 +65,9 @@ public class World {
 		MapGenerator.generate(map, 0); //0 to generate a new seed
 		test = new EntityFallingBlock(0,210,16,16,this);
 		test2 = new EntityFallingBlock(1,215,16,16,this);
-		hd =  new EntityHellDog(1,215,16,16,this);
+		hd =  new EntityHellDog(5,250,64,32,this);
+		setBlock(9, 245, new BlockGrass(9,245,this.map));
+		//setBlock(6, 245, new BlockGrass(6,245,this.map));
 		entities.add(test);
 		entities.add(test2);
 		entities.add(hd);

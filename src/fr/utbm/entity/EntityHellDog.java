@@ -18,38 +18,17 @@ public class EntityHellDog extends EntityAnimal{
 	
 	public EntityHellDog(float x, float y, int w, int h, World worldIn) {
 		super(x, y, w, h, worldIn);
-		create();
-		
-		
-		
-		
-		
-		
+		walkAnimation = TextureManager.getAnimation(0);
 	}
-	public void create(){
-		
-		walkSheet = TextureManager.getTexture(50);
-		
-		TextureRegion[][] tmp = TextureRegion.split(walkSheet, 
-				walkSheet.getWidth() / 12,
-				walkSheet.getHeight());
-		TextureRegion[] walkFrames = new TextureRegion[12 * 1];
-		int index = 0;
-		for (int i = 0; i < 1; i++) {
-			for (int j = 0; j < 12; j++) {
-				walkFrames[index++] = tmp[i][j];
-			}
-		}
-		walkAnimation = new Animation(0.1f, walkFrames);
-		
-	}
-	float y = 30*16;
 	@Override
 	public void render(SpriteBatch sp) {
-
-		y-=0.5f;
+		if(!isOnGround()){
+			y-=0.5f;
+		}
+		System.out.println(((int) y)/16);
 		stateTime += Gdx.graphics.getDeltaTime();
 		TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-		sp.draw(currentFrame, y, 201*16);
+		
+		sp.draw(currentFrame, this.x, this.y);
 	}
 }

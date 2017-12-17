@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -16,7 +18,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 public class TextureManager {
 	
 	private static HashMap<Integer,Texture> textureList= new HashMap<Integer, Texture>();
-	
+	private static HashMap<Integer,Animation> animationList= new HashMap<Integer, Animation>();
 	
 	/* Permets d'obtenir une texture pré-chargé grâce à son ID
 	 * IL FAUT AVOIR FAIT UN LOAD AVANT
@@ -29,10 +31,21 @@ public class TextureManager {
 		}
 		return t;
 	}
+	public static Animation getAnimation(int id){
+		Animation a = animationList.get(id);
+		if(a == null){
+			System.out.println("TEXTURE-MANAGER : Trying to load animation ID : " + id + " which doesn't exist");
+			a = animationList.get(0);
+		}
+		return a;
+	}
 	
 	/* Ajoute une texture à la HashMap */
 	private static void addText(int id, Texture text){
 		textureList.put(id, text);
+	}
+	private static void addAnim(int id, Animation anim){
+		animationList.put(id, anim);
 	}
 	
 	/* Charge toutes les textures présentes dans "res/textures/textureManager.xml" */
@@ -42,14 +55,15 @@ public class TextureManager {
 		XmlReader reader = new XmlReader();
 		Element root = null;
 		int nb = 0;
+		int nb2 = 0;
 		try {
 			root = reader.parse(Gdx.files.internal(xmlFile));
 		} catch (IOException e) {
 			System.out.println("TEXTURE-MANAGER : Erreur chargement TextureManager");
 			e.printStackTrace();
 		}
-		Array<Element> items = root.getChildrenByName("texture");
-		for (Element child : items)
+		Array<Element> textures = root.getChildrenByName("texture");
+		for (Element child : textures)
 		{
 			int id = Integer.parseInt(child.get("id"));
 			String text = child.get("file");
@@ -58,8 +72,32 @@ public class TextureManager {
 		    nb++;
 		    
 		}
+		Array<Element> animations = root.getChildrenByName("animation");
+		for (Element child : animations)
+		{
+			int id = Integer.parseInt(child.get("id"));
+			String path = child.get("file");
+			int wD = Integer.parseInt(child.get("wD"));
+			int hD = Integer.parseInt(child.get("hD"));
+			float speed = Float.parseFloat(child.get("speed"));
+			Texture t = new Texture("res/textures/" + path);
+			TextureRegion[][] tmp = TextureRegion.split(t, 
+					t.getWidth() / wD,
+					t.getHeight() / hD);
+			TextureRegion[] textR1D = new TextureRegion[wD * hD];
+			int index = 0;
+			for (int i = 0; i < 1; i++) {
+				for (int j = 0; j < 12; j++) {
+					textR1D[index++] = tmp[i][j];
+				}
+			}
+			Animation fAnim = new Animation(speed, textR1D);
+			addAnim(id, fAnim);
+			nb2++;
+		    
+		}
 		
-		System.out.println("TEXTURE-MANAGER : Successfully added " + nb + " textures");
+		System.out.println("TEXTURE-MANAGER : Successfully added " + nb + " textures and " + nb2 + " Animations");
 	}
 	
 	

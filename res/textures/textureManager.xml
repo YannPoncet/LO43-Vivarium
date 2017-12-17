@@ -11,5 +11,7 @@
 	<texture id="9" file="blockWater5.png"></texture>
 	<texture id="10" file="blockWater6.png"></texture>
 	<texture id="11" file="blockWater7.png"></texture>
-	<texture id="50" file="hellDog/hell-hound-walk.png"></texture>
+	
+	<animation id="0" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
+	
 </textures>

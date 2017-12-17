@@ -23,7 +23,7 @@ public class RenderManager {
 		batch.begin();
 		renderArray(blockRender);
 		renderArray(entitiesRender);
-		System.out.println("RENDER-MANAGER : Show " + blockRender.size() + " elements");
+		//System.out.println("RENDER-MANAGER : Show " + blockRender.size() + " elements");
 		batch.end();
 	}
 	private static void renderArray(ArrayList<Renderable> rl){
