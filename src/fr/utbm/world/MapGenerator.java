@@ -6,10 +6,11 @@ import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
 
 public class MapGenerator {
+	public final static int DIRT_SURFACE = 10; //Height of the dirt at the surface
+	public final static int GRASS_SURFACE = 2;
+	
 	public static void generate(Map m, double seed)
 	{
-			final int grassHeight = 2;
-			
 			long M = 4294967296L;
 			if (seed == 0) 
 			{
@@ -20,7 +21,7 @@ public class MapGenerator {
 			//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 			//=>Increase wavelength to get flat map generally
 			//=>Decrease amplitude to get a flat map locally
-			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(20,128,15,4);
+			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(10,64,15,4);
 			
 			
 			//Change the value of the last parameter (0 to 100) to increase the dirt ratio
@@ -29,26 +30,29 @@ public class MapGenerator {
 
 			
 			ArrayList<ArrayList<Integer>> caves = caveGen.generateAndGetCaves();
-			/*
-	        for (int i=0; i<caves.size(); i++) {
-	            for (int j=0; j<caves.get(i).size(); j++) {
-	            	System.out.print(caves.get(i).get(j));
-	           }
-	           System.out.println(" ");
-	        }*/
 			
 			for(int i=0; i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;i++)
 			{
-				for(int j=0; j<Chunk.CHUNK_HEIGHT/2+surface.get(i);j++)
+				/* CAVES */
+				for(int j=Map.LIMIT_CAVE; j<Map.LIMIT_SURFACE;j++)
 				{
 					if(caves.get(i).get(j) == 1) 
 					{
 						m.setBlock(i, j, new BlockDirt(i,j,m)); 
 					}
 				}
-				for(int j=0; j<grassHeight;j++)
+				
+				/* SURFACE */
+				for(int j=Map.LIMIT_SURFACE; j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+MapGenerator.GRASS_SURFACE+surface.get(i);j++)
 				{
-					m.setBlock(i, Chunk.CHUNK_HEIGHT/2+surface.get(i)+j, new BlockGrass(i,Chunk.CHUNK_HEIGHT/2+surface.get(i)+j,m));
+					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt
+					{
+						m.setBlock(i, j, new BlockDirt(i,j,m));
+					}
+					else //grass
+					{
+						m.setBlock(i, j, new BlockGrass(i,j,m));
+					}
 				}
 			}
 	}

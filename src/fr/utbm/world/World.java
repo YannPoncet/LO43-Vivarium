@@ -63,10 +63,10 @@ public class World {
 	/* Call at the World creation */
 	public void create(){
 		MapGenerator.generate(map, 0); //0 to generate a new seed
-		test = new EntityFallingBlock(0,210,16,16,this);
-		test2 = new EntityFallingBlock(1,215,16,16,this);
-		hd =  new EntityHellDog(5,250,64,32,this);
-		setBlock(9, 245, new BlockGrass(9,245,this.map));
+		test = new EntityFallingBlock(0,320,16,16,this);
+		test2 = new EntityFallingBlock(1,315,16,16,this);
+		hd =  new EntityHellDog(5,350,64,32,this);
+		setBlock(9, 245, new BlockGrass(9,345,this.map));
 		//setBlock(6, 245, new BlockGrass(6,245,this.map));
 		entities.add(test);
 		entities.add(test2);

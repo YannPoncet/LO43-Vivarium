@@ -14,7 +14,7 @@ public class Camera {
 	
 	public Camera(){
 		   this.gameCam = new OrthographicCamera();
-		   this.gameCam.position.set(800 / 2f, (600 / 2f) + 200*16f , 0);
+		   this.gameCam.position.set(800 / 2f, (600 / 2f) + 300*16f , 0);
 		   this.gamePort = new FitViewport(800,600,gameCam);
 	}
 	public void resize(int width, int height){
