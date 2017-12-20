@@ -23,9 +23,8 @@ public class EntityHellDog extends EntityAnimal{
 	@Override
 	public void render(SpriteBatch sp) {
 		if(!isOnGround()){
-			y-=0.5f;
+			y-=8f;
 		}
-		System.out.println(((int) y)/16);
 		stateTime += Gdx.graphics.getDeltaTime();
 		TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
 		

@@ -18,7 +18,7 @@ public class RenderManager {
 	}
 
 	public static void renderAll(){
-		Gdx.gl.glClearColor(0, 0, 1f, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		renderArray(blockRender);

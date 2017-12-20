@@ -21,7 +21,6 @@ public class Entity extends Renderable{
 		int p = ((int) x)/16;
 		int s = ((int) x + width -1)/16;
 		int nY = (((int) y)/16) - 1;
-		System.out.println(p + " " + s);
 		while(!(b || p>s)){
 			
 			if(world.getBlock(p, nY) != null && (((int) y)%16) == 0){
