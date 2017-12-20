@@ -17,13 +17,14 @@ public class MapGenerator {
 			}
 			
 			Noise1DGenerator noiseGen = new Noise1DGenerator(seed, M);
-			//To fill the parameters: generateAndGetNoise(double amplitude, double wawelength, int octaves, double divisor)
-			//=>Increase wawelenth to get flat map generally
+			//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
+			//=>Increase wavelength to get flat map generally
 			//=>Decrease amplitude to get a flat map locally
 			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(20,128,15,4);
 			
 			
-			Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 60);
+			//Change the value of the last parameter (0 to 100) to increase the dirt ratio
+			Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 75);
 			
 
 			
