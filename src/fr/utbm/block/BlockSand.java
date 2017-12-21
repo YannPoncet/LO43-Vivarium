@@ -25,7 +25,7 @@ public class BlockSand extends Block{
 	}
 	@Override
 	public void update(){
-		System.out.println(x + " " + y);
+		
 	}
 	
 }
