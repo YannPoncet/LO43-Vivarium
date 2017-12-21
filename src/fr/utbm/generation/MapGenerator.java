@@ -1,9 +1,11 @@
-package fr.utbm.world;
+package fr.utbm.generation;
 
 import java.util.ArrayList;
 
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class MapGenerator {
 	public final static int DIRT_SURFACE = 10; //Height of the dirt at the surface

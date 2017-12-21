@@ -11,6 +11,7 @@ import fr.utbm.block.BlockWater;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
+import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
 
 public class World {

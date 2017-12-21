@@ -1,20 +1,18 @@
-package fr.utbm.world;
+package fr.utbm.generation;
 
 import java.util.ArrayList;
 
-public class Cave2DGenerator {
-	private double seed;
-	private long M;
-	private int A = 1664525;
-	private int C = 1;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
+
+public class Cave2DGenerator extends PseudoRandom{
 	private int width = Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;
 	private int height = Map.LIMIT_SURFACE-Map.LIMIT_CAVE;
 	private ArrayList<ArrayList<Integer>> caves;
 	
 	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill) 
 	{
-		this.seed = seed;
-		this.M = M;
+		super(seed, M);
 		initializeCells(initialPercentageOfFill);
 	}
 	
@@ -25,7 +23,7 @@ public class Cave2DGenerator {
         	ArrayList<Integer> tmp = new ArrayList<>();
             for (int j=0; j<height; j++) {
             	//changing initialPercentageOfFill from percentage to a value between -0.1 et 0.1 
-            	if (i == 0 || i >= width || pseudoRandom() < ((initialPercentageOfFill*2)-100)/1000){ 
+            	if (i == 0 || i >= width || getNextRandom() < ((initialPercentageOfFill*2)-100)/1000){ 
             		tmp.add(1);
             	}
             	else{ tmp.add(0); }
@@ -99,11 +97,5 @@ public class Cave2DGenerator {
 			}
 			this.caves = (ArrayList<ArrayList<Integer>>) tmpCaves.clone();
 		}
-	}
-	
-	private double pseudoRandom() 
-	{
-		seed = (A * seed + C) % M;
-		return (seed / M - 0.5);
 	}
 }

@@ -1,19 +1,17 @@
-package fr.utbm.world;
+package fr.utbm.generation;
 
 import java.util.ArrayList;
 
-public class Noise1DGenerator {
-	private double seed;
-	private long M;
-	private int A = 1664525;
-	private int C = 1;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
+
+public class Noise1DGenerator extends PseudoRandom {
 	private int width = Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;
 	private ArrayList<Integer> noise;
 	
 	public Noise1DGenerator(double seed, long M) 
 	{
-		this.seed = seed;
-		this.M = M;
+		super(seed, M);
 	}
 	
 	public ArrayList<Integer> generateAndGetNoise(double amp, double wl, int octaves, double divisor) 
@@ -35,22 +33,16 @@ public class Noise1DGenerator {
 		return result;
 	}
 	
-	private double pseudoRandom() 
-	{
-		seed = (A * seed + C) % M;
-		return (seed / M - 0.5);
-	}
-	
 	private double[] Perlin(double amp, double wl)
 	{
 		int x = 0;
-		double a = pseudoRandom();
-		double b = pseudoRandom();
+		double a = getNextRandom();
+		double b = getNextRandom();
 		double[] pos = new double[width];
 		while(x < width){
 			if(x % wl == 0){
 				a = b;
-				b = pseudoRandom();
+				b = getNextRandom();
 				pos[x] = a*amp;
 			}
 			else
