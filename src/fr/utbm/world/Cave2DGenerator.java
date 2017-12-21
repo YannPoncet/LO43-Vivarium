@@ -8,7 +8,7 @@ public class Cave2DGenerator {
 	private int A = 1664525;
 	private int C = 1;
 	private int width = Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;
-	private int height = Chunk.CHUNK_HEIGHT;
+	private int height = Map.LIMIT_SURFACE-Map.LIMIT_CAVE;
 	private ArrayList<ArrayList<Integer>> caves;
 	
 	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill) 
@@ -62,7 +62,7 @@ public class Cave2DGenerator {
 
 					// Rule to say if the cell stays alive when at the border
 					if (i == 0 || i >= width - 1 || j == 0 || j >= height - 1) {
-						caves.get(i).set(j, 1);
+						tmpCaves.get(i).set(j, 1);
 					} else {
 						int aliveAround = 0;
 

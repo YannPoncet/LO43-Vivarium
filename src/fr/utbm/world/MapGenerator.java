@@ -36,7 +36,7 @@ public class MapGenerator {
 				/* CAVES */
 				for(int j=Map.LIMIT_CAVE; j<Map.LIMIT_SURFACE;j++)
 				{
-					if(caves.get(i).get(j) == 1) 
+					if(caves.get(i).get(j-Map.LIMIT_CAVE) == 1) 
 					{
 						m.setBlock(i, j, new BlockDirt(i,j,m)); 
 					}
