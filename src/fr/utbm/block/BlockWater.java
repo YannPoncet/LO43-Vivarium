@@ -21,18 +21,18 @@ public class BlockWater extends BlockLiquid{
 	@Override
 	public void update()
 	{
-		try {
+		/*try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*try {
+		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		isStable = true;
 		text = TextureManager.getTexture(4 + state);
 		//void block around
@@ -45,7 +45,7 @@ public class BlockWater extends BlockLiquid{
 			map.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
 			this.state ++;
 		}
-		/*else
+		else
 		{
 			if(map.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null)
 			{
@@ -59,7 +59,7 @@ public class BlockWater extends BlockLiquid{
 				map.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), new BlockWater(this.x-1, this.y, 7, map));
 				isStable = false;
 			}
-		}*/
+		}
 		
 		//same liquid block around
 		else if(map.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockId == this.blockId)
