@@ -53,5 +53,18 @@ public class Chunk {
 			}
 		}
 	}
+	public void update()
+	{
+		for(int i=0;i<CHUNK_HEIGHT;i++)
+		{
+			for(int j=0;j<CHUNK_WIDTH;j++)
+			{
+				if(blocks[j][i] != null){
+					blocks[j][i].update();
+				}
+
+			}
+		}
+	}
 	
 }

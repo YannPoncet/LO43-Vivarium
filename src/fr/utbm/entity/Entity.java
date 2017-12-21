@@ -4,7 +4,7 @@ import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class Entity extends Renderable{
+public abstract class Entity extends Renderable{
 
 	protected World world;
 	protected int width;

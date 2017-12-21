@@ -59,5 +59,11 @@ public class Map {
 			}
 		}	
 	}
+	public void update(int i) //call render on the 5 chunks (2 left, this, and 2 right)
+	{
+		this.chunks[i].update();	
+	}
+	
+	
 	
 }

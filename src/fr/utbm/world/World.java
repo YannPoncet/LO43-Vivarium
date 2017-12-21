@@ -3,6 +3,8 @@ package fr.utbm.world;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.badlogic.gdx.graphics.FPSLogger;
+
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockGrass;
 import fr.utbm.entity.Entity;
@@ -17,11 +19,15 @@ public class World {
 	private EntityFallingBlock test;
 	private EntityFallingBlock test2;
 	private EntityHellDog hd;
+	
+	private FPSLogger fps;
+	
 	public World()
 	{
 		map = new Map();
 		entities = new ArrayList<Entity>();
 		this.create();
+		fps = new FPSLogger();
 	}
 	
 	public Block getBlock(int i, int j)
@@ -76,6 +82,8 @@ public class World {
 	
 	public void update()
 	{
+		this.map.update(0);
+		fps.log();
 		Iterator<Entity> iter = entities.iterator();
 		while (iter.hasNext()) {
 			Entity e = iter.next();
@@ -85,6 +93,7 @@ public class World {
 				e.update();
 			}
 		}
+		
 		
 	}
 	public void resize(){
