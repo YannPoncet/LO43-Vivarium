@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.FPSLogger;
 
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockGrass;
+import fr.utbm.block.BlockWater;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
@@ -18,6 +19,7 @@ public class World {
 	private ArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private EntityFallingBlock test2;
+	private BlockWater testWater;
 	private EntityHellDog hd;
 	
 	private FPSLogger fps;
@@ -73,6 +75,8 @@ public class World {
 		test2 = new EntityFallingBlock(1,315,16,16,this);
 		hd =  new EntityHellDog(5,350,64,32,this);
 		setBlock(9, 245, new BlockGrass(9,345,this.map));
+		testWater = new BlockWater(9,314,0,this.map);
+		setBlock(9, 314, testWater);
 		//setBlock(6, 245, new BlockGrass(6,245,this.map));
 		entities.add(test);
 		entities.add(test2);
