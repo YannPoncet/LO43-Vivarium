@@ -21,7 +21,7 @@ public class MapGenerator {
 			//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 			//=>Increase wavelength to get flat map generally
 			//=>Decrease amplitude to get a flat map locally
-			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(10,64,15,4);
+			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(0,64,15,4);
 			
 			
 			//Change the value of the last parameter (0 to 100) to increase the dirt ratio
