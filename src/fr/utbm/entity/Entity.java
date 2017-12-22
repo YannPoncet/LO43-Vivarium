@@ -20,9 +20,9 @@ public abstract class Entity extends Renderable{
 		boolean b = false;
 		int p = ((int) x)/16;
 		int s = ((int) x + width -1)/16;
-		int nY = (((int) y)/16) - 1;
+		int nY = (((int) (y))/16);
 		while(!(b || p>s)){
-			if(world.getBlock(p, nY) != null && (((int) y)%16) == 0){
+			if(world.getBlock(p, nY) != null){
 				b=true;
 			}
 			p+=1;

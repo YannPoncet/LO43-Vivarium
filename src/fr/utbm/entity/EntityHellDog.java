@@ -41,21 +41,38 @@ public class EntityHellDog extends EntityAnimal{
 		activity = -1;
 	}
 	public void update(){
-		Gravity.applyGravity(this);
-		
-		move(3,0,2);
+			move(0,0,-1);
 	}
+	
+	private float xa,ya;
 	public void move(float dx, float dy, int act){
-		if(isOnGround()){
+			ya+= world.getGravity(); //GRAVITY
+			
 			this.activity = act;
-			this.x+=dx;
-			this.y+=dy;
+			xa+=dx;
+			ya+=dy;
 			if(dx>0){
 				directionX = 1;
 			}else{
 				directionX = 0;
 			}
-		}
+			
+			int xStep = (int) Math.abs(xa * 100);
+			for (int i = 0; i < xStep; i++) {
+				if (!isOnGround()) {
+					this.x += xa / xStep;
+				} else {
+					xa = 0;
+				}
+			}
+			int yStep = (int) Math.abs(ya * 100);
+			for (int i = 0; i < yStep; i++) {
+				if (!isOnGround()) {
+					this.y += ya / yStep;
+				} else {
+					ya = 0;
+				}
+			}
 	}
 	
 	
