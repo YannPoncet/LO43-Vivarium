@@ -1,12 +1,12 @@
 package fr.utbm.block;
 
 import fr.utbm.texture.TextureManager;
-import fr.utbm.world.Map;
+import fr.utbm.world.World;
 
 public class BlockGrass extends Block{
 
-	public BlockGrass(float x, float y, Map mapIn) {
-		super(x, y, TextureManager.getTexture(2), mapIn);
+	public BlockGrass(float x, float y, World w) {
+		super(x, y, TextureManager.getTexture(2), w);
 		this.blockId = 2;
 		this.maxHealth = 100;
 		this.blockHealth = 100;
@@ -14,8 +14,8 @@ public class BlockGrass extends Block{
 		this.isGravitySensitive = false;
 	}
 	
-	public BlockGrass(float x, float y, int bH, Map mapIn) {
-		super(x, y, TextureManager.getTexture(2), mapIn);
+	public BlockGrass(float x, float y, int bH, World w) {
+		super(x, y, TextureManager.getTexture(2), w);
 		this.blockId = 2;
 		this.maxHealth = 100;
 		this.blockHealth = bH;

@@ -2,8 +2,7 @@ package fr.utbm.block;
 
 import com.badlogic.gdx.graphics.Texture;
 
-//import fr.utbm.entity.Direction;
-import fr.utbm.world.Map;
+import fr.utbm.world.World;
 
 public abstract class BlockLiquid extends Block{
 	
@@ -12,9 +11,9 @@ public abstract class BlockLiquid extends Block{
 	protected boolean isStable;
 	float stateTime = 0;
 	
-	public BlockLiquid(float x, float y,Texture text, Map mapIn)
+	public BlockLiquid(float x, float y,Texture text, World w)
 	{
-		super(x, y, text, mapIn);
+		super(x, y, text, w);
 	}
 	
 	@Override
@@ -25,27 +24,27 @@ public abstract class BlockLiquid extends Block{
 	
 	public boolean isStable()
 	{
-		if((map.getBlock((int)(this.x/16), (int)((this.y/16)+1)) == null) || (map.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null) || (map.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null))
+		if((world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) == null) || (world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null) || (world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null))
 		{
 			return false;
 		}
-		else if(map.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == this.blockId)
+		else if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == this.blockId)
 		{
-			if(((BlockLiquid)map.getBlock((int)(this.x/16), (int)((this.y/16)+1))).state <= this.state)
+			if(((BlockLiquid)world.getBlock((int)(this.x/16), (int)((this.y/16)+1))).state <= this.state)
 			{
 				return false;
 			}
 		}
-		else if(map.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
+		else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
 		{
-			if(((BlockLiquid)map.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state <= this.state)
+			if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state <= this.state)
 			{
 				return false;
 			}
 		}
-		else if(map.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+		else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
 		{
-			if(((BlockLiquid)map.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state <= this.state)
+			if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state <= this.state)
 			{
 				return false;
 			}

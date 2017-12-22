@@ -6,12 +6,13 @@ import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
+import fr.utbm.world.World;
 
 public class MapGenerator {
 	public final static int DIRT_SURFACE = 10; //Height of the dirt at the surface
 	public final static int GRASS_SURFACE = 2;
 	
-	public static void generate(Map m, double seed)
+	public static void generate(World w, double seed)
 	{
 			long M = 4294967296L;
 			if (seed == 0) 
@@ -40,7 +41,7 @@ public class MapGenerator {
 				{
 					if(caves.get(i).get(j-Map.LIMIT_CAVE) == 1) 
 					{
-						m.setBlock(i, j, new BlockDirt(i,j,m)); 
+						w.getMap().setBlock(i, j, new BlockDirt(i,j,w)); 
 					}
 				}
 				
@@ -49,11 +50,11 @@ public class MapGenerator {
 				{
 					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt
 					{
-						m.setBlock(i, j, new BlockDirt(i,j,m));
+						w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 					}
 					else //grass
 					{
-						m.setBlock(i, j, new BlockGrass(i,j,m));
+						w.getMap().setBlock(i, j, new BlockGrass(i,j,w));
 					}
 				}
 			}

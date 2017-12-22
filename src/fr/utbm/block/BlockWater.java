@@ -1,16 +1,14 @@
 package fr.utbm.block;
 
-import com.badlogic.gdx.Gdx;
-
 //import fr.utbm.entity.Direction;
 import fr.utbm.texture.TextureManager;
-import fr.utbm.world.Map;
+import fr.utbm.world.World;
 
 public class BlockWater extends BlockLiquid{
 	
-	public BlockWater(float x, float y, int state, Map mapIn)
+	public BlockWater(float x, float y, int state, World w)
 	{
-		super(x, y, TextureManager.getTexture(4 + state), mapIn);
+		super(x, y, TextureManager.getTexture(4 + state), w);
 		this.blockId = 4;
 		this.maxHealth = 1;
 		this.blockHealth = 1;
@@ -27,20 +25,20 @@ public class BlockWater extends BlockLiquid{
 		{
 			System.out.println("je rentre dans le statetime du bloc " + this.x/16 +" ; "+ this.y/16);
 			stateTime += Gdx.graphics.getDeltaTime();
-		}*/
+		}
 		
 		isStable = true;
 		text = TextureManager.getTexture(4 + state);
 		//void block around
 		System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
-		if(map.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
 		{
 			System.out.println("je descends pour la premiere fois");
 			//flowing = Direction.DOWN;
-			BlockWater block = new BlockWater(x/16, (y/16)-1, 7, map);
-			map.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
+			BlockWater block = new BlockWater(x/16, (y/16)-1, 7, world);
+			world.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
 			this.state ++;
-		}/*
+		}
 		else
 		{
 			if(map.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null)
@@ -55,17 +53,17 @@ public class BlockWater extends BlockLiquid{
 				map.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), new BlockWater(this.x-1, this.y, 7, map));
 				isStable = false;
 			}
-		}*/
+		}
 		
 		//same liquid block around
-		else if(map.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockId == this.blockId)
+		else if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockId == this.blockId)
 		{
 			System.out.println("je prolonge la descente");
-			if(((BlockLiquid)map.getBlock((int)(this.x/16), (int)((this.y/16)-1))).state > 0)
+			if(((BlockLiquid)world.getBlock((int)(this.x/16), (int)((this.y/16)-1))).state > 0)
 			{
 				System.out.println("J'actualise l'autre bloc");
 				//flowing = Direction.DOWN;
-				((BlockLiquid)map.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state --;
+				((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state --;
 				this.state ++;
 			}
 		}
@@ -74,7 +72,7 @@ public class BlockWater extends BlockLiquid{
 		{
 			System.out.println("J'ai kill le bloc en " + this.x/16 +" ; "+ this.y/16);
 			dead = true;
-			map.setBlock(((int)(this.x/16)), ((int)(this.y/16)), null);
+			world.setBlock(((int)(this.x/16)), ((int)(this.y/16)), null);
 			isStable = true;
 		}
 		else
@@ -85,7 +83,7 @@ public class BlockWater extends BlockLiquid{
 		
 		System.out.println("Mon état est : " + state);
 		stateTime = 0;
-		/*else
+		else
 		{
 			if(map.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
 			{
