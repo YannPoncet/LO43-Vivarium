@@ -21,11 +21,6 @@ public class BlockWater extends BlockLiquid{
 	@Override
 	public void update()
 	{
-		/*while(stateTime < 1000)
-		{
-			System.out.println("je rentre dans le statetime du bloc " + this.x/16 +" ; "+ this.y/16);
-			stateTime += Gdx.graphics.getDeltaTime();
-		}
 		
 		isStable = true;
 		text = TextureManager.getTexture(4 + state);
@@ -39,21 +34,7 @@ public class BlockWater extends BlockLiquid{
 			world.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
 			this.state ++;
 		}
-		else
-		{
-			if(map.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null)
-			{
-				flowing = Direction.RIGHT;
-				map.setBlock(((int)((this.x/16)+1)), ((int)(this.y/16)), new BlockWater(this.x+1, this.y, 7, map));
-				isStable = false;
-			}
-			if(map.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null)
-			{
-				flowing = Direction.LEFT;
-				map.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), new BlockWater(this.x-1, this.y, 7, map));
-				isStable = false;
-			}
-		}
+		
 		
 		//same liquid block around
 		else if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockId == this.blockId)
@@ -83,29 +64,7 @@ public class BlockWater extends BlockLiquid{
 		
 		System.out.println("Mon état est : " + state);
 		stateTime = 0;
-		else
-		{
-			if(map.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
-			{
-				if(((BlockLiquid)map.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state < this.state)
-				{
-					flowing = Direction.RIGHT;
-					((BlockLiquid)map.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state += 1;
-					map.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16))).update();
-					isStable = false;
-				}
-			}
-			if(map.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
-			{
-				if(((BlockLiquid)map.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state < this.state)
-				{
-					flowing = Direction.LEFT;
-					((BlockLiquid)map.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state += 1;
-					map.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16))).update();
-					isStable = false;
-				}
-			}
-		}*/
+		
 	}
 
 }
