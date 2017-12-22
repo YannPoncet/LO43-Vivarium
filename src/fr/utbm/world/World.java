@@ -74,7 +74,7 @@ public class World {
 		MapGenerator.generate(map, 0); //0 to generate a new seed
 		test = new EntityFallingBlock(0,320,16,16,this);
 		test2 = new EntityFallingBlock(1,315,16,16,this);
-		hd =  new EntityHellDog(5,350,64,32,this);
+		hd =  new EntityHellDog(5,320,64,32,this);
 		setBlock(9, 245, new BlockGrass(9,345,this.map));
 		testWater = new BlockWater(9,314,0,this.map);
 		setBlock(9, 314, testWater);

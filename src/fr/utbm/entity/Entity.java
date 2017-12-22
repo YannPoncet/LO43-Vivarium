@@ -22,7 +22,6 @@ public abstract class Entity extends Renderable{
 		int s = ((int) x + width -1)/16;
 		int nY = (((int) y)/16) - 1;
 		while(!(b || p>s)){
-			
 			if(world.getBlock(p, nY) != null && (((int) y)%16) == 0){
 				b=true;
 			}
@@ -32,6 +31,16 @@ public abstract class Entity extends Renderable{
 		
 	}
 	public void update(){
+	}
+	public void setPosition(float x, float y){
+		this.x = x;
+		this.y = y;
+	}
+	public float getPosX(){
+		return this.x;
+	}
+	public float getPosY(){
+		return this.y;
 	}
 
 }
