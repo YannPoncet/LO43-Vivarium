@@ -60,7 +60,11 @@ public class Chunk {
 			for(int j=0;j<CHUNK_WIDTH;j++)
 			{
 				if(blocks[j][i] != null){
-					blocks[j][i].update();
+					if(blocks[j][i].isDead()){
+						blocks[j][i] = null;
+					}else{
+						blocks[j][i].update();
+					}
 				}
 
 			}
