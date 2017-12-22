@@ -2,14 +2,14 @@ package fr.utbm.block;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import fr.utbm.entity.Direction;
 import fr.utbm.world.World;
 
 public abstract class BlockLiquid extends Block{
 	
 	protected int state = 0;
-	//protected Direction flowing;
-	protected boolean isStable;
-	float stateTime = 0;
+	protected Direction flowing;
+	protected int iter = 0;
 	
 	public BlockLiquid(float x, float y,Texture text, World w)
 	{

@@ -76,8 +76,8 @@ public class World {
 		test2 = new EntityFallingBlock(1,315,16,16,this);
 		hd =  new EntityHellDog(5,320,64,32,this);
 		setBlock(9, 245, new BlockGrass(9,345,this));
-		testWater = new BlockWater(9,314,0,this);
-		setBlock(9, 314, testWater);
+		testWater = new BlockWater(9,320,0,this);
+		setBlock(9, 320, testWater);
 		//setBlock(6, 245, new BlockGrass(6,245,this.map));
 		entities.add(test);
 		entities.add(test2);
