@@ -53,7 +53,6 @@ public class BlockWater extends BlockLiquid{
 		{
 			System.out.println("J'ai kill le bloc en " + this.x/16 +" ; "+ this.y/16);
 			dead = true;
-			world.setBlock(((int)(this.x/16)), ((int)(this.y/16)), null);
 			isStable = true;
 		}
 		else
