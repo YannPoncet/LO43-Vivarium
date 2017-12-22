@@ -12,6 +12,11 @@
 	<texture id="10" file="blockWater6.png"></texture>
 	<texture id="11" file="blockWater7.png"></texture>
 	
-	<animation id="0" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
+	<texture id="100" file="hellDog/hell-hound.png"></texture>
+	
+	<animation id="0" file="hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
+	<animation id="1" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
+	<animation id="2" file="hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
+	<animation id="3" file="hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
 	
 </textures>

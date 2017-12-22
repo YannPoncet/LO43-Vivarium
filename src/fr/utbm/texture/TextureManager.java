@@ -86,8 +86,8 @@ public class TextureManager {
 					t.getHeight() / hD);
 			TextureRegion[] textR1D = new TextureRegion[wD * hD];
 			int index = 0;
-			for (int i = 0; i < 1; i++) {
-				for (int j = 0; j < 12; j++) {
+			for (int i = 0; i < hD; i++) {
+				for (int j = 0; j < wD; j++) {
 					textR1D[index++] = tmp[i][j];
 				}
 			}
