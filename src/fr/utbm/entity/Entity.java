@@ -9,6 +9,8 @@ public abstract class Entity extends Renderable{
 	protected World world;
 	protected int width;
 	protected int height;
+	protected int maxHealth;
+	protected int health;
 	
 	public Entity(float x, float y, int w, int h, World worldIn) {
 		super(x*16,y*16,TextureManager.getTexture(0));
