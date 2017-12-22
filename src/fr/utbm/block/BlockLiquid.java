@@ -10,6 +10,7 @@ public abstract class BlockLiquid extends Block{
 	protected int state = 0;
 	//protected Direction flowing;
 	protected boolean isStable;
+	float stateTime = 0;
 	
 	public BlockLiquid(float x, float y,Texture text, Map mapIn)
 	{
