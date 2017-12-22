@@ -22,7 +22,7 @@ public class World {
 	private EntityFallingBlock test2;
 	private BlockWater testWater;
 	private EntityHellDog hd;
-	
+	private float gravity = -8.81f;
 	private FPSLogger fps;
 	
 	public World()
@@ -74,7 +74,7 @@ public class World {
 		MapGenerator.generate(this, 0); //0 to generate a new seed
 		test = new EntityFallingBlock(0,320,16,16,this);
 		test2 = new EntityFallingBlock(1,315,16,16,this);
-		hd =  new EntityHellDog(5,320,64,32,this);
+		hd =  new EntityHellDog(5,330,64,32,this);
 		setBlock(9, 245, new BlockGrass(9,345,this));
 		testWater = new BlockWater(9,314,0,this);
 		setBlock(9, 314, testWater);
@@ -104,5 +104,10 @@ public class World {
 	public void resize(){
 		
 	}
+
+	public float getGravity() {
+		return gravity;
+	}
+
 	
 }
