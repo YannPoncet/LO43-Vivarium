@@ -1,6 +1,7 @@
 package fr.utbm.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fr.utbm.physics.Gravity;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.tools.CollisionAABB;
 import fr.utbm.world.World;
 
 public class EntityHellDog extends EntityAnimal{
@@ -29,8 +31,8 @@ public class EntityHellDog extends EntityAnimal{
 	
 	
 	
-	public EntityHellDog(float x, float y, int w, int h, World worldIn) {
-		super(x, y, w, h, worldIn);
+	public EntityHellDog(float x, float y, World worldIn) {
+		super(x, y, 54, 32, worldIn);
 		this.text = TextureManager.getTexture(100);
 		anim = new Animation[4];
 		anim[0] = TextureManager.getAnimation(0);
@@ -41,25 +43,41 @@ public class EntityHellDog extends EntityAnimal{
 		activity = -1;
 	}
 	public void update(){
-			move(0,0,-1);
+		System.out.println(isOnGround());
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && isOnGround()){
+				move(3f,10f,3);
+		 }else{
+			 if(isOnGround()){
+				 move(0.3f,0,2);
+			 }else{
+				 move(0,0,activity);
+			 }
+
+		 }
+
 	}
 	
 	private float xa,ya;
+	float drag = 0;
+
 	public void move(float dx, float dy, int act){
-			ya+= world.getGravity(); //GRAVITY
-			
+			ya+= world.getGravity()*0.1f;
 			this.activity = act;
 			xa+=dx;
 			ya+=dy;
+			if (isOnGround()) {
+				drag = 0.85f;
+			} else {
+				drag = 0.95f;
+			}
 			if(dx>0){
 				directionX = 1;
-			}else{
+			}else if(dx< 0){
 				directionX = 0;
 			}
-			
 			int xStep = (int) Math.abs(xa * 100);
 			for (int i = 0; i < xStep; i++) {
-				if (!isOnGround()) {
+				if (!CollisionAABB.enterInCollisionAt(this, xa / xStep,0)) {
 					this.x += xa / xStep;
 				} else {
 					xa = 0;
@@ -67,19 +85,17 @@ public class EntityHellDog extends EntityAnimal{
 			}
 			int yStep = (int) Math.abs(ya * 100);
 			for (int i = 0; i < yStep; i++) {
-				if (!isOnGround()) {
+				if (!CollisionAABB.enterInCollisionAt(this, 0, ya / yStep)) {
 					this.y += ya / yStep;
 				} else {
 					ya = 0;
 				}
 			}
+			
+			xa *= drag;
+			ya *= drag;			
+			
 	}
-	
-	
-	
-	
-	
-	
 	@Override
 	public void render(SpriteBatch sp) {
 		if(activity >0){

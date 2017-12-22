@@ -16,11 +16,20 @@ public abstract class Entity extends Renderable{
 		this.width = w;
 		this.height = h;
 	}
+	public World getWorldIn(){
+		return this.world;
+	}
+	public int getWidth(){
+		return this.width;
+	}
+	public int getHeight(){
+		return this.height;
+	}
 	public boolean isOnGround(){
 		boolean b = false;
 		int p = ((int) x)/16;
 		int s = ((int) x + width -1)/16;
-		int nY = (((int) (y))/16);
+		int nY = (((int) (y-1))/16);
 		while(!(b || p>s)){
 			if(world.getBlock(p, nY) != null){
 				b=true;
