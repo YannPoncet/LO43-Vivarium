@@ -28,7 +28,7 @@ public class BlockWater extends BlockLiquid{
 		}
 		else
 		{
-			if(flowing == Direction.DOWN && state == 7)
+			if((flowing == Direction.DOWN && state == 7 && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null) || (world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == 4))
 			{
 				text = TextureManager.getTexture(12);
 			}
@@ -38,9 +38,9 @@ public class BlockWater extends BlockLiquid{
 			}
 		}
 		
-		if(iter == 10)
+		if(iter == 40)
 		{
-			//void block around
+			//void block under
 			//System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
 			if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
 			{
@@ -51,9 +51,7 @@ public class BlockWater extends BlockLiquid{
 				this.state ++;
 				//System.out.println("Son état est : " + ((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state);
 			}
-			
-			
-			//same liquid block around
+			//same liquid block under
 			else if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockId == this.blockId)
 			{
 				//System.out.println("je prolonge la descente");
@@ -66,9 +64,96 @@ public class BlockWater extends BlockLiquid{
 					//System.out.println("Son état est : " + ((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state);
 				}
 			}
-			
-			
-			
+			else if(this.state < 7)
+			{
+				if(flowing != Direction.RIGHT)
+				{
+					if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null)
+					{
+						BlockWater block = new BlockWater((x/16)+1, y/16, 7, world);
+						block.flowing = Direction.RIGHT;
+		                world.setBlock(((int)((this.x/16)+1)), ((int)(this.y/16)), block);
+		                this.state ++;
+					}
+					else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
+			        {
+			            if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > this.state)
+			            {
+			            	this.flowing = Direction.RIGHT;
+			            	((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).flowing = Direction.RIGHT;
+			                ((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
+			                this.state ++;
+			            }
+			        }
+					if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null)
+					{
+						BlockWater block = new BlockWater((x/16)-1, y/16, 7, world);
+						block.flowing = Direction.LEFT;
+		                world.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), block);
+		                this.state ++;
+					}
+					else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+			        {
+						System.out.println(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state + " comparé à " + state);
+			            if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > this.state)
+			            {
+			            	this.flowing = Direction.LEFT;
+			            	((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).flowing = Direction.LEFT;
+			                ((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
+			                this.state ++;
+			            }
+			        }
+				}
+				else if(flowing != Direction.LEFT)
+				{
+					if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null)
+					{
+						BlockWater block = new BlockWater((x/16)-1, y/16, 7, world);
+						block.flowing = Direction.LEFT;
+		                world.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), block);
+		                this.state ++;
+					}
+					else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+			        {
+						System.out.println(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state + " comparé à " + state);
+			            if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > this.state)
+			            {
+			            	this.flowing = Direction.LEFT;
+			            	((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).flowing = Direction.LEFT;
+			                ((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
+			                this.state ++;
+			            }
+			        }
+					if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null)
+					{
+						BlockWater block = new BlockWater((x/16)+1, y/16, 7, world);
+						block.flowing = Direction.RIGHT;
+		                world.setBlock(((int)((this.x/16)+1)), ((int)(this.y/16)), block);
+		                this.state ++;
+					}
+					else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
+			        {
+			            if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > this.state)
+			            {
+			            	this.flowing = Direction.RIGHT;
+			            	((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).flowing = Direction.RIGHT;
+			                ((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
+			                this.state ++;
+			            }
+			        }
+				}
+				
+	            /*if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+	            {
+	                if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state < this.state)
+	                {
+	                    flowing = Direction.LEFT;
+	                    ((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state += 1;
+	                    world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16))).update();
+	                }
+	            }*/
+			}
+            
 			//System.out.println("Mon état est : " + state);
 			iter = 0;
 		}
