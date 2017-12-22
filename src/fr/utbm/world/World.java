@@ -20,7 +20,6 @@ public class World {
 	private ArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private EntityFallingBlock test2;
-	private BlockWater testWater;
 	private EntityHellDog hd;
 	private float gravity = -4f;
 	private FPSLogger fps;
@@ -76,9 +75,32 @@ public class World {
 		test2 = new EntityFallingBlock(1,315,16,16,this);
 		hd =  new EntityHellDog(5,330,this);
 		setBlock(9, 245, new BlockGrass(9,345,this));
-		//testWater = new BlockWater(9,320,0,this);
-		//setBlock(9, 320, testWater);
-		setBlock(25, 312, new BlockGrass(25,312,this));
+		for(int i = 0; i < 20 ; i++)
+		{
+			setBlock(i+20, 350, new BlockWater(i+20,330,0,this));
+			for(int j = 0 ; j < 5 ; j++)
+			{
+				if(i == j)
+				{
+					setBlock(i+20, j+312, new BlockGrass(i+20,j+312,this));
+				}
+				if(i == 0)
+				{
+					setBlock(19, j+312, new BlockGrass(19,j+312,this));
+				}
+				if(i == 19)
+				{
+					setBlock(40, j+312, new BlockGrass(40,j+312,this));
+				}
+			}
+		}
+		setBlock(22, 340, new BlockWater(22,380,0,this));
+		//setBlock(26, 315,new BlockWater(26,315,0,this));
+		//setBlock(32, 320,new BlockWater(32,320,0,this));
+		/*setBlock(40, 312, new BlockGrass(40,312,this));
+		setBlock(40, 313, new BlockGrass(40,313,this));
+		setBlock(19, 312, new BlockGrass(19,312,this));
+		setBlock(19, 313, new BlockGrass(19,313,this));*/
 		entities.add(test);
 		entities.add(test2);
 		entities.add(hd);
