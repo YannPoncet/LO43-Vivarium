@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.utbm.main.DesktopApplication;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.view.Camera;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 
@@ -61,24 +62,28 @@ public class RenderManager {
 		//502 -> cave [between Map.LIMIT_CAVE and Map.LIMIT_SURFACE]
 		//503 -> hell [below Map.LIMIT_CAVE]
 		
-		/* Libre à toi de revoir ça le rendu est pas parfait */
-		System.out.println(y);
-		if (x<0) {
+		if (x<0) { //left border
 			x -= x-16;
 		}
 		else if (x==0){
 			x=16;
 		}
-		else if (x>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16-DesktopApplication.WIDTH) {
-			x -= (x-DesktopApplication.WIDTH)+16;
+		else if (x>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16-Camera.WIDTH) { //right border
+			x -= (x-Camera.WIDTH)+16;
 		}
 		
-		if (y>Chunk.CHUNK_HEIGHT*16-DesktopApplication.HEIGHT) {
-			y -= Chunk.CHUNK_HEIGHT*16-DesktopApplication.HEIGHT;
+		if (y<16) {
+			y -=y-16;
+			batch.draw(TextureManager.getTexture(503),x,y);
+			batch.draw(TextureManager.getTexture(503),x,y+400);
+		}
+		else if (y+16>Chunk.CHUNK_HEIGHT*16-Camera.HEIGHT) { //top border
+			y -= (y-Chunk.CHUNK_HEIGHT*16)+Camera.HEIGHT+16;
 			System.out.println(y);
 			batch.draw(TextureManager.getTexture(500),x,y);
-		}	
-		else if (y/16 < Map.LIMIT_CAVE) {
+			batch.draw(TextureManager.getTexture(500),x,y+400,0,-200,800,200);
+		}
+		else if (y < Map.LIMIT_CAVE*16) {
 			batch.draw(TextureManager.getTexture(503),x,y);
 			batch.draw(TextureManager.getTexture(503),x,y+400);
 			if (y/16+600/16 > Map.LIMIT_CAVE) { //if close to the surface

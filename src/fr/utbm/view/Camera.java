@@ -11,6 +11,8 @@ import fr.utbm.render.RenderManager;
 import fr.utbm.world.World;
 
 public class Camera {
+	public final static int HEIGHT=600;
+	public final static int WIDTH=800;
 	
 	private OrthographicCamera gameCam;
 	private Viewport gamePort;
@@ -23,8 +25,8 @@ public class Camera {
 			this.w = w;
 		   this.gameCam = new OrthographicCamera();
 		   this.actualChunk = 0;
-		   this.gameCam.position.set(800 / 2f, (600 / 2f) + 300*16f , 0);
-		   this.gamePort = new FitViewport(800,600,gameCam);
+		   this.gameCam.position.set(WIDTH / 2f, (HEIGHT / 2f) + 300*16f , 0);
+		   this.gamePort = new FitViewport(WIDTH,HEIGHT,gameCam);
 	}
 	public void resize(int width, int height){
 		gamePort.update(width,height);
