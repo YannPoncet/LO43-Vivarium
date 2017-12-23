@@ -48,7 +48,7 @@ public class Camera {
 		   if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 			   gameCam.position.y -= 10;
 		   }
-		   System.out.println(gameCam.position.x + "      " + gameCam.position.y);
+		   //System.out.println(gameCam.position.x + "      " + gameCam.position.y);
 		   if(actualChunk != ((int) gameCam.position.x) / (50*16)){
 			   actualChunk = (int) (gameCam.position.x / (50*16));
 			   w.cameraSwitchChunkChunk(actualChunk);

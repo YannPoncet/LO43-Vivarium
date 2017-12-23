@@ -7,7 +7,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fr.utbm.main.DesktopApplication;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class RenderManager {
 
@@ -58,7 +61,48 @@ public class RenderManager {
 		//502 -> cave [between Map.LIMIT_CAVE and Map.LIMIT_SURFACE]
 		//503 -> hell [below Map.LIMIT_CAVE]
 		
-		batch.draw(TextureManager.getTexture(502),x,y);
+		/* Libre à toi de revoir ça le rendu est pas parfait */
+		System.out.println(y);
+		if (x<0) {
+			x -= x-16;
+		}
+		else if (x==0){
+			x=16;
+		}
+		else if (x>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16-DesktopApplication.WIDTH) {
+			x -= (x-DesktopApplication.WIDTH)+16;
+		}
+		
+		if (y>Chunk.CHUNK_HEIGHT*16-DesktopApplication.HEIGHT) {
+			y -= Chunk.CHUNK_HEIGHT*16-DesktopApplication.HEIGHT;
+			System.out.println(y);
+			batch.draw(TextureManager.getTexture(500),x,y);
+		}	
+		else if (y/16 < Map.LIMIT_CAVE) {
+			batch.draw(TextureManager.getTexture(503),x,y);
+			batch.draw(TextureManager.getTexture(503),x,y+400);
+			if (y/16+600/16 > Map.LIMIT_CAVE) { //if close to the surface
+				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_SURFACE*16);
+				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_SURFACE*16+400);
+			}
+		}
+		else if (y/16 < Map.LIMIT_SURFACE) {
+			batch.draw(TextureManager.getTexture(502),x,y);
+			batch.draw(TextureManager.getTexture(502),x,y+400);
+			if (y/16+600/16 > Map.LIMIT_SURFACE) { //if close to the surface
+				batch.draw(TextureManager.getTexture(501),x,Map.LIMIT_SURFACE*16);
+				batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+400);
+			}
+		}
+		else if (y/16 < Map.LIMIT_SURFACE+400/16) {
+			batch.draw(TextureManager.getTexture(501),x,Map.LIMIT_SURFACE*16);
+			batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+400);
+			batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+800);
+		}
+		else {
+			batch.draw(TextureManager.getTexture(500),x,y);
+			batch.draw(TextureManager.getTexture(500),x,y+400);
+		}
 		
 		
 		

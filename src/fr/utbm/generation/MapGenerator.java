@@ -10,7 +10,7 @@ import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class MapGenerator {
-	public final static int DIRT_SURFACE = 20; //Height of the dirt at the surface
+	public final static int DIRT_SURFACE = 10; //Height of the dirt at the surface
 	public final static int GRASS_SURFACE = 2;
 	
 	public static void generate(World w, double seed)
