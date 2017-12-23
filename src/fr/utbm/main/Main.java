@@ -18,8 +18,8 @@ public class Main extends ApplicationAdapter {
 	   TextureManager.loadTextures();
 	   batch = new SpriteBatch();
 	   RenderManager.setBatch(batch);
-	   camera = new Camera();
 	   w = new World();
+	   camera = new Camera(w);
 	   
    }
    public void update(){

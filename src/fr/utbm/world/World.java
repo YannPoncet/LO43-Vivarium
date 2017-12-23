@@ -13,6 +13,7 @@ import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
+import fr.utbm.view.Camera;
 
 public class World {
 	
@@ -21,8 +22,11 @@ public class World {
 	private EntityFallingBlock test;
 	private EntityFallingBlock test2;
 	private EntityHellDog hd;
+	
+	
 	private float gravity = -4f;
 	private FPSLogger fps;
+	
 	
 	public World()
 	{
@@ -129,6 +133,10 @@ public class World {
 
 	public float getGravity() {
 		return gravity;
+	}
+	public void cameraSwitchChunkChunk(int cID){
+		RenderManager.cleanRender();
+		map.render(cID);
 	}
 
 	
