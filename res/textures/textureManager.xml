@@ -15,7 +15,9 @@
 	<texture id="12" file="blockGlassV.png"></texture>
 	<texture id="13" file="blockGlassH.png"></texture>
 	
-	<texture id="14" file="blockAsh.png"></texture><texture id="100" file="hellDog/hell-hound.png"></texture>
+	<texture id="14" file="blockAsh.png"></texture>
+	<texture id="15" file="blockSandSurface.png"></texture>
+	<texture id="100" file="hellDog/hell-hound.png"></texture>
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
 	<texture id="501" file="backgrounds/forest.png"></texture>

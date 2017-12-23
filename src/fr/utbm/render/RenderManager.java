@@ -61,7 +61,7 @@ public class RenderManager {
 		//501 -> forest [above Map.LIMIT_SURFACE]
 		//502 -> cave [between Map.LIMIT_CAVE and Map.LIMIT_SURFACE]
 		//503 -> hell [below Map.LIMIT_CAVE]
-		int backgroundsWidth = 800;
+		//int backgroundsWidth = 800;
 		int backgroundsHeight = 400;
 		
 		if (x<0) { //left border
@@ -71,8 +71,6 @@ public class RenderManager {
 			x=16;
 		}
 		else if (x>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16-Camera.WIDTH) { //right border
-			System.out.println("hoy");
-			//x -= (x-Camera.WIDTH)+16;
 			x=Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16-Camera.WIDTH-16;
 		}
 		

@@ -1,0 +1,4 @@
+<biomes>
+	<biome id="0" name="forest" surfaceAmplitude="20" surfaceWavelength="50"></biome>
+	<biome id="1" name="montain" surfaceAmplitude="128" surfaceWavelength="128"></biome>
+</biomes>

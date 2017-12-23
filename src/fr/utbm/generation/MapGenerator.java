@@ -2,6 +2,8 @@ package fr.utbm.generation;
 
 import java.util.ArrayList;
 
+import fr.utbm.biome.Biome;
+import fr.utbm.biome.BiomeList;
 import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
@@ -11,7 +13,7 @@ import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class MapGenerator {
-	public final static int DIRT_SURFACE = 10; //Height of the dirt at the surface
+	public final static int DIRT_SURFACE = 50; //Height of the dirt at the surface
 	public final static int GRASS_SURFACE = 1;
 	
 	public static void generate(World w, double seed)
@@ -21,12 +23,14 @@ public class MapGenerator {
 			{
 				seed = Math.floor(Math.random() * M);
 			}
+			BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 10, 15);
+			ArrayList<Biome> biomeList = biomeGen.getBiomeList();
 			
 			Surface1DGenerator noiseGen = new Surface1DGenerator(seed, M);
 			//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 			//=>Increase wavelength to get flat map generally
 			//=>Decrease amplitude to get a flat map locally
-			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(0,64,15,4);
+			ArrayList<Integer> surface = noiseGen.generateAndGetNoise(50,64,15,4);
 			
 			
 			//Change the value of the last parameter (0 to 100) to increase the dirt ratio
@@ -37,8 +41,15 @@ public class MapGenerator {
 			ArrayList<ArrayList<Integer>> caves = caveGen.generateAndGetCaves();
 			ArrayList<ArrayList<Integer>> hellCaves = hellGen.generateAndGetCaves();
 			
+			int k = 0;
+			int lastSwitchI = 0;
 			for(int i=0; i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;i++)
 			{
+				if(i == lastSwitchI+biomeList.get(k).getWidth()) {
+					k++;
+					lastSwitchI = i;
+				}
+				
 				/* HELL */
 				for(int j=0; j<Map.LIMIT_CAVE;j++)
 				{
@@ -62,11 +73,12 @@ public class MapGenerator {
 				{
 					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt
 					{
-						w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
+						BiomeList.createSurfaceBlock(i, j, w, biomeList.get(k).getId());
+						//w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 					}
 					else //grass
 					{
-						w.getMap().setBlock(i, j, new BlockGrass(i,j,w));
+						BiomeList.createSurfaceGrassBlock(i, j, w, biomeList.get(k).getId());
 					}
 				}
 			}
