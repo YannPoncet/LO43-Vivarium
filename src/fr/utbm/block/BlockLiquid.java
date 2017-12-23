@@ -7,11 +7,11 @@ import fr.utbm.world.World;
 
 public abstract class BlockLiquid extends Block{
 	
-	protected static final int DURABILITY = 100;
+	protected static final int DURABILITY = 100; //number of ticks a liquid cube of state == 7 can hold
 	protected int state = 0;
 	protected Direction flowing;
 	protected int iter = 0;
-	protected int durability = DURABILITY; //number of ticks a liquid cube of state == 7 can hold
+	protected int durability = DURABILITY;
 	
 	public BlockLiquid(float x, float y,Texture text, World w)
 	{

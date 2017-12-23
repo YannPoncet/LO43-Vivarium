@@ -77,7 +77,7 @@ public class World {
 		setBlock(9, 245, new BlockGrass(9,345,this));
 		for(int i = 0; i < 20 ; i++)
 		{
-			setBlock(i+20, 350, new BlockWater(i+20,330,0,this));
+			setBlock(i+20, 330, new BlockWater(i+20,330,0,this));
 			for(int j = 0 ; j < 5 ; j++)
 			{
 				if(i == j)
@@ -94,8 +94,8 @@ public class World {
 				}
 			}
 		}
-		setBlock(22, 340, new BlockWater(22,380,0,this));
-		//setBlock(26, 315,new BlockWater(26,315,0,this));
+		setBlock(23, 340, new BlockWater(23,380,0,this));
+		setBlock(30, 380,new BlockWater(30,380,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
 		/*setBlock(40, 312, new BlockGrass(40,312,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));

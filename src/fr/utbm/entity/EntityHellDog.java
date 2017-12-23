@@ -43,7 +43,7 @@ public class EntityHellDog extends EntityAnimal{
 		activity = -1;
 	}
 	public void update(){
-		System.out.println(isOnGround());
+		//System.out.println(isOnGround());
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && isOnGround()){
 				move(3f,10f,3);
 		 }else{

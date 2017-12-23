@@ -21,16 +21,11 @@ public class BlockWater extends BlockLiquid{
 	@Override
 	public void update()
 	{
-		/*if(world.getBlock(23, 313) != null)
-		{
-			System.out.println("JE SUIS UN BLOC");
-			System.out.println(world.getBlock(23, 313).blockId);
-		}*/
+		//System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
 		
-		if(state > 7 || durability < 0)
+		if(state > 7 || durability < 0) //if there is no more water on the BlockWater or his durability is done
 		{
-			//System.out.println("J'ai kill le bloc en " + this.x/16 +" ; "+ this.y/16);
-			dead = true;
+			dead = true; //we remove the block
 		}
 		else
 		{
@@ -44,7 +39,7 @@ public class BlockWater extends BlockLiquid{
 			}
 		}
 		
-		if(iter == 10)
+		if(iter == 5)
 		{
 			if(state == 7)
 			{
@@ -54,104 +49,99 @@ public class BlockWater extends BlockLiquid{
 			{
 				durability = DURABILITY;
 			}
+			
+			//Priority for the water to fall down
 			//void block under
-			System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
 			if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
 			{
-				//System.out.println("je descends pour la premiere fois");
 				BlockWater block = new BlockWater(x/16, (y/16)-1, 7, world);
 				block.flowing = Direction.DOWN;
 				world.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
 				this.state ++;
-				//System.out.println("Son état est : " + ((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state);
 			}
+			
 			//same liquid block under
 			else if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockId == this.blockId && ((BlockLiquid)world.getBlock((int)(this.x/16), (int)(this.y/16)-1)).state != 0)
 			{
-				//System.out.println("je prolonge la descente");
 				if(((BlockLiquid)world.getBlock((int)(this.x/16), (int)((this.y/16)-1))).state > 0)
 				{
-					//System.out.println("J'actualise l'autre bloc");
-					//flowing = Direction.DOWN;
 					((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state --;
 					this.state ++;
-					//System.out.println("Son état est : " + ((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state);
 				}
 			}
-			else if(this.state < 7)
+			
+			//When the water has fallen we can flow it on sides
+			else if(this.state < 7) //if water still have enough to flow on sides
 			{
-				if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null)
+				if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null) //if there is nothing on the right
 				{
 					BlockWater block = new BlockWater((x/16)+1, y/16, 7, world);
 	                world.setBlock(((int)((this.x/16)+1)), ((int)(this.y/16)), block);
 	                this.state ++;
 				}
-				else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null)
+				else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null) //if there is nothing on the left
 				{
 					BlockWater block = new BlockWater((x/16)-1, y/16, 7, world);
 	                world.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), block);
 	                this.state ++;
 				}
-				else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
+				else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId) //if the block on the right has the same Id
 				{
-					if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+					if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId) //if the one on the left has it too
 					{
-						System.out.println(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state + " comparé à " + ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state);
-						System.out.println("j'ai un state de : " + state);
+						//we compare both of them to see where the water should flow first (where there is less water)
 						if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state && state > 5)
 						{
-							System.out.println("je ne fais rien car c'est égal");
+							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
 						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state)
 						{
+							//we compare now with the amount of water we have on the central block
 							if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
 							{
-								
+								//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 							}
+							//if there is less on the side, here the right one, we move 1 amount of water on this side
 							else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state)
 							{
-								System.out.println("j'augmente l'état à droite car mieux que à gauche");
 								state++;
 								((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
 							}
 						}
-						else
+						else //if the left side has less water than the right one
 						{
 							if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state)
 							{
-								
+								//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 							}
 							else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state)
 							{
-								System.out.println("j'augmente l'état à gauche car mieux que à droite");
 								state++;
 								((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
 							}
 						}
 					}
-					else
+					else //if there is another block than water on the left then only the right one is water
 					{
 						if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
 						{
-							
+							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
 						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state)
 						{
-							System.out.println("j'augmente l'état à droite vu que je peux aller que là");
 							state++;
 							((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
 						}
 					}
 				}
-				else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+				else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId) //if only the left block is water 
 				{
 					if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state)
 					{
-						
+						//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 					}
 					else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state)
 					{
-						System.out.println("j'augmente l'état à gauche car je ne peux que aller là");
 						state++;
 						((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
 					}
