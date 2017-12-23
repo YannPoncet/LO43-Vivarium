@@ -8,10 +8,13 @@ import fr.utbm.world.World;
 public abstract class BlockLiquid extends Block{
 	
 	protected static final int DURABILITY = 100; //number of ticks a liquid cube of state == 7 can hold
+	protected static final int STABILITY = 4; //number of rounds without changes of state a block is considered stable
 	protected int state = 0;
 	protected Direction flowing;
 	protected int iter = 0;
 	protected int durability = DURABILITY;
+	protected int isStable = STABILITY;
+	protected BlockLiquid rightSuccessor = null;
 	
 	public BlockLiquid(float x, float y,Texture text, World w)
 	{
@@ -23,35 +26,4 @@ public abstract class BlockLiquid extends Block{
 	{
 		
 	}
-	
-	public boolean isStable()
-	{
-		if((world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) == null) || (world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) == null) || (world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null))
-		{
-			return false;
-		}
-		else if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == this.blockId)
-		{
-			if(((BlockLiquid)world.getBlock((int)(this.x/16), (int)((this.y/16)+1))).state <= this.state)
-			{
-				return false;
-			}
-		}
-		else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId)
-		{
-			if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state <= this.state)
-			{
-				return false;
-			}
-		}
-		else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
-		{
-			if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state <= this.state)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
 }

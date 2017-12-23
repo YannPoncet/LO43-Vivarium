@@ -29,17 +29,17 @@ public class BlockWater extends BlockLiquid{
 		}
 		else
 		{
-			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == 4)
+			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == this.blockId)
 			{
-				text = TextureManager.getTexture(4);
+				text = TextureManager.getTexture(this.blockId);
 			}
 			else
 			{
-				text = TextureManager.getTexture(4 + state);
+				text = TextureManager.getTexture(this.blockId + state);
 			}
 		}
 		
-		if(iter == 5)
+		if(iter == 5) //The Water update will operate one time out of <the number inside the if> ticks
 		{
 			if(state == 7)
 			{
@@ -58,6 +58,7 @@ public class BlockWater extends BlockLiquid{
 				block.flowing = Direction.DOWN;
 				world.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
 				this.state ++;
+				isStable = STABILITY;
 			}
 			
 			//same liquid block under
@@ -67,6 +68,7 @@ public class BlockWater extends BlockLiquid{
 				{
 					((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state --;
 					this.state ++;
+					isStable = STABILITY;
 				}
 			}
 			
@@ -78,45 +80,63 @@ public class BlockWater extends BlockLiquid{
 					BlockWater block = new BlockWater((x/16)+1, y/16, 7, world);
 	                world.setBlock(((int)((this.x/16)+1)), ((int)(this.y/16)), block);
 	                this.state ++;
+	                isStable = STABILITY;
 				}
 				else if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null) //if there is nothing on the left
 				{
 					BlockWater block = new BlockWater((x/16)-1, y/16, 7, world);
 	                world.setBlock(((int)((this.x/16)-1)), ((int)(this.y/16)), block);
 	                this.state ++;
+	                isStable = STABILITY;
 				}
 				else if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId) //if the block on the right has the same Id
 				{
 					if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId) //if the one on the left has it too
 					{
 						//we compare both of them to see where the water should flow first (where there is less water)
-						if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state && state > 5)
+						if((((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state) && (state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state-1))
 						{
+							isStable --;
 							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
 						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state)
 						{
-							//we compare now with the amount of water we have on the central block
-							if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
+							if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state && ((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state+1)
 							{
+								isStable --;
+								//nothing to avoid "pulsars" : water blocs that cant be stable and pulse on the screen
+							}
+							//we compare now with the amount of water we have on the central block
+							else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
+							{
+								isStable --;
 								//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 							}
 							//if there is less on the side, here the right one, we move 1 amount of water on this side
 							else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state)
 							{
 								state++;
+								isStable = STABILITY;
 								((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
 							}
 						}
-						else //if the left side has less water than the right one
+						//if the left side has less water than the right one
+						else
 						{
-							if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state)
+							if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state && ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state+1)
 							{
+								isStable --;
+								//nothing to avoid "pulsars" : water blocs that cant be stable and pulse on the screen
+							}
+							else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state)
+							{
+								isStable --;
 								//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 							}
 							else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state)
 							{
 								state++;
+								isStable = STABILITY;
 								((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
 							}
 						}
@@ -125,11 +145,13 @@ public class BlockWater extends BlockLiquid{
 					{
 						if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
 						{
+							isStable --;
 							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
 						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state)
 						{
 							state++;
+							isStable = STABILITY;
 							((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
 						}
 					}
@@ -138,22 +160,63 @@ public class BlockWater extends BlockLiquid{
 				{
 					if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state)
 					{
+						isStable --;
 						//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 					}
 					else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state)
 					{
 						state++;
+						isStable = STABILITY;
 						((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
 					}
 				}
 			}
+			else
+			{
+				isStable --;
+			}
+			
+			if(isStable < 0)
+			{
+				isStable = 0;
+			}
+			
+			if(isStable == 0)
+			{
+				if(rightSuccessor != null) //we check if his successor is still stable
+				{
+					if(rightSuccessor.isStable != 0)
+					{
+						rightSuccessor = null;
+					}
+				}
+				
+				//we actualize his successor if he doesn't have one
+				if(rightSuccessor == null && world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == this.blockId && ((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).isStable == 0)
+				{
+					rightSuccessor = ((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16)));
+				}
+				
+				if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null || world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+				{
+					if(rightSuccessor != null)
+					{
+						int[][] minMax = new int[2][2];
+						BlockWater temp = this;
+						while(temp.rightSuccessor != null)
+						{
+							
+						}
+					}
+				}
+				
+			}
+			
 			iter = 0;
 		}
 		else
 		{
 			iter ++;
 		}
-		
 	}
-
 }
