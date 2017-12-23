@@ -2,6 +2,7 @@ package fr.utbm.generation;
 
 import java.util.ArrayList;
 
+import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockGrass;
@@ -29,18 +30,28 @@ public class MapGenerator {
 			
 			
 			//Change the value of the last parameter (0 to 100) to increase the dirt ratio
-			Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 75);
-			
+			Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 75, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, Map.LIMIT_SURFACE-Map.LIMIT_CAVE+1);
+			Cave2DGenerator hellGen = new Cave2DGenerator(seed, M, 45, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, Map.LIMIT_CAVE+1);
 
 			
 			ArrayList<ArrayList<Integer>> caves = caveGen.generateAndGetCaves();
+			ArrayList<ArrayList<Integer>> hellCaves = hellGen.generateAndGetCaves();
 			
 			for(int i=0; i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;i++)
 			{
+				/* HELL */
+				for(int j=0; j<Map.LIMIT_CAVE;j++)
+				{
+					if(hellCaves.get(i).get(j) == 1) 
+					{
+						w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
+					}
+				}
+				
 				/* CAVES */
 				for(int j=Map.LIMIT_CAVE; j<Map.LIMIT_SURFACE;j++)
 				{
-					if(caves.get(i).get(j-Map.LIMIT_CAVE) == 1) 
+					if(caves.get(i).get(j-Map.LIMIT_CAVE+1) == 1) 
 					{
 						w.getMap().setBlock(i, j, new BlockDirt(i,j,w)); 
 					}
