@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 
-public class Noise1DGenerator extends PseudoRandom {
+public class Surface1DGenerator extends PseudoRandom {
 	private int width = Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;
 	private ArrayList<Integer> noise;
 	
-	public Noise1DGenerator(double seed, long M) 
+	public Surface1DGenerator(double seed, long M) 
 	{
 		super(seed, M);
 	}
@@ -70,7 +70,6 @@ public class Noise1DGenerator extends PseudoRandom {
 
 			for(int j = 0; j < pl.size(); j++){
 				total += pl.get(j)[i];
-				//System.out.println(j+" "+i+" "+pl.get(j)[i]);
 			}
 			result.add((int)total);
 		}

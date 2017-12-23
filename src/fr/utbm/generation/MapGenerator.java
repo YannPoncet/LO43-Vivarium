@@ -20,7 +20,7 @@ public class MapGenerator {
 				seed = Math.floor(Math.random() * M);
 			}
 			
-			Noise1DGenerator noiseGen = new Noise1DGenerator(seed, M);
+			Surface1DGenerator noiseGen = new Surface1DGenerator(seed, M);
 			//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 			//=>Increase wavelength to get flat map generally
 			//=>Decrease amplitude to get a flat map locally
