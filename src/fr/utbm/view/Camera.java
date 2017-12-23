@@ -7,13 +7,21 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import fr.utbm.world.World;
+
 public class Camera {
 	
 	private OrthographicCamera gameCam;
 	private Viewport gamePort;
+	private World w;
+	private int actualChunk;
 	
-	public Camera(){
+	
+	
+	public Camera(World w){
+			this.w = w;
 		   this.gameCam = new OrthographicCamera();
+		   this.actualChunk = 0;
 		   this.gameCam.position.set(800 / 2f, (600 / 2f) + 300*16f , 0);
 		   this.gamePort = new FitViewport(800,600,gameCam);
 	}
@@ -39,10 +47,13 @@ public class Camera {
 		   if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 			   gameCam.position.y -= 10;
 		   }
+		   if(actualChunk != ((int) gameCam.position.x) / (50*16)){
+			   actualChunk = (int) (gameCam.position.x / (50*16));
+			   w.cameraSwitchChunkChunk(actualChunk);
+		   }
+			   
 		   gameCam.update();
 	}
-	
-	
-	
+
 
 }

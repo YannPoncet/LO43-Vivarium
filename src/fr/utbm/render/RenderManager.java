@@ -17,6 +17,8 @@ public class RenderManager {
 
 	private static SpriteBatch batch;
 	private static ArrayList<Renderable> blockRender =  new ArrayList<Renderable>();
+	
+	
 	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
 	
 	public static void setBatch(SpriteBatch sb){
@@ -51,6 +53,9 @@ public class RenderManager {
 					r.render(batch);
 				}
 			}
+	}
+	public static void cleanRender(){
+		blockRender.clear();
 	}
 	public static void addToBlockRender(Renderable r){
 		RenderManager.blockRender.add(r);
