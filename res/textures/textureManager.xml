@@ -14,7 +14,10 @@
 	
 	<texture id="12" file="blockGlassV.png"></texture>
 	<texture id="13" file="blockGlassH.png"></texture>
+	
 	<texture id="100" file="hellDog/hell-hound.png"></texture>
+	
+	<texture id="500" file="backgrounds/forest.png"></texture>
 	
 	
 	<animation id="0" file="hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import fr.utbm.render.RenderManager;
 import fr.utbm.world.World;
 
 public class Camera {
@@ -47,11 +48,12 @@ public class Camera {
 		   if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 			   gameCam.position.y -= 10;
 		   }
+		   System.out.println(gameCam.position.x + "      " + gameCam.position.y);
 		   if(actualChunk != ((int) gameCam.position.x) / (50*16)){
 			   actualChunk = (int) (gameCam.position.x / (50*16));
 			   w.cameraSwitchChunkChunk(actualChunk);
 		   }
-			   
+		   RenderManager.setBgPos(gameCam.position.x - gameCam.viewportWidth/2, gameCam.position.y - gameCam.viewportHeight/2);
 		   gameCam.update();
 	}
 
