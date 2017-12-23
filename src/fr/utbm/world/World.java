@@ -13,7 +13,6 @@ import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
-import fr.utbm.view.Camera;
 
 public class World {
 	

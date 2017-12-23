@@ -71,6 +71,5 @@ public class MapGenerator {
 				w.getMap().setBlock(i, 0, new BlockGlass(i,0,w,1));
 				w.getMap().setBlock(i, Chunk.CHUNK_HEIGHT-1, new BlockGlass(i, Chunk.CHUNK_HEIGHT-1,w,1));
 			}
-			
 	}
 }
