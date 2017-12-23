@@ -3,6 +3,7 @@ package fr.utbm.generation;
 import java.util.ArrayList;
 
 import fr.utbm.block.BlockDirt;
+import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockGrass;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
@@ -58,5 +59,18 @@ public class MapGenerator {
 					}
 				}
 			}
+			
+			//Placing the glass borders
+			for(int i=0; i<Chunk.CHUNK_HEIGHT;i++)
+			{
+				w.getMap().setBlock(0, i, new BlockGlass(0,i,w,0));
+				w.getMap().setBlock(Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1, i, new BlockGlass(Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1, i,w,0));
+			}
+			for(int i=0; i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;i++)
+			{
+				w.getMap().setBlock(i, 0, new BlockGlass(i,0,w,1));
+				w.getMap().setBlock(i, Chunk.CHUNK_HEIGHT-1, new BlockGlass(i, Chunk.CHUNK_HEIGHT-1,w,1));
+			}
+			
 	}
 }

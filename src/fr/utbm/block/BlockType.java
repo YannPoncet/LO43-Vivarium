@@ -8,6 +8,7 @@ public enum BlockType {
 	LIQUID,
 	NETHER,
 	GRAVITY,
+	GLASS,
 	CLOUD;
 
 }
