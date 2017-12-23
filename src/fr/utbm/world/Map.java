@@ -3,10 +3,10 @@ package fr.utbm.world;
 import fr.utbm.block.Block;
 
 public class Map {
-	public final static int LIMIT_SURFACE=290;
+	public final static int LIMIT_SURFACE=300;
 	public final static int LIMIT_CAVE=100;
 	
-	public final static int NUMBER_OF_CHUNKS=10;
+	public final static int NUMBER_OF_CHUNKS=2;
 	private Chunk[] chunks;
 	
 	public Map()
@@ -39,8 +39,10 @@ public class Map {
 	
 	public void render(int i) //call render on the 5 chunks (2 left, this, and 2 right)
 	{
-		this.chunks[i].render();
-		
+		if (i<Map.NUMBER_OF_CHUNKS) {
+			this.chunks[i].render();
+		}
+
 		if(i!=0)
 		{
 			this.chunks[i-1].render();
@@ -50,10 +52,10 @@ public class Map {
 			}
 		}
 		
-		if(i!=NUMBER_OF_CHUNKS-1)
+		if(i<NUMBER_OF_CHUNKS-1)
 		{
 			this.chunks[i+1].render();
-			if(i!=NUMBER_OF_CHUNKS-2)
+			if(i<NUMBER_OF_CHUNKS-2)
 			{
 				this.chunks[i+2].render();
 			}
