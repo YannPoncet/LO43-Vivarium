@@ -43,22 +43,63 @@ public class EntityHellDog extends EntityAnimal{
 		activity = -1;
 	}
 	public void update(){
-		//System.out.println(isOnGround());
-		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && isOnGround()){
-				move(3f,10f,3);
-		 }else{
-			 if(isOnGround()){
-				 move(0.3f,0,2);
-			 }else{
-				 move(0,0,activity);
-			 }
-
-		 }
+		if (Gdx.input.isKeyPressed(Input.Keys.A)){
+			action(1,1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.Z)){
+			action(2,1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.E)){
+			action(3,1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.R)){
+			action(4,1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.Q)){
+			action(1,-1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.S)){
+			action(2,-1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+			action(3,-1);
+		}else if(Gdx.input.isKeyPressed(Input.Keys.F)){
+			action(4,-1);
+		}else{
+			move(0,0,-1);
+		}
 
 	}
 	
 	private float xa,ya;
 	float drag = 0;
+
+	public void action(int actionID,int direction){
+		switch(actionID){
+			case 1 :
+				if(isOnGround()){
+					move(0.1f,10f,3);
+				}else{
+					move(0.3f * direction ,0,activity);
+				}
+				break;
+			case 2 :
+				if(isOnGround()){
+					move(0.5f * direction,0,2);
+				}else{
+					move(0,0,activity);
+				}
+				break;
+			case 3 :
+				if(isOnGround()){
+					move(0.2f * direction,0,1);
+				}else{
+					move(0,0,activity);
+				}
+				break;
+			case 4 :
+				if(isOnGround()){
+					move(0,0,0);
+				}else{
+					move(0,0,activity);
+				}
+				break;
+		}
+	}
 
 	public void move(float dx, float dy, int act){
 			ya+= world.getGravity()*0.1f;
@@ -73,7 +114,10 @@ public class EntityHellDog extends EntityAnimal{
 			if(dx>0){
 				directionX = 1;
 			}else if(dx< 0){
-				directionX = 0;
+				directionX = -1;
+			}
+			if(isOnGround() && dx== 0 && activity==3){
+				activity = -1;
 			}
 			int xStep = (int) Math.abs(xa * 100);
 			for (int i = 0; i < xStep; i++) {
@@ -94,21 +138,23 @@ public class EntityHellDog extends EntityAnimal{
 			
 			xa *= drag;
 			ya *= drag;			
-			
 	}
+	
+	
+	
 	@Override
 	public void render(SpriteBatch sp) {
-		if(activity >0){
+		if(activity >-1){
 			stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentFrame = anim[activity].getKeyFrame(stateTime, true);
-			if(directionX == 0){
+			if(directionX == -1){
 				sp.draw(currentFrame, this.x, this.y);
 			}
 			else if(directionX == 1){
 				sp.draw(currentFrame, this.x + currentFrame.getRegionWidth(), this.y,-currentFrame.getRegionWidth(),currentFrame.getRegionHeight());
 			}
 		}else{
-			if(directionX == 0){
+			if(directionX == -1){
 				sp.draw(this.text, this.x, this.y);
 			}
 			else if(directionX == 1){

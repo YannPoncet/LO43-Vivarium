@@ -77,7 +77,7 @@ public class World {
 		MapGenerator.generate(this, 0); //0 to generate a new seed
 		test = new EntityFallingBlock(4,320,16,16,this);
 		test2 = new EntityFallingBlock(1,315,16,16,this);
-		hd =  new EntityHellDog(5,330,this);
+		hd =  new EntityHellDog(5,313,this);
 		setBlock(9, 245, new BlockDirt(9,345,this));
 		/*for(int i = 0; i < 20 ; i++)
 		{
@@ -112,8 +112,8 @@ public class World {
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
 		/*setBlock(40, 312, new BlockGrass(40,312,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
+		setBlock(19, 312, new BlockGrass(19,312,this));*/
 		setBlock(19, 312, new BlockGrass(19,312,this));
-		setBlock(19, 313, new BlockGrass(19,313,this));*/
 		entities.add(test);
 		entities.add(test2);
 		entities.add(hd);
