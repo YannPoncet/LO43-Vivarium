@@ -6,13 +6,15 @@ import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 
 public class Cave2DGenerator extends PseudoRandom{
-	private int width = Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;
-	private int height = Map.LIMIT_SURFACE-Map.LIMIT_CAVE;
+	private int width;
+	private int height;
 	private ArrayList<ArrayList<Integer>> caves;
 	
-	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill) 
+	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill,int width,int height) 
 	{
 		super(seed, M);
+		this.width = width;
+		this.height = height;
 		initializeCells(initialPercentageOfFill);
 	}
 	

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.graphics.FPSLogger;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
 import fr.utbm.block.BlockWater;
 import fr.utbm.entity.Entity;
@@ -74,10 +75,10 @@ public class World {
 	/* Call at the World creation */
 	public void create(){
 		MapGenerator.generate(this, 0); //0 to generate a new seed
-		test = new EntityFallingBlock(0,320,16,16,this);
+		test = new EntityFallingBlock(4,320,16,16,this);
 		test2 = new EntityFallingBlock(1,315,16,16,this);
 		hd =  new EntityHellDog(5,330,this);
-		setBlock(9, 245, new BlockGrass(9,345,this));
+		setBlock(9, 245, new BlockDirt(9,345,this));
 		for(int i = 0; i < 20 ; i++)
 		{
 			setBlock(i+20, 330, new BlockWater(i+20,330,0,this));
@@ -85,7 +86,7 @@ public class World {
 			{
 				if(i == j)
 				{
-					setBlock(i+20, j+312, new BlockGrass(i+20,j+312,this));
+					setBlock(i+20, j+312, new BlockDirt(i+20,j+312,this));
 				}
 				/*if(i == j+14)
 				{
@@ -93,11 +94,11 @@ public class World {
 				}*/
 				if(i == 0)
 				{
-					setBlock(19, j+312, new BlockGrass(19,j+312,this));
+					setBlock(19, j+312, new BlockDirt(19,j+312,this));
 				}
 				if(i == 19)
 				{
-					setBlock(40, j+312, new BlockGrass(40,j+312,this));
+					setBlock(40, j+312, new BlockDirt(40,j+312,this));
 				}
 			}
 		}
