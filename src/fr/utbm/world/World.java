@@ -135,7 +135,9 @@ public class World {
 	}
 	public void cameraSwitchChunkChunk(int cID){
 		RenderManager.cleanRender();
-		map.render(cID);
+		if (cID > -1 && cID < Map.NUMBER_OF_CHUNKS+1) {
+			map.render(cID);
+		}
 	}
 
 	

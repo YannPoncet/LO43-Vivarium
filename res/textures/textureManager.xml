@@ -17,13 +17,18 @@
 	
 	<texture id="100" file="hellDog/hell-hound.png"></texture>
 	
-	<texture id="500" file="backgrounds/forest.png"></texture>
+	<texture id="500" file="backgrounds/sky.png"></texture>
+	<texture id="501" file="backgrounds/forest.png"></texture>
 	
 	
+	<texture id="502" file="backgrounds/cave.png"></texture>
+	<texture id="503" file="backgrounds/hell.png"></texture>
 	<animation id="0" file="hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
 	<animation id="1" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
 	<animation id="2" file="hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
 	<animation id="3" file="hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
 	
+	
+
 
 </textures>

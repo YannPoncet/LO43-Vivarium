@@ -53,10 +53,12 @@ public class RenderManager {
 		RenderManager.entitiesRender.add(r);
 	}
 	public static void drawBackground(){
+		//500 -> sky [above forest.png]
+		//501 -> forest [above Map.LIMIT_SURFACE]
+		//502 -> cave [between Map.LIMIT_CAVE and Map.LIMIT_SURFACE]
+		//503 -> hell [below Map.LIMIT_CAVE]
 		
-		
-		
-		batch.draw(TextureManager.getTexture(500),x,y);
+		batch.draw(TextureManager.getTexture(502),x,y);
 		
 		
 		
