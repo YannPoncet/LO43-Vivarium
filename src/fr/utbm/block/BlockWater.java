@@ -90,14 +90,18 @@ public class BlockWater extends BlockLiquid{
 					if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId) //if the one on the left has it too
 					{
 						//we compare both of them to see where the water should flow first (where there is less water)
-						if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state && state > 5)
+						if((((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state) && (state == ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state-1))
 						{
 							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
 						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state)
 						{
+							if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state && ((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state+1)
+							{
+								//nothing to avoid "pulsars" : water blocs that cant be stable and pulse on the screen
+							}
 							//we compare now with the amount of water we have on the central block
-							if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
+							else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state)
 							{
 								//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 							}
@@ -108,8 +112,13 @@ public class BlockWater extends BlockLiquid{
 								((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
 							}
 						}
-						else //if the left side has less water than the right one
+						//if the left side has less water than the right one
+						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state < ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state)
 						{
+							if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state == state && ((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state+1)
+							{
+								//nothing to avoid "pulsars" : water blocs that cant be stable and pulse on the screen
+							}
 							if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state == state)
 							{
 								//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
