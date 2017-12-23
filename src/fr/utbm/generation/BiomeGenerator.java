@@ -34,7 +34,6 @@ public class BiomeGenerator extends PseudoRandom {
 				biomeWidth -= totalWidth + biomeWidth - width;
 			}
 			this.biomeList.add(new Biome(biomeId, biomeWidth));
-			System.out.println(biomeWidth);
 			totalWidth += biomeWidth;
 		}
 	}
