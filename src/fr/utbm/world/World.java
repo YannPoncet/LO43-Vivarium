@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.graphics.FPSLogger;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
 import fr.utbm.block.BlockWater;
@@ -75,15 +76,17 @@ public class World {
 	/* Call at the World creation */
 	public void create(){
 		MapGenerator.generate(this, 0); //0 to generate a new seed
-		test = new EntityFallingBlock(4,320,16,16,this);
-		test2 = new EntityFallingBlock(1,315,16,16,this);
-		hd =  new EntityHellDog(5,313,this);
-		setBlock(9, 245, new BlockDirt(9,345,this));
+		//test = new EntityFallingBlock(4,320,16,16,this);
+		//test2 = new EntityFallingBlock(1,315,16,16,this);
+		hd =  new EntityHellDog(5,380,this);
+		//setBlock(9, 245, new BlockDirt(9,345,this));
 		for(int i = 0; i < 20 ; i++)
 		{
-			setBlock(i+20, 330, new BlockWater(i+20,330,0,this));
-			setBlock(i+20, 312, new BlockGrass(i+20,312,this));
-			for(int j = 0 ; j < 5 ; j++)
+			setBlock(i+20, 390, new BlockWater(i+20,390,0,this));
+			setBlock(i+20, 395, new BlockWater(i+20,395,0,this));
+			setBlock(i+38, 312, new BlockGrass(i+38, 312, this));
+			//setBlock(i+20, 312, new BlockGrass(i+20,312,this));
+			/*for(int j = 0 ; j < 5 ; j++)
 			{
 				if(i == j)
 				{
@@ -92,7 +95,7 @@ public class World {
 				/*if(i == j+14)
 				{
 					setBlock(i+20, j+313, new BlockGrass(i+20,j+313,this));
-				}*/
+				}
 				if(i == 0)
 				{
 					setBlock(19, j+313, new BlockDirt(19,j+313,this));
@@ -101,22 +104,23 @@ public class World {
 				{
 					setBlock(40, j+313, new BlockDirt(40,j+313,this));
 				}
-			}
+			}*/
 		}
 		setBlock(34, 317, new BlockGrass(34,317,this));
 		setBlock(35, 316, new BlockGrass(35,316,this));
 		setBlock(36, 315, new BlockGrass(36,315,this));
 		setBlock(37, 314, new BlockGrass(37,314,this));
 		setBlock(38, 313, new BlockGrass(38,313,this));
-		setBlock(33, 340, new BlockWater(33,380,0,this));
+		setBlock(49, 300, new BlockAsh(49, 300, this));
+		//setBlock(33, 340, new BlockWater(33,380,0,this));
 		//setBlock(30, 380,new BlockWater(30,380,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
 		/*setBlock(40, 301, new BlockGrass(40,301,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
-		setBlock(19, 301, new BlockGrass(19,301,this));*/
-		//setBlock(19, 312, new BlockGrass(19,312,this));
-		entities.add(test);
-		entities.add(test2);
+		setBlock(19, 301, new BlockGrass(19,301,this));
+		//setBlock(19, 312, new BlockGrass(19,312,this));*/
+		//entities.add(test);
+		//entities.add(test2);
 		entities.add(hd);
 		render();
 	}
