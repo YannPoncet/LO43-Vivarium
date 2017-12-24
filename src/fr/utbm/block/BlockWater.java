@@ -197,15 +197,55 @@ public class BlockWater extends BlockLiquid{
 					rightSuccessor = ((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16)));
 				}
 				
-				if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null || world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == this.blockId)
+				if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) == null || world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId != this.blockId)
 				{
 					if(rightSuccessor != null)
 					{
 						int[][] minMax = new int[2][2];
 						BlockWater temp = this;
+						minMax[0][0] = temp.state;
+						minMax[0][1] = 1;
+						minMax[1][0] = temp.state;
+						minMax[1][1] = 1;
+						
+						
 						while(temp.rightSuccessor != null)
 						{
+							temp = ((BlockWater)(temp.rightSuccessor));
 							
+							if(temp.state == minMax[0][0])
+							{
+								minMax[0][1]++;
+							}
+							else if(temp.state > minMax[0][0])
+							{
+								minMax[0][0] = temp.state;
+								minMax[0][1] = 1;
+							}
+							
+							if(temp.state == minMax[1][0])
+							{
+								minMax[1][1]++;
+							}
+							else if(temp.state < minMax[1][0])
+							{
+								minMax[1][0] = temp.state;
+								minMax[1][1] = 1;
+							}
+						}
+						
+						temp = this;
+						
+						if(minMax[0][0] - minMax[1][0] == 1)
+						{
+							//nothing
+						}
+						else if(minMax[0][0] - minMax[1][0] > 1)
+						{
+							while(temp.rightSuccessor != null)
+							{
+								
+							}
 						}
 					}
 				}
