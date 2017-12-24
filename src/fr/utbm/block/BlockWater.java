@@ -21,7 +21,6 @@ public class BlockWater extends BlockLiquid{
 	@Override
 	public void update()
 	{
-		//System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
 		
 		if(state > 7 || durability < 0) //if there is no more water on the BlockWater or his durability is done
 		{
@@ -41,6 +40,8 @@ public class BlockWater extends BlockLiquid{
 		
 		if(iter == 5) //The Water update will operate one time out of <the number inside the if> ticks
 		{
+			System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
+			
 			if(state == 7)
 			{
 				durability --;
@@ -69,6 +70,10 @@ public class BlockWater extends BlockLiquid{
 					((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state --;
 					this.state ++;
 					isStable = STABILITY;
+				}
+				else
+				{
+					isStable --;
 				}
 			}
 			
@@ -119,6 +124,10 @@ public class BlockWater extends BlockLiquid{
 								isStable = STABILITY;
 								((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
 							}
+							else
+							{
+								isStable --;
+							}
 						}
 						//if the left side has less water than the right one
 						else
@@ -139,6 +148,10 @@ public class BlockWater extends BlockLiquid{
 								isStable = STABILITY;
 								((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
 							}
+							else
+							{
+								isStable --;
+							}
 						}
 					}
 					else //if there is another block than water on the left then only the right one is water
@@ -153,6 +166,10 @@ public class BlockWater extends BlockLiquid{
 							state++;
 							isStable = STABILITY;
 							((BlockLiquid)world.getBlock(((int)((this.x/16)+1)), ((int)(this.y/16)))).state --;
+						}
+						else
+						{
+							isStable --;
 						}
 					}
 				}
@@ -169,6 +186,14 @@ public class BlockWater extends BlockLiquid{
 						isStable = STABILITY;
 						((BlockLiquid)world.getBlock(((int)((this.x/16)-1)), ((int)(this.y/16)))).state --;
 					}
+					else
+					{
+						isStable --;
+					}
+				}
+				else
+				{
+					isStable --;
 				}
 			}
 			else
@@ -233,6 +258,9 @@ public class BlockWater extends BlockLiquid{
 								minMax[1][1] = 1;
 							}
 						}
+						System.out.println("Le plus haut est :" + minMax[1][0] + " et il y en a : " + minMax[1][1]);
+						System.out.println("Le plus bas est :" + minMax[0][0] + " et il y en a : " + minMax[0][1]);
+						System.out.println("je vais jusq'au bloc : " + temp.x/16 + " ; " + temp.y/16);
 						
 						temp = this;
 						
@@ -242,9 +270,42 @@ public class BlockWater extends BlockLiquid{
 						}
 						else if(minMax[0][0] - minMax[1][0] > 1)
 						{
+							int modified = 0;
 							while(temp.rightSuccessor != null)
 							{
-								
+								System.out.println(temp.state);
+								System.out.println(minMax[1][1]);
+								if(temp.state == minMax[0][0] && minMax[1][1] > 0)
+								{
+									temp.state --;
+									modified ++;
+									minMax[1][1]--;
+								}
+								System.out.println("je dois en modifier " + modified);
+								temp = ((BlockWater)(temp.rightSuccessor));
+							}
+							if(temp.state == minMax[0][0] && minMax[1][1] > 0)
+							{
+								temp.state --;
+								modified ++;
+								minMax[1][1]--;
+							}
+							
+							temp = this;
+							
+							while(temp.rightSuccessor != null)
+							{
+								if(temp.state == minMax[1][0] && modified != 0)
+								{
+									temp.state ++;
+									modified --;
+								}
+								temp = ((BlockWater)(temp.rightSuccessor));
+							}
+							if(temp.state == minMax[1][0] && modified != 0)
+							{
+								temp.state ++;
+								modified --;
 							}
 						}
 					}

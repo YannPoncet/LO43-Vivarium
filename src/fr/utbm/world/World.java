@@ -79,40 +79,40 @@ public class World {
 		test2 = new EntityFallingBlock(1,315,16,16,this);
 		hd =  new EntityHellDog(5,313,this);
 		setBlock(9, 245, new BlockDirt(9,345,this));
-		/*for(int i = 0; i < 20 ; i++)
+		for(int i = 0; i < 20 ; i++)
 		{
-			//setBlock(i+20, 330, new BlockWater(i+20,330,0,this));
+			setBlock(i+20, 330, new BlockWater(i+20,330,0,this));
 			for(int j = 0 ; j < 5 ; j++)
 			{
 				if(i == j)
 				{
-					setBlock(i+20, j+312, new BlockDirt(i+20,j+312,this));
+					setBlock(i+20, j+301, new BlockDirt(i+20,j+301,this));
 				}
-				if(i == j+14)
+				/*if(i == j+14)
 				{
-					setBlock(i+20, j+312, new BlockGrass(i+20,j+312,this));
-				}
+					setBlock(i+20, j+301, new BlockGrass(i+20,j+301,this));
+				}*/
 				if(i == 0)
 				{
-					setBlock(19, j+312, new BlockDirt(19,j+312,this));
+					setBlock(19, j+301, new BlockDirt(19,j+301,this));
 				}
 				if(i == 19)
 				{
-					setBlock(40, j+312, new BlockDirt(40,j+312,this));
+					setBlock(40, j+301, new BlockDirt(40,j+301,this));
 				}
 			}
-		}*/
-		/*setBlock(34, 316, new BlockGrass(34,316,this));
-		setBlock(35, 315, new BlockGrass(35,315,this));
-		setBlock(36, 314, new BlockGrass(36,314,this));
-		setBlock(37, 313, new BlockGrass(37,313,this));
-		setBlock(38, 312, new BlockGrass(38,312,this));
+		}
+		setBlock(34, 305, new BlockGrass(34,305,this));
+		setBlock(35, 304, new BlockGrass(35,304,this));
+		setBlock(36, 303, new BlockGrass(36,303,this));
+		setBlock(37, 302, new BlockGrass(37,302,this));
+		setBlock(38, 301, new BlockGrass(38,301,this));
 		//setBlock(33, 340, new BlockWater(33,380,0,this));
 		//setBlock(30, 380,new BlockWater(30,380,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
-		/*setBlock(40, 312, new BlockGrass(40,312,this));
+		/*setBlock(40, 301, new BlockGrass(40,301,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
-		setBlock(19, 312, new BlockGrass(19,312,this));*/
+		setBlock(19, 301, new BlockGrass(19,301,this));*/
 		setBlock(19, 312, new BlockGrass(19,312,this));
 		entities.add(test);
 		entities.add(test2);
