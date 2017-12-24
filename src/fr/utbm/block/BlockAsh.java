@@ -7,7 +7,7 @@ public class BlockAsh extends Block {
 	public BlockAsh(float x, float y, World w)
 	{
 		super(x, y, TextureManager.getTexture(14), w);
-		this.blockId = 1;
+		this.blockId = 14;
 		this.blockHealth = 100;
 		this.maxHealth = 100;
 		this.blockType = BlockType.ASH;
@@ -16,7 +16,7 @@ public class BlockAsh extends Block {
 	
 	public BlockAsh(float x, float y, int bH, World w) {
 		super(x, y, TextureManager.getTexture(14), w);
-		this.blockId = 1;
+		this.blockId = 14;
 		this.maxHealth = 100;
 		this.blockHealth = bH;
 		this.blockType = BlockType.ASH;
