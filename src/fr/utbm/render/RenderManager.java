@@ -81,7 +81,6 @@ public class RenderManager {
 		}
 		else if (y+16>Chunk.CHUNK_HEIGHT*16-Camera.HEIGHT) { //top border
 			y -= (y-Chunk.CHUNK_HEIGHT*16)+Camera.HEIGHT+16;
-			System.out.println(y);
 			batch.draw(TextureManager.getTexture(500),x,y);
 			batch.draw(TextureManager.getTexture(500),x,y+backgroundsHeight,0,-200,800,200);
 		}
