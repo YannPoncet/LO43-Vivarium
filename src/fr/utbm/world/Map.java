@@ -63,7 +63,28 @@ public class Map {
 	}
 	public void update(int i) //call render on the 5 chunks (2 left, this, and 2 right)
 	{
-		this.chunks[i].update();	
+		if (i<Map.NUMBER_OF_CHUNKS) {
+			this.chunks[i].update();
+		}
+
+		if(i!=0)
+		{
+			this.chunks[i-1].update();	
+			if(i!=1)
+			{
+				this.chunks[i-2].update();	
+			}
+		}
+		
+		if(i<NUMBER_OF_CHUNKS-1)
+		{
+			this.chunks[i+1].update();	
+			if(i<NUMBER_OF_CHUNKS-2)
+			{
+				this.chunks[i+2].update();	
+			}
+		}
+		
 	}
 	
 	
