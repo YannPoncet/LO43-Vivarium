@@ -41,7 +41,7 @@ public class MapGenerator {
 				//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 				//=>Increase wavelength to get flat map generally
 				//=>Decrease amplitude to get a flat map locally
-				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(0,64,15,4);
+				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(60,64,15,4);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();

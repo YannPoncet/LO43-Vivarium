@@ -78,13 +78,14 @@ public class World {
 		MapGenerator.generate(this, 0); //0 to generate a new seed
 		//test = new EntityFallingBlock(4,320,16,16,this);
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
-		hd =  new EntityHellDog(5,380,this);
+		//hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
 		for(int i = 0; i < 20 ; i++)
 		{
 			setBlock(i+20, 390, new BlockWater(i+20,390,0,this));
 			setBlock(i+20, 395, new BlockWater(i+20,395,0,this));
-			setBlock(i+38, 312, new BlockGrass(i+38, 312, this));
+			setBlock(i+20, 396, new BlockWater(i+20,396,0,this));
+			setBlock(i+20, 397, new BlockWater(i+20,397,0,this));
 			//setBlock(i+20, 312, new BlockGrass(i+20,312,this));
 			/*for(int j = 0 ; j < 5 ; j++)
 			{
@@ -106,12 +107,12 @@ public class World {
 				}
 			}*/
 		}
-		setBlock(34, 317, new BlockGrass(34,317,this));
+		/*setBlock(34, 317, new BlockGrass(34,317,this));
 		setBlock(35, 316, new BlockGrass(35,316,this));
 		setBlock(36, 315, new BlockGrass(36,315,this));
 		setBlock(37, 314, new BlockGrass(37,314,this));
 		setBlock(38, 313, new BlockGrass(38,313,this));
-		setBlock(49, 300, new BlockAsh(49, 300, this));
+		setBlock(49, 300, new BlockAsh(49, 300, this));*/
 		//setBlock(33, 340, new BlockWater(33,380,0,this));
 		//setBlock(30, 380,new BlockWater(30,380,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
@@ -121,7 +122,7 @@ public class World {
 		//setBlock(19, 312, new BlockGrass(19,312,this));*/
 		//entities.add(test);
 		//entities.add(test2);
-		entities.add(hd);
+		//entities.add(hd);
 		render();
 	}
 	
