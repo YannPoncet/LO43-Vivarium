@@ -82,38 +82,39 @@ public class World {
 		for(int i = 0; i < 20 ; i++)
 		{
 			setBlock(i+20, 330, new BlockWater(i+20,330,0,this));
+			setBlock(i+20, 312, new BlockGrass(i+20,312,this));
 			for(int j = 0 ; j < 5 ; j++)
 			{
 				if(i == j)
 				{
-					setBlock(i+20, j+301, new BlockDirt(i+20,j+301,this));
+					setBlock(i+20, j+313, new BlockDirt(i+20,j+313,this));
 				}
 				/*if(i == j+14)
 				{
-					setBlock(i+20, j+301, new BlockGrass(i+20,j+301,this));
+					setBlock(i+20, j+313, new BlockGrass(i+20,j+313,this));
 				}*/
 				if(i == 0)
 				{
-					setBlock(19, j+301, new BlockDirt(19,j+301,this));
+					setBlock(19, j+313, new BlockDirt(19,j+313,this));
 				}
 				if(i == 19)
 				{
-					setBlock(40, j+301, new BlockDirt(40,j+301,this));
+					setBlock(40, j+313, new BlockDirt(40,j+313,this));
 				}
 			}
 		}
-		setBlock(34, 305, new BlockGrass(34,305,this));
-		setBlock(35, 304, new BlockGrass(35,304,this));
-		setBlock(36, 303, new BlockGrass(36,303,this));
-		setBlock(37, 302, new BlockGrass(37,302,this));
-		setBlock(38, 301, new BlockGrass(38,301,this));
-		//setBlock(33, 340, new BlockWater(33,380,0,this));
+		setBlock(34, 317, new BlockGrass(34,317,this));
+		setBlock(35, 316, new BlockGrass(35,316,this));
+		setBlock(36, 315, new BlockGrass(36,315,this));
+		setBlock(37, 314, new BlockGrass(37,314,this));
+		setBlock(38, 313, new BlockGrass(38,313,this));
+		setBlock(33, 340, new BlockWater(33,380,0,this));
 		//setBlock(30, 380,new BlockWater(30,380,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
 		/*setBlock(40, 301, new BlockGrass(40,301,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
 		setBlock(19, 301, new BlockGrass(19,301,this));*/
-		setBlock(19, 312, new BlockGrass(19,312,this));
+		//setBlock(19, 312, new BlockGrass(19,312,this));
 		entities.add(test);
 		entities.add(test2);
 		entities.add(hd);

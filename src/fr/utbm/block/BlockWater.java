@@ -40,7 +40,6 @@ public class BlockWater extends BlockLiquid{
 		
 		if(iter == 5) //The Water update will operate one time out of <the number inside the if> ticks
 		{
-			System.out.println("je suis rentré dans le test de l'update du bloc en " + (int)(this.x/16) +" ; "+ (int)(this.y/16));
 			
 			if(state == 7)
 			{
@@ -258,9 +257,6 @@ public class BlockWater extends BlockLiquid{
 								minMax[1][1] = 1;
 							}
 						}
-						System.out.println("Le plus haut est :" + minMax[1][0] + " et il y en a : " + minMax[1][1]);
-						System.out.println("Le plus bas est :" + minMax[0][0] + " et il y en a : " + minMax[0][1]);
-						System.out.println("je vais jusq'au bloc : " + temp.x/16 + " ; " + temp.y/16);
 						
 						temp = this;
 						
@@ -273,15 +269,12 @@ public class BlockWater extends BlockLiquid{
 							int modified = 0;
 							while(temp.rightSuccessor != null)
 							{
-								System.out.println(temp.state);
-								System.out.println(minMax[1][1]);
 								if(temp.state == minMax[0][0] && minMax[1][1] > 0)
 								{
 									temp.state --;
 									modified ++;
 									minMax[1][1]--;
 								}
-								System.out.println("je dois en modifier " + modified);
 								temp = ((BlockWater)(temp.rightSuccessor));
 							}
 							if(temp.state == minMax[0][0] && minMax[1][1] > 0)
