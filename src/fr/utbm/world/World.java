@@ -10,6 +10,8 @@ import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
 import fr.utbm.block.BlockLava;
+import fr.utbm.block.BlockSand;
+import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
@@ -77,17 +79,22 @@ public class World {
 	/* Call at the World creation */
 	public void create(){
 		MapGenerator.generate(this, 0); //0 to generate a new seed
-		//test = new EntityFallingBlock(4,320,16,16,this);
+		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
 		//hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
 		for(int i = 0; i < 20 ; i++)
 		{
-			setBlock(i+40, 390, new BlockWater(i+40,390,0,this));
+			/*setBlock(i+40, 390, new BlockWater(i+40,390,0,this));
 			setBlock(i+40, 395, new BlockWater(i+40,395,0,this));
 			setBlock(i+40, 396, new BlockWater(i+40,396,0,this));
-			setBlock(i+40, 397, new BlockWater(i+40,397,0,this));
-			//setBlock(i+20, 312, new BlockGrass(i+20,312,this));
+			setBlock(i+40, 397, new BlockWater(i+40,397,0,this));*/
+			setBlock(i+20, 313, new BlockWater(i+20,313, 0, this));
+			if(i != 10)
+			{
+				setBlock(i+20, 312, new BlockGrass(i+20,312,this));
+			}
+			
 			/*for(int j = 0 ; j < 5 ; j++)
 			{
 				if(i == j)
@@ -108,23 +115,25 @@ public class World {
 				}
 			}*/
 		}
-		
+		setBlock(19, 313, new BlockGrass(19,313,this));
+		setBlock(40, 313, new BlockGrass(40,313,this));
+		setBlock(30, 314, new BlockSand(10,314,this));
+		setBlock(10, 313, new BlockStone(10,313,this));
 		
 		
 		/*setBlock(34, 317, new BlockGrass(34,317,this));
 		setBlock(35, 316, new BlockGrass(35,316,this));
 		setBlock(36, 315, new BlockGrass(36,315,this));
 		setBlock(37, 314, new BlockGrass(37,314,this));
-		setBlock(38, 313, new BlockGrass(38,313,this));
-		setBlock(49, 300, new BlockAsh(49, 300, this));*/
-		setBlock(33, 340, new BlockWater(33,380,0,this));
-		setBlock(32, 310,new BlockLava(32,310,0,this));
+		setBlock(38, 313, new BlockGrass(38,313,this));*/
+		//setBlock(33, 340, new BlockWater(33,380,0,this));
+		//setBlock(32, 310,new BlockLava(32,310,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
 		/*setBlock(40, 301, new BlockGrass(40,301,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
 		setBlock(19, 301, new BlockGrass(19,301,this));
 		//setBlock(19, 312, new BlockGrass(19,312,this));*/
-		//entities.add(test);
+		entities.add(test);
 		//entities.add(test2);
 		//entities.add(hd);
 		render();

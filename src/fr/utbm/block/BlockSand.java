@@ -1,5 +1,6 @@
 package fr.utbm.block;
 
+import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
@@ -26,7 +27,12 @@ public class BlockSand extends Block{
 	
 	@Override
 	public void update(){
-		
+		/*if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
+		{
+			dead = true;
+			EntityFallingBlock e = new EntityFallingBlock(x/16,y/16,16,16,world, this);
+			world.getEntities().add(e);
+		}*/
 	}
 	
 }
