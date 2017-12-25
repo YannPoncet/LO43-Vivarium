@@ -7,7 +7,7 @@ import fr.utbm.world.World;
 
 public abstract class BlockLiquid extends Block{
 	
-	protected static final int DURABILITY = 100; //number of ticks a liquid cube of state == 7 can hold
+	protected static final int DURABILITY = 300; //number of ticks a liquid cube of state == 7 can hold
 	protected static final int STABILITY = 4; //number of rounds without changes of state a block is considered stable
 	protected int state = 0;
 	protected Direction flowing;

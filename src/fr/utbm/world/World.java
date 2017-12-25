@@ -9,6 +9,7 @@ import fr.utbm.block.Block;
 import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGrass;
+import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockWater;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
@@ -80,12 +81,12 @@ public class World {
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
 		//hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
-		for(int i = 0; i < 20 ; i++)
+		/*for(int i = 0; i < 20 ; i++)
 		{
-			setBlock(i+20, 390, new BlockWater(i+20,390,0,this));
-			setBlock(i+20, 395, new BlockWater(i+20,395,0,this));
-			setBlock(i+20, 396, new BlockWater(i+20,396,0,this));
-			setBlock(i+20, 397, new BlockWater(i+20,397,0,this));
+			setBlock(i+130, 390, new BlockLava(i+130,390,0,this));
+			setBlock(i+130, 395, new BlockLava(i+130,395,0,this));
+			setBlock(i+130, 396, new BlockLava(i+130,396,0,this));
+			setBlock(i+130, 397, new BlockLava(i+130,397,0,this));
 			//setBlock(i+20, 312, new BlockGrass(i+20,312,this));
 			/*for(int j = 0 ; j < 5 ; j++)
 			{
@@ -106,15 +107,18 @@ public class World {
 					setBlock(40, j+313, new BlockDirt(40,j+313,this));
 				}
 			}*/
-		}
+		//}
+		
+		
+		
 		/*setBlock(34, 317, new BlockGrass(34,317,this));
 		setBlock(35, 316, new BlockGrass(35,316,this));
 		setBlock(36, 315, new BlockGrass(36,315,this));
 		setBlock(37, 314, new BlockGrass(37,314,this));
 		setBlock(38, 313, new BlockGrass(38,313,this));
 		setBlock(49, 300, new BlockAsh(49, 300, this));*/
-		//setBlock(33, 340, new BlockWater(33,380,0,this));
-		//setBlock(30, 380,new BlockWater(30,380,0,this));
+		setBlock(33, 340, new BlockWater(33,380,0,this));
+		setBlock(32, 310,new BlockLava(32,310,0,this));
 		//setBlock(32, 320,new BlockWater(32,320,0,this));
 		/*setBlock(40, 301, new BlockGrass(40,301,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));

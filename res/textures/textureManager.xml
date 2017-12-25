@@ -1,22 +1,34 @@
 <textures>
-	<texture id="0" file="default.png"></texture>
-	<texture id="1" file="blockDirt.png"></texture>
-	<texture id="2" file="blockGrass.png"></texture>
-	<texture id="3" file="blockSand.png"></texture>
-	<texture id="4" file="blockWater.png"></texture>
-	<texture id="5" file="blockWater1.png"></texture>
-	<texture id="6" file="blockWater2.png"></texture>
-	<texture id="7" file="blockWater3.png"></texture>
-	<texture id="8" file="blockWater4.png"></texture>
-	<texture id="9" file="blockWater5.png"></texture>
-	<texture id="10" file="blockWater6.png"></texture>
-	<texture id="11" file="blockWater7.png"></texture>
+	<texture id="0" file="Blocks/default.png"></texture>
+	<texture id="1" file="Blocks/blockDirt.png"></texture>
+	<texture id="2" file="Blocks/blockGrass.png"></texture>
+	<texture id="3" file="Blocks/blockSand.png"></texture>
 	
-	<texture id="12" file="blockGlassV.png"></texture>
-	<texture id="13" file="blockGlassH.png"></texture>
+	<texture id="4" file="Blocks/blockWater.png"></texture>
+	<texture id="5" file="Blocks/blockWater1.png"></texture>
+	<texture id="6" file="Blocks/blockWater2.png"></texture>
+	<texture id="7" file="Blocks/blockWater3.png"></texture>
+	<texture id="8" file="Blocks/blockWater4.png"></texture>
+	<texture id="9" file="Blocks/blockWater5.png"></texture>
+	<texture id="10" file="Blocks/blockWater6.png"></texture>
+	<texture id="11" file="Blocks/blockWater7.png"></texture>
 	
-	<texture id="14" file="blockAsh.png"></texture>
-	<texture id="15" file="blockSandSurface.png"></texture>
+	<texture id="12" file="Blocks/blockGlassV.png"></texture>
+	<texture id="13" file="Blocks/blockGlassH.png"></texture>
+	
+	<texture id="14" file="Blocks/blockAsh.png"></texture>
+	<texture id="15" file="Blocks/blockSandSurface.png"></texture>
+	
+	<texture id="16" file="Blocks/blockLava.png"></texture>
+	<texture id="17" file="Blocks/blockLava1.png"></texture>
+	<texture id="18" file="Blocks/blockLava2.png"></texture>
+	<texture id="19" file="Blocks/blockLava3.png"></texture>
+	<texture id="20" file="Blocks/blockLava4.png"></texture>
+	<texture id="21" file="Blocks/blockLava5.png"></texture>
+	<texture id="22" file="Blocks/blockLava6.png"></texture>
+	<texture id="23" file="Blocks/blockLava7.png"></texture>
+	
+	<texture id="24" file="Blocks/blockStone.png"></texture>
 	
 	<texture id="100" file="hellDog/hell-hound.png"></texture>
 	
