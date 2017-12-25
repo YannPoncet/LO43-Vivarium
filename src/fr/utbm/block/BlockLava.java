@@ -5,6 +5,8 @@ import fr.utbm.world.World;
 
 public class BlockLava extends BlockLiquid{
 	
+	protected static final int DURABILITY = 300;
+	
 	public BlockLava(float x, float y, int state, World w)
 	{
 		super(x, y, TextureManager.getTexture(16 + state), w);
@@ -14,6 +16,7 @@ public class BlockLava extends BlockLiquid{
 		this.blockType = BlockType.LAVA;
 		this.isGravitySensitive = true;
 		this.state = state;
+		durability = DURABILITY;
 	}
 	
 	@Override

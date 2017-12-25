@@ -5,6 +5,8 @@ import fr.utbm.world.World;
 
 public class BlockWater extends BlockLiquid{
 	
+	protected static final int DURABILITY = 200;
+	
 	public BlockWater(float x, float y, int state, World w)
 	{
 		super(x, y, TextureManager.getTexture(4 + state), w);
@@ -14,6 +16,7 @@ public class BlockWater extends BlockLiquid{
 		this.blockType = BlockType.WATER;
 		this.isGravitySensitive = true;
 		this.state = state;
+		durability = DURABILITY;
 	}
 	
 	@Override

@@ -81,12 +81,12 @@ public class World {
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
 		//hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
-		/*for(int i = 0; i < 20 ; i++)
+		for(int i = 0; i < 20 ; i++)
 		{
-			setBlock(i+130, 390, new BlockLava(i+130,390,0,this));
-			setBlock(i+130, 395, new BlockLava(i+130,395,0,this));
-			setBlock(i+130, 396, new BlockLava(i+130,396,0,this));
-			setBlock(i+130, 397, new BlockLava(i+130,397,0,this));
+			setBlock(i+40, 390, new BlockWater(i+40,390,0,this));
+			setBlock(i+40, 395, new BlockWater(i+40,395,0,this));
+			setBlock(i+40, 396, new BlockWater(i+40,396,0,this));
+			setBlock(i+40, 397, new BlockWater(i+40,397,0,this));
 			//setBlock(i+20, 312, new BlockGrass(i+20,312,this));
 			/*for(int j = 0 ; j < 5 ; j++)
 			{
@@ -107,7 +107,7 @@ public class World {
 					setBlock(40, j+313, new BlockDirt(40,j+313,this));
 				}
 			}*/
-		//}
+		}
 		
 		
 		
