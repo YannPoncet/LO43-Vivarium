@@ -7,7 +7,7 @@ import fr.utbm.biome.BiomeList;
 import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
-import fr.utbm.block.BlockGrass;
+import fr.utbm.block.BlockWater;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
@@ -42,6 +42,12 @@ public class MapGenerator {
 				//=>Increase wavelength to get flat map generally
 				//=>Decrease amplitude to get a flat map locally
 				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(60,64,15,4);
+			System.out.println(" "+chrono.getTime()+"ms");
+			
+			chrono.reset();
+			System.out.print("Generating Water...");
+				LiquidGenerator liquidGen = new LiquidGenerator(seed, M);
+				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 100);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -84,14 +90,19 @@ public class MapGenerator {
 				}
 				
 				/* SURFACE */
-				for(int j=Map.LIMIT_SURFACE; j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+MapGenerator.GRASS_SURFACE+surface.get(i);j++)
+				for(int j=Map.LIMIT_SURFACE; j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+MapGenerator.GRASS_SURFACE+surface.get(i)+surfaceLiquid[i];j++)
 				{
 					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt
 					{
 						BiomeList.createSurfaceBlock(i, j, w, biomeList.get(k).getId());
+						
 						//w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 					}
-					else //grass
+					else if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]) //water
+					{
+						w.getMap().setBlock(i, j, new BlockWater(i,j,0,w));
+					}
+					else if (surfaceLiquid[i] == 0) //grass
 					{
 						BiomeList.createSurfaceGrassBlock(i, j, w, biomeList.get(k).getId());
 					}
