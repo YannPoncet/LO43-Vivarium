@@ -61,7 +61,7 @@ public class MapGenerator {
 			System.out.print("Generating Liquids...");
 				LiquidGenerator liquidGen = new LiquidGenerator(seed, M);
 				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 50);
-				caves = liquidGen.caveLiquidGen(caves, 2, 10, 0);
+				//caves = liquidGen.caveLiquidGen(caves, 2, 10, 0);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -92,16 +92,16 @@ public class MapGenerator {
 						{
 							if (j<Map.LIMIT_CAVE+surface.get(i)) 
 							{
-								w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
+								w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
 							}
 							else
 							{
 								w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
 							}
 						}
-						else if(caves.get(i).get(j) == 2)
+						else if(caves.get(i).get(j) == 0)
 						{
-							w.getMap().setBlock(i, j, new BlockWater(i,j,0,w));
+							w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 						}
 					}
 					else
