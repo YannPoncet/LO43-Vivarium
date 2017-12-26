@@ -30,7 +30,7 @@ public class World {
 	
 	private float gravity = -4f;
 	private FPSLogger fps;
-	
+	private int currentChunkCam;
 	
 	public World()
 	{
@@ -38,6 +38,7 @@ public class World {
 		entities = new ArrayList<Entity>();
 		this.create();
 		fps = new FPSLogger();
+		currentChunkCam = 0;
 	}
 	
 	public Block getBlock(int i, int j)
@@ -141,7 +142,7 @@ public class World {
 	
 	public void update()
 	{
-		this.map.update(0);
+		this.map.update(currentChunkCam);
 		fps.log();
 		Iterator<Entity> iter = entities.iterator();
 		while (iter.hasNext()) {
@@ -165,6 +166,7 @@ public class World {
 	public void cameraSwitchChunkChunk(int cID){
 		RenderManager.cleanRender();
 		if (cID > -1 && cID < Map.NUMBER_OF_CHUNKS+1) {
+			currentChunkCam = cID;
 			map.render(cID);
 		}
 	}
