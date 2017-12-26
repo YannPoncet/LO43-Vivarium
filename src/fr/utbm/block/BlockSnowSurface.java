@@ -30,7 +30,7 @@ public class BlockSnowSurface extends BlockDirt {
 	public void update()
 	{
 		super.update();
-		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).getID() != 4)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null)
 		{
 			dead = true;
 			world.setBlock((int)(x/16), (int)(y/16), new BlockDirt(x/16, y/16, this.world));

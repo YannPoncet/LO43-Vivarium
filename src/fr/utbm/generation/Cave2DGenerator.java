@@ -10,12 +10,21 @@ public class Cave2DGenerator extends PseudoRandom{
 	private int height;
 	private ArrayList<ArrayList<Integer>> caves;
 	
-	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill,int width,int height) 
+	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill, int width, int height) 
 	{
 		super(seed, M);
 		this.width = width;
 		this.height = height;
 		initializeCells(initialPercentageOfFill);
+	}
+	
+	//The constructor below is used to combine 2 different caves
+	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill, double initialPercentageOfFill2, int width, int height, int height2) 
+	{
+		super(seed, M);
+		this.width = width;
+		this.height = height+height2;
+		initializeCells(initialPercentageOfFill, initialPercentageOfFill2, height2);
 	}
 	
 	
@@ -24,8 +33,25 @@ public class Cave2DGenerator extends PseudoRandom{
         for (int i=0; i<width; i++) {
         	ArrayList<Integer> tmp = new ArrayList<>();
             for (int j=0; j<height; j++) {
-            	//changing initialPercentageOfFill from percentage to a value between -0.1 et 0.1 
+            	//changing initialPercentageOfFill from percentage to a value between -0.1 and 0.1 
             	if (i == 0 || i >= width || getNextRandom() < ((initialPercentageOfFill*2)-100)/1000){ 
+            		tmp.add(1);
+            	}
+            	else{ tmp.add(0); }
+            }
+            caves.add(tmp);
+        }
+     }
+     public void initializeCells(double initialPercentageOfFill, double initialPercentageOfFill2, int height2) {
+    	this.caves = new ArrayList<>();
+        for (int i=0; i<width; i++) {
+        	ArrayList<Integer> tmp = new ArrayList<>();
+            for (int j=0; j<height; j++) {
+            	//changing initialPercentageOfFill from percentage to a value between -0.1 and 0.1 
+            	if (i == 0 || i >= width){ 
+            		tmp.add(1);
+            	}
+            	else if ((j<height-height2 && getNextRandom() < ((initialPercentageOfFill*2)-100)/1000) || (j>=height-height2 && getNextRandom() < ((initialPercentageOfFill2*2)-100)/1000)) {
             		tmp.add(1);
             	}
             	else{ tmp.add(0); }

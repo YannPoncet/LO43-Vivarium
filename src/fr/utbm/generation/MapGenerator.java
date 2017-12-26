@@ -31,7 +31,9 @@ public class MapGenerator {
 			
 			chrono.reset();
 			System.out.print("Generating Biomes...");
-				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 20, 100);
+				//You can adjust minimum and maximum size of biomes
+				//Care: if the biomes are too small, it wont give a good result, minimum 50 is advised
+				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 50, 100);
 				ArrayList<Biome> biomeList = biomeGen.getBiomeList();
 			System.out.println(" "+chrono.getTime()+"ms");
 			
@@ -39,25 +41,23 @@ public class MapGenerator {
 			System.out.print("Generating Surface...");
 				Surface1DGenerator noiseGen = new Surface1DGenerator(seed, M);
 				//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
-				//=>Increase wavelength to get flat map generally
-				//=>Decrease amplitude to get a flat map locally
+				//=>Increase wavelength to get flat map generally ---> BETWEEN 0 & 1 <---
+				//=>Decrease amplitude to get a flat map locally ---> BETWEEN 0 & 1 <---
 				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(1,1,15,4, biomeList);
+			System.out.println(" "+chrono.getTime()+"ms");
+			
+			chrono.reset();
+			System.out.print("Generating Caves...");
+				//2nd parameter: stone ratio in caves
+				//3rd parameter: ash ratio in hell caves
+				Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 45, 75, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, Map.LIMIT_CAVE, Map.LIMIT_SURFACE-Map.LIMIT_CAVE+1);
+				ArrayList<ArrayList<Integer>> caves = caveGen.generateAndGetCaves();
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
 			System.out.print("Generating Water...");
 				LiquidGenerator liquidGen = new LiquidGenerator(seed, M);
 				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 50);
-			System.out.println(" "+chrono.getTime()+"ms");
-			
-			chrono.reset();
-			System.out.print("Generating Caves...");
-				//Change the value of the last parameter (0 to 100) to increase the dirt ratio
-				Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 75, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, Map.LIMIT_SURFACE-Map.LIMIT_CAVE+1);
-				Cave2DGenerator hellGen = new Cave2DGenerator(seed, M, 45, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, Map.LIMIT_CAVE+1);
-			
-				ArrayList<ArrayList<Integer>> caves = caveGen.generateAndGetCaves();
-				ArrayList<ArrayList<Integer>> hellCaves = hellGen.generateAndGetCaves();
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -71,22 +71,27 @@ public class MapGenerator {
 					lastSwitchI = i;
 				}
 				
-				/* HELL */
+				/* 
 				for(int j=0; j<Map.LIMIT_CAVE;j++)
 				{
-					if(hellCaves.get(i).get(j) == 1) 
+					if(caves.get(i).get(j) == 1) 
 					{
 						w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
 					}
-				}
+				} */
 				
 				/* CAVES */
-				for(int j=Map.LIMIT_CAVE; j<Map.LIMIT_SURFACE+surface.get(i);j++)
+				for(int j=0; j<Map.LIMIT_SURFACE+surface.get(i);j++)
 				{
 					if (j<Map.LIMIT_SURFACE) {
-						if(caves.get(i).get(j-Map.LIMIT_CAVE+1) == 1) 
+						if(caves.get(i).get(j) == 1) 
 						{
-							w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
+							if (j<Map.LIMIT_CAVE+surface.get(i)) {
+								w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
+							}
+							else {
+								w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
+							}
 						}
 					}
 					else
