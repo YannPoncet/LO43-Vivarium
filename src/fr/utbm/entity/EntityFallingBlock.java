@@ -1,6 +1,7 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
+import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
 public class EntityFallingBlock extends Entity{
