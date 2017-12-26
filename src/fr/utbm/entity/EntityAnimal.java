@@ -2,7 +2,7 @@ package fr.utbm.entity;
 
 import fr.utbm.world.World;
 
-public abstract class EntityAnimal extends Entity{
+public class EntityAnimal extends Entity{
 
 	protected int directionX = 0;
 	
@@ -11,6 +11,5 @@ public abstract class EntityAnimal extends Entity{
 		super(x, y, w, h, worldIn);
 	}
 	
-	public abstract void move();
 
 }
