@@ -37,6 +37,9 @@
 	<texture id="501" file="backgrounds/forest.png"></texture>
 	<texture id="502" file="backgrounds/cave.png"></texture>
 	<texture id="503" file="backgrounds/hell.png"></texture>
+	<texture id="504" file="backgrounds/desert.png"></texture>
+	<texture id="505" file="backgrounds/snow.png"></texture>
+	<texture id="506" file="backgrounds/montain.png"></texture>
 	
 	<animation id="0" file="hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
 	<animation id="1" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
