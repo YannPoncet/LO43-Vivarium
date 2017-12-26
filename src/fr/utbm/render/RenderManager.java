@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fr.utbm.biome.Biome;
 import fr.utbm.main.DesktopApplication;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.view.Camera;
@@ -16,6 +17,7 @@ import fr.utbm.world.Map;
 public class RenderManager {
 
 	private static SpriteBatch batch;
+	private static ArrayList<Biome> biomeList;
 	private static ArrayList<Renderable> blockRender =  new ArrayList<Renderable>();
 	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
 	private static float x=0;
@@ -56,13 +58,32 @@ public class RenderManager {
 	public static void addToEntitiesRender(Renderable r){
 		RenderManager.entitiesRender.add(r);
 	}
+	public static void setBiomeList(ArrayList<Biome> biomeList) {
+		RenderManager.biomeList = biomeList;
+	}
 	public static void drawBackground(){
 		//500 -> sky [above forest.png]
-		//501 -> forest [above Map.LIMIT_SURFACE]
+		//501 -> forest [above Map.LIMIT_SURFACE] [depending on the biome]
 		//502 -> cave [between Map.LIMIT_CAVE and Map.LIMIT_SURFACE]
 		//503 -> hell [below Map.LIMIT_CAVE]
 		//int backgroundsWidth = 800;
 		int backgroundsHeight = 400;
+		
+		int textureId = 501;
+		if(biomeList.size()>0) {
+			textureId = biomeList.get(0).getTextureId();
+			int totalWidth = 0;
+			boolean gotIt = true;
+			int index = 0;
+			while(index < biomeList.size() && gotIt) {
+				totalWidth += biomeList.get(index).getWidth();
+				if (x/16<totalWidth && x/16>totalWidth-biomeList.get(index).getWidth()) {
+					gotIt = false;
+					textureId = biomeList.get(index).getTextureId();
+				}
+				index++;
+			}
+		}
 		
 		if (x<0) { //left border
 			x -= x-16;
@@ -96,12 +117,12 @@ public class RenderManager {
 			batch.draw(TextureManager.getTexture(502),x,y);
 			batch.draw(TextureManager.getTexture(502),x,y+400);
 			if (y/16+Camera.HEIGHT/16 > Map.LIMIT_SURFACE) { //if close to the surface
-				batch.draw(TextureManager.getTexture(501),x,Map.LIMIT_SURFACE*16);
+				batch.draw(TextureManager.getTexture(textureId),x,Map.LIMIT_SURFACE*16);
 				batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+backgroundsHeight);
 			}
 		}
 		else if (y/16 < Map.LIMIT_SURFACE+backgroundsHeight/16) {
-			batch.draw(TextureManager.getTexture(501),x,Map.LIMIT_SURFACE*16);
+			batch.draw(TextureManager.getTexture(textureId),x,Map.LIMIT_SURFACE*16);
 			batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+backgroundsHeight);
 			batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+backgroundsHeight*2);
 		}

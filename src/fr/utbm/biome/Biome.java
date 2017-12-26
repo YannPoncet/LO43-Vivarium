@@ -7,8 +7,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 
-import fr.utbm.world.World;
-
 public class Biome {
 	int id;
 	String name;
@@ -16,6 +14,7 @@ public class Biome {
 	
 	double surfaceAmplitude;
 	double surfaceWavelength;
+	int textureId;
 	
 	public Biome(int type, int width) {
 		this.id = type;
@@ -44,6 +43,7 @@ public class Biome {
 				this.name = child.get("name");
 				this.surfaceAmplitude = Double.parseDouble(child.get("surfaceAmplitude"));
 				this.surfaceWavelength = Double.parseDouble(child.get("surfaceWavelength"));
+				this.textureId = Integer.parseInt(child.get("textureId"));
 				return 1;
 			}
 		}
@@ -61,5 +61,11 @@ public class Biome {
 	}
 	public double getSurfaceWavelength() {
 		return this.surfaceWavelength;
+	}
+	public int getTextureId() {
+		return this.textureId;
+	}
+	public String getName() {
+		return this.name;
 	}
 }

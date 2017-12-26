@@ -9,6 +9,7 @@ import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
@@ -36,6 +37,8 @@ public class MapGenerator {
 				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 50, 100);
 				ArrayList<Biome> biomeList = biomeGen.getBiomeList();
 			System.out.println(" "+chrono.getTime()+"ms");
+			
+			RenderManager.setBiomeList(biomeList);
 			
 			chrono.reset();
 			System.out.print("Generating Surface...");
