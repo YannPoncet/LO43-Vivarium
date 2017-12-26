@@ -61,7 +61,11 @@ public class MapGenerator {
 			System.out.print("Generating Liquids...");
 				LiquidGenerator liquidGen = new LiquidGenerator(seed, M);
 				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 50);
-				//caves = liquidGen.caveLiquidGen(caves, 2, 10, 0);
+				/*caveLiquidGen(caves, minHeight, maxHeight)
+				 *minHeight is the minimal height of air in the cave
+				 *maxHeight is the maximal height of air in the cave
+				 */
+				caves = liquidGen.caveLiquidGen(caves, 5, 50);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
