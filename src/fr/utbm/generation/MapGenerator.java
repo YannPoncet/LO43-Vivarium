@@ -7,6 +7,7 @@ import fr.utbm.biome.BiomeList;
 import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
+import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
@@ -14,8 +15,7 @@ import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class MapGenerator {
-	public final static int DIRT_SURFACE = 50; //Height of the dirt at the surface
-	public final static int GRASS_SURFACE = 1;
+	public final static int DIRT_SURFACE = 20; //Height of the dirt at the surface
 	
 	public static void generate(World w, double seed)
 	{
@@ -31,7 +31,7 @@ public class MapGenerator {
 			
 			chrono.reset();
 			System.out.print("Generating Biomes...");
-				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 10, 15);
+				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 20, 100);
 				ArrayList<Biome> biomeList = biomeGen.getBiomeList();
 			System.out.println(" "+chrono.getTime()+"ms");
 			
@@ -47,7 +47,7 @@ public class MapGenerator {
 			chrono.reset();
 			System.out.print("Generating Water...");
 				LiquidGenerator liquidGen = new LiquidGenerator(seed, M);
-				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 100);
+				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 50);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -81,30 +81,38 @@ public class MapGenerator {
 				}
 				
 				/* CAVES */
-				for(int j=Map.LIMIT_CAVE; j<Map.LIMIT_SURFACE;j++)
+				for(int j=Map.LIMIT_CAVE; j<Map.LIMIT_SURFACE+surface.get(i);j++)
 				{
-					if(caves.get(i).get(j-Map.LIMIT_CAVE+1) == 1) 
+					if (j<Map.LIMIT_SURFACE) {
+						if(caves.get(i).get(j-Map.LIMIT_CAVE+1) == 1) 
+						{
+							w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
+						}
+					}
+					else
 					{
-						w.getMap().setBlock(i, j, new BlockDirt(i,j,w)); 
+						w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
 					}
 				}
 				
 				/* SURFACE */
-				for(int j=Map.LIMIT_SURFACE; j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+MapGenerator.GRASS_SURFACE+surface.get(i)+surfaceLiquid[i];j++)
+				for(int j=Map.LIMIT_SURFACE+surface.get(i); j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]+1;j++)
 				{
 					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt
 					{
-						BiomeList.createSurfaceBlock(i, j, w, biomeList.get(k).getId());
+						if (j==Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)-1) { //grass
+							BiomeList.createSurfaceGrassBlock(i, j, w, biomeList.get(k).getId());
+						}
+						else { //dirt
+							BiomeList.createSurfaceBlock(i, j, w, biomeList.get(k).getId());
+						}
+						
 						
 						//w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 					}
 					else if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]) //water
 					{
 						w.getMap().setBlock(i, j, new BlockWater(i,j,0,w));
-					}
-					else if (surfaceLiquid[i] == 0) //grass
-					{
-						BiomeList.createSurfaceGrassBlock(i, j, w, biomeList.get(k).getId());
 					}
 				}
 			}
