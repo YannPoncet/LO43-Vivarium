@@ -25,12 +25,13 @@ public class World {
 	private ArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private EntityFallingBlock test2;
+	private BlockSand bs;
 	private EntityHellDog hd;
 	
 	
 	private float gravity = -4f;
 	private FPSLogger fps;
-	
+	private int currentChunkCam;
 	
 	public World()
 	{
@@ -38,6 +39,7 @@ public class World {
 		entities = new ArrayList<Entity>();
 		this.create();
 		fps = new FPSLogger();
+		currentChunkCam = 0;
 	}
 	
 	public Block getBlock(int i, int j)
@@ -63,6 +65,10 @@ public class World {
 	public ArrayList<Entity> getEntities(){
 		return entities;
 	}
+	public void addEntity(Entity e){
+		entities.add(e);
+		RenderManager.addToEntitiesRender(e);
+	}
 	public Map getMap(){
 		return map;
 	}
@@ -80,6 +86,8 @@ public class World {
 	public void create(){
 		MapGenerator.generate(this, 0); //0 to generate a new seed
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
+		bs = new BlockSand(3,320,this);
+		setBlock(3,320,bs);
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
 		//hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
@@ -141,7 +149,7 @@ public class World {
 	
 	public void update()
 	{
-		this.map.update(0);
+		this.map.update(currentChunkCam);
 		fps.log();
 		Iterator<Entity> iter = entities.iterator();
 		while (iter.hasNext()) {
@@ -165,6 +173,7 @@ public class World {
 	public void cameraSwitchChunkChunk(int cID){
 		RenderManager.cleanRender();
 		if (cID > -1 && cID < Map.NUMBER_OF_CHUNKS+1) {
+			currentChunkCam = cID;
 			map.render(cID);
 		}
 	}
