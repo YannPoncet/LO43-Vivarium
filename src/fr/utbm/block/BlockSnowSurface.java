@@ -32,8 +32,16 @@ public class BlockSnowSurface extends BlockDirt {
 		super.update();
 		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null)
 		{
+
 			dead = true;
-			world.setBlock((int)(x/16), (int)(y/16), new BlockDirt(x/16, y/16, this.world));
+			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.WATER)
+			{
+				world.setBlock((int)(x/16), (int)(y/16), new BlockGrass(x/16, y/16, this.world));
+			}
+			else
+			{
+				world.setBlock((int)(x/16), (int)(y/16), new BlockDirt(x/16, y/16, this.world));
+			}
 		}
 	}
 }
