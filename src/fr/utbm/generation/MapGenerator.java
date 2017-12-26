@@ -7,6 +7,7 @@ import fr.utbm.biome.BiomeList;
 import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
+import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
 import fr.utbm.render.RenderManager;
@@ -96,16 +97,21 @@ public class MapGenerator {
 						{
 							if (j<Map.LIMIT_CAVE+surface.get(i)) 
 							{
-								w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
+								w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
 							}
 							else
 							{
 								w.getMap().setBlock(i, j, new BlockStone(i,j,w)); 
 							}
 						}
-						else if(caves.get(i).get(j) == 0)
+						else if(caves.get(i).get(j) == 2)
 						{
-							w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
+							if(j<Map.LIMIT_CAVE) {
+								w.getMap().setBlock(i, j, new BlockLava(i,j,0,w));
+							}
+							else {
+								w.getMap().setBlock(i, j, new BlockWater(i,j,0,w));
+							}
 						}
 					}
 					else
