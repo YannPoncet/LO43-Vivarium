@@ -27,9 +27,9 @@
 	<texture id="21" file="Blocks/blockLava5.png"></texture>
 	<texture id="22" file="Blocks/blockLava6.png"></texture>
 	<texture id="23" file="Blocks/blockLava7.png"></texture>
-	
 	<texture id="24" file="Blocks/blockStone.png"></texture>
 	<texture id="25" file="Blocks/blockSnowSurface.png"></texture>
+	<texture id="26" file="Blocks/blockObsidian.png"></texture>
 	
 	<texture id="100" file="hellDog/hell-hound.png"></texture>
 	

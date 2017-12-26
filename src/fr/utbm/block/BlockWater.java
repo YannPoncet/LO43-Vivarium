@@ -54,7 +54,7 @@ public class BlockWater extends BlockLiquid{
 			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.LAVA)
 			{
 				dead = true;
-				world.setBlock((int)(x/16), (int)(y/16), new BlockStone(x/16, y/16, world));
+				world.setBlock((int)(x/16), (int)(y/16), new BlockObsidian(x/16, y/16, world));
 			}
 			
 			//Priority for the water to fall down before checking sides
