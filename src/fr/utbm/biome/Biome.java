@@ -56,4 +56,10 @@ public class Biome {
 	public int getId(){
 		return this.id;
 	}
+	public double getSurfaceAmplitude() {
+		return this.surfaceAmplitude;
+	}
+	public double getSurfaceWavelength() {
+		return this.surfaceWavelength;
+	}
 }

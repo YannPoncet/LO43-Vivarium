@@ -1,4 +1,6 @@
 <biomes>
-	<biome id="0" name="forest" surfaceAmplitude="20" surfaceWavelength="50"></biome>
-	<biome id="1" name="montain" surfaceAmplitude="128" surfaceWavelength="128"></biome>
+	<biome id="0" name="forest" surfaceAmplitude="46" surfaceWavelength="50"></biome>
+	<biome id="1" name="desert" surfaceAmplitude="15" surfaceWavelength="128"></biome>
+	<biome id="2" name="montain" surfaceAmplitude="128" surfaceWavelength="128"></biome>
+	<biome id="3" name="snow" surfaceAmplitude="15" surfaceWavelength="50"></biome>
 </biomes>
