@@ -9,7 +9,7 @@ public class LiquidGenerator extends PseudoRandom {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ArrayList<ArrayList<Integer>> caveLiquidGen(ArrayList<ArrayList<Integer>> caves, int minHeight, int maxHeight, int liquidFrequence) {
+	public ArrayList<ArrayList<Integer>> caveLiquidGen(ArrayList<ArrayList<Integer>> caves, int minHeight, int maxHeight) {
 		/*
 		Entrée: tableau de cave du cave generator (avec 0 et 1), hauteur maxi d'eau dans les caves, hauteur mini d'eau dans les caves, fréquence de cave avec eau(édité)
 		Sortie: tableau de caves avec 0 et 1 + 2 pour les liquids
@@ -37,12 +37,11 @@ public class LiquidGenerator extends PseudoRandom {
 				{
 					tmpArray[i][j]=1;
 				}
-				else if(caves.get(i).get(j)==0 /*&& tmpArray[i][j]==0*/)
+				else if(caves.get(i).get(j)==0 && tmpArray[i][j]==0)
 				{ 
-					tmpArray[i][j]=0;
-					//on doit sûrement choisir la height ici (avant d'appeler la méthode recursive)
-					int height = maxHeight - minHeight; // à faire aléatoirement entre 0 et max-min
-					recursiveCaveLiquidGen(caves, tmpArray, i, j, height, liquidFrequence);
+					// hauteur d'air dans les grottes aléatoire entre minHeight et maxHeight
+					int airHeight = (int)(((super.getNextRandom()+0.5))*(maxHeight-minHeight)+minHeight);
+					recursiveCaveLiquidGen(caves, tmpArray, i, j, airHeight);
 				}
 			}
 		}
@@ -51,27 +50,28 @@ public class LiquidGenerator extends PseudoRandom {
 	}
 	
 	
-	private void recursiveCaveLiquidGen(ArrayList<ArrayList<Integer>> caves, int[][] tmpArray, int i, int j, int height, int liquidFrequence)
+	private void recursiveCaveLiquidGen(ArrayList<ArrayList<Integer>> caves, int[][] tmpArray, int i, int j, int airHeight)
 	{		
 		tmpArray[i][j] = -1; //signifie qu'on a traité ce block
 		
+		
 		//si la height>0, on appelle la méthode sur le block suivant
-		if(height>0)
+		if(airHeight>0)
 		{
 			//on transmet en dessous
-			if(j>0 && caves.get(i).get(j-1)==0 && tmpArray[i][j-1]==0)
+			if((j>0) && (caves.get(i).get(j-1)==0) && (tmpArray[i][j-1]==0))
 			{
-				recursiveCaveLiquidGen(caves, tmpArray, i, j-1, height-1, liquidFrequence);
+				recursiveCaveLiquidGen(caves, tmpArray, i, j-1, airHeight-1);
 			}
 			//on transmet à gauche
-			else if(i>0 && caves.get(i-1).get(j)==0 && tmpArray[i-1][j]==0)
+			else if((i>0) && (caves.get(i-1).get(j)==0) && (tmpArray[i-1][j]==0))
 			{
-				recursiveCaveLiquidGen(caves, tmpArray, i-1, j, height, liquidFrequence);
+				recursiveCaveLiquidGen(caves, tmpArray, i-1, j, airHeight);
 			}
 			//on transmet à droite
-			else if(i<caves.size()-1 && caves.get(i+1).get(j)==0 && tmpArray[i+1][j]==0)
+			else if((i<caves.size()-1) && (caves.get(i+1).get(j)==0) && (tmpArray[i+1][j]==0))
 			{
-				recursiveCaveLiquidGen(caves, tmpArray, i+1, j, height, liquidFrequence);
+				recursiveCaveLiquidGen(caves, tmpArray, i+1, j, airHeight);
 			}
 		}
 		//si height<=0, on remplit la case de liquide et on appelle la méthode sur les voisins
@@ -80,19 +80,21 @@ public class LiquidGenerator extends PseudoRandom {
 			caves.get(i).set(j, 2); //le block en (i,j) sera un block d'eau
 			
 			//on transmet en dessous
-			if(j>0 && caves.get(i).get(j-1)==0 && tmpArray[i][j-1]==0)
+			if((j>0) && (caves.get(i).get(j-1)==0))
 			{
-				recursiveCaveLiquidGen(caves, tmpArray, i, j-1, height, liquidFrequence);
+				recursiveCaveLiquidGen(caves, tmpArray, i, j-1, airHeight);
 			}
+			
 			//on transmet à gauche
-			else if(i>0 && caves.get(i-1).get(j)==0 && tmpArray[i-1][j]==0)
+			if((i>0) && (caves.get(i-1).get(j)==0))
 			{
-				recursiveCaveLiquidGen(caves, tmpArray, i-1, j, height, liquidFrequence);
+				recursiveCaveLiquidGen(caves, tmpArray, i-1, j, airHeight);
 			}
+			
 			//on transmet à droite
-			else if(i<caves.size()-1 && caves.get(i+1).get(j)==0 && tmpArray[i+1][j]==0)
+			if((i<caves.size()-1) && (caves.get(i+1).get(j)==0))
 			{
-				recursiveCaveLiquidGen(caves, tmpArray, i+1, j, height, liquidFrequence);
+				recursiveCaveLiquidGen(caves, tmpArray, i+1, j, airHeight);
 			}
 		}
 	}
