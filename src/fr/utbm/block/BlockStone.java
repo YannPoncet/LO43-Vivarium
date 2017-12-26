@@ -4,6 +4,7 @@ import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
 public class BlockStone extends Block{
+	
 	public BlockStone(float x, float y, World w)
 	{
 		super(x, y, TextureManager.getTexture(24), w);
@@ -21,6 +22,12 @@ public class BlockStone extends Block{
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+	}
+	
+	@Override
+	public void update()
+	{
+		
 	}
 
 }

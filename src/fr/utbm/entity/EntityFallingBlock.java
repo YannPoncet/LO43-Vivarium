@@ -1,16 +1,15 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
-import fr.utbm.block.BlockSand;
 import fr.utbm.world.World;
 
 public class EntityFallingBlock extends Entity{
 
 	protected boolean isGrounded;
 	protected Block block;
-	public EntityFallingBlock(float x, float y, int w, int h, World worldIn) {
+	public EntityFallingBlock(float x, float y, int w, int h, World worldIn, Block b) {
 		super(x, y, w, h, worldIn);
-		this.block = new BlockSand(0,203, worldIn);
+		this.block = b;
 		this.text = block.getTexture();
 		this.isGrounded = false;
 	}
