@@ -13,6 +13,7 @@ import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.entity.BenenutTree;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
@@ -89,7 +90,7 @@ public class World {
 		bs = new BlockSand(3,320,this);
 		setBlock(3,320,bs);
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
-		//hd =  new EntityHellDog(5,380,this);
+		hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
 		for(int i = 0; i < 20 ; i++)
 		{
@@ -143,7 +144,8 @@ public class World {
 		//setBlock(19, 312, new BlockGrass(19,312,this));*/
 		entities.add(test);
 		//entities.add(test2);
-		//entities.add(hd);
+		//entities.add(new BenenutTree(20, 360, this));
+		entities.add(hd);
 		render();
 	}
 	
