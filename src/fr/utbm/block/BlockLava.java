@@ -75,7 +75,6 @@ public class BlockLava extends BlockLiquid{
 				world.setBlock(((int)(this.x/16)), ((int)(this.y/16))-1, block);
 				this.state ++;
 				isStable = STABILITY;
-				this.durability = DURABILITY;
 			}
 			
 			//same liquid block under
@@ -84,9 +83,9 @@ public class BlockLava extends BlockLiquid{
 				if(((BlockLiquid)world.getBlock((int)(this.x/16), (int)((this.y/16)-1))).state > 0)
 				{
 					((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).state --;
+					((BlockLiquid)world.getBlock(((int)(this.x/16)), ((int)((this.y/16)-1)))).durability = DURABILITY;
 					this.state ++;
 					isStable = STABILITY;
-					this.durability = DURABILITY;
 				}
 				else
 				{

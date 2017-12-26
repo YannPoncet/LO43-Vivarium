@@ -83,19 +83,19 @@ public class World {
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
 		//hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
-		/*for(int i = 0; i < 20 ; i++)
+		for(int i = 0; i < 20 ; i++)
 		{
-			//setBlock(i+40, 390, new BlockLava(i+40,390,0,this));
+			//setBlock(i+40, 390, new BlockLava(i+40,390,this));
 			setBlock(i+40, 355, new BlockLava(i+40,355,0,this));
 			setBlock(i+40, 356, new BlockLava(i+40,356,0,this));
 			setBlock(i+40, 357, new BlockLava(i+40,357,0,this));
-			//setBlock(i+20, 313, new BlockWater(i+20,313, 0, this));
-			//if(i != 10)
+			//setBlock(i+20, 313, new BlockWater(i+20,313, this));
+			/*if(i != 10)
 			{
 				setBlock(i+20, 312, new BlockGrass(i+40,312,this));
-			}
+			}*/
 			
-			for(int j = 0 ; j < 5 ; j++)
+			/*for(int j = 0 ; j < 5 ; j++)
 			{
 				/*if(i == j)
 				{
@@ -113,8 +113,8 @@ public class World {
 				{
 					setBlock(60, j+313, new BlockDirt(60,j+313,this));
 				}
-			}
-		}*/
+			}*/
+		}
 		/*setBlock(19, 313, new BlockGrass(19,313,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
 		setBlock(30, 314, new BlockSand(10,314,this));
@@ -126,9 +126,9 @@ public class World {
 		setBlock(36, 315, new BlockGrass(36,315,this));
 		setBlock(37, 314, new BlockGrass(37,314,this));
 		setBlock(38, 313, new BlockGrass(38,313,this));*/
-		//setBlock(33, 340, new BlockWater(33,380,0,this));
-		//setBlock(32, 310,new BlockLava(32,310,0,this));
-		//setBlock(32, 320,new BlockLava(32,320,0,this));
+		//setBlock(33, 340, new BlockWater(33,380,this));
+		//setBlock(32, 310,new BlockLava(32,310,this));
+		//setBlock(32, 320,new BlockLava(32,320,this));
 		/*setBlock(40, 301, new BlockGrass(40,301,this));
 		setBlock(40, 313, new BlockGrass(40,313,this));
 		setBlock(19, 301, new BlockGrass(19,301,this));
