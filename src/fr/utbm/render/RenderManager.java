@@ -74,7 +74,7 @@ public class RenderManager {
 			x=Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16-Camera.WIDTH-16;
 		}
 		
-		if (y<16) {
+		if (y<16) { //bottom of the map
 			y -=y-16;
 			batch.draw(TextureManager.getTexture(503),x,y);
 			batch.draw(TextureManager.getTexture(503),x,y+backgroundsHeight);
@@ -84,18 +84,18 @@ public class RenderManager {
 			batch.draw(TextureManager.getTexture(500),x,y);
 			batch.draw(TextureManager.getTexture(500),x,y+backgroundsHeight,0,-200,800,200);
 		}
-		else if (y < Map.LIMIT_CAVE*16) {
+		else if (y < Map.LIMIT_CAVE*16) { 
 			batch.draw(TextureManager.getTexture(503),x,y);
 			batch.draw(TextureManager.getTexture(503),x,y+400);
-			if (y/16+600/16 > Map.LIMIT_CAVE) { //if close to the surface
-				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_SURFACE*16);
-				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_SURFACE*16+backgroundsHeight);
+			if (y/16+Camera.HEIGHT/16 > Map.LIMIT_CAVE) { //if close to the caves
+				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_CAVE*16);
+				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_CAVE*16+backgroundsHeight);
 			}
 		}
 		else if (y/16 < Map.LIMIT_SURFACE) {
 			batch.draw(TextureManager.getTexture(502),x,y);
 			batch.draw(TextureManager.getTexture(502),x,y+400);
-			if (y/16+600/16 > Map.LIMIT_SURFACE) { //if close to the surface
+			if (y/16+Camera.HEIGHT/16 > Map.LIMIT_SURFACE) { //if close to the surface
 				batch.draw(TextureManager.getTexture(501),x,Map.LIMIT_SURFACE*16);
 				batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+backgroundsHeight);
 			}

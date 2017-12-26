@@ -6,7 +6,7 @@ public class Map {
 	public final static int LIMIT_SURFACE=250;
 	public final static int LIMIT_CAVE=100;
 	
-	public final static int NUMBER_OF_CHUNKS=7;
+	public final static int NUMBER_OF_CHUNKS=10;
 	private Chunk[] chunks;
 	
 	public Map()

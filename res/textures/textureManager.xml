@@ -35,8 +35,6 @@
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
 	<texture id="501" file="backgrounds/forest.png"></texture>
-	
-	
 	<texture id="502" file="backgrounds/cave.png"></texture>
 	<texture id="503" file="backgrounds/hell.png"></texture>
 	

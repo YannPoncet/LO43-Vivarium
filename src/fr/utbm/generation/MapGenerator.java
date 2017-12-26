@@ -55,7 +55,7 @@ public class MapGenerator {
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
-			System.out.print("Generating Water...");
+			System.out.print("Generating Liquids...");
 				LiquidGenerator liquidGen = new LiquidGenerator(seed, M);
 				int[] surfaceLiquid = liquidGen.surfaceLiquidGen(surface, 70, 3, 50);
 			System.out.println(" "+chrono.getTime()+"ms");
