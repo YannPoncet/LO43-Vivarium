@@ -2,7 +2,7 @@ package fr.utbm.entity;
 
 import fr.utbm.world.World;
 
-public class EntityAnimal extends Entity{
+public abstract class EntityAnimal extends Entity{
 
 	protected int directionX = 0;
 	

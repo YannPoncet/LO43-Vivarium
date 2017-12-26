@@ -177,7 +177,7 @@ public class BlockLava extends BlockLiquid{
 							isStable --;
 							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
-						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state)
+						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state+1)
 						{
 							state++;
 							isStable = STABILITY;
@@ -196,7 +196,7 @@ public class BlockLava extends BlockLiquid{
 						isStable --;
 						//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 					}
-					else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state)
+					else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state+1)
 					{
 						state++;
 						isStable = STABILITY;
