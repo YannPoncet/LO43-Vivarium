@@ -30,7 +30,7 @@ public class BlockSandSurface extends BlockSand{
 	public void update()
 	{
 		super.update();
-		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).getID() != 4)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType != BlockType.WATER)
 		{
 			dead = true;
 			world.setBlock((int)(x/16), (int)(y/16), new BlockSand(x/16, y/16, this.world));
