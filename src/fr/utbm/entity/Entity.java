@@ -18,15 +18,7 @@ public abstract class Entity extends Renderable{
 		this.width = w;
 		this.height = h;
 	}
-	public World getWorldIn(){
-		return this.world;
-	}
-	public int getWidth(){
-		return this.width;
-	}
-	public int getHeight(){
-		return this.height;
-	}
+
 	public boolean isOnGround(){
 		boolean b = false;
 		int p = ((int) x)/16;
@@ -39,19 +31,34 @@ public abstract class Entity extends Renderable{
 			p+=1;
 		}
 		return b;
-		
 	}
+	
 	public void update(){
 	}
+	
 	public void setPosition(float x, float y){
 		this.x = x;
 		this.y = y;
 	}
+	
 	public float getPosX(){
 		return this.x;
 	}
+	
 	public float getPosY(){
 		return this.y;
+	}
+	
+	public World getWorldIn(){
+		return this.world;
+	}
+	
+	public int getWidth(){
+		return this.width;
+	}
+	
+	public int getHeight(){
+		return this.height;
 	}
 
 }

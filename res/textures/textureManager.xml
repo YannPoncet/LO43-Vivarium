@@ -33,6 +33,9 @@
 	
 	<texture id="100" file="hellDog/hell-hound.png"></texture>
 	
+	<texture id="200" file="Vegetal/treeForest.png"></texture>
+	<texture id="201" file="Vegetal/bigTreeForest.png"></texture>
+	
 	<texture id="500" file="backgrounds/sky.png"></texture>
 	<texture id="501" file="backgrounds/forest.png"></texture>
 	<texture id="502" file="backgrounds/cave.png"></texture>
