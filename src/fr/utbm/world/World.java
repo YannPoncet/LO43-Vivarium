@@ -151,7 +151,7 @@ public class World {
 	
 	public void update()
 	{
-		this.map.update(currentChunkCam);
+		//this.map.update(currentChunkCam);
 		fps.log();
 		Iterator<Entity> iter = entities.iterator();
 		while (iter.hasNext()) {
