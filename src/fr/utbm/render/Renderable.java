@@ -23,4 +23,10 @@ public abstract class Renderable {
 	public Texture getTexture(){
 		return this.text;
 	}
+	public float getX(){
+		return this.x;
+	}
+	public float getY(){
+		return this.y;
+	}
 }
