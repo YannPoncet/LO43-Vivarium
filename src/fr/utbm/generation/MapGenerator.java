@@ -95,7 +95,7 @@ public class MapGenerator {
 				{
 					if (j<Map.LIMIT_SURFACE) {
 						if(caves.get(i).get(j) == 1) 
-						{
+						{	
 							if (j<Map.LIMIT_CAVE+surface.get(i)) 
 							{
 								w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
@@ -113,14 +113,6 @@ public class MapGenerator {
 							else {
 								w.getMap().setBlock(i, j, new BlockWater(i,j,0,w));
 							}
-						}
-						else if(caves.get(i).get(j) == 0) {
-							if(Math.random() < 0.5) {
-								w.getMap().setBlock(i, j, new BlockObsidian(i,j,w));
-							} else {
-								w.getMap().setBlock(i, j, new BlockGlass(i,j,0, w));
-							}
-							
 						}
 					}
 					else
