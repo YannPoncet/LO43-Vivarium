@@ -7,7 +7,7 @@ public class BlockStone extends Block{
 	
 	public BlockStone(float x, float y, World w)
 	{
-		super(x, y, TextureManager.getTexture(24), w);
+		super(x, y, TextureManager.getTexture(7), w);
 		this.blockId = 7;
 		this.blockHealth = 100;
 		this.maxHealth = 100;
@@ -17,7 +17,7 @@ public class BlockStone extends Block{
 	}
 	
 	public BlockStone(float x, float y, int bH, World w) {
-		super(x, y, TextureManager.getTexture(24), w);
+		super(x, y, TextureManager.getTexture(7), w);
 		this.blockId = 7;
 		this.maxHealth = 100;
 		this.blockHealth = bH;
