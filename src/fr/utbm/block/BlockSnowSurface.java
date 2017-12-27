@@ -7,23 +7,25 @@ public class BlockSnowSurface extends BlockDirt {
 
 	public BlockSnowSurface(float x, float y, World w) {
 		super(x, y, w);
-		this.blockId = 25;
+		this.blockId = 3;
 		text = TextureManager.getTexture(blockId);
 		this.maxHealth = 100;
 		this.blockHealth = 100;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+		isSolid = true;
 	}
 	
 	public BlockSnowSurface(float x, float y, int bH, World w) {
 		super(x, y, w);
-		this.blockId = 25;
+		this.blockId = 3;
 		text = TextureManager.getTexture(blockId);
 		this.maxHealth = 100;
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
 		super.damage(maxHealth-blockHealth);
+		isSolid = true;
 	}
 	
 	@Override
@@ -36,7 +38,7 @@ public class BlockSnowSurface extends BlockDirt {
 			dead = true;
 			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.WATER)
 			{
-				world.setBlock((int)(x/16), (int)(y/16), new BlockGrass(x/16, y/16, this.world));
+				world.setBlock((int)(x/16), (int)(y/16), new BlockDirtSurface(x/16, y/16, this.world));
 			}
 			else
 			{

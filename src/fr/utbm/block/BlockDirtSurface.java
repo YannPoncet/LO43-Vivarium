@@ -3,9 +3,9 @@ package fr.utbm.block;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class BlockGrass extends BlockDirt{
+public class BlockDirtSurface extends BlockDirt{
 
-	public BlockGrass(float x, float y, World w) {
+	public BlockDirtSurface(float x, float y, World w) {
 		super(x, y, w);
 		this.blockId = 2;
 		text = TextureManager.getTexture(blockId);
@@ -13,9 +13,10 @@ public class BlockGrass extends BlockDirt{
 		this.blockHealth = 100;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+		isSolid = true;
 	}
 	
-	public BlockGrass(float x, float y, int bH, World w) {
+	public BlockDirtSurface(float x, float y, int bH, World w) {
 		super(x, y, w);
 		this.blockId = 2;
 		text = TextureManager.getTexture(blockId);
@@ -24,6 +25,7 @@ public class BlockGrass extends BlockDirt{
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
 		super.damage(maxHealth-blockHealth);
+		isSolid = true;
 	}
 	
 	@Override

@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockAsh;
 import fr.utbm.block.BlockDirt;
-import fr.utbm.block.BlockGrass;
 import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockStone;

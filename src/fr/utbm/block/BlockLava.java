@@ -9,8 +9,8 @@ public class BlockLava extends BlockLiquid{
 	
 	public BlockLava(float x, float y, int state, World w)
 	{
-		super(x, y, TextureManager.getTexture(16 + state), w);
-		this.blockId = 16;
+		super(x, y, TextureManager.getTexture(112 + state), w);
+		this.blockId = 112;
 		this.maxHealth = 1;
 		this.blockHealth = 1;
 		this.blockType = BlockType.LAVA;

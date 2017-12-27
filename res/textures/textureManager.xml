@@ -1,44 +1,56 @@
 <textures>
-	<texture id="0" file="Blocks/default.png"></texture>
-	<texture id="1" file="Blocks/blockDirt.png"></texture>
-	<texture id="2" file="Blocks/blockGrass.png"></texture>
-	<texture id="3" file="Blocks/blockSand.png"></texture>
+
+	<!-- Blocks textures -->
 	
-	<texture id="4" file="Blocks/blockWater.png"></texture>
-	<texture id="5" file="Blocks/blockWater1.png"></texture>
-	<texture id="6" file="Blocks/blockWater2.png"></texture>
-	<texture id="7" file="Blocks/blockWater3.png"></texture>
-	<texture id="8" file="Blocks/blockWater4.png"></texture>
-	<texture id="9" file="Blocks/blockWater5.png"></texture>
-	<texture id="10" file="Blocks/blockWater6.png"></texture>
-	<texture id="11" file="Blocks/blockWater7.png"></texture>
+	<texture id="0" file="blocks/default.png"></texture>
+	<texture id="1" file="blocks/blockDirt.png"></texture>
+	<texture id="2" file="blocks/blockDirtSurface.png"></texture>
+	<texture id="3" file="blocks/blockSnowSurface.png"></texture>
+	<texture id="4" file="blocks/blockSand.png"></texture>
+	<texture id="5" file="blocks/blockSandSurface.png"></texture>
+	<texture id="6" file="blocks/blockAsh.png"></texture>
+	<texture id="7" file="blocks/blockStone.png"></texture>
+	<texture id="8" file="blocks/blockObsidian.png"></texture>
 	
-	<texture id="12" file="Blocks/blockGlassV.png"></texture>
-	<texture id="13" file="Blocks/blockGlassH.png"></texture>
+	<!-- Blocks textures with multiple ones -->
 	
-	<texture id="14" file="Blocks/blockAsh.png"></texture>
-	<texture id="15" file="Blocks/blockSandSurface.png"></texture>
+	<texture id="100" file="Blocks/blockGrassForest.png"></texture>
+	<texture id="101" file="Blocks/blockGrassDesert.png"></texture>
 	
-	<texture id="16" file="Blocks/blockLava.png"></texture>
-	<texture id="17" file="Blocks/blockLava1.png"></texture>
-	<texture id="18" file="Blocks/blockLava2.png"></texture>
-	<texture id="19" file="Blocks/blockLava3.png"></texture>
-	<texture id="20" file="Blocks/blockLava4.png"></texture>
-	<texture id="21" file="Blocks/blockLava5.png"></texture>
-	<texture id="22" file="Blocks/blockLava6.png"></texture>
-	<texture id="23" file="Blocks/blockLava7.png"></texture>
-	<texture id="24" file="Blocks/blockStone.png"></texture>
-	<texture id="25" file="Blocks/blockSnowSurface.png"></texture>
-	<texture id="26" file="Blocks/blockObsidian.png"></texture>
+	<texture id="102" file="blocks/blockGlassV.png"></texture>
+	<texture id="103" file="blocks/blockGlassH.png"></texture>
 	
-	<texture id="100" file="hellDog/hell-hound.png"></texture>
-	<texture id="101" file="vegetals/BenenutTree0.png"></texture>
-	<texture id="102" file="vegetals/BenenutTree1.png"></texture>
-	<texture id="103" file="vegetals/BenenutTree2.png"></texture>
-	<texture id="104" file="vegetals/BenenutTree3.png"></texture>
-	<texture id="105" file="vegetals/BenenutTree4.png"></texture>
-	<texture id="106" file="vegetals/BenenutTree5.png"></texture>
-	<texture id="107" file="vegetals/BenenutTree6.png"></texture>
+	<texture id="104" file="blocks/blockWater.png"></texture>
+	<texture id="105" file="blocks/blockWater1.png"></texture>
+	<texture id="106" file="blocks/blockWater2.png"></texture>
+	<texture id="107" file="blocks/blockWater3.png"></texture>
+	<texture id="108" file="blocks/blockWater4.png"></texture>
+	<texture id="109" file="blocks/blockWater5.png"></texture>
+	<texture id="110" file="blocks/blockWater6.png"></texture>
+	<texture id="111" file="blocks/blockWater7.png"></texture>
+	
+	<texture id="112" file="blocks/blockLava.png"></texture>
+	<texture id="113" file="blocks/blockLava1.png"></texture>
+	<texture id="114" file="blocks/blockLava2.png"></texture>
+	<texture id="115" file="blocks/blockLava3.png"></texture>
+	<texture id="116" file="blocks/blockLava4.png"></texture>
+	<texture id="117" file="blocks/blockLava5.png"></texture>
+	<texture id="118" file="blocks/blockLava6.png"></texture>
+	<texture id="119" file="blocks/blockLava7.png"></texture>
+	
+	<!-- Entities textures -->
+	
+	<texture id="200" file="hellDog/hell-hound.png"></texture>
+	
+	<texture id="201" file="vegetals/benenutTree0.png"></texture>
+	<texture id="202" file="vegetals/benenutTree1.png"></texture>
+	<texture id="203" file="vegetals/benenutTree2.png"></texture>
+	<texture id="204" file="vegetals/benenutTree3.png"></texture>
+	<texture id="205" file="vegetals/benenutTree4.png"></texture>
+	<texture id="206" file="vegetals/benenutTree5.png"></texture>
+	<texture id="207" file="vegetals/benenutTree6.png"></texture>
+	
+	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
 	<texture id="501" file="backgrounds/forest.png"></texture>
@@ -48,11 +60,11 @@
 	<texture id="505" file="backgrounds/snow.png"></texture>
 	<texture id="506" file="backgrounds/montain.png"></texture>
 	
+	<!-- Animations -->
+	
 	<animation id="0" file="hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
 	<animation id="1" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
 	<animation id="2" file="hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
 	<animation id="3" file="hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
 	
-
-
 </textures>

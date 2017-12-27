@@ -18,6 +18,7 @@ public abstract class BlockLiquid extends Block{
 	public BlockLiquid(float x, float y,Texture text, World w)
 	{
 		super(x, y, text, w);
+		isSolid = false;
 	}
 	
 	@Override

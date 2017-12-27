@@ -8,26 +8,21 @@ public class BlockStone extends Block{
 	public BlockStone(float x, float y, World w)
 	{
 		super(x, y, TextureManager.getTexture(24), w);
-		this.blockId = 24;
+		this.blockId = 7;
 		this.blockHealth = 100;
 		this.maxHealth = 100;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+		isSolid = true;
 	}
 	
 	public BlockStone(float x, float y, int bH, World w) {
 		super(x, y, TextureManager.getTexture(24), w);
-		this.blockId = 24;
+		this.blockId = 7;
 		this.maxHealth = 100;
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+		isSolid = true;
 	}
-	
-	@Override
-	public void update()
-	{
-		
-	}
-
 }

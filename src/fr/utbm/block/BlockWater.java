@@ -9,8 +9,8 @@ public class BlockWater extends BlockLiquid{
 	
 	public BlockWater(float x, float y, int state, World w)
 	{
-		super(x, y, TextureManager.getTexture(4 + state), w);
-		this.blockId = 4;
+		super(x, y, TextureManager.getTexture(104 + state), w);
+		this.blockId = 104;
 		this.maxHealth = 1;
 		this.blockHealth = 1;
 		this.blockType = BlockType.WATER;

@@ -16,6 +16,7 @@ public abstract class Block extends Renderable{
 	protected BlockType blockType;
 	protected boolean isGravitySensitive;
 	protected Texture breakingStage;
+	protected boolean isSolid;
 	
 	public Block(float x, float y,Texture text, World worldIn) {
 		super(x*16, y*16, text);

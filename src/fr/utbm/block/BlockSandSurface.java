@@ -7,23 +7,25 @@ public class BlockSandSurface extends BlockSand{
 
 	public BlockSandSurface(float x, float y, World w) {
 		super(x, y, w);
-		this.blockId = 15;
+		this.blockId = 5;
 		text = TextureManager.getTexture(this.blockId);
 		this.maxHealth = 100;
 		this.blockHealth = 100;
 		this.blockType = BlockType.GRAVITY;
 		this.isGravitySensitive = true;
+		isSolid = true;
 	}
 	
 	public BlockSandSurface(float x, float y, int bH, World w) {
 		super(x, y, w);
-		this.blockId = 15;
+		this.blockId = 5;
 		text = TextureManager.getTexture(this.blockId);
 		this.maxHealth = 100;
 		this.blockHealth = bH;
 		this.blockType = BlockType.GRAVITY;
 		this.isGravitySensitive = true;
 		super.damage(maxHealth-blockHealth);
+		isSolid = true;
 	}
 	
 	@Override

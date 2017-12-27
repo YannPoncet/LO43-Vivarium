@@ -33,7 +33,7 @@ public class EntityHellDog extends EntityAnimal{
 	
 	public EntityHellDog(float x, float y, World worldIn) {
 		super(x, y, 54, 32, worldIn);
-		this.text = TextureManager.getTexture(100);
+		this.text = TextureManager.getTexture(200);
 		anim = new Animation[4];
 		anim[0] = TextureManager.getAnimation(0);
 		anim[1] = TextureManager.getAnimation(1);
