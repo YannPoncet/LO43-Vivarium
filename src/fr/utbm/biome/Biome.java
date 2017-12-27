@@ -1,7 +1,7 @@
 package fr.utbm.biome;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
@@ -16,12 +16,12 @@ public class Biome {
 	double surfaceAmplitude;
 	double surfaceWavelength;
 	int textureId;
-	HashMap<Integer, Integer> vegetalIdFrequence;
+	ArrayList<int[]> vegetalIdFrequence;
 	
 	public Biome(int type, int width) {
 		this.id = type;
 		this.width = width;
-		this.vegetalIdFrequence = new HashMap<>();
+		this.vegetalIdFrequence = new ArrayList<>();
 		if(initializeBiome(type) == 0) {
 			System.err.println("Error: the biome "+type+" doesn't exist");
 		}
@@ -51,8 +51,11 @@ public class Biome {
 				Array<Element> vegetalList = child.getChildByName("vegetalList").getChildrenByName("vegetal");
 				for (Element vegetal : vegetalList)
 				{
-					System.out.println("[Biome.java] ID="+Integer.parseInt(vegetal.get("id"))+"Frequence="+Integer.parseInt(vegetal.get("frequence")));
-					this.vegetalIdFrequence.put(Integer.parseInt(vegetal.get("id")), Integer.parseInt(vegetal.get("frequence")));
+					System.out.print("\n[Biome.java] ID="+Integer.parseInt(vegetal.get("id"))+" Frequence="+Integer.parseInt(vegetal.get("frequence")));
+					int [] temp = new int[2];
+					temp[0] = Integer.parseInt(vegetal.get("id"));
+					temp[1] = Integer.parseInt(vegetal.get("frequence"));
+					this.vegetalIdFrequence.add(temp);
 				}
 				return 1;
 			}
@@ -77,5 +80,8 @@ public class Biome {
 	}
 	public String getName() {
 		return this.name;
+	}
+	public ArrayList<int[]> getVegetalIdFrequence() {
+		return this.vegetalIdFrequence;
 	}
 }
