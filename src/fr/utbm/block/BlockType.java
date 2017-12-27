@@ -10,6 +10,7 @@ public enum BlockType {
 	GRAVITY,
 	GLASS,
 	ASH,
+	GRASS,
 	CLOUD;
 
 }

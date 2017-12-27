@@ -5,7 +5,7 @@ import fr.utbm.world.World;
 
 public class BlockWater extends BlockLiquid{
 	
-	protected static final int DURABILITY = 200;
+	private static final int DURABILITY = 200;
 	
 	public BlockWater(float x, float y, int state, World w)
 	{

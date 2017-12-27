@@ -5,7 +5,7 @@ import fr.utbm.world.World;
 
 public class BlockLava extends BlockLiquid{
 	
-	protected static final int DURABILITY = 300;
+	private static final int DURABILITY = 300;
 	
 	public BlockLava(float x, float y, int state, World w)
 	{
