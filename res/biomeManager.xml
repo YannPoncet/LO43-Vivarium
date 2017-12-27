@@ -1,6 +1,12 @@
 <biomes>
-	<biome id="0" name="forest" textureId="501" surfaceAmplitude="46" surfaceWavelength="64"></biome>
-	<biome id="1" name="desert" textureId="504" surfaceAmplitude="15" surfaceWavelength="128"></biome>
-	<biome id="2" name="montain" textureId="506" surfaceAmplitude="128" surfaceWavelength="128"></biome>
-	<biome id="3" name="snow" textureId="505" surfaceAmplitude="15" surfaceWavelength="64"></biome>
+	<biome id="0" name="forest" textureId="501" surfaceAmplitude="46" surfaceWavelength="64"><vegetalList>
+	<vegetal id="999" frequence="20"></vegetal>
+	<vegetal id="998" frequence="40"></vegetal></vegetalList>
+		</biome>
+	<biome id="1" name="desert" textureId="504" surfaceAmplitude="15" surfaceWavelength="128">
+		<vegetalList></vegetalList></biome>
+	<biome id="2" name="montain" textureId="506" surfaceAmplitude="128" surfaceWavelength="128">
+		<vegetalList></vegetalList></biome>
+	<biome id="3" name="snow" textureId="505" surfaceAmplitude="15" surfaceWavelength="64">
+		<vegetalList></vegetalList></biome>
 </biomes>
