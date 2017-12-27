@@ -32,7 +32,13 @@
 	<texture id="26" file="Blocks/blockObsidian.png"></texture>
 	
 	<texture id="100" file="hellDog/hell-hound.png"></texture>
-	<texture id="101" file="vegetals/BenenutTree.png"></texture>
+	<texture id="101" file="vegetals/BenenutTree0.png"></texture>
+	<texture id="102" file="vegetals/BenenutTree1.png"></texture>
+	<texture id="103" file="vegetals/BenenutTree2.png"></texture>
+	<texture id="104" file="vegetals/BenenutTree3.png"></texture>
+	<texture id="105" file="vegetals/BenenutTree4.png"></texture>
+	<texture id="106" file="vegetals/BenenutTree5.png"></texture>
+	<texture id="107" file="vegetals/BenenutTree6.png"></texture>
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
 	<texture id="501" file="backgrounds/forest.png"></texture>
