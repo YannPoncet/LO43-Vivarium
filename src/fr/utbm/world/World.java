@@ -32,6 +32,7 @@ public class World {
 	private float gravity = -4f;
 	private FPSLogger fps;
 	private int currentChunkCam;
+	private int currentYCam;
 	
 	public World()
 	{
@@ -149,7 +150,7 @@ public class World {
 	
 	public void update()
 	{
-		//this.map.update(currentChunkCam);
+		this.map.update(currentChunkCam);
 		fps.log();
 		Iterator<Entity> iter = entities.iterator();
 		while (iter.hasNext()) {

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import fr.utbm.biome.Biome;
 import fr.utbm.main.DesktopApplication;
@@ -26,8 +27,9 @@ public class RenderManager {
 	public static void setBatch(SpriteBatch sb){
 		RenderManager.batch = sb;
 	}
-
+	public static long t;
 	public static void renderAll(){
+		t =  TimeUtils.millis();
 		Gdx.gl.glClearColor(0.52f,0.66f,0.97f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -37,6 +39,7 @@ public class RenderManager {
 		renderArray(entitiesRender);
 		//System.out.println("RENDER-MANAGER : Show " + blockRender.size() + " elements");
 		batch.end();
+		System.out.println("TIME :" + TimeUtils.timeSinceMillis(t));
 	}
 	private static void renderArray(ArrayList<Renderable> rl){
 			Iterator<Renderable> iter = rl.iterator();
@@ -44,7 +47,7 @@ public class RenderManager {
 				Renderable r = iter.next();
 				if(r.isDead()){
 					iter.remove();
-				}else{
+				}else if(r.getX() >= x-16 && r.getX() <= (x+800) && r.getY() >= y-16 && r.getY() <= (y+600)){
 					r.render(batch);
 				}
 			}
