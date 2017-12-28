@@ -52,9 +52,10 @@ public class Biome {
 				for (Element vegetal : vegetalList)
 				{
 					System.out.print("\n[Biome.java] ID="+Integer.parseInt(vegetal.get("id"))+" Frequence="+Integer.parseInt(vegetal.get("frequence")));
-					int [] temp = new int[2];
+					int [] temp = new int[3];
 					temp[0] = Integer.parseInt(vegetal.get("id"));
 					temp[1] = Integer.parseInt(vegetal.get("frequence"));
+					temp[2] = Integer.parseInt(vegetal.get("placeNeeded"));
 					this.vegetalIdFrequence.add(temp);
 				}
 				return 1;
