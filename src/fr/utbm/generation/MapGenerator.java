@@ -11,6 +11,7 @@ import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockObsidian;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.entity.BenenutTree;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityVegetalTree;
 import fr.utbm.render.RenderManager;
@@ -126,6 +127,10 @@ public class MapGenerator {
 							/*TEMPO*/ //will be added into a new BiomeList method
 							if (i==5) {
 								w.addEntity((Entity)(new EntityVegetalTree(i,j+1,0,w)));
+							}
+							if(i == 20)
+							{
+								w.addEntity((Entity)(new BenenutTree(i,j+1,w)));
 							}
 							/*-----*/
 						}

@@ -9,7 +9,7 @@ public class BenenutTree extends EntityVegetal{
 		
 		super(x, y, 96, 144, worldIn);
 		maturity = 6;
-		text = TextureManager.getTexture(101 + maturity);
+		text = TextureManager.getTexture(201 + maturity);
 		
 	}
 

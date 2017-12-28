@@ -12,16 +12,9 @@ public class BlockGlass extends Block{
 		this.blockId = 102;
 		this.blockHealth = Integer.MAX_VALUE;
 		this.maxHealth = Integer.MAX_VALUE;
-		this.blockType = BlockType.GLASS;
+		this.blockType = BlockType.UNBREAKABLE;
 		this.isGravitySensitive = false;
 		isSolid = true;
 	}
-	
-	@Override
-	public void damage(int dmg)
-	{
-		//Unbreakable Block
-	}
-
 }
 

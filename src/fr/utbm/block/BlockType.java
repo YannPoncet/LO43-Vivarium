@@ -7,7 +7,7 @@ public enum BlockType {
 	WOOD,
 	LIQUID,
 	GRAVITY,
-	GLASS,
+	UNBREAKABLE,
 	ASH,
 	GRASS,
 	CLOUD;

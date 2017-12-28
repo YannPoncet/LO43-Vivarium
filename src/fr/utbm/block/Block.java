@@ -31,9 +31,16 @@ public abstract class Block extends Renderable{
 	
 	public void damage(int dmg)
 	{
-		this.blockHealth =- dmg;
-		int i = (blockHealth / maxHealth) * 100 / 25;
-		breakingStage = TextureManager.getTexture(200 + i);
+		if(this.blockType == BlockType.UNBREAKABLE)
+		{
+			//We deal no damage to the block
+		}
+		else
+		{
+			this.blockHealth =- dmg;
+			int i = (blockHealth / maxHealth) * 100 / 25;
+			breakingStage = TextureManager.getTexture(200 + i);
+		}
 	}
 	
 	@Override
