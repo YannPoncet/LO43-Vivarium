@@ -122,7 +122,7 @@ public class RenderManager {
 		}
 		else if (y/16 < Map.LIMIT_SURFACE) {
 			batch.draw(TextureManager.getTexture(502),x,y);
-			batch.draw(TextureManager.getTexture(502),x,y+400);
+			batch.draw(TextureManager.getTexture(502),x,y+backgroundsHeight);
 			if (y/16+Camera.HEIGHT/16 > Map.LIMIT_SURFACE) { //if close to the surface
 				batch.draw(TextureManager.getTexture(textureId),x,Map.LIMIT_SURFACE*16);
 				batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+backgroundsHeight);

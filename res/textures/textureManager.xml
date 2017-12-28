@@ -52,6 +52,9 @@
 	
 	<texture id="208" file="vegetals/treeForest.png"></texture>
 	<texture id="209" file="vegetals/bigTreeForest.png"></texture>
+	<texture id="210" file="vegetals/treeSnow.png"></texture>
+	<texture id="211" file="vegetals/bigTreeSnow.png"></texture>
+	<texture id="212" file="vegetals/bush.png"></texture>
 	
 	<!-- Backgrounds textures -->
 	
