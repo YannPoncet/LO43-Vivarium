@@ -2,6 +2,7 @@ package fr.utbm.world;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.badlogic.gdx.graphics.FPSLogger;
 
@@ -23,7 +24,7 @@ import fr.utbm.render.RenderManager;
 public class World {
 	
 	private Map map;
-	private ArrayList<Entity> entities;
+	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
 	private EntityHellDog hd;
@@ -37,7 +38,7 @@ public class World {
 	public World()
 	{
 		map = new Map();
-		entities = new ArrayList<Entity>();
+		entities = new CopyOnWriteArrayList<Entity>();
 		this.create();
 		fps = new FPSLogger();
 		currentChunkCam = 0;
@@ -63,7 +64,7 @@ public class World {
 	{
 		return entities.get(i);
 	}
-	public ArrayList<Entity> getEntities(){
+	public CopyOnWriteArrayList<Entity> getEntities(){
 		return entities;
 	}
 	public void addEntity(Entity e){
@@ -98,21 +99,18 @@ public class World {
 	}
 	
 	public void update()
-	{
-		this.map.update(currentChunkCam);
-		fps.log();
-		Iterator<Entity> iter = entities.iterator();
-		while (iter.hasNext()) {
-			Entity e = iter.next();
-			if(e.isDead()){
-				iter.remove();
-			}else{
-				e.update();
-			}
-		}
-		
-		
-	}
+    {
+        this.map.update(currentChunkCam);
+        fps.log();
+        for (Entity e: entities) {
+            if(e.isDead()){
+                entities.remove(e);
+            }else{
+                e.update();
+            }
+        }
+    }
+	
 	public void resize(){
 		
 	}

@@ -5,6 +5,7 @@ import fr.utbm.world.World;
 public abstract class EntityVegetal extends Entity{
 	
 	protected int maturity;
+	protected int iter = 0; //used to avoid too fast growing of the vegetal in game
 	
 	public EntityVegetal(float x, float y, int w, int h, World worldIn) {
 		

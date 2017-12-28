@@ -1,14 +1,73 @@
 package fr.utbm.entity;
 
+import java.util.Random;
+
+import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
 public class EntityBenenut extends EntityAnimal{
 	
+	private int maturity;
+	private int growingTime;
 	
-	
-	public EntityBenenut(float x, float y, int w, int h, World worldIn) {
+	public EntityBenenut(float x, float y, World worldIn) {
 		
-		super(x, y, w, h, worldIn);
+		super(x, y, 15, 18, worldIn);
+		growingTime = 0;
+		maturity = 2;
+		text = TextureManager.getTexture(210 + maturity);
+	}
+	
+	public EntityBenenut(float x, float y, int m, World worldIn) {
+		
+		super(x, y, 15, 18, worldIn);
+		Random r = new Random();
+		growingTime = r.nextInt(5000) + 1500;
+		if(m > 2)
+		{
+			m = 2;
+		}
+		else if(m < 0)
+		{
+			m = 0;
+		}
+		maturity = m;
+		text = TextureManager.getTexture(210 + maturity);
+	}
+	
+	public int getMaturity()
+	{
+		return maturity;
+	}
+	
+	@Override
+	public void update()
+	{
+		//System.out.println("je suis dans le benenut : " + x/16 + " ; " + y/16 + "\nJe suis à la maturité : " + maturity + "\nMon nombre de ticks avant le lvl supérieur est : " + growingTime);
+		text = TextureManager.getTexture(210 + maturity);
+		
+		if(maturity < 2)
+		{
+			if(growingTime == 0)
+			{
+				maturity++;
+				Random r = new Random();
+				growingTime = r.nextInt(5000) + 1500;
+			}
+			else
+			{
+				growingTime--;
+			}
+		}
+		else
+		{
+			move();
+		}
+	}
+	
+	public void move()
+	{
+		
 	}
 
 }

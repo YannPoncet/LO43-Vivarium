@@ -40,7 +40,7 @@
 	
 	<!-- Entities textures -->
 	
-	<texture id="200" file="hellDog/hell-hound.png"></texture>
+	<texture id="200" file="animals/hellDog/hell-hound.png"></texture>
 	
 	<texture id="201" file="vegetals/benenutTree0.png"></texture>
 	<texture id="202" file="vegetals/benenutTree1.png"></texture>
@@ -52,6 +52,10 @@
 	
 	<texture id="208" file="vegetals/treeForest.png"></texture>
 	<texture id="209" file="vegetals/bigTreeForest.png"></texture>
+	
+	<texture id="210" file="animals/benenut/benenut0.png"></texture>
+	<texture id="211" file="animals/benenut/benenut1.png"></texture>
+	<texture id="212" file="animals/benenut/benenut2.png"></texture>
 	
 	<!-- Backgrounds textures -->
 	
@@ -65,9 +69,9 @@
 	
 	<!-- Animations -->
 	
-	<animation id="0" file="hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
-	<animation id="1" file="hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
-	<animation id="2" file="hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
-	<animation id="3" file="hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
+	<animation id="0" file="animals/hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
+	<animation id="1" file="animals/hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
+	<animation id="2" file="animals/hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
+	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
 	
 </textures>
