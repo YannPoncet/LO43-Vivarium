@@ -131,6 +131,8 @@ public class MapGenerator {
 						if (j==Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)-1) { //grass
 							BiomeList.createSurfaceGrassBlock(i, j, world, biomeList.get(k).getId());
 							
+							//System.out.println(vegetalList.size());
+							
 							//if there is a vegetal
 							if (vegetalList.get(i)>0) {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
