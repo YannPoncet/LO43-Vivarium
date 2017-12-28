@@ -1,5 +1,6 @@
 package fr.utbm.entity;
 
+import fr.utbm.block.Block;
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
@@ -25,7 +26,8 @@ public abstract class Entity extends Renderable{
 		int s = ((int) x + width -1)/16;
 		int nY = (((int) (y-1))/16);
 		while(!(b || p>s)){
-			if(world.getBlock(p, nY) != null){
+			Block block = world.getBlock(p, nY);
+			if(block != null && block.isSolid()){
 				b=true;
 			}
 			p+=1;

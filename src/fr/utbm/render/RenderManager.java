@@ -23,7 +23,7 @@ public class RenderManager {
 	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
 	private static float x=0;
 	private static float y=0;
-	private static int margin = 10;
+	private static int margin = 30;
 	
 	
 	
