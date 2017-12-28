@@ -23,7 +23,7 @@ public class BlockGrass extends Block{
 	@Override
 	public void update()
 	{
-		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null || world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null || world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.LIQUID || world.getBlock((int)(this.x/16), (int)((this.y/16)-1)).blockType == BlockType.LIQUID)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null || world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null || (world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockType == BlockType.LIQUID) || (world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockType == BlockType.LIQUID))
 		{
 			dead = true;
 		}
