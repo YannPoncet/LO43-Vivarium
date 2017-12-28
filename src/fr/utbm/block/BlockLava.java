@@ -13,7 +13,7 @@ public class BlockLava extends BlockLiquid{
 		this.blockId = 112;
 		this.maxHealth = 1;
 		this.blockHealth = 1;
-		this.blockType = BlockType.LAVA;
+		this.blockType = BlockType.LIQUID;
 		this.isGravitySensitive = true;
 		this.state = state;
 		durability = DURABILITY;
@@ -51,17 +51,17 @@ public class BlockLava extends BlockLiquid{
 		if(iter == 20) //The Lava update will operate one time out of <the number inside the if> ticks
 		{
 			//Check if there is water around
-			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.WATER)
+			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == 104)
 			{
 				dead = true;
 				world.setBlock((int)(x/16), (int)(y/16), new BlockObsidian(x/16, y/16, world));
 			}
-			if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockType == BlockType.WATER && state != 7)
+			if(world.getBlock((int)((this.x/16)+1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)+1), (int)(this.y/16)).blockId == 104 && state != 7)
 			{
 				dead = true;
 				world.setBlock((int)(x/16), (int)(y/16), new BlockObsidian(x/16, y/16, world));
 			}
-			if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockType == BlockType.WATER && state != 7)
+			if(world.getBlock((int)((this.x/16)-1), (int)(this.y/16)) != null && world.getBlock((int)((this.x/16)-1), (int)(this.y/16)).blockId == 104 && state != 7)
 			{
 				dead = true;
 				world.setBlock((int)(x/16), (int)(y/16), new BlockObsidian(x/16, y/16, world));

@@ -13,7 +13,7 @@ public class BlockWater extends BlockLiquid{
 		this.blockId = 104;
 		this.maxHealth = 1;
 		this.blockHealth = 1;
-		this.blockType = BlockType.WATER;
+		this.blockType = BlockType.LIQUID;
 		this.isGravitySensitive = true;
 		this.state = state;
 		durability = DURABILITY;
@@ -51,7 +51,7 @@ public class BlockWater extends BlockLiquid{
 		if(iter == 5) //The Water update will operate one time out of <the number inside the if> ticks
 		{
 			//Check if there is water around
-			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.LAVA)
+			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockId == 112)
 			{
 				dead = true;
 				world.setBlock((int)(x/16), (int)(y/16), new BlockObsidian(x/16, y/16, world));
