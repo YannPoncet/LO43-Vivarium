@@ -24,7 +24,6 @@ public class VegetalGenerator extends PseudoRandom
 		 */
 		
 		ArrayList<Integer> vegetalList = new ArrayList<Integer>(); // à renvoyer
-		vegetalList.add(0); // il ne peut pas y avoir de plante sur le premier bloc (il faut 3 blocs vides)
 		int sumBiomeLength=0; // pour ajuster l'index de surface
 		
 		//on traverse les biomes
@@ -35,7 +34,7 @@ public class VegetalGenerator extends PseudoRandom
 			//on traverse les blocs du biome b
 			for(int i=1; i<b.getWidth()-1; i++)
 			{
-				hauteur = surface.get(i);
+				hauteur = surface.get(i+sumBiomeLength);
 				boolean vegetalAdded = false; //pour savoir si on a ajouté une plante
 				
 				//on vérifie si 3 blocs sont à la même hauteur
@@ -53,9 +52,18 @@ public class VegetalGenerator extends PseudoRandom
 						{
 							vegetalList.add(b.getVegetalIdFrequence().get(j)[0]); // on ajoute l'index de la plante à la liste
 							vegetalAdded = true; //on a ajouté une plante
-							vegetalList.add(0); //les 2 prochains blocs ne pourront pas avoir de plante
-							vegetalList.add(0);
-							i+=2;
+							if(i<b.getWidth()-3)
+							{
+								vegetalList.add(0); //les 2 prochains blocs ne pourront pas avoir de plante
+								vegetalList.add(0);
+								i+=2;
+							}
+							else if(i<b.getWidth()-2)
+							{
+								vegetalList.add(0);
+								i++;
+							}
+							
 						}
 						j++;
 					}
@@ -69,8 +77,7 @@ public class VegetalGenerator extends PseudoRandom
 			vegetalList.add(0); //on ne peut pas avoir de plante sur le dernier bloc d'un biome
 			sumBiomeLength+=b.getWidth(); //on ajoute la taille du biome parcouru à la taille totale des biomes parcourus
 		}
-		
-		vegetalList.add(0); // il ne peut pas y avoir de plante sur le dernier bloc (il faut 3 blocs vides)
+
 		return vegetalList;
 	}
 
