@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class LiquidGenerator extends PseudoRandom {
 	public LiquidGenerator(double seed, long M) {
 		super(seed, M);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public ArrayList<ArrayList<Integer>> caveLiquidGen(ArrayList<ArrayList<Integer>> caves, int minHeight, int maxHeight) {
