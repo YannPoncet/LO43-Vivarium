@@ -7,6 +7,6 @@ public class EntityVegetalBush extends EntityVegetal{
 
 	public EntityVegetalBush(float x, float y, World worldIn) {
 		super(x, y, 66, 35, worldIn);
-		this.text = TextureManager.getTexture(212);
+		this.text = TextureManager.getTexture(215);
 	}
 }

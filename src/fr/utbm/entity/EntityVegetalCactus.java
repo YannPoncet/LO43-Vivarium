@@ -7,6 +7,6 @@ public class EntityVegetalCactus extends EntityVegetal {
 	public EntityVegetalCactus(float x, float y, int bigOrSmall, World worldIn) {
 		//0 for smallCactus, 1 for bigCactus
 		super(x, y, 32, 62+bigOrSmall*23, worldIn);
-		this.text = TextureManager.getTexture(213+bigOrSmall);
+		this.text = TextureManager.getTexture(216+bigOrSmall);
 	}
 }
