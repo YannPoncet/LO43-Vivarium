@@ -75,21 +75,23 @@ public class RenderManager {
 		int backgroundsWidth = 1200;
 		int backgroundsHeight = 675;
 		
-		int textureId = 501;
+		//the part below is used to know in which texture to apply in the surface depending on x pos
+		int textureId = 501; //default
 		if(biomeList.size()>0) {
-			textureId = biomeList.get(0).getTextureId();
+			textureId = biomeList.get(0).getTextureId(); //better default
 			int totalWidth = 0;
 			boolean gotIt = true;
 			int index = 0;
 			while(index < biomeList.size() && gotIt) {
 				totalWidth += biomeList.get(index).getWidth();
-				if (x/16<totalWidth && x/16>totalWidth-biomeList.get(index).getWidth()) {
+				if (x/16<=totalWidth && x/16>totalWidth-biomeList.get(index).getWidth()) {
 					gotIt = false;
 					textureId = biomeList.get(index).getTextureId();
 				}
 				index++;
 			}
 		}
+		
 		
 		if (x<0) { //left border
 			x -= x-16;
