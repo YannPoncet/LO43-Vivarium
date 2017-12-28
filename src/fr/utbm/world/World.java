@@ -12,7 +12,7 @@ import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
-import fr.utbm.entity.BenenutTree;
+import fr.utbm.entity.EntityBenenutTree;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
@@ -88,10 +88,11 @@ public class World {
 		MapGenerator.generate(this, 0); //0 to generate a new seed
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
+		setBlock(3, 310, new BlockWater(3,310, 0,this));
 		setBlock(3,320,bs);
 		hd =  new EntityHellDog(5,380,this);
 		entities.add(test);
-		//entities.add(new BenenutTree(20, 360, this));
+		//entities.add(new EntityBenenutTree(20, 360, this));
 		entities.add(hd);
 		render();
 	}

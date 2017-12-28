@@ -1,6 +1,7 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
@@ -20,7 +21,8 @@ public class EntityFallingBlock extends Entity{
 		}
 	}
 	public void fall(){
-		if(y%16 == 0 && x%16 == 0 && (world.getBlock((int) x/16, (int) (y/16)-1)!=null)){
+		if(y%16 == 0 && x%16 == 0 && (world.getBlock((int) x/16, (int) (y/16)-1)!=null) && (world.getBlock((int) x/16, (int) (y/16)-1).getBlockType() != BlockType.LIQUID))
+		{
 			this.block.setPosition(x, y);
 			world.setBlock((int) x/16, (int) y/16, block);
 			dead = true;

@@ -58,5 +58,9 @@ public abstract class Block extends Renderable{
 	public int getID(){
 		return this.blockId;
 	}
+	public BlockType getBlockType()
+	{
+		return blockType;
+	}
 
 }
