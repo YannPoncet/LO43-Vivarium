@@ -56,14 +56,8 @@ public class VegetalGenerator extends PseudoRandom
 						else //on est dans la bonne range, on vérifie qu'on a la place de l'ajouter
 						{
 							//on vérifie si le nombre de blocs requis pour la plante est à la bonne hauteur (on a une surface plate)
-							int test=1;
 							for(int k=1; k<b.getVegetalIdFrequence().get(j)[2]+1; k++)
 							{
-								if(sumBiomeLength==0 && i==1)
-								{
-									System.out.println(test);
-									test++;
-								}
 								if(i+sumBiomeLength+k>surface.size()-1 || hauteur!=surface.get(i+sumBiomeLength+k))
 								{
 									isFlat=false;
