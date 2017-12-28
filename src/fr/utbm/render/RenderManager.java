@@ -23,6 +23,9 @@ public class RenderManager {
 	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
 	private static float x=0;
 	private static float y=0;
+	private static int margin = 10;
+	
+	
 	
 	public static void setBatch(SpriteBatch sb){
 		RenderManager.batch = sb;
@@ -47,7 +50,7 @@ public class RenderManager {
 				Renderable r = iter.next();
 				if(r.isDead()){
 					iter.remove();
-				}else if(r.getX() >= x-16 && r.getX() <= (x+800) && r.getY() >= y-16 && r.getY() <= (y+600)){
+				}else if(r.getX() >= x-(16*margin) && r.getX() <= (x+800+(16*margin)) && r.getY() >= y-(16*margin) && r.getY() <= (y+600+(16*margin))){
 					r.render(batch);
 				}
 			}

@@ -11,6 +11,8 @@ import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockObsidian;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.entity.Entity;
+import fr.utbm.entity.EntityVegetalTree;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
@@ -72,6 +74,7 @@ public class MapGenerator {
 			
 			chrono.reset();
 			System.out.print("Placing the Blocks...");
+			
 			int k = 0;
 			int lastSwitchI = 0;
 			for(int i=0; i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH;i++)
@@ -80,15 +83,6 @@ public class MapGenerator {
 					k++;
 					lastSwitchI = i;
 				}
-				
-				/* 
-				for(int j=0; j<Map.LIMIT_CAVE;j++)
-				{
-					if(caves.get(i).get(j) == 1) 
-					{
-						w.getMap().setBlock(i, j, new BlockAsh(i,j,w)); 
-					}
-				} */
 				
 				/* CAVES */
 				for(int j=0; j<Map.LIMIT_SURFACE+surface.get(i);j++)
@@ -124,16 +118,21 @@ public class MapGenerator {
 				/* SURFACE */
 				for(int j=Map.LIMIT_SURFACE+surface.get(i); j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]+1;j++)
 				{
-					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt
+					if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)) //dirt or grass
 					{
 						if (j==Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)-1) { //grass
 							BiomeList.createSurfaceGrassBlock(i, j, w, biomeList.get(k).getId());
+							
+							/*TEMPO*/ //will be added into a new BiomeList method
+							if (i==5) {
+								w.addEntity((Entity)(new EntityVegetalTree(i,j+1,0,w)));
+							}
+							/*-----*/
 						}
 						else { //dirt
 							BiomeList.createSurfaceBlock(i, j, w, biomeList.get(k).getId());
 						}
-						
-						
+
 						//w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 					}
 					else if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]) //water

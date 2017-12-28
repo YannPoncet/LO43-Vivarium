@@ -16,6 +16,7 @@ import fr.utbm.entity.BenenutTree;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
+import fr.utbm.entity.EntityVegetalTree;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
 
@@ -89,6 +90,7 @@ public class World {
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
 		setBlock(3,320,bs);
+		
 		//test2 = new EntityFallingBlock(1,315,16,16,this);
 		hd =  new EntityHellDog(5,380,this);
 		//setBlock(9, 245, new BlockDirt(9,345,this));
