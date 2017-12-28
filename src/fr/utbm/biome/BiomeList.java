@@ -8,6 +8,7 @@ import fr.utbm.block.BlockSandSurface;
 import fr.utbm.block.BlockSnowSurface;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityVegetalBush;
+import fr.utbm.entity.EntityVegetalCactus;
 import fr.utbm.entity.EntityVegetalTree;
 import fr.utbm.world.World;
 
@@ -71,6 +72,12 @@ public enum BiomeList {
 				break;
 				
 		case 212: w.addEntity((Entity)(new EntityVegetalBush(x,y+1,w))); //bush
+				break;
+				
+		case 213: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,0,w))); //small cactus
+				break;
+		
+		case 214: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,1,w))); //big cactus
 				break;
 	}
 		
