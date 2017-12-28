@@ -4,8 +4,8 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class DesktopApplication {
-	public final static int HEIGHT=600;
-	public final static int WIDTH=800;
+	public final static int HEIGHT=675;
+	public final static int WIDTH=1200;
 	
 	public static void main (String[] arg) {
 	      LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

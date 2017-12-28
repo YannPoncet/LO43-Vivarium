@@ -47,7 +47,7 @@ public class RenderManager {
 				Renderable r = iter.next();
 				if(r.isDead()){
 					iter.remove();
-				}else if(r.getX() >= x-16 && r.getX() <= (x+800) && r.getY() >= y-16 && r.getY() <= (y+600)){
+				}else if(r.getX() >= x-16*10 && r.getX() <= (x+Camera.WIDTH+16*10) && r.getY() >= y-16*10 && r.getY() <= (y+Camera.HEIGHT+16*10)){
 					r.render(batch);
 				}
 			}
@@ -69,8 +69,8 @@ public class RenderManager {
 		//501 -> forest [above Map.LIMIT_SURFACE] [depending on the biome]
 		//502 -> cave [between Map.LIMIT_CAVE and Map.LIMIT_SURFACE]
 		//503 -> hell [below Map.LIMIT_CAVE]
-		//int backgroundsWidth = 800;
-		int backgroundsHeight = 400;
+		int backgroundsWidth = 1200;
+		int backgroundsHeight = 675;
 		
 		int textureId = 501;
 		if(biomeList.size()>0) {
@@ -105,12 +105,13 @@ public class RenderManager {
 		}
 		else if (y+16>Chunk.CHUNK_HEIGHT*16-Camera.HEIGHT) { //top border
 			y -= (y-Chunk.CHUNK_HEIGHT*16)+Camera.HEIGHT+16;
-			batch.draw(TextureManager.getTexture(500),x,y);
-			batch.draw(TextureManager.getTexture(500),x,y+backgroundsHeight,0,-200,800,200);
+			int overflow = (int)(y+backgroundsHeight-Chunk.CHUNK_HEIGHT*16+16);
+			batch.draw(TextureManager.getTexture(500),x,y, 0, 0, backgroundsWidth, backgroundsHeight-overflow);
+			//batch.draw(TextureManager.getTexture(500),x,y, 0, 0, backgroundsWidth, 200);
 		}
 		else if (y < Map.LIMIT_CAVE*16) { 
 			batch.draw(TextureManager.getTexture(503),x,y);
-			batch.draw(TextureManager.getTexture(503),x,y+400);
+			batch.draw(TextureManager.getTexture(503),x,y+backgroundsHeight);
 			if (y/16+Camera.HEIGHT/16 > Map.LIMIT_CAVE) { //if close to the caves
 				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_CAVE*16);
 				batch.draw(TextureManager.getTexture(502),x,Map.LIMIT_CAVE*16+backgroundsHeight);

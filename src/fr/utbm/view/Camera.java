@@ -11,8 +11,8 @@ import fr.utbm.render.RenderManager;
 import fr.utbm.world.World;
 
 public class Camera {
-	public final static int HEIGHT=600;
-	public final static int WIDTH=800;
+	public final static int HEIGHT=675;
+	public final static int WIDTH=1200;
 	
 	private OrthographicCamera gameCam;
 	private Viewport gamePort;
