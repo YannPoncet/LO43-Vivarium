@@ -19,4 +19,13 @@ public class BlockGrass extends Block{
 		this.isGravitySensitive = false;
 		isSolid = false;
 	}
+	
+	@Override
+	public void update()
+	{
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null || world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
+		{
+			dead = true;
+		}
+	}
 }
