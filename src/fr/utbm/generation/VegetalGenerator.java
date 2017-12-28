@@ -12,7 +12,7 @@ public class VegetalGenerator extends PseudoRandom
 		super(seed, M);
 	}
 	
-	public ArrayList<Integer> surfaceVegetalGen(ArrayList<Biome> biomeList, ArrayList<Integer> surface)
+	public ArrayList<Integer> surfaceVegetalGen(ArrayList<Biome> biomeList, ArrayList<Integer> surface,int[] surfaceLiquid)
 	{
 		/*
 		 * Il faut 3 blocks de large sans pente pour pouvoir y placer un végétal
@@ -33,43 +33,51 @@ public class VegetalGenerator extends PseudoRandom
 			//on traverse les blocs du biome b
 			for(int i=0; i<b.getWidth(); i++)
 			{
-				//on test si on est sur les bords de map (qui contiennent du verre)
-				if(i+sumBiomeLength<1 || i+sumBiomeLength>surface.size())
+				//on test si on est sur les bords de map (qui contiennent du verre) ou si on est sur de l'eau
+				if(i+sumBiomeLength<1 || i+sumBiomeLength>surface.size()-2 || surfaceLiquid[i+sumBiomeLength]!=0)
 				{
 					vegetalList.add(0);
 				}
 				else
 				{
 					hauteur = surface.get(i+sumBiomeLength);
-					boolean isFlat = true;
+					boolean hasPlace = true; //pour savoir si il y a la place d'ajouter un vegetal
 					boolean vegetalAdded = false; //pour savoir si on a ajouté une plante
+					boolean tryToAddVegetal = false; //pour savoir si on a tenté d'ajouter une plante (pour ne pas essayer d'en ajouter une autre)
 					
-					double frequence = (super.getNextRandom()+0.5)*100; //random entre 0 et 100
+					double randomVegetal = (super.getNextRandom()+0.5)*100; //random entre 0 et 100
 					int j=0; //pour parcourir les ID des plantes
 					
-					while(vegetalAdded==false && j<b.getVegetalIdFrequence().size()) //tant qu'on a pas ajouté de plante et qu'on a pas atteint la fin
+					//tant qu'on a pas tenté d'ajouter une plante et qu'on a pas atteint la fin
+					while(tryToAddVegetal== false && j<b.getVegetalIdFrequence().size())
 					{
-						if(frequence > b.getVegetalIdFrequence().get(j)[1]) //random frequence > frequence de la plante j
+						if(randomVegetal > b.getVegetalIdFrequence().get(j)[1]) //random frequence > frequence de la plante j
 						{
-							frequence -= b.getVegetalIdFrequence().get(j)[1]; //pour toujours travailler sur un intervalle de [0-fréquence]
+							randomVegetal -= b.getVegetalIdFrequence().get(j)[1]; //pour toujours travailler sur un intervalle de [0-fréquence]
 						}
 						else //on est dans la bonne range, on vérifie qu'on a la place de l'ajouter
 						{
-							//on vérifie si le nombre de blocs requis pour la plante est à la bonne hauteur (on a une surface plate)
-							for(int k=1; k<b.getVegetalIdFrequence().get(j)[2]+1; k++)
+							tryToAddVegetal=true;
+							
+							/*on vérifie: 
+							 *- si le nombre de blocs requis pour la plante est à la bonne hauteur (on a une surface plate)
+							 *- si la de la plante ne dépasse pas du biome
+							 *si la de la plante ne dépasse pas de la map (-2 pour le verre)
+							 */
+							for(int k=1; k<b.getVegetalIdFrequence().get(j)[2]; k++)
 							{
-								if(i+sumBiomeLength+k>surface.size()-1 || hauteur!=surface.get(i+sumBiomeLength+k))
+								if(i+k>b.getWidth()-1 || i+sumBiomeLength+k>surface.size()-2 || hauteur!=surface.get(i+sumBiomeLength+k)) 
 								{
-									isFlat=false;
+									hasPlace=false;
 								}
 							}
 							
-							if(isFlat)
+							if(hasPlace)
 							{					
 								vegetalList.add(b.getVegetalIdFrequence().get(j)[0]); // on ajoute l'index de la plante à la liste
 								vegetalAdded = true; //on a ajouté une plante
 								
-								//on ajoute on ajout la place necessaire à la plante-1 blocs sur lesquels on ne peut pas ajouter de plante (ID=0)
+								//on ajoute la place necessaire à la plante-1 blocs sur lesquels on ne peut pas ajouter de plante (ID=0)
 								//ce qui correspond à la taille de la plante à l'écran
 								for(int k=1; k<b.getVegetalIdFrequence().get(j)[2]; k++)
 								{

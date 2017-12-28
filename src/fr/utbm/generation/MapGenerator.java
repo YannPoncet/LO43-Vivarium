@@ -5,15 +5,10 @@ import java.util.ArrayList;
 import fr.utbm.biome.Biome;
 import fr.utbm.biome.BiomeList;
 import fr.utbm.block.BlockAsh;
-import fr.utbm.block.BlockDirt;
 import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockLava;
-import fr.utbm.block.BlockObsidian;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
-import fr.utbm.entity.EntityBenenutTree;
-import fr.utbm.entity.Entity;
-import fr.utbm.entity.EntityVegetalTree;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
@@ -55,13 +50,6 @@ public class MapGenerator {
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
-			System.out.print("Generating Vegetals...");
-			VegetalGenerator vegetalGen = new VegetalGenerator(seed, M);
-			//To change this generation you have to change the frequence by ID in the biomeManager.xml
-			ArrayList<Integer> vegetalList = vegetalGen.surfaceVegetalGen(biomeList, surface);
-			System.out.println(" "+chrono.getTime()+"ms");
-			
-			chrono.reset();
 			System.out.print("Generating Caves...");
 				//2nd parameter: stone ratio in caves
 				//3rd parameter: ash ratio in hell caves
@@ -78,6 +66,13 @@ public class MapGenerator {
 				 *maxHeight is the maximal height of air in the cave
 				 */
 				caves = liquidGen.caveLiquidGen(caves, 5, 50);
+			System.out.println(" "+chrono.getTime()+"ms");
+			
+			chrono.reset();
+			System.out.print("Generating Vegetals...");
+			VegetalGenerator vegetalGen = new VegetalGenerator(seed, M);
+			//To change this generation you have to change the frequence by ID in the biomeManager.xml
+			ArrayList<Integer> vegetalList = vegetalGen.surfaceVegetalGen(biomeList, surface, surfaceLiquid);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -131,7 +126,7 @@ public class MapGenerator {
 						if (j==Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)-1) { //grass
 							BiomeList.createSurfaceGrassBlock(i, j, world, biomeList.get(k).getId());
 							
-							//if there is a vegetal
+							//if there is a vegetal, we create the vegetal
 							if (vegetalList.get(i)>0) {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
 							}
