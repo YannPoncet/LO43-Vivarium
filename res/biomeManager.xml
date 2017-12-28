@@ -1,12 +1,32 @@
 <biomes>
-	<biome id="0" name="forest" textureId="501" surfaceAmplitude="46" surfaceWavelength="64"><vegetalList>
-	<vegetal id="999" frequence="20"></vegetal>
-	<vegetal id="998" frequence="40"></vegetal></vegetalList>
-		</biome>
+
+	<biome id="0" name="forest" textureId="501" surfaceAmplitude="46" surfaceWavelength="64">
+		<vegetalList>
+			<vegetal id="208" frequence="20" placeNeeded="4"></vegetal>
+			<vegetal id="209" frequence="10" placeNeeded="4"></vegetal>
+			<vegetal id="212" frequence="20" placeNeeded="3"></vegetal>
+		</vegetalList>
+	</biome>
+	
 	<biome id="1" name="desert" textureId="504" surfaceAmplitude="15" surfaceWavelength="128">
-		<vegetalList></vegetalList></biome>
+		<vegetalList>
+			<vegetal id="213" frequence="20" placeNeeded="3"></vegetal>
+			<vegetal id="214" frequence="15" placeNeeded="3"></vegetal>
+		</vegetalList>
+	</biome>
+	
 	<biome id="2" name="montain" textureId="506" surfaceAmplitude="128" surfaceWavelength="128">
-		<vegetalList></vegetalList></biome>
+		<vegetalList>
+			<vegetal id="208" frequence="40" placeNeeded="4"></vegetal>
+			<vegetal id="212" frequence="30" placeNeeded="4"></vegetal>
+		</vegetalList>
+	</biome>
+	
 	<biome id="3" name="snow" textureId="505" surfaceAmplitude="15" surfaceWavelength="64">
-		<vegetalList></vegetalList></biome>
+		<vegetalList>
+			<vegetal id="210" frequence="30" placeNeeded="6"></vegetal>
+			<vegetal id="211" frequence="40" placeNeeded="6"></vegetal>
+		</vegetalList>
+	</biome>
+	
 </biomes>

@@ -6,16 +6,8 @@ import fr.utbm.world.World;
 public class EntityVegetalTree extends EntityVegetal {
 
 	public EntityVegetalTree(float x, float y, int bigOrSmall, World worldIn) {
-		//0 for small and 1 for big
-		super(x, y, 150, 203, worldIn);
+		//0 for smallForest, 1 for bigForest, 2 for smallSnow, 3 for bigSnow
+		super(x, y, 77, 203, worldIn);
 		this.text = TextureManager.getTexture(208+bigOrSmall);
 	}
-	
-	/*
-	@Override
-	public void render(SpriteBatch sp) {
-		
-		
-	}
-	*/
 }

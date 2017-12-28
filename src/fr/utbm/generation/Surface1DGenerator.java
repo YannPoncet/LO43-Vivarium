@@ -3,8 +3,6 @@ package fr.utbm.generation;
 import java.util.ArrayList;
 
 import fr.utbm.biome.Biome;
-import fr.utbm.world.Chunk;
-import fr.utbm.world.Map;
 
 public class Surface1DGenerator extends PseudoRandom {
 	private ArrayList<Integer> noise;

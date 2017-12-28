@@ -23,7 +23,7 @@ public class RenderManager {
 	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
 	private static float x=0;
 	private static float y=0;
-	private static int margin = 10;
+	private static int margin = 30;
 	
 	
 	
@@ -75,21 +75,23 @@ public class RenderManager {
 		int backgroundsWidth = 1200;
 		int backgroundsHeight = 675;
 		
-		int textureId = 501;
+		//the part below is used to know in which texture to apply in the surface depending on x pos
+		int textureId = 501; //default
 		if(biomeList.size()>0) {
-			textureId = biomeList.get(0).getTextureId();
+			textureId = biomeList.get(0).getTextureId(); //better default
 			int totalWidth = 0;
 			boolean gotIt = true;
 			int index = 0;
 			while(index < biomeList.size() && gotIt) {
 				totalWidth += biomeList.get(index).getWidth();
-				if (x/16<totalWidth && x/16>totalWidth-biomeList.get(index).getWidth()) {
+				if (x/16<=totalWidth && x/16>totalWidth-biomeList.get(index).getWidth()) {
 					gotIt = false;
 					textureId = biomeList.get(index).getTextureId();
 				}
 				index++;
 			}
 		}
+		
 		
 		if (x<0) { //left border
 			x -= x-16;
@@ -122,7 +124,7 @@ public class RenderManager {
 		}
 		else if (y/16 < Map.LIMIT_SURFACE) {
 			batch.draw(TextureManager.getTexture(502),x,y);
-			batch.draw(TextureManager.getTexture(502),x,y+400);
+			batch.draw(TextureManager.getTexture(502),x,y+backgroundsHeight);
 			if (y/16+Camera.HEIGHT/16 > Map.LIMIT_SURFACE) { //if close to the surface
 				batch.draw(TextureManager.getTexture(textureId),x,Map.LIMIT_SURFACE*16);
 				batch.draw(TextureManager.getTexture(500),x,Map.LIMIT_SURFACE*16+backgroundsHeight);

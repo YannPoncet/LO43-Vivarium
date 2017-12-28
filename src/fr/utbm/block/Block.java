@@ -62,5 +62,8 @@ public abstract class Block extends Renderable{
 	{
 		return blockType;
 	}
+	public boolean isSolid(){
+		return isSolid;
+	}
 
 }

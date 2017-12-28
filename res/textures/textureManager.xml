@@ -52,6 +52,11 @@
 	
 	<texture id="208" file="vegetals/treeForest.png"></texture>
 	<texture id="209" file="vegetals/bigTreeForest.png"></texture>
+	<texture id="210" file="vegetals/treeSnow.png"></texture>
+	<texture id="211" file="vegetals/bigTreeSnow.png"></texture>
+	<texture id="212" file="vegetals/bush.png"></texture>
+	<texture id="213" file="vegetals/cactus.png"></texture>
+	<texture id="214" file="vegetals/bigCactus.png"></texture>
 	
 	<texture id="210" file="animals/benenut/benenut0.png"></texture>
 	<texture id="211" file="animals/benenut/benenut1.png"></texture>

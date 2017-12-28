@@ -1,5 +1,6 @@
 package fr.utbm.tools;
 
+import fr.utbm.block.Block;
 import fr.utbm.entity.Entity;
 
 public class CollisionAABB {
@@ -19,7 +20,8 @@ public class CollisionAABB {
 		int sY = (((int) (e.getPosY() + dy + e.getHeight()))/16);
 		while(!(b || pY>sY)){
 			while(!(b || p>s)){
-				if(e.getWorldIn().getBlock(p, pY) != null){
+				Block block = e.getWorldIn().getBlock(p, pY);
+				if(block != null && block.isSolid()){
 					b=true;
 				}
 				p+=1;

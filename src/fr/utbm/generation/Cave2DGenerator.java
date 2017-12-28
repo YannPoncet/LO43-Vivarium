@@ -2,9 +2,6 @@ package fr.utbm.generation;
 
 import java.util.ArrayList;
 
-import fr.utbm.world.Chunk;
-import fr.utbm.world.Map;
-
 public class Cave2DGenerator extends PseudoRandom{
 	private int width;
 	private int height;
