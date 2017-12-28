@@ -3,37 +3,29 @@ package fr.utbm.block;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class BlockGrass extends BlockDirt{
-
-	public BlockGrass(float x, float y, World w) {
-		super(x, y, w);
-		this.blockId = 2;
-		text = TextureManager.getTexture(blockId);
-		this.maxHealth = 100;
-		this.blockHealth = 100;
-		this.blockType = BlockType.DIRT;
-		this.isGravitySensitive = false;
-	}
+public class BlockGrass extends Block{
 	
-	public BlockGrass(float x, float y, int bH, World w) {
-		super(x, y, w);
-		this.blockId = 2;
-		text = TextureManager.getTexture(blockId);
-		this.maxHealth = 100;
-		this.blockHealth = bH;
-		this.blockType = BlockType.DIRT;
+	private int color;
+	
+	public BlockGrass(float x, float y, int c, World w)
+	{
+		super(x, y, TextureManager.getTexture(100), w);
+		this.blockId = 100;
+		color = c;
+		text = TextureManager.getTexture(this.blockId + c);
+		this.blockHealth = 1;
+		this.maxHealth = 1;
+		this.blockType = BlockType.GRASS;
 		this.isGravitySensitive = false;
-		super.damage(maxHealth-blockHealth);
+		isSolid = false;
 	}
 	
 	@Override
 	public void update()
 	{
-		super.update();
-		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType != BlockType.WATER)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null || world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
 		{
 			dead = true;
-			world.setBlock((int)(x/16), (int)(y/16), new BlockDirt(x/16, y/16, this.world));
 		}
 	}
 }

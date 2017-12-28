@@ -5,12 +5,12 @@ import fr.utbm.world.World;
 
 public class BlockWater extends BlockLiquid{
 	
-	protected static final int DURABILITY = 200;
+	private static final int DURABILITY = 200;
 	
 	public BlockWater(float x, float y, int state, World w)
 	{
-		super(x, y, TextureManager.getTexture(4 + state), w);
-		this.blockId = 4;
+		super(x, y, TextureManager.getTexture(104 + state), w);
+		this.blockId = 104;
 		this.maxHealth = 1;
 		this.blockHealth = 1;
 		this.blockType = BlockType.WATER;
@@ -166,7 +166,7 @@ public class BlockWater extends BlockLiquid{
 							isStable --;
 							//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 						}
-						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state)
+						else if(((BlockLiquid)world.getBlock((int)((this.x/16)+1), (int)(this.y/16))).state > state+1)
 						{
 							state++;
 							isStable = STABILITY;
@@ -185,7 +185,7 @@ public class BlockWater extends BlockLiquid{
 						isStable --;
 						//nothing : we had to add it because when we ask smth < smthElse and they are equal, it still choose one of them
 					}
-					else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state)
+					else if(((BlockLiquid)world.getBlock((int)((this.x/16)-1), (int)(this.y/16))).state > state+1)
 					{
 						state++;
 						isStable = STABILITY;

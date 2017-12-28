@@ -3,11 +3,11 @@ package fr.utbm.block;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class BlockSnowSurface extends BlockDirt {
+public class BlockDirtSurface extends BlockDirt{
 
-	public BlockSnowSurface(float x, float y, World w) {
+	public BlockDirtSurface(float x, float y, World w) {
 		super(x, y, w);
-		this.blockId = 3;
+		this.blockId = 2;
 		text = TextureManager.getTexture(blockId);
 		this.maxHealth = 100;
 		this.blockHealth = 100;
@@ -16,9 +16,9 @@ public class BlockSnowSurface extends BlockDirt {
 		isSolid = true;
 	}
 	
-	public BlockSnowSurface(float x, float y, int bH, World w) {
+	public BlockDirtSurface(float x, float y, int bH, World w) {
 		super(x, y, w);
-		this.blockId = 3;
+		this.blockId = 2;
 		text = TextureManager.getTexture(blockId);
 		this.maxHealth = 100;
 		this.blockHealth = bH;
@@ -32,18 +32,10 @@ public class BlockSnowSurface extends BlockDirt {
 	public void update()
 	{
 		super.update();
-		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)) != null && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType != BlockType.WATER && world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType != BlockType.GRASS)
 		{
-
 			dead = true;
-			if(world.getBlock((int)(this.x/16), (int)((this.y/16)+1)).blockType == BlockType.WATER)
-			{
-				world.setBlock((int)(x/16), (int)(y/16), new BlockDirtSurface(x/16, y/16, this.world));
-			}
-			else
-			{
-				world.setBlock((int)(x/16), (int)(y/16), new BlockDirt(x/16, y/16, this.world));
-			}
+			world.setBlock((int)(x/16), (int)(y/16), new BlockDirt(x/16, y/16, this.world));
 		}
 	}
 }

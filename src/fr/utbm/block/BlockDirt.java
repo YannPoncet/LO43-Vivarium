@@ -13,6 +13,7 @@ public class BlockDirt extends Block{
 		this.maxHealth = 100;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+		isSolid = true;
 	}
 	
 	public BlockDirt(float x, float y, int bH, World w) {
@@ -22,6 +23,7 @@ public class BlockDirt extends Block{
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
+		isSolid = true;
 	}
 
 }
