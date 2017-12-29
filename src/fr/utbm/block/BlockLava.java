@@ -320,7 +320,6 @@ public class BlockLava extends BlockLiquid{
 						}
 					}
 				}
-				
 			}
 			
 			iter = 0;
