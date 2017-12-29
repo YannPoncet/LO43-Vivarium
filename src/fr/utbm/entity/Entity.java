@@ -1,6 +1,7 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
+import fr.utbm.physics.RigidBox;
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
@@ -12,6 +13,7 @@ public abstract class Entity extends Renderable{
 	protected int height;
 	protected int maxHealth;
 	protected int health;
+	protected RigidBox hitBox;
 	
 	public Entity(float x, float y, int w, int h, World worldIn) {
 		super(x*16,y*16,TextureManager.getTexture(0));
@@ -61,6 +63,9 @@ public abstract class Entity extends Renderable{
 	
 	public int getHeight(){
 		return this.height;
+	}
+	public RigidBox getHitBox(){
+		return this.hitBox;
 	}
 
 }
