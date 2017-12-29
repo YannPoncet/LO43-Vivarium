@@ -7,6 +7,7 @@ import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockSandSurface;
 import fr.utbm.block.BlockSnowSurface;
 import fr.utbm.entity.Entity;
+import fr.utbm.entity.EntityBenenutTree;
 import fr.utbm.entity.EntityVegetalBush;
 import fr.utbm.entity.EntityVegetalCactus;
 import fr.utbm.entity.EntityVegetalTree;
@@ -59,6 +60,9 @@ public enum BiomeList {
 	public static void createEntityByID(int x, int y, World w, int ID)
 	{
 		switch (ID) {
+		case 207: w.addEntity((Entity)(new EntityBenenutTree(x,y+1,w))); //benenut tree
+				break;
+				
 		case 208: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,0,w))); //treeForest
 				break;
 				
@@ -78,7 +82,7 @@ public enum BiomeList {
 				break;
 		
 		case 214: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,1,w))); //big cactus
-				break;
+				break;	
 	}
 		
 	}

@@ -13,6 +13,11 @@ public class BiomeGenerator extends PseudoRandom {
 	
 	public BiomeGenerator(double seed, long M, int width, int biomeMinSize, int biomeMaxSize) {
 		super(seed, M);
+		if(biomeMinSize >= biomeMaxSize || biomeMinSize<20 || biomeMaxSize>=width) {
+			System.err.println("\n[BIOME GENERATOR] Incorrect arguments");
+			biomeMaxSize = 100;
+			biomeMinSize = 50;
+		}
 		this.biomeMaxSize = biomeMaxSize;
 		this.biomeMinSize = biomeMinSize;
 		this.width = width;

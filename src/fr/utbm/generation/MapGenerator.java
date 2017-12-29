@@ -35,6 +35,7 @@ public class MapGenerator {
 			System.out.print("Generating Biomes...");
 				//You can adjust minimum and maximum size of biomes
 				//Care: if the biomes are too small, it wont give a good result, minimum 50 is advised
+				//The biomes shall not be <20 blocks large or you will have some issues
 				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 50, 100);
 				ArrayList<Biome> biomeList = biomeGen.getBiomeList();
 			System.out.println(" "+chrono.getTime()+"ms");
@@ -52,8 +53,8 @@ public class MapGenerator {
 			
 			chrono.reset();
 			System.out.print("Generating Caves...");
-				//2nd parameter: stone ratio in caves
-				//3rd parameter: ash ratio in hell caves
+				//3rd parameter: stone ratio in caves
+				//2nd parameter: ash ratio in hell caves
 				Cave2DGenerator caveGen = new Cave2DGenerator(seed, M, 45, 75, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, Map.LIMIT_CAVE, Map.LIMIT_SURFACE-Map.LIMIT_CAVE+1);
 				ArrayList<ArrayList<Integer>> caves = caveGen.generateAndGetCaves();
 			System.out.println(" "+chrono.getTime()+"ms");
@@ -131,17 +132,20 @@ public class MapGenerator {
 							if (vegetalList.get(i)>0) {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
 							}
-							if(i == 20)
+							
+							/* TEMPO */
+							/*if(i == 20)
 							{
 								world.addEntity(new EntityBenenutTree(i, j+1, world));
 							}
 							if(i == 30)
 							{
 								world.addEntity(new EntityBenenutTree(i, j+1, 0, world));
-							}
+							}*/
+							/* ----- */
 						}
 						else { //dirt
-							BiomeList.createSurfaceBlock(i, j, world, biomeList.get(k).getId());
+							BiomeList.createSurfaceBlock(i, j, world, biomeList.get(k).getId());	
 						}
 					}
 					else if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]) //water
