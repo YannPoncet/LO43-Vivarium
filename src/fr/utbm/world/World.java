@@ -13,7 +13,7 @@ import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
-import fr.utbm.entity.EntityBenenutTree;
+import fr.utbm.entity.EntityVegetalBenenutTree;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;

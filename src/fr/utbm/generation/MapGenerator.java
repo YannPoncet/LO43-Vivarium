@@ -9,7 +9,7 @@ import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
-import fr.utbm.entity.EntityBenenutTree;
+import fr.utbm.entity.EntityVegetalBenenutTree;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
