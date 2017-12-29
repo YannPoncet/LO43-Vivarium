@@ -22,7 +22,7 @@ public class EntityBenenut extends EntityAnimal{
 		
 		super(x, y, 15, 18, worldIn);
 		Random r = new Random();
-		growingTime = r.nextInt(5000) + 1500;
+		growingTime = r.nextInt(10000) + 5000;
 		if(m > 2)
 		{
 			m = 2;
@@ -52,7 +52,7 @@ public class EntityBenenut extends EntityAnimal{
 			{
 				maturity++;
 				Random r = new Random();
-				growingTime = r.nextInt(5000) + 1500;
+				growingTime = r.nextInt(10000) + 5000;
 			}
 			else
 			{

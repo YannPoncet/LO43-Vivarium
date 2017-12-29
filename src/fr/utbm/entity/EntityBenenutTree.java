@@ -49,7 +49,7 @@ public class EntityBenenutTree extends EntityVegetal{
 		
 		if(maturity < 6)
 		{
-			if(iter == 2000)
+			if(iter == 10000)
 			{
 				iter = 0;
 				maturity++;
