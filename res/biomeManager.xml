@@ -2,6 +2,7 @@
 
 	<biome id="0" name="forest" textureId="501" surfaceAmplitude="46" surfaceWavelength="64">
 		<vegetalList>
+			<vegetal id="207" frequence="8" placeNeeded="4"></vegetal>
 			<vegetal id="208" frequence="20" placeNeeded="4"></vegetal>
 			<vegetal id="209" frequence="10" placeNeeded="4"></vegetal>
 			<vegetal id="212" frequence="20" placeNeeded="3"></vegetal>
