@@ -5,12 +5,12 @@ import java.util.Random;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class EntityBenenut extends EntityAnimal{
+public class EntityAnimalBenenut extends EntityAnimal{
 	
 	private int maturity;
 	private int growingTime;
 	
-	public EntityBenenut(float x, float y, World worldIn) {
+	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
 		super(x, y, 15, 18, worldIn);
 		growingTime = 0;
@@ -18,7 +18,7 @@ public class EntityBenenut extends EntityAnimal{
 		text = TextureManager.getTexture(208 + maturity);
 	}
 	
-	public EntityBenenut(float x, float y, int m, World worldIn) {
+	public EntityAnimalBenenut(float x, float y, int m, World worldIn) {
 		
 		super(x, y, 15, 18, worldIn);
 		Random r = new Random();

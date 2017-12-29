@@ -29,4 +29,7 @@ public abstract class Renderable {
 	public float getY(){
 		return this.y;
 	}
+	public void kill(){
+		dead = true;
+	}
 }
