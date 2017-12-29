@@ -42,13 +42,13 @@
 	
 	<texture id="200" file="animals/hellDog/hell-hound.png"></texture>
 	
-	<texture id="201" file="vegetals/benenutTree0.png"></texture>
-	<texture id="202" file="vegetals/benenutTree1.png"></texture>
-	<texture id="203" file="vegetals/benenutTree2.png"></texture>
-	<texture id="204" file="vegetals/benenutTree3.png"></texture>
-	<texture id="205" file="vegetals/benenutTree4.png"></texture>
-	<texture id="206" file="vegetals/benenutTree5.png"></texture>
-	<texture id="207" file="vegetals/benenutTree6.png"></texture>
+	<texture id="201" file="vegetals/bTree/benenutTree0.png"></texture>
+	<texture id="202" file="vegetals/bTree/benenutTree1.png"></texture>
+	<texture id="203" file="vegetals/bTree/benenutTree2.png"></texture>
+	<texture id="204" file="vegetals/bTree/benenutTree3.png"></texture>
+	<texture id="205" file="vegetals/bTree/benenutTree4.png"></texture>
+	<texture id="206" file="vegetals/bTree/benenutTree5.png"></texture>
+	<texture id="207" file="vegetals/bTree/benenutTree6.png"></texture>
 	
 	<texture id="208" file="animals/benenut/benenut0.png"></texture>
 	<texture id="209" file="animals/benenut/benenut1.png"></texture>
