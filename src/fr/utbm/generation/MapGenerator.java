@@ -9,6 +9,7 @@ import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.entity.EntityBenenutTree;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
@@ -130,12 +131,18 @@ public class MapGenerator {
 							if (vegetalList.get(i)>0) {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
 							}
+							if(i == 20)
+							{
+								world.addEntity(new EntityBenenutTree(i, j+1, world));
+							}
+							if(i == 30)
+							{
+								world.addEntity(new EntityBenenutTree(i, j+1, 0, world));
+							}
 						}
 						else { //dirt
 							BiomeList.createSurfaceBlock(i, j, world, biomeList.get(k).getId());
 						}
-
-						//w.getMap().setBlock(i, j, new BlockDirt(i,j,w));
 					}
 					else if (j<Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i)+surfaceLiquid[i]) //water
 					{

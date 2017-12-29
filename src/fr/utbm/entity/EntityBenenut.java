@@ -15,7 +15,7 @@ public class EntityBenenut extends EntityAnimal{
 		super(x, y, 15, 18, worldIn);
 		growingTime = 0;
 		maturity = 2;
-		text = TextureManager.getTexture(210 + maturity);
+		text = TextureManager.getTexture(208 + maturity);
 	}
 	
 	public EntityBenenut(float x, float y, int m, World worldIn) {
@@ -32,7 +32,7 @@ public class EntityBenenut extends EntityAnimal{
 			m = 0;
 		}
 		maturity = m;
-		text = TextureManager.getTexture(210 + maturity);
+		text = TextureManager.getTexture(208 + maturity);
 	}
 	
 	public int getMaturity()
@@ -44,7 +44,7 @@ public class EntityBenenut extends EntityAnimal{
 	public void update()
 	{
 		//System.out.println("je suis dans le benenut : " + x/16 + " ; " + y/16 + "\nJe suis à la maturité : " + maturity + "\nMon nombre de ticks avant le lvl supérieur est : " + growingTime);
-		text = TextureManager.getTexture(210 + maturity);
+		text = TextureManager.getTexture(208 + maturity);
 		
 		if(maturity < 2)
 		{
