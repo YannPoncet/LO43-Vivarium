@@ -38,6 +38,7 @@ public abstract class Entity extends Renderable{
 	}
 	
 	public void update(){
+
 	}
 	
 	public void setPosition(float x, float y){

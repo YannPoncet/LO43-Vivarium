@@ -38,6 +38,11 @@
 	<texture id="118" file="blocks/blockLava6.png"></texture>
 	<texture id="119" file="blocks/blockLava7.png"></texture>
 	
+	<texture id="120" file="blocks/damaged4.png"></texture>
+	<texture id="121" file="blocks/damaged3.png"></texture>
+	<texture id="122" file="blocks/damaged2.png"></texture>
+	<texture id="123" file="blocks/damaged1.png"></texture>
+	
 	<!-- Entities textures -->
 	
 	<texture id="200" file="animals/hellDog/hell-hound.png"></texture>
@@ -62,6 +67,8 @@
 	<texture id="216" file="vegetals/cactus.png"></texture>
 	<texture id="217" file="vegetals/bigCactus.png"></texture>
 	
+	<texture id="218" file="animals/digger/digger.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
@@ -78,5 +85,7 @@
 	<animation id="1" file="animals/hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
 	<animation id="2" file="animals/hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
 	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
+	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="0.0001"></animation>
+	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="0.0001"></animation>
 	
 </textures>

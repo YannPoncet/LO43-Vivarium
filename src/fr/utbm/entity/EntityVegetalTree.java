@@ -7,7 +7,10 @@ public class EntityVegetalTree extends EntityVegetal {
 
 	public EntityVegetalTree(float x, float y, int bigOrSmall, World worldIn) {
 		//0 for smallForest, 1 for bigForest, 2 for smallSnow, 3 for bigSnow
-		super(x, y, 80, 203, worldIn);
+		super(x, y, 64, 203, worldIn);
+		if(bigOrSmall == 2 || bigOrSmall == 3){
+			width = 96;
+		}
 		entityHealth = 100;
 		maxHealth = 100;
 		this.text = TextureManager.getTexture(211+bigOrSmall);

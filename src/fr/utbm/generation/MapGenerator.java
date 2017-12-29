@@ -9,6 +9,7 @@ import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityVegetalBenenutTree;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
@@ -23,13 +24,14 @@ public class MapGenerator {
 	{
 			Chrono chrono = new Chrono();
 			Chrono chrono2 = new Chrono();
-			System.out.println("\n---- STARTING WORLD GENERATION ----");
+			
 			
 			long M = 4294967296L;
 			if (seed == 0) 
 			{
 				seed = Math.floor(Math.random() * M);
 			}
+			System.out.println("\n---- STARTING WORLD GENERATION ----");
 			
 			chrono.reset();
 			System.out.print("Generating Biomes...");
@@ -134,10 +136,10 @@ public class MapGenerator {
 							}
 							
 							/* TEMPO */
-							/*if(i == 20)
+							if(i == 20)
 							{
-								world.addEntity(new EntityBenenutTree(i, j+1, world));
-							}
+								world.addEntity(new EntityAnimalDigger(i, j+1, world));
+							}/*
 							if(i == 30)
 							{
 								world.addEntity(new EntityBenenutTree(i, j+1, 0, world));
