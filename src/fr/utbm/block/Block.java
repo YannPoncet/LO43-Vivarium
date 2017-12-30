@@ -41,13 +41,9 @@ public abstract class Block extends Renderable{
             if(this.blockHealth<0){
             	this.blockHealth = 0;
             }
-            
-            
-            
-            System.out.println(blockHealth);
+
             int i = (100*blockHealth/maxHealth)/25;
             breakingStage = TextureManager.getTexture(120 + i);
-            //System.out.println(120 + i);
         }
         if(blockHealth <= 0) {
             dead = true;

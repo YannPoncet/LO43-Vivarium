@@ -27,15 +27,13 @@ public class MapGenerator {
 			Chrono chrono2 = new Chrono();
 			
 			
-			//long M = 4294967296L;
-			long M = 22;
+			long M = 4294967296L;
 			if (seed == 0) 
 			{
 				seed = Math.floor(Math.random() * M);
 			}
-			seed = 14.0;
 
-			System.out.println("\n---- STARTING WORLD GENERATION ----  "+seed);
+			System.out.println("\n---- STARTING WORLD GENERATION ----  ");
 			
 			chrono.reset();
 			System.out.print("Generating Biomes...");
