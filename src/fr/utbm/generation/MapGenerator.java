@@ -9,6 +9,7 @@ import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
+import fr.utbm.entity.EntityAnimalCuteFlower;
 import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityVegetalBenenutTree;
 import fr.utbm.render.RenderManager;
@@ -26,12 +27,15 @@ public class MapGenerator {
 			Chrono chrono2 = new Chrono();
 			
 			
-			long M = 4294967296L;
+			//long M = 4294967296L;
+			long M = 22;
 			if (seed == 0) 
 			{
 				seed = Math.floor(Math.random() * M);
 			}
-			System.out.println("\n---- STARTING WORLD GENERATION ----");
+			seed = 14.0;
+
+			System.out.println("\n---- STARTING WORLD GENERATION ----  "+seed);
 			
 			chrono.reset();
 			System.out.print("Generating Biomes...");
@@ -50,7 +54,7 @@ public class MapGenerator {
 				//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 				//=>Increase wavelength to get flat map generally ---> BETWEEN 0 & 1 <---
 				//=>Decrease amplitude to get a flat map locally ---> BETWEEN 0 & 1 <---
-				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(1,1,15,4, biomeList);
+				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(0.1,1,15,4, biomeList);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();

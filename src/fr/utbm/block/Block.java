@@ -26,25 +26,27 @@ public abstract class Block extends Renderable{
 	
 	public void update()
 	{
-		if(blockHealth <= 0) {
-			dead = true;
-		}
+
 	}
 	
 	public void damage(int dmg)
-	{
-		if(this.blockType == BlockType.UNBREAKABLE)
-		{
-			//We deal no damage to the block
-		}
-		else
-		{
-			this.blockHealth -= dmg;
-			int i = (100*blockHealth/maxHealth)/25;
-			breakingStage = TextureManager.getTexture(120 + i);
-			System.out.println(120 + i);
-		}
-	}
+    {
+        if(this.blockType == BlockType.UNBREAKABLE)
+        {
+            //We deal no damage to the block
+        }
+        else if(blockHealth-dmg >= 0)
+        {
+            this.blockHealth -= dmg;
+            System.out.println(blockHealth);
+            int i = (100*blockHealth/maxHealth)/25;
+            breakingStage = TextureManager.getTexture(120 + i);
+            //System.out.println(120 + i);
+        }
+        if(blockHealth <= 0) {
+            dead = true;
+        }
+    }
 	
 	@Override
 	public void render(SpriteBatch batch){

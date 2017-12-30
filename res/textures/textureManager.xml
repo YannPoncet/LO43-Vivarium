@@ -69,6 +69,9 @@
 	
 	<texture id="218" file="animals/digger/digger.png"></texture>
 	
+	<texture id="219" file="animals/cuteFlower/cuteflower.png"></texture>
+	<texture id="220" file="animals/cuteFlower/cuteflower2.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
@@ -87,5 +90,7 @@
 	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
 	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="0.0001"></animation>
 	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="0.0001"></animation>
+	<animation id="6" file="animals/cuteFlower/cuteflower-walk.png" wD="8" hD="1" speed="0.5"></animation>
+	<animation id="7" file="animals/cuteFlower/cuteflower-eat.png" wD="13" hD="1" speed="0.5"></animation>
 	
 </textures>
