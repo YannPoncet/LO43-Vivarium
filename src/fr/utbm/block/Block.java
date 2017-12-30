@@ -35,9 +35,15 @@ public abstract class Block extends Renderable{
         {
             //We deal no damage to the block
         }
-        else if(blockHealth-dmg >= 0)
+        else if(this.blockHealth > 0)
         {
             this.blockHealth -= dmg;
+            if(this.blockHealth<0){
+            	this.blockHealth = 0;
+            }
+            
+            
+            
             System.out.println(blockHealth);
             int i = (100*blockHealth/maxHealth)/25;
             breakingStage = TextureManager.getTexture(120 + i);
