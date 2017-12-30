@@ -42,7 +42,6 @@ public abstract class Block extends Renderable{
 			this.blockHealth -= dmg;
 			int i = (100*blockHealth/maxHealth)/25;
 			breakingStage = TextureManager.getTexture(120 + i);
-			System.out.println(120 + i);
 		}
 	}
 	
