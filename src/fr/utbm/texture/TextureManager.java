@@ -13,8 +13,9 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 
 import fr.utbm.tools.Rescale;
 
-/* L'Objectif de cette classe c'est de charger toutes les textures avant qu'on joue et de les classer pour deux raisons : 1- Si on charge les textures au fur et à mesure quand on joue, ca risque de faire lagger,
- * C'est l'interet de faire un écran de chargement	2- Si je fais deux blocks de terre, il faudra charger 2 fois la texture du blockTerre, avec le textureManager, elle sera chargé une seule fois peu importe le nb de blocks
+/* L'Objectif de cette classe c'est de charger toutes les textures avant qu'on joue et de les classer pour deux raisons : 
+ * 1- Si on charge les textures au fur et à mesure quand on joue, ca risque de faire lagger, c'est l'interet de faire un écran de chargement	
+ * 2- Si je fais deux blocks de terre, il faudra charger 2 fois la texture du blockTerre, avec le textureManager, elle sera chargé une seule fois peu importe le nb de blocks
  */
 
 public class TextureManager {

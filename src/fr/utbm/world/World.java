@@ -10,7 +10,7 @@ import fr.utbm.block.BlockWater;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
-import fr.utbm.entity.EntityHellDog;
+import fr.utbm.entity.EntityPrettyBird;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
 
@@ -20,7 +20,7 @@ public class World {
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
-	private EntityBeaver hd;
+	private EntityPrettyBird hd;
 	
 	
 	private float gravity = -4f;
@@ -84,7 +84,7 @@ public class World {
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));
 		setBlock(3,320,bs);
-		hd =  new EntityBeaver(5,380,this);
+		hd =  new EntityPrettyBird(5,380,this);
 		entities.add(test);
 		//entities.add(new EntityBenenutTree(20, 360, this));
 		entities.add(hd);
