@@ -33,7 +33,7 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 			actionToPerform = 1;
 			action(actionToPerform,directionToPerform);
 		}else{
-			
+			action(actionToPerform, directionToPerform);
 		}
 	}
 	
