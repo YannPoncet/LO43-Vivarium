@@ -20,7 +20,6 @@ public abstract class EntityAnimalFlying extends EntityAnimal {
 	public void move(float dx, float dy, int act)
 	{
 
-		ya += world.getGravity() * 0.1f;
 		this.activity = act;
 		xa += dx;
 		ya += dy;

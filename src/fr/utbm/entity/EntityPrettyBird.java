@@ -12,15 +12,15 @@ import fr.utbm.world.World;
 public class EntityPrettyBird extends EntityAnimalFlying {
 	
 	/*
-	 * Bird activity : -1 Dont do anything 0 Idle 1 Fly horizontaly 2 Fly verticaly
+	 * Bird activity : -1 Dont do anything 0 Idle 1 Fly horizontaly 2 Fly horizontaly downward 3 Fly horizontaly upward 4 Fly verticaly
 	 */
 	
 	public EntityPrettyBird(float x, float y, World worldIn) {
 		super(x, y, 16, 16, worldIn);
 		text = TextureManager.getTexture(222);
 		anim = new Animation[2];
-		anim[0] = TextureManager.getAnimation(15);
-		anim[1] = TextureManager.getAnimation(16);
+		anim[0] = TextureManager.getAnimation(14);
+		anim[1] = TextureManager.getAnimation(15);
 		directionX = 1;
 		activity = -1;
 		perform = false;
@@ -30,19 +30,8 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 	
 	public void update(){
 		if(!perform){
-			if(directionToPerform == 1) {
-				actionToPerform = 0;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			} else if (directionToPerform == 2) {
-				actionToPerform = 1;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}
-			else {
-				directionToPerform = -directionToPerform;
-				activity = -1;
-			}
+			actionToPerform = 1;
+			action(actionToPerform,directionToPerform);
 		}else{
 			
 		}
@@ -52,17 +41,34 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 		switch (actionID) {
 
 		case 0:
-			if (isOnGround()) {
 				move(0, 0, 0);
-			} else {
-				move(0, 0, -1);
-			}
 			break;
 		case 1:
-			if (isOnGround()) {
-				move(0.2f * direction, 0, 1);
+			if (!isOnGround()) {
+				move(0.4f*direction, 0, 0);
 			} else {
-				move(0, 0, activity);
+				move(0, 0, 0);
+			}
+			break;
+		case 2:
+			if (!isOnGround()) {
+				move(0.1f*direction, -0.1f, 0);
+			} else {
+				move(0, 0, 0);
+			}
+			break;
+		case 3:
+			if (!isOnGround()) {
+				move(0.1f*direction, 0.1f, 0);
+			} else {
+				move(0, 0, 0);
+			}
+			break;
+		case 4:
+			if (!isOnGround()) {
+				move(0, 0.1f*-direction, 1);
+			} else {
+				move(0, 0, 0);
 			}
 			break;
 		}
