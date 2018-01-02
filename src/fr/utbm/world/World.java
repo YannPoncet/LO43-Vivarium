@@ -1,23 +1,16 @@
 package fr.utbm.world;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.badlogic.gdx.graphics.FPSLogger;
 
 import fr.utbm.block.Block;
-import fr.utbm.block.BlockAsh;
-import fr.utbm.block.BlockDirt;
-import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockSand;
-import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
-import fr.utbm.entity.EntityVegetalBenenutTree;
 import fr.utbm.entity.Entity;
+import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityHellDog;
-import fr.utbm.entity.EntityVegetalTree;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
 
@@ -27,7 +20,7 @@ public class World {
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
-	private EntityHellDog hd;
+	private EntityBeaver hd;
 	
 	
 	private float gravity = -4f;
@@ -91,7 +84,7 @@ public class World {
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));
 		setBlock(3,320,bs);
-		hd =  new EntityHellDog(5,380,this);
+		hd =  new EntityBeaver(5,380,this);
 		entities.add(test);
 		//entities.add(new EntityBenenutTree(20, 360, this));
 		entities.add(hd);

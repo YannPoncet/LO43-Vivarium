@@ -35,9 +35,6 @@ public abstract class EntityAnimal extends Entity{
 		} else if (dx < 0) {
 			directionX = -1;
 		}
-		if (isOnGround() && dx == 0 && activity == 3) {
-			activity = -1;
-		}
 		int xStep = (int) Math.abs(xa * 100);
 		for (int i = 0; i < xStep; i++) {
 			if (!CollisionAABB.enterInCollisionAt(this, xa / xStep, 0)) {

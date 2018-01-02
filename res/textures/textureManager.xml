@@ -72,6 +72,8 @@
 	<texture id="219" file="animals/cuteFlower/cuteflower.png"></texture>
 	<texture id="220" file="animals/cuteFlower/cuteflower2.png"></texture>
 	
+	<texture id="221" file="animals/beaver/beaver-full.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
@@ -84,13 +86,21 @@
 	
 	<!-- Animations -->
 	
-	<animation id="0" file="animals/hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"></animation>
-	<animation id="1" file="animals/hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"></animation>
-	<animation id="2" file="animals/hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"></animation>
-	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"></animation>
-	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="0.0001"></animation>
-	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="0.0001"></animation>
-	<animation id="6" file="animals/cuteFlower/cuteflower-walk.png" wD="8" hD="1" speed="0.5"></animation>
-	<animation id="7" file="animals/cuteFlower/cuteflower-eat.png" wD="13" hD="1" speed="0.5"></animation>
+	<animation id="0" file="animals/hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"	size="1"></animation>
+	<animation id="1" file="animals/hellDog/hell-hound-walk.png" wD="12" hD="1" speed="0.1"	size="1"></animation>
+	<animation id="2" file="animals/hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"	size="1"></animation>
+	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"	size="1"></animation>
+	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="0.0001"	size="1"></animation>
+	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="0.0001"	size="1"></animation>
+	<animation id="6" file="animals/cuteFlower/cuteflower-walk.png" wD="8" hD="1" speed="0.5"	size="1"></animation>
+	<animation id="7" file="animals/cuteFlower/cuteflower-eat.png" wD="13" hD="1" speed="0.5"	size="1"></animation>
+	
+	<animation id="8" file="animals/beaver/beaver-eat.png" wD="6" hD="1" speed="0.1"	size="0.5"></animation>
+	<animation id="9" file="animals/beaver/beaver-jump.png" wD="6" hD="1" speed="0.1"	size="0.5"></animation>
+	<animation id="10" file="animals/beaver/beaver-put.png" wD="4" hD="1" speed="0.1"	size="0.5"></animation>
+	<animation id="11" file="animals/beaver/beaver-take.png" wD="4" hD="1" speed="0.1"	size="0.5"></animation>
+	<animation id="12" file="animals/beaver/beaver-walkEmpty.png" wD="6" hD="1" speed="0.05"	size="0.5"></animation>
+	<animation id="13" file="animals/beaver/beaver-walkFull.png" wD="6" hD="1" speed="0.1"	size="0.5"></animation>	
+	
 	
 </textures>

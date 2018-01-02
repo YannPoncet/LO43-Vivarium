@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 
+import fr.utbm.tools.Rescale;
+
 /* L'Objectif de cette classe c'est de charger toutes les textures avant qu'on joue et de les classer pour deux raisons : 1- Si on charge les textures au fur et à mesure quand on joue, ca risque de faire lagger,
  * C'est l'interet de faire un écran de chargement	2- Si je fais deux blocks de terre, il faudra charger 2 fois la texture du blockTerre, avec le textureManager, elle sera chargé une seule fois peu importe le nb de blocks
  */
@@ -80,7 +82,9 @@ public class TextureManager {
 			int wD = Integer.parseInt(child.get("wD"));
 			int hD = Integer.parseInt(child.get("hD"));
 			float speed = Float.parseFloat(child.get("speed"));
-			Texture t = new Texture("res/textures/" + path);
+			float size = Float.parseFloat(child.get("size"));
+			Texture t;
+			t = Rescale.rescale(new Texture("res/textures/" + path), size, size);
 			TextureRegion[][] tmp = TextureRegion.split(t, 
 					t.getWidth() / wD,
 					t.getHeight() / hD);
