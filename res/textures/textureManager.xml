@@ -106,8 +106,8 @@
 	<animation id="12" file="animals/beaver/beaver-walkEmpty.png" wD="6" hD="1" speed="0.05"	size="0.5"></animation>
 	<animation id="13" file="animals/beaver/beaver-walkFull.png" wD="6" hD="1" speed="0.1"	size="0.5"></animation>	
 	
-	<animation id="14" file="animals/prettyBird/prettyBird-flyH.png" wD="1" hD="1" speed="0.1"	size="1"></animation>	
-	<animation id="15" file="animals/prettyBird/prettyBird-flyV.png" wD="1" hD="1" speed="0.1"	size="1"></animation>	
+	<animation id="14" file="animals/prettyBird/prettyBird-flyH.png" wD="4" hD="1" speed="0.1"	size="1"></animation>	
+	<animation id="15" file="animals/prettyBird/prettyBird-flyV.png" wD="4" hD="1" speed="0.1"	size="1"></animation>	
 	
 	
 </textures>

@@ -31,11 +31,11 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 	public void update(){
 		if(!perform){
 			if(directionToPerform == 1) {
-				actionToPerform = 1;
+				actionToPerform = 0;
 				directionToPerform = 1;
 				action(actionToPerform,directionToPerform);
 			} else if (directionToPerform == 2) {
-				actionToPerform = 2;
+				actionToPerform = 1;
 				directionToPerform = 1;
 				action(actionToPerform,directionToPerform);
 			}
@@ -61,13 +61,6 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 		case 1:
 			if (isOnGround()) {
 				move(0.2f * direction, 0, 1);
-			} else {
-				move(0, 0, activity);
-			}
-			break;
-		case 2:
-			if (isOnGround()) {
-				move(0.5f * direction, 0, 2);
 			} else {
 				move(0, 0, activity);
 			}
