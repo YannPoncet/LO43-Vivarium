@@ -24,13 +24,26 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 		directionX = 1;
 		activity = -1;
 		perform = false;
-		actionToPerform = -1;
+		actionToPerform = 3;
 		directionToPerform = 1;
 	}
 	
 	public void update(){
 		if(!perform){
-			actionToPerform = 1;
+			if(((actionToPerform>=1 && actionToPerform<=3) && this.getWorldIn().getBlock((int)this.x/16+1, (int)this.y/16)!=null) 
+					|| (actionToPerform==4 && this.getWorldIn().getBlock((int)this.x/16, (int)this.y/16+1)!=null))
+			{
+				directionToPerform = -directionToPerform;
+			}
+			
+			if(actionToPerform==2 && this.getWorldIn().getBlock((int)this.x/16, (int)this.y/16+1)!=null)
+			{
+				actionToPerform=3;
+			}
+			else if(actionToPerform==3 && this.getWorldIn().getBlock((int)this.x/16, (int)this.y/16+1)!=null)
+			{
+				actionToPerform=2;
+			}
 			action(actionToPerform,directionToPerform);
 		}else{
 			action(actionToPerform, directionToPerform);

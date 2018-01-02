@@ -84,7 +84,7 @@ public class World {
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));
 		setBlock(3,320,bs);
-		hd =  new EntityPrettyBird(5,380,this);
+		hd =  new EntityPrettyBird(3,315,this);
 		entities.add(test);
 		//entities.add(new EntityBenenutTree(20, 360, this));
 		entities.add(hd);
