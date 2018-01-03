@@ -76,6 +76,8 @@
 	
 	<texture id="222" file="animals/prettyBird/prettyBird.png"></texture>
 	
+	<texture id="223" file="animals/beaver/beaver-empty.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>

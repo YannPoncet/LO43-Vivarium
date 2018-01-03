@@ -2,11 +2,12 @@ package fr.utbm.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.utbm.ai.AIBeaver;
+import fr.utbm.ai.Action;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.tools.Rescale;
 import fr.utbm.world.World;
@@ -14,14 +15,14 @@ import fr.utbm.world.World;
 public class EntityBeaver extends EntityAnimal {
 
 	private boolean hasJump, isEmpty;
-	
+	private AIBeaver brain;
 	/*
 	 * Dog activity : -1 Dont do anything 0 Idle 1 Walk 2 Run 3 Jump
 	 */
 
 	public EntityBeaver(float x, float y, World worldIn) {
 		super(x, y, 54, 32, worldIn);
-		this.text = Rescale.rescale(TextureManager.getTexture(221),0.5f,0.5f);
+		this.text = Rescale.rescale(TextureManager.getTexture(223),0.5f,0.5f);
 		anim = new Animation[6];
 		anim[0] = TextureManager.getAnimation(8);
 		anim[1] = TextureManager.getAnimation(9);
@@ -34,12 +35,13 @@ public class EntityBeaver extends EntityAnimal {
 		activity = -1;
 		perform = false;
 		actionToPerform = -1;
+		brain = new AIBeaver(this);
 	}
 
 	public void update() {
 		if (!perform) {
 			hasJump = false;
-			if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+			/*if (Gdx.input.isKeyPressed(Input.Keys.A)) {
 				actionToPerform = 0;
 				directionToPerform = 1;
 				action(actionToPerform, directionToPerform);
@@ -77,10 +79,31 @@ public class EntityBeaver extends EntityAnimal {
 				action(actionToPerform, directionToPerform);
 			} else {
 				move(0, 0, -1);
+			}*/
+			Action a = brain.updateTask();
+			
+			if(a != null){
+				actionToPerform = a.getAction();
+				directionToPerform = a.getDirection();
+				action(actionToPerform, directionToPerform);
+			}else{
+				move(0,0,-1);
 			}
+
+			
+			
+			
 		} else {
 			action(actionToPerform, directionToPerform);
 		}
+	}
+	public void setFull(){
+		this.text = Rescale.rescale(TextureManager.getTexture(221),0.5f,0.5f);
+		this.isEmpty = false;
+	}
+	public void setEmpty(){
+		this.text = Rescale.rescale(TextureManager.getTexture(223),0.5f,0.5f);
+		this.isEmpty = true;
 	}
 
 	public void action(int actionID, int direction) {
@@ -129,7 +152,12 @@ public class EntityBeaver extends EntityAnimal {
 			break;
 		}
 	}
-
+	
+	
+	
+	
+	
+	
 	@Override
 	public void render(SpriteBatch sp) {
 		if (activity > -1) {

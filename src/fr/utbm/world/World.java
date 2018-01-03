@@ -25,6 +25,7 @@ public class World {
 	private EntityPrettyBird pb3;
 	private EntityPrettyBird pb4;
 	private EntityPrettyBird pb5;
+	private EntityBeaver beaver;
 	
 	
 	private float gravity = -4f;
@@ -44,6 +45,10 @@ public class World {
 	public Block getBlock(int i, int j)
 	{
 		return map.getBlock(i,j);
+	}
+	public Block getBlock(float i, float j)
+	{
+		return map.getBlock((int)i,(int)j);
 	}
 	
 	public void setBlock(int i, int j, Block block)
@@ -93,6 +98,7 @@ public class World {
 		pb3 =  new EntityPrettyBird(20,315,this);
 		pb4 =  new EntityPrettyBird(25,310,this);
 		pb5 =  new EntityPrettyBird(30,305,this);
+		beaver = new EntityBeaver(5,325,this);
 		entities.add(test);
 		//entities.add(new EntityBenenutTree(20, 360, this));
 		entities.add(pb1);
@@ -100,6 +106,7 @@ public class World {
 		entities.add(pb3);
 		entities.add(pb4);
 		entities.add(pb5);
+		entities.add(beaver);
 		render();
 	}
 	
