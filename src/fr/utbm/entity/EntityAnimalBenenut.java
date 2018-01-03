@@ -42,7 +42,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		
 		super(x, y, 15, 18, worldIn);
 		Random r = new Random();
-		growingTime = r.nextInt(500) + 500;
+		growingTime = r.nextInt(10000) + 5000;
 		readyToPlant = r.nextInt(5000) + 5000;
 		if(m > 2)
 		{
@@ -80,7 +80,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			{
 				maturity++;
 				Random r = new Random();
-				growingTime = r.nextInt(500) + 500;
+				growingTime = r.nextInt(10000) + 5000;
 			}
 			else
 			{
@@ -108,7 +108,6 @@ public class EntityAnimalBenenut extends EntityAnimal{
 					}
 					else if(directionToPerform == 1 && world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) != null && world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).isSolid())
 					{
-						System.out.println("je vais essayer de sauter");
 						actionToPerform = 3;
 						directionToPerform = 1;
 						action(actionToPerform,directionToPerform);
@@ -168,7 +167,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 					break;
 					
 		case 3:		if (isOnGround() && !hasJump) {
-						move(0.1f, 10f, 3);
+						move(0.1f, 10f, 1);
 						hasJump = true;
 					} else {
 						move(0.3f * direction, 0, activity);
