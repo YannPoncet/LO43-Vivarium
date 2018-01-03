@@ -28,7 +28,7 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 		directionX = 1;
 		activity = -1;
 		perform = false;
-		actionToPerform = 4;
+		actionToPerform = 0;
 		directionToPerform = 1;
 		timeOnGround = 0;
 		tmp = 0;
