@@ -20,7 +20,11 @@ public class World {
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
-	private EntityPrettyBird hd;
+	private EntityPrettyBird pb1;
+	private EntityPrettyBird pb2;
+	private EntityPrettyBird pb3;
+	private EntityPrettyBird pb4;
+	private EntityPrettyBird pb5;
 	
 	
 	private float gravity = -4f;
@@ -84,10 +88,18 @@ public class World {
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));
 		setBlock(3,320,bs);
-		hd =  new EntityPrettyBird(3,315,this);
+		pb1 =  new EntityPrettyBird(10,325,this);
+		pb2 =  new EntityPrettyBird(15,320,this);
+		pb3 =  new EntityPrettyBird(20,315,this);
+		pb4 =  new EntityPrettyBird(25,310,this);
+		pb5 =  new EntityPrettyBird(30,305,this);
 		entities.add(test);
 		//entities.add(new EntityBenenutTree(20, 360, this));
-		entities.add(hd);
+		entities.add(pb1);
+		entities.add(pb2);
+		entities.add(pb3);
+		entities.add(pb4);
+		entities.add(pb5);
 		render();
 	}
 	
