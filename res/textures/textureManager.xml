@@ -93,8 +93,8 @@
 	<animation id="2" file="animals/hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"	size="1"></animation>
 	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"	size="1"></animation>
 	
-	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="0.0001"	size="1"></animation>
-	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="0.0001"	size="1"></animation>
+	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="1"	size="1"></animation>
+	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="1"	size="1"></animation>
 	
 	<animation id="6" file="animals/cuteFlower/cuteflower-walk.png" wD="8" hD="1" speed="0.5"	size="1"></animation>
 	<animation id="7" file="animals/cuteFlower/cuteflower-eat.png" wD="13" hD="1" speed="0.5"	size="1"></animation>
@@ -104,10 +104,13 @@
 	<animation id="10" file="animals/beaver/beaver-put.png" wD="4" hD="1" speed="0.1"	size="0.5"></animation>
 	<animation id="11" file="animals/beaver/beaver-take.png" wD="4" hD="1" speed="0.1"	size="0.5"></animation>
 	<animation id="12" file="animals/beaver/beaver-walkEmpty.png" wD="6" hD="1" speed="0.05"	size="0.5"></animation>
-	<animation id="13" file="animals/beaver/beaver-walkFull.png" wD="6" hD="1" speed="0.1"	size="0.5"></animation>	
+	<animation id="13" file="animals/beaver/beaver-walkFull.png" wD="6" hD="1" speed="0.1"	size="0.5"></animation>
 	
-	<animation id="14" file="animals/prettyBird/prettyBird-flyH.png" wD="4" hD="1" speed="0.1"	size="1"></animation>	
+	<animation id="14" file="animals/prettyBird/prettyBird-flyH.png" wD="4" hD="1" speed="0.1"	size="1"></animation>
 	<animation id="15" file="animals/prettyBird/prettyBird-flyV.png" wD="4" hD="1" speed="0.1"	size="1"></animation>
+	
+	<animation id="16" file="animals/benenut/benenutForward.png" wD="2" hD="1" speed="0.4"	size="1"></animation>
+	<animation id="17" file="animals/benenut/benenutJump.png" wD="2" hD="1" speed="0.1"	size="1"></animation>
 	
 	
 </textures>
