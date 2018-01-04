@@ -1,0 +1,20 @@
+<entityAnimals>
+
+	<animal id="200" frequence="10" placeNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="208" frequence="10" placeNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="218" frequence="10" placeNeeded="4" biomeID="-1" surface="1" cave="1" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="219" frequence="10" placeNeeded="3" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="221" frequence="10" placeNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="222" frequence="10" placeNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="1" water="0" lava="0"></entity>
+	
+</entityAnimals>
+
+<!-- 
+200 hellHound
+208 benenut
+218 digger
+219 cuteFlower
+221 beaver
+222 prettyBird 
+-->
+	

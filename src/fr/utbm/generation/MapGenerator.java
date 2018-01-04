@@ -9,9 +9,8 @@ import fr.utbm.block.BlockGlass;
 import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
-import fr.utbm.entity.EntityAnimalCuteFlower;
+import fr.utbm.entity.AnimalLinking;
 import fr.utbm.entity.EntityAnimalDigger;
-import fr.utbm.entity.EntityVegetalBenenutTree;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
@@ -82,6 +81,13 @@ public class MapGenerator {
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
+			System.out.print("Generating Animals...");
+			AnimalGenerator animalGen = new AnimalGenerator(seed, M);
+			//To change this generation you have to change the frequence by ID in the biomeManager.xml
+			ArrayList<Integer> animalSurface = animalGen.surfaceAnimalGen(biomeList, surface, surfaceLiquid);
+			System.out.println(" "+chrono.getTime()+"ms");
+			
+			chrono.reset();
 			System.out.print("Placing the Blocks...");
 			
 			int k = 0;
@@ -135,6 +141,12 @@ public class MapGenerator {
 							//if there is a vegetal, we create the vegetal
 							if (vegetalList.get(i)>0) {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
+							}
+							
+							//if there is an animal we create it
+							if(animalSurface.get(i)>0)
+							{
+								AnimalLinking.createEntityByID(i, j, world, animalSurface.get(i));
 							}
 							
 							/* TEMPO */
