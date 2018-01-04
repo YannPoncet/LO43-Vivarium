@@ -11,6 +11,7 @@
 	<texture id="6" file="blocks/blockAsh.png"></texture>
 	<texture id="7" file="blocks/blockStone.png"></texture>
 	<texture id="8" file="blocks/blockObsidian.png"></texture>
+	<texture id="9" file="blocks/blockWood.png"></texture>
 	
 	<!-- Blocks textures with multiple ones -->
 	
