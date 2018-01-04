@@ -52,7 +52,7 @@ public class MapGenerator {
 				//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 				//=>Increase wavelength to get flat map generally ---> BETWEEN 0 & 1 <---
 				//=>Decrease amplitude to get a flat map locally ---> BETWEEN 0 & 1 <---
-				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(0.1,1,15,4, biomeList);
+				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(1,1,15,4, biomeList);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -137,16 +137,6 @@ public class MapGenerator {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
 							}
 							
-							/* TEMPO */
-							if(i == 20)
-							{
-								world.addEntity(new EntityAnimalDigger(i, j+1, world));
-							}/*
-							if(i == 30)
-							{
-								world.addEntity(new EntityBenenutTree(i, j+1, 0, world));
-							}*/
-							/* ----- */
 						}
 						else { //dirt
 							BiomeList.createSurfaceBlock(i, j, world, biomeList.get(k).getId());	

@@ -9,6 +9,7 @@ import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
+import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.entity.EntityPrettyBird;
@@ -27,6 +28,7 @@ public class World {
 	private EntityPrettyBird pb4;
 	private EntityPrettyBird pb5;
 	private EntityBeaver beaver;
+	private EntityAnimalDigger digger;
 	
 	
 	private float gravity = -4f;
@@ -120,6 +122,7 @@ public class World {
 		pb4 =  new EntityPrettyBird(25,310,this);
 		pb5 =  new EntityPrettyBird(30,305,this);
 		beaver = new EntityBeaver(5,325,this);
+		digger = new EntityAnimalDigger(8,325, this);
 		entities.add(test);
 		//entities.add(new EntityBenenutTree(20, 360, this));
 		entities.add(pb1);
@@ -128,6 +131,7 @@ public class World {
 		entities.add(pb4);
 		entities.add(pb5);
 		entities.add(beaver);
+		entities.addIfAbsent(digger);
 		render();
 	}
 	
