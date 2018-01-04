@@ -20,6 +20,14 @@ public class BlockStone extends Block{
 		super(x, y, TextureManager.getTexture(7), w);
 		this.blockId = 7;
 		this.maxHealth = 300;
+		if(bH > 300)
+		{
+			bH = 300;
+		}
+		else if(bH < 1)
+		{
+			bH = 1;
+		}
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
