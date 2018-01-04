@@ -121,7 +121,7 @@ public class EntityBeaver extends EntityAnimal {
 		for(Entity e : this.world.getEntities()){
 			if(e instanceof EntityVegetalTree){
 				EntityVegetalTree tree = (EntityVegetalTree) e;
-				if(Math.abs(this.getX()-tree.getTrunkPos()) < 45){
+				if(Math.abs(this.getX()-tree.getTrunkPos()) < 55){
 					tree.kill();
 				}
 			}
