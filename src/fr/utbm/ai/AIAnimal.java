@@ -14,4 +14,9 @@ public abstract class AIAnimal extends AIBase{
 	
 
 	public abstract Action updateTask();
+	
+	public void objSwitch(){
+		
+	}
+	
 }

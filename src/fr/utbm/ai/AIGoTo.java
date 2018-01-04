@@ -68,7 +68,7 @@ public class AIGoTo extends AIBase{
 						isBlock = true;
 					}
 				}
-				b = animal.getWorldIn().getBlock((animal.getPosX())/16 , animal.getPosY()/16 - 1);
+				b = animal.getWorldIn().getBlock((animal.getPosX())/16 +1, animal.getPosY()/16 - 1);
 				if(b == null && animal.isOnGround()){
 					isBlock = true;
 				}
@@ -78,12 +78,9 @@ public class AIGoTo extends AIBase{
 			}else{
 				act = walkC;
 			}
-			
-			
-			
-			
-			
-			choice = new Action(dir,act);
+			choice = new Action(dir,act,false);
+		}else{
+			choice = new Action(0,-1,true);
 		}
 		
 		
