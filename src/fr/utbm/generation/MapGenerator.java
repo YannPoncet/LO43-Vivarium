@@ -84,7 +84,7 @@ public class MapGenerator {
 			System.out.print("Generating Animals...");
 			AnimalGenerator animalGen = new AnimalGenerator(seed, M);
 			//To change this generation you have to change the frequence by ID in the biomeManager.xml
-			ArrayList<Integer> animalSurface = animalGen.surfaceAnimalGen(biomeList, surface, surfaceLiquid);
+			ArrayList<int[]> animalSurface = animalGen.surfaceAnimalGen(biomeList, surface, surfaceLiquid);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -144,9 +144,14 @@ public class MapGenerator {
 							}
 							
 							//if there is an animal we create it
-							if(animalSurface.get(i)>0)
+							if(animalSurface.get(i)[0]>0)
 							{
-								AnimalLinking.createEntityByID(i, j, world, animalSurface.get(i));
+								AnimalLinking.createEntityByID(i, j, 0, world, animalSurface.get(i)[0]);
+							}
+							
+							if(animalSurface.get(i)[1]>0)
+							{
+								AnimalLinking.createEntityByID(i, j, animalSurface.get(i)[2], world, animalSurface.get(i)[1]);
 							}
 							
 							/* TEMPO */

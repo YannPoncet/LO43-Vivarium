@@ -5,26 +5,26 @@ import fr.utbm.world.World;
 public class AnimalLinking {
 
 	
-	public static void createEntityByID(int x, int y, World w, int ID)
+	public static void createEntityByID(int x, int y, int height, World w, int ID)
 	{
 		switch (ID) {				
 		/*Animals*/
-		case 200: w.addEntity((Entity)(new EntityHellDog(x,y+1,w))); //hellHound
+		case 200: w.addEntity((Entity)(new EntityHellDog(x,y+1+height,w))); //hellHound
 				break;
 		
-		case 208: w.addEntity((Entity)(new EntityAnimalBenenut(x,y+1,w))); //benenut
+		case 208: w.addEntity((Entity)(new EntityAnimalBenenut(x,y+1+height,w))); //benenut
 				break;
 				
-		case 218: w.addEntity((Entity)(new EntityAnimalDigger(x,y+1,w))); //digger
+		case 218: w.addEntity((Entity)(new EntityAnimalDigger(x,y+1+height,w))); //digger
 				break;
 				
-		case 219: w.addEntity((Entity)(new EntityAnimalCuteFlower(x,y+1,w))); //cuteFlower
+		case 219: w.addEntity((Entity)(new EntityAnimalCuteFlower(x,y+1+height,w))); //cuteFlower
 				break;
 		
-		case 221: w.addEntity((Entity)(new EntityBeaver(x,y+1,w))); //beaver
+		case 221: w.addEntity((Entity)(new EntityBeaver(x,y+1+height,w))); //beaver
 				break;
 				
-		case 222: w.addEntity((Entity)(new EntityPrettyBird(x,y+1,w))); //prettyBird
+		case 222: w.addEntity((Entity)(new EntityPrettyBird(x,y+1+height,w))); //prettyBird
 				break;
 		}
 	}
