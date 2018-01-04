@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
+import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
@@ -92,6 +93,26 @@ public class World {
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));
+		for(int i = 0; i < 6 ; i++)
+		{
+			setBlock(i+20, 320, new BlockWood(i+20,320, 0,this));
+			setBlock(i+20, 325, new BlockWood(i+20,325, 0,this));
+			setBlock(i+20, 319, new BlockWood(i+20,319, 0,this));
+			if(i == 0)
+			{
+				setBlock(i+20, 321, new BlockWood(i+20,321, 0,this));
+				setBlock(i+20, 322, new BlockWood(i+20,322, 0,this));
+				setBlock(i+20, 323, new BlockWood(i+20,323, 0,this));
+				setBlock(i+20, 324, new BlockWood(i+20,324, 0,this));
+			}
+			if(i == 5)
+			{
+				setBlock(i+20, 321, new BlockWood(i+20,321, 0,this));
+				setBlock(i+20, 322, new BlockWood(i+20,322, 0,this));
+				setBlock(i+20, 323, new BlockWood(i+20,323, 0,this));
+				setBlock(i+20, 324, new BlockWood(i+20,324, 0,this));
+			}
+		}
 		setBlock(3,320,bs);
 		pb1 =  new EntityPrettyBird(10,325,this);
 		pb2 =  new EntityPrettyBird(15,320,this);
