@@ -127,7 +127,7 @@ public class World {
 		entities.add(pb4);
 		entities.add(pb5);
 		entities.add(beaver);
-		entities.addIfAbsent(digger);
+		addEntity(digger);
 		render();
 		//addEntity(beaver);
 	}

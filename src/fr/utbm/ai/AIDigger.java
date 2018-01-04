@@ -89,7 +89,6 @@ public class AIDigger extends AIAnimal {
 	public void objSwitch(){ //used to know the next objective to do
 		switch(objective){
 		case 0 :
-			System.out.println("DONE");
 			
 			if(Math.random() < 0.2) {
 				rightOrLeft = -1;
