@@ -87,7 +87,7 @@ public class World {
 	
 	/* Call at the World creation */
 	public void create(){
-		MapGenerator.generate(this, 0); //0 to generate a new seed ->6 / 14
+		MapGenerator.generate(this, 1341377708); //0 to generate a new seed ->6 / 14
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));

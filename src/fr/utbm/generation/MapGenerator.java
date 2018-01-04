@@ -32,8 +32,8 @@ public class MapGenerator {
 				seed = Math.floor(Math.random() * M);
 			}
 
-			System.out.println("\n---- STARTING WORLD GENERATION ----  ");
-			
+			System.out.printf("\n---- STARTING WORLD GENERATION WITH SEED %.0f \n----  ",seed);
+
 			chrono.reset();
 			System.out.print("Generating Biomes...");
 				//You can adjust minimum and maximum size of biomes

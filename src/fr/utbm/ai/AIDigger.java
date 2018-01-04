@@ -48,16 +48,19 @@ public class AIDigger extends AIAnimal {
 					hasAnObjective = true;
 					rightOrLeft = -1;
 					actionDecided = new Action(0,0,true);
-				}
+				} else {
 					for (int i=0; i<this.animal.getWidth(); i+=16) { //Blocks below
 						b = animal.getWorldIn().getBlock((animal.getPosX()+i)/16, animal.getPosY()/16-1);
-						if(isEatable(b) && Math.random()<0.2) { //if this block is eatable
-							animal.setToEat(b);
-							hasAnObjective = true;
-							if(i==16) {rightOrLeft = -1;} else {rightOrLeft = 1;}
-							actionDecided = new Action(0,0,true);
+						if(!hasAnObjective) {
+							if(isEatable(b) && Math.random()<0.2) { //if this block is eatable
+								animal.setToEat(b);
+								hasAnObjective = true;
+								if(i<=this.animal.getWidth()/2) {rightOrLeft = -1;} else {rightOrLeft = 1;}
+								actionDecided = new Action(0,0,true);
+							}
 						}
 					}
+				}
 			}
 			
 			if (!hasAnObjective) { //nothing to eat, we move to the right or to the left
@@ -68,6 +71,7 @@ public class AIDigger extends AIAnimal {
 						rightOrLeft = 1;
 					}
 				}
+
 				this.pathFinder.setObjective(animal.getX()+16*rightOrLeft);
 				actionDecided = this.pathFinder.updateTask();
 			}
