@@ -62,7 +62,10 @@ public class RenderManager {
 		RenderManager.blockRender.add(r);
 	}
 	public static void addToEntitiesRender(Renderable r){
-		RenderManager.entitiesRender.add(r);
+		if(!RenderManager.entitiesRender.contains(r)){
+			RenderManager.entitiesRender.add(r);
+		}
+
 	}
 	public static void removeEntityRender(Renderable r){
 		RenderManager.entitiesRender.remove(r);

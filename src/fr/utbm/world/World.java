@@ -83,10 +83,6 @@ public class World {
 	public void render()//ici mettre l'ID du chunk sur lequel se trouve la camera
 	{
 		map.render(0);
-		for(Entity e : this.entities)
-		{
-			RenderManager.addToEntitiesRender(e);
-		}
 	}
 	
 	/* Call at the World creation */
@@ -124,7 +120,7 @@ public class World {
 		beaver = new EntityBeaver(5,325,this);
 		digger = new EntityAnimalDigger(8,325, this);
 		entities.add(test);
-		//entities.add(new EntityBenenutTree(20, 360, this));
+		addEntity(test);
 		entities.add(pb1);
 		entities.add(pb2);
 		entities.add(pb3);
@@ -133,6 +129,7 @@ public class World {
 		entities.add(beaver);
 		entities.addIfAbsent(digger);
 		render();
+		//addEntity(beaver);
 	}
 	
 	public void update()

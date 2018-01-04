@@ -60,29 +60,29 @@ public enum BiomeList {
 	public static void createEntityByID(int x, int y, World w, int ID)
 	{
 		switch (ID) {
-		case 207: w.addEntity((Entity)(new EntityVegetalBenenutTree(x,y+1,w))); //benenut tree
+		case 201: w.addEntity((Entity)(new EntityVegetalBenenutTree(x,y+1,w))); //benenut tree
 				break;
 				
-		case 208: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,0,w))); //treeForest
+		case 211: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,0,w))); //treeForest
 				break;
 				
-		case 209: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,1,w))); //bigTreeForest
+		case 212: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,1,w))); //bigTreeForest
 				break;
 				
-		case 210: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,2,w))); //treeSnow
+		case 213: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,2,w))); //treeSnow
 				break;
 		
-		case 211: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,3,w))); //bigTreeSnow
+		case 214: w.addEntity((Entity)(new EntityVegetalTree(x,y+1,3,w))); //bigTreeSnow
 				break;
 				
-		case 212: w.addEntity((Entity)(new EntityVegetalBush(x,y+1,w))); //bush
+		case 215: w.addEntity((Entity)(new EntityVegetalBush(x,y+1,w))); //bush
 				break;
 				
-		case 213: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,0,w))); //small cactus
+		case 216: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,0,w))); //small cactus
 				break;
 		
-		case 214: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,1,w))); //big cactus
-				break;	
+		case 217: w.addEntity((Entity)(new EntityVegetalCactus(x,y+1,1,w))); //big cactus
+				break;
 	}
 		
 	}

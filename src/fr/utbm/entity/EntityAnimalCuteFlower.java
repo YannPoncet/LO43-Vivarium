@@ -58,7 +58,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 					} else {
 						move(0, 0, 0);
 					}
-		System.out.println("huhi");
+		//System.out.println("huhi");
 					break;
 		
 		case 2: 	
