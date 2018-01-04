@@ -64,6 +64,9 @@ public class RenderManager {
 	public static void addToEntitiesRender(Renderable r){
 		RenderManager.entitiesRender.add(r);
 	}
+	public static void removeEntityRender(Renderable r){
+		RenderManager.entitiesRender.remove(r);
+	}
 	public static void setBiomeList(ArrayList<Biome> biomeList) {
 		RenderManager.biomeList = biomeList;
 	}

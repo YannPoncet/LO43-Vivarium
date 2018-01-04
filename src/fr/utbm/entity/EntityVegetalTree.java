@@ -20,6 +20,14 @@ public class EntityVegetalTree extends EntityVegetal {
 	{
 		voidUnder();
 	}
+	public float getTrunkPos(){
+		return this.x + (this.width/2);
+	}
+	
+	
+	
+	
+	
 	
 	public void voidUnder()
 	{

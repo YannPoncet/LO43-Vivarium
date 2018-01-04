@@ -4,14 +4,21 @@ import fr.utbm.entity.EntityBeaver;
 
 public class AIBeaver extends AIAnimal {
 
+	private EntityBeaver animal;
+	private boolean treeChoosen;
 	private boolean isHomeFinish;
 	private AIGoTo pathFinder;
 	
 	public AIBeaver(EntityBeaver e) {
 		super(e);
+		this.animal = e;
+		
+		this.isHomeFinish = false;
+		this.treeChoosen = false;
 		this.pathFinder = new AIGoTo(e);
 		this.pathFinder.setControls(1, 4);
-		this.pathFinder.setObjective(400*16);
+		this.pathFinder.setObjective(20*16);
+
 	}
 	
 	@Override
@@ -21,10 +28,42 @@ public class AIBeaver extends AIAnimal {
 		case 0:
 			actionDecided = this.pathFinder.updateTask();
 			break;
+		case 1:
+			actionDecided = this.pathFinder.updateTask();
+			break;
+		case 2:
+			actionDecided = new Action(1,0,true);
+			break;
+		}
+		if(actionDecided.isFinish()){
+			objSwitch();
 		}
 		
-		
+		actionDecided.setFinish(isHomeFinish);
 		return actionDecided;
 	}
+	
+	@Override
+	public void objSwitch(){
+		switch(objective){
+		case 0 :
+			this.pathFinder.setObjective(this.animal.getNearestTree());
+			
+			this.objective = 1;
+			break;
+		case 1 :
+			this.objective = 2;
+			break;
+		case 2 :
+			this.pathFinder.setObjective(this.animal.getNearestTree());
+			this.objective = 1;
+			break;
+		}
+		
+	}
+
+	
+	
+	
 
 }
