@@ -5,21 +5,30 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.utbm.ai.AIDigger;
+import fr.utbm.ai.Action;
+import fr.utbm.block.Block;
 import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.tools.CollisionAABB;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class EntityAnimalDigger extends EntityAnimal {
-	int dmg;
-	int regenOnEat;
+	private int dmg;
+	private int regenOnEat;
+	private AIDigger brain;
+	private boolean hasJump;
+	private Block toEat;
 	
 	public EntityAnimalDigger(float x, float y, World worldIn) {
 		super(x, y, 48, 15, worldIn);
 		text = TextureManager.getTexture(218);
-		anim = new Animation[2];
+		anim = new Animation[3];
 		anim[0] = TextureManager.getAnimation(4);
 		anim[1] = TextureManager.getAnimation(5);
+		anim[2] = TextureManager.getAnimation(18);
 		maxHealth = 300;
 		health = 100;
 		directionX = 1;
@@ -29,6 +38,8 @@ public class EntityAnimalDigger extends EntityAnimal {
 		directionToPerform = 1;
 		regenOnEat = 50;
 		dmg = 24;
+		brain = new AIDigger(this);
+		hasJump = false;
 	}
 	
 	public void update(){
@@ -36,64 +47,52 @@ public class EntityAnimalDigger extends EntityAnimal {
 			dead = true;
 		}
 		
-		if(!perform){
-			if(directionToPerform == 1 && (world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) == null || !world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).isSolid()))
-			{
-				actionToPerform = 1;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			} else if ( directionToPerform == 1 && (
-						world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).getBlockType() == BlockType.STONE ||
-						world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).getBlockType() == BlockType.DIRT
-					  )) {
-				actionToPerform = 2;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			} else if ((world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)) == null || !world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).isSolid())){
-				actionToPerform = 1;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			} else if ((
-						world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).getBlockType() == BlockType.STONE ||
-						world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).getBlockType() == BlockType.DIRT
-				  )) {
-				actionToPerform = 2;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}
-			else {
-				directionToPerform = -directionToPerform;
-				activity = -1;
-			}
-		}else{
+		if (!perform) {
+			hasJump = false;
 			
+			Action a = brain.updateTask();
+			if (!a.isFinish()) {
+				actionToPerform = a.getAction();
+				directionToPerform = a.getDirection();
+				action(actionToPerform, directionToPerform);
+			} else {
+				actionToPerform = a.getAction();
+				directionToPerform = this.directionX;
+				action(actionToPerform, directionToPerform);
+			}
+
+		} else {
+			action(actionToPerform, directionToPerform);
 		}
 	}
 	
 	public void action(int actionID, int direction) {
 		switch (actionID) {
-		case 0 :	move(0,0,0);
+		case -1 :	move(0,0,-1);
 					break;
 					
-		case 1 :	if(isOnGround()) {
+		case 0 :	if(isOnGround()) {
 						move(1f*direction, 0, 0);
-						health--;
+						//health--;
 					} else {
-						move(0, 0, 0);
+						move(0, 0, activity);
 					}
 					break;
 		
-		case 2: 	if (isOnGround()) {
+		case 1: 	if (isOnGround()) { //We damage the block to the left or to the right and we regen the digger
 						move(0, 0, 1);
 						
-						if(health+regenOnEat > maxHealth) {
+						if(health+regenOnEat > maxHealth) { //regen
 							health=maxHealth;
 						} else {
 							health+=regenOnEat;
 						}
-								
 						
-						if(direction == 1) {
+						if(this.toEat != null) {
+							this.toEat.damage(dmg);
+						}
+						/*
+						if(direction == 1) { //damage
 							if(world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) != null) {
 								world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).damage(dmg);
 							}
@@ -101,13 +100,24 @@ public class EntityAnimalDigger extends EntityAnimal {
 							if(world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)) != null) {
 								world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).damage(dmg);
 							}
-						}
+						}*/
+						
+					} else { //We apply gravity
+						move(0, 0, activity);
+					}
+					break;
+		
+		case 2: //Jump
+					if (isOnGround() && !hasJump) {
+						move(0.1f, 10f, 2);
+						hasJump = true;
 					} else {
-						move(0, 0, 1);
+						move(0.1f * direction, 0, activity);
 					}
 					break;
 		}
 	}
+	
 	
 	@Override
 	public void render(SpriteBatch sp) {
@@ -128,5 +138,12 @@ public class EntityAnimalDigger extends EntityAnimal {
 				sp.draw(this.text, this.x + this.text.getWidth(), this.y, -this.text.getWidth(), this.text.getHeight());
 			}
 		}
+	}
+	
+	public void setToEat(Block b) {
+		this.toEat = b;
+	}
+	public Block getToEat() {
+		return this.toEat;
 	}
 }

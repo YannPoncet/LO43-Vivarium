@@ -32,8 +32,8 @@ public class MapGenerator {
 				seed = Math.floor(Math.random() * M);
 			}
 
-			System.out.println("\n---- STARTING WORLD GENERATION ----  ");
-			
+			System.out.printf("\n---- STARTING WORLD GENERATION WITH SEED %.0f \n----  ",seed);
+
 			chrono.reset();
 			System.out.print("Generating Biomes...");
 				//You can adjust minimum and maximum size of biomes
@@ -51,7 +51,7 @@ public class MapGenerator {
 				//To fill the parameters: generateAndGetNoise(double amplitude, double wavelength, int octaves, double divisor)
 				//=>Increase wavelength to get flat map generally ---> BETWEEN 0 & 1 <---
 				//=>Decrease amplitude to get a flat map locally ---> BETWEEN 0 & 1 <---
-				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(0.1,1,15,4, biomeList);
+				ArrayList<Integer> surface = noiseGen.generateAndGetNoise(1,1,15,4, biomeList);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -84,7 +84,7 @@ public class MapGenerator {
 			System.out.print("Generating Animals...");
 			AnimalGenerator animalGen = new AnimalGenerator(seed, M);
 			//To change this generation you have to change the frequence by ID in the biomeManager.xml
-			ArrayList<Integer> animalSurface = animalGen.surfaceAnimalGen(biomeList, surface, surfaceLiquid);
+			ArrayList<int[]> animalSurface = animalGen.surfaceAnimalGen(biomeList, surface, surfaceLiquid);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -142,23 +142,16 @@ public class MapGenerator {
 							if (vegetalList.get(i)>0) {
 								BiomeList.createEntityByID(i, j, world, vegetalList.get(i));
 							}
-							
 							//if there is an animal we create it
-							if(animalSurface.get(i)>0)
+							if(animalSurface.get(i)[0]>0)
 							{
-								AnimalLinking.createEntityByID(i, j, world, animalSurface.get(i));
+								AnimalLinking.createEntityByID(i, j, 0, world, animalSurface.get(i)[0]);
 							}
 							
-							/* TEMPO */
-							if(i == 20)
+							if(animalSurface.get(i)[1]>0)
 							{
-								world.addEntity(new EntityAnimalDigger(i, j+1, world));
-							}/*
-							if(i == 30)
-							{
-								world.addEntity(new EntityBenenutTree(i, j+1, 0, world));
-							}*/
-							/* ----- */
+								AnimalLinking.createEntityByID(i, j, animalSurface.get(i)[2], world, animalSurface.get(i)[1]);
+							}
 						}
 						else { //dirt
 							BiomeList.createSurfaceBlock(i, j, world, biomeList.get(k).getId());	

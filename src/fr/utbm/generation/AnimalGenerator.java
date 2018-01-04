@@ -10,6 +10,8 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 
 import fr.utbm.biome.Biome;
 import fr.utbm.entity.Entity;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class AnimalGenerator extends PseudoRandom {
 
@@ -66,6 +68,51 @@ public class AnimalGenerator extends PseudoRandom {
 		}
 	}
 	
+	private ArrayList<int[]> getCaveAnimals()
+	{
+		ArrayList<int[]> caveAnimalList = new ArrayList<int[]>();
+		
+		for(int[] animal : this.animalList)
+		{
+			if(animal[5]==1)
+			{
+				caveAnimalList.add(animal);
+			}
+		}
+		
+		return caveAnimalList;
+	}
+	
+	private ArrayList<int[]> getHellAnimals()
+	{
+		ArrayList<int[]> hellAnimalList = new ArrayList<int[]>();
+		
+		for(int[] animal : this.animalList)
+		{
+			if(animal[6]==1)
+			{
+				hellAnimalList.add(animal);
+			}
+		}
+		
+		return hellAnimalList;
+	}
+	
+	private ArrayList<int[]> getFlyingAnimals()
+	{
+		ArrayList<int[]> flyingAnimalList = new ArrayList<int[]>();
+		
+		for(int[] animal : this.animalList)
+		{
+			if(animal[7]==1)
+			{
+				flyingAnimalList.add(animal);
+			}
+		}
+		
+		return flyingAnimalList;
+	}
+	
 	//pour savoir si l'animal aquatique est dans l'eau ou si l'animal terrestre est sur le sol à cette position
 	private boolean waterTest(int[] animal, int[] surfaceLiquid, int i)
 	{
@@ -83,7 +130,7 @@ public class AnimalGenerator extends PseudoRandom {
 		}
 	}
 	
-	private boolean placeTest(int[] animal, ArrayList<Integer> surface, Biome b, int hauteur, int i, int sumBiomeLength)
+	private boolean hasPlaceTest(int[] animal, ArrayList<Integer> surface, Biome b, int hauteur, int i, int sumBiomeLength)
 	{
 		/*on vérifie: 
 		 *- si le nombre de blocs requis pour l'animal est à la bonne hauteur (on a une surface plate)
@@ -101,7 +148,7 @@ public class AnimalGenerator extends PseudoRandom {
 	}
 	
 
-	public ArrayList<Integer> surfaceAnimalGen(ArrayList<Biome> biomeList, ArrayList<Integer> surface, int[] surfaceLiquid)
+	public ArrayList<int[]> surfaceAnimalGen(ArrayList<Biome> biomeList, ArrayList<Integer> surface, int[] surfaceLiquid)
 	{
 		/*
 		 * Il faut "placeNeeded" blocks de large sans pente pour pouvoir y placer un animal
@@ -109,11 +156,12 @@ public class AnimalGenerator extends PseudoRandom {
 		 * On choisit un animal aléatoirement dans la liste de tous les animaux
 		 * On test si l'animal requiert un biome spécifique
 		 * On ajoute l'animal à la liste si nécessaire
-		 * à la fin on retourne une arrayList d'ID d'animaux
+		 * à la fin on retourne une arrayList d'ID d'animaux (terrestres en [0] et aériens en [1])
 		 * pour chaque block de la surface : 0 si pas d'animal, ID de l'animal sinon
 		 */
 		
-		ArrayList<Integer> surfaceAnimal = new ArrayList<Integer>(); // à renvoyer
+		ArrayList<int[]> surfaceAnimal = new ArrayList<>(); // à renvoyer
+		ArrayList<int[]> flyingAnimalList = getFlyingAnimals(); //liste des animaux volants
 		int sumBiomeLength=0; // pour ajuster l'index de surface
 		
 		//on traverse les biomes
@@ -126,38 +174,48 @@ public class AnimalGenerator extends PseudoRandom {
 				//on test si on est sur les bords de map (qui contiennent du verre)
 				if(i+sumBiomeLength<1 || i+sumBiomeLength>surface.size()-2)
 				{
-					surfaceAnimal.add(0);
+					surfaceAnimal.add(new int[3]);
 				}
 				else
 				{
+					surfaceAnimal.add(new int[3]);
+					
+					/*Animaux volants*/
+					
+					int[] randomFlyingAnimal = flyingAnimalList.get((int)((super.getNextRandom()+0.5)*(flyingAnimalList.size()-1))); //animal aléatoire parmi les animaux volants
+					double randomFlyingAnimalFrequence = (super.getNextRandom()+0.5)*100; //frequence aleatoire entre 0 et 100
+					
+					if(randomFlyingAnimalFrequence<=randomFlyingAnimal[1])
+					{
+						//variable aléatoire entre la surface+10 (pour ne pas apparaitre sur un autre animal) et la maxHeight-1
+						int randomFlyingAnimalHeight = (int)((Chunk.CHUNK_HEIGHT-(1+10+Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i+sumBiomeLength)+surfaceLiquid[i+sumBiomeLength]+1))*(super.getNextRandom()+0.5)+10); 
+						surfaceAnimal.get(i+sumBiomeLength)[1] = randomFlyingAnimal[0];
+						surfaceAnimal.get(i+sumBiomeLength)[2] = randomFlyingAnimalHeight;
+						System.out.println(i+sumBiomeLength);
+					}
+					
+					/*Animaux terrestres*/
 					hauteur = surface.get(i+sumBiomeLength);
 					int[] randomAnimal = animalList.get((int)((super.getNextRandom()+0.5)*(animalList.size()-1))); //animal aléatoire parmi les animaux existants
 					double randomAnimalFrequence = (super.getNextRandom()+0.5)*100; //frequence aleatoire entre 0 et 100
-										
-					/*si on est dans la bonne plage de fréquence
-					 * 
-					 */
+					
 					if(randomAnimal[4]==1 //il est à la surface
 						&& randomAnimalFrequence<=randomAnimal[1] //la fréquence aléatoire est dans la bonne range
-						&& placeTest(randomAnimal, surface, b, hauteur, i, sumBiomeLength) //il a la place d'apparaitre 
+						&& hasPlaceTest(randomAnimal, surface, b, hauteur, i, sumBiomeLength) //il a la place d'apparaitre 
 						&& (randomAnimal[3]==-1 || randomAnimal[3]==b.getId()) //il n'a pas de biome attitré ou est dans le bon biome
 						&& waterTest(randomAnimal, surfaceLiquid, i+sumBiomeLength)) //est dans l'eau si il est aquatique, en dehors de l'eau sinon
 					{
-						surfaceAnimal.add(randomAnimal[0]); // on ajoute l'index de l'animal à la liste
+						surfaceAnimal.get(i+sumBiomeLength)[0]=randomAnimal[0]; // on ajoute l'index de l'animal à la liste
 						//on ajoute la place necessaire à l'animal-1 blocs sur lesquels on ne peut pas ajouter d'animal (ID=0)
 						//ce qui correspond à la taille de l'animal à l'écran
 						for(int k=1; k<randomAnimal[2]; k++)
 						{
 							if(i+k<b.getWidth() && i+sumBiomeLength+k<surface.size()) //pour ne pas ajouter plus que la taille de la carte
 							{
-								surfaceAnimal.add(0);
+								surfaceAnimal.add(new int[3]);
 								i++;
 							}
 						}
-					}
-					else
-					{
-						surfaceAnimal.add(0);
 					}
 				}
 			}

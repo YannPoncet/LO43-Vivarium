@@ -96,8 +96,8 @@
 	<animation id="2" file="animals/hellDog/hell-hound-run.png" wD="5" hD="1" speed="0.1"	size="1"></animation>
 	<animation id="3" file="animals/hellDog/hell-hound-jump.png" wD="6" hD="1" speed="0.1"	size="1"></animation>
 	
-	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="1"	size="1"></animation>
-	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="1"	size="1"></animation>
+	<animation id="4" file="animals/digger/digger-walk.png" wD="2" hD="1" speed="0.1"	size="1"></animation>
+	<animation id="5" file="animals/digger/digger-eat.png" wD="8" hD="1" speed="0.1"	size="1"></animation>
 	
 	<animation id="6" file="animals/cuteFlower/cuteflower-walk.png" wD="8" hD="1" speed="0.5"	size="1"></animation>
 	<animation id="7" file="animals/cuteFlower/cuteflower-eat.png" wD="13" hD="1" speed="0.5"	size="1"></animation>
@@ -115,5 +115,5 @@
 	<animation id="16" file="animals/benenut/benenutForward.png" wD="2" hD="1" speed="0.4"	size="1"></animation>
 	<animation id="17" file="animals/benenut/benenutJump.png" wD="2" hD="1" speed="0.1"	size="1"></animation>
 	
-	
+	<animation id="18" file="animals/digger/digger.png" wD="1" hD="1" speed="1"	size="1"></animation>
 </textures>
