@@ -15,12 +15,12 @@ import fr.utbm.world.World;
 
 public class EntityAnimalBenenut extends EntityAnimal{
 	
-	private int maturity;
-	private int growingTime;
-	private int readyToPlant;
+	private int maturity; //benenut has 3 states of maturity : 0 (younger can't move), 1 (still can't move), 2 (can move and plant until a random time)
+	private int growingTime; //time left before he gets the superior state of maturity
+	private int readyToPlant; //after a time, he will try to plant in order to generate a bennutTree
 	private boolean hasJump = false;
-	private AIBenenut brain;
-	private int ttd = 500;
+	private AIBenenut brain; //little intelligence to enable movements
+	private int ttd = 500; //time to death : decrement after he is ready to be planted
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
@@ -33,16 +33,16 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(16);
 		anim[1] = TextureManager.getAnimation(17);
-		maxHealth = 100;
-		health = 100;
-		directionX = r.nextInt(2);
+		maxHealth = 10;
+		health = 10;
+		directionX = r.nextInt(2); //Gives a random beginning direction
 		if(directionX == 0)
 		{
 			directionX = -1;
 		}
 		activity = -1;
 		perform = false;
-		actionToPerform = 0;
+		actionToPerform = 0; 
 		directionToPerform = 1;
 		brain = new AIBenenut(this);
 	}
@@ -66,8 +66,8 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(16);
 		anim[1] = TextureManager.getAnimation(17);
-		maxHealth = 100;
-		health = 100;
+		maxHealth = 10;
+		health = 10;
 		directionX = r.nextInt(2);
 		if(directionX == 0)
 		{
@@ -80,7 +80,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		brain = new AIBenenut(this);
 	}
 	
-	public int getMaturity()
+	public int getMaturity() //Useful to refresh the array of entityVegetalBenenutTree
 	{
 		return maturity;
 	}
@@ -88,13 +88,13 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	@Override
 	public void update()
 	{
-		if(maturity < 2)
+		if(maturity < 2) //Don't allow benenut to move before he gets the 3rd stage of maturity
 		{
-			if(growingTime == 0)
+			if(growingTime == 0) //if he is mature
 			{
-				maturity++;
+				maturity++; //he gets the superior maturity stage
 				Random r = new Random();
-				growingTime = r.nextInt(10000) + 5000;
+				growingTime = r.nextInt(10000) + 5000; //and another random is assigned for the time before the next stage
 			}
 			else
 			{
@@ -104,13 +104,13 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		}
 		else
 		{
-			if(readyToPlant <= 0)
+			if(readyToPlant <= 0) //if he is ready to be planted
 			{
 				text = TextureManager.getTexture(208 + maturity);
 				readyToPlant = 0;
-				planting();
+				planting(); //he will try to if conditions are there
 			}
-			else
+			else //otherwise, we continue to move
 			{
 				move();
 				readyToPlant--;
@@ -125,13 +125,19 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	
 	public void planting()
 	{
-		ttd--;
-		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && (world.getBlock((int)(x/16), (int)((y/16)-1)).getID() == 1 || world.getBlock((int)(x/16), (int)((y/16)-1)).getID() == 2))
+		ttd--; //if he is ready to be planted, but the function is still called, it means conditions weren't united, or the benenut is stuck somewhere, so we decrement the timeToDeath
+		//if there is dirt under
+		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && world.getBlock((int)(x/16), (int)((y/16)-1)).getBlockType() == BlockType.DIRT)
 		{
+			//if there is dirt under the block on the right and there are no solid block on the right (because the BenenutTree needs 2 blocks one next to the other)
 			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && (world.getBlock((int)((x/16)+1), (int)(y/16)) == null || !world.getBlock((int)((x/16)+1), (int)(y/16)).isSolid()))
 			{
-				dead = true;
-				world.addEntity(new EntityVegetalBenenutTree((int)((x/16)-1), (int)(y/16), 0, world));
+				dead = true; //we kill it
+				world.addEntity(new EntityVegetalBenenutTree((int)((x/16)-1), (int)(y/16), 0, world)); //and we create a benenutTree
+			}
+			else
+			{
+				move();
 			}
 		}
 		else
@@ -145,14 +151,14 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		case -1:
 			move(0, 0, -1);
 			break;
-		case 0:
+		case 0: //useless for now but there is a doubt : to fix
 			if (isOnGround()) {
 				move(0, 0, 0);
 			} else {
 				move(0, 0, activity);
 			}
 			break;
-		case 1:
+		case 1: //Jump
 			if (isOnGround() && !hasJump) {
 				move(0.4f * direction, 8f, 1);
 				hasJump = true;
@@ -160,7 +166,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 				move(0.4f * direction, 0, activity);
 			}
 			break;
-		case 2:
+		case 2: //Walk
 			if (isOnGround()) {
 				move(0.1f * direction, 0, 0);
 			}
