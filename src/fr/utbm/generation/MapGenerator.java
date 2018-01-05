@@ -10,7 +10,6 @@ import fr.utbm.block.BlockLava;
 import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
 import fr.utbm.entity.AnimalLinking;
-import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.render.RenderManager;
 import fr.utbm.tools.Chrono;
 import fr.utbm.world.Chunk;
@@ -85,6 +84,7 @@ public class MapGenerator {
 			AnimalGenerator animalGen = new AnimalGenerator(seed, M);
 			//To change this generation you have to change the frequence by ID in the biomeManager.xml
 			ArrayList<int[]> animalSurface = animalGen.surfaceAnimalGen(biomeList, surface, surfaceLiquid);
+			ArrayList<ArrayList<Integer>> animalCave = animalGen.caveEntityGen(caves, surface);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			chrono.reset();
@@ -122,6 +122,11 @@ public class MapGenerator {
 							else {
 								world.getMap().setBlock(i, j, new BlockWater(i,j,0,world));
 							}
+						}
+						
+						if(animalCave.get(i).get(j)>0)
+						{
+							AnimalLinking.createEntityByID(i, j, 0, world, animalCave.get(i).get(j));
 						}
 					}
 					else
