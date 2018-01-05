@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import fr.utbm.block.BlockType;
+import fr.utbm.ai.AIBenenut;
+import fr.utbm.ai.Action;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
@@ -17,6 +18,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	private int growingTime;
 	private int readyToPlant;
 	private boolean hasJump = false;
+	private AIBenenut brain;
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
@@ -35,7 +37,12 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		activity = -1;
 		perform = false;
 		actionToPerform = 0;
-		directionToPerform = 1;
+		directionToPerform = r.nextInt(1);
+		if(directionToPerform == 0)
+		{
+			directionToPerform = -1;
+		}
+		brain = new AIBenenut(this);
 	}
 	
 	public EntityAnimalBenenut(float x, float y, int m, World worldIn) {
@@ -63,7 +70,12 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		activity = -1;
 		perform = false;
 		actionToPerform = 0;
-		directionToPerform = 1;
+		directionToPerform = r.nextInt(1);
+		if(directionToPerform == 0)
+		{
+			directionToPerform = -1;
+		}
+		brain = new AIBenenut(this);
 	}
 	
 	public int getMaturity()
@@ -98,35 +110,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			}
 			else
 			{
-				//System.out.println("Dans le benenut en " + (int)(x/16) + " ; " + (int)(y/16) + " et le bloc de trou est ");
-				if(!perform){
-					if(directionToPerform == 1 && (world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) == null || !world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).isSolid()))
-					{
-						actionToPerform = 1;
-						directionToPerform = 1;
-						action(actionToPerform,directionToPerform);
-					}
-					else if(directionToPerform == 1 && world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) != null && world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).isSolid())
-					{
-						actionToPerform = 3;
-						directionToPerform = 1;
-						action(actionToPerform,directionToPerform);
-					}
-					else if ((world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)) == null || !world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).isSolid())){
-						actionToPerform = 1;
-						directionToPerform = -1;
-						action(actionToPerform,directionToPerform);
-					}
-					else
-					{
-						directionToPerform = -directionToPerform;
-						activity = -1;
-					}
-				}
-				else
-				{
-		            action(actionToPerform, directionToPerform);
-		        }
+				move();
 				readyToPlant--;
 			}
 		}
@@ -138,41 +122,45 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		{
 			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && (world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getID() == 1 || world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getID() == 2))
 			{
-				//ANIMATION
 				dead = true;
 				world.addEntity(new EntityVegetalBenenutTree((int)((x/16)-1), (int)(y/16), 0, world));
 			}
 		}
 		else
 		{
-			//move();
+			move();
 		}
 	}
 	
 	public void action(int actionID, int direction) {
 		switch (actionID) {
-		case 0 :	move(0,0,0);
-					break;
-					
-		case 1 :	if(isOnGround()) {
-						move(0.1f*direction, 0, 0);
-					} else {
-						move(0, 0, 0);
-					}
-					break;
-		
-		case 2: 	if (isOnGround()) {
-						move(0, 0, 1);
-					}
-					break;
-					
-		case 3:		if (isOnGround() && !hasJump) {
-						move(0.1f, 10f, 1);
-						hasJump = true;
-					} else {
-						move(0.3f * direction, 0, activity);
-					}
-					break;
+		case -1:
+			move(0, 0, -1);
+			break;
+		case 0:
+			if (isOnGround()) {
+				move(0, 0, 0);
+			} else {
+				move(0, 0, activity);
+			}
+			break;
+		case 1:
+			if (isOnGround() && !hasJump) {
+				move(0.1f * direction, 6f, 1);
+				hasJump = true;
+			} else {
+				move(0.2f * direction, 0, activity);
+			}
+			break;
+		case 2:
+			if (isOnGround()) {
+				move(0.1f * direction, 0, 0);
+			}
+			else
+			{
+				move(0, 0, activity);
+			}
+			break;
 		}
 	}
 	
@@ -194,6 +182,26 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			} else if (directionX == 1) {
 				sp.draw(this.text, this.x + this.text.getWidth(), this.y, -this.text.getWidth(), this.text.getHeight());
 			}
+		}
+	}
+	
+	public void move()
+	{
+		if (!perform) {
+			hasJump = false;
+			Action a = brain.updateTask();
+			if (!a.isFinish()) {
+				actionToPerform = a.getAction();
+				directionToPerform = a.getDirection();
+				action(actionToPerform, directionToPerform);
+			} else {
+				actionToPerform = a.getAction();
+				directionToPerform = this.directionX;
+				action(actionToPerform, directionToPerform);
+			}
+
+		} else {
+			action(actionToPerform, directionToPerform);
 		}
 	}
 }

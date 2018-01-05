@@ -59,4 +59,13 @@ public abstract class EntityAnimal extends Entity{
 		}
 
 	}
+	
+	public int getDirectionX()
+	{
+		return directionX;
+	}
+	public void changeDirectionX()
+	{
+		directionX = -directionX;
+	}
 }
