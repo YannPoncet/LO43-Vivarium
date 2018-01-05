@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fr.utbm.ai.AIBenenut;
 import fr.utbm.ai.Action;
+import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
@@ -19,6 +20,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	private int readyToPlant;
 	private boolean hasJump = false;
 	private AIBenenut brain;
+	private int ttd = 500;
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
@@ -33,15 +35,15 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim[1] = TextureManager.getAnimation(17);
 		maxHealth = 100;
 		health = 100;
-		directionX = 1;
+		directionX = r.nextInt(2);
+		if(directionX == 0)
+		{
+			directionX = -1;
+		}
 		activity = -1;
 		perform = false;
 		actionToPerform = 0;
-		directionToPerform = r.nextInt(1);
-		if(directionToPerform == 0)
-		{
-			directionToPerform = -1;
-		}
+		directionToPerform = 1;
 		brain = new AIBenenut(this);
 	}
 	
@@ -66,15 +68,15 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim[1] = TextureManager.getAnimation(17);
 		maxHealth = 100;
 		health = 100;
-		directionX = 1;
+		directionX = r.nextInt(2);
+		if(directionX == 0)
+		{
+			directionX = -1;
+		}
 		activity = -1;
 		perform = false;
 		actionToPerform = 0;
-		directionToPerform = r.nextInt(1);
-		if(directionToPerform == 0)
-		{
-			directionToPerform = -1;
-		}
+		directionToPerform = 1;
 		brain = new AIBenenut(this);
 	}
 	
@@ -114,13 +116,19 @@ public class EntityAnimalBenenut extends EntityAnimal{
 				readyToPlant--;
 			}
 		}
+
+		if(ttd < 1)
+		{
+			dead = true;
+		}
 	}
 	
 	public void planting()
 	{
+		ttd--;
 		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && (world.getBlock((int)(x/16), (int)((y/16)-1)).getID() == 1 || world.getBlock((int)(x/16), (int)((y/16)-1)).getID() == 2))
 		{
-			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && (world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getID() == 1 || world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getID() == 2))
+			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && (world.getBlock((int)((x/16)+1), (int)(y/16)) == null || !world.getBlock((int)((x/16)+1), (int)(y/16)).isSolid()))
 			{
 				dead = true;
 				world.addEntity(new EntityVegetalBenenutTree((int)((x/16)-1), (int)(y/16), 0, world));
@@ -146,7 +154,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			break;
 		case 1:
 			if (isOnGround() && !hasJump) {
-				move(0.4f * direction, 6f, 1);
+				move(0.4f * direction, 8f, 1);
 				hasJump = true;
 			} else {
 				move(0.4f * direction, 0, activity);
