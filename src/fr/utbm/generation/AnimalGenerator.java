@@ -191,7 +191,6 @@ public class AnimalGenerator extends PseudoRandom {
 						int randomFlyingAnimalHeight = (int)((Chunk.CHUNK_HEIGHT-(1+10+Map.LIMIT_SURFACE+MapGenerator.DIRT_SURFACE+surface.get(i+sumBiomeLength)+surfaceLiquid[i+sumBiomeLength]+1))*(super.getNextRandom()+0.5)+10); 
 						surfaceAnimal.get(i+sumBiomeLength)[1] = randomFlyingAnimal[0];
 						surfaceAnimal.get(i+sumBiomeLength)[2] = randomFlyingAnimalHeight;
-						System.out.println(i+sumBiomeLength);
 					}
 					
 					/*Animaux terrestres*/

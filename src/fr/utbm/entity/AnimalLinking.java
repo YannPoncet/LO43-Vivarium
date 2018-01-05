@@ -15,7 +15,7 @@ public class AnimalLinking {
 		case 208: w.addEntity(new EntityAnimalBenenut(x,y+1+height,w)); //benenut
 				break;
 				
-		case 218: w.addEntity(new EntityAnimalDigger(x,y+1+height,w)); //digger
+		case 218: w.addEntity(new EntityAnimalBenenut(x,y+1+height,w)); //digger
 				break;
 				
 		case 219: w.addEntity(new EntityAnimalCuteFlower(x,y+1+height,w)); //cuteFlower

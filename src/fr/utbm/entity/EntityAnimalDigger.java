@@ -87,8 +87,9 @@ public class EntityAnimalDigger extends EntityAnimal {
 						} else {
 							health+=regenOnEat;
 						}
-						
+
 						if(this.toEat != null) {
+							
 							this.toEat.damage(dmg);
 						}
 						/*
