@@ -72,7 +72,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 					break;
 					
 		case 0 :	if(isOnGround()) {
-						move(1f*direction, 0, 0);
+						move(0.5f*direction, 0, 0);
 						//health--;
 					} else {
 						move(0, 0, activity);
@@ -81,6 +81,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 		
 		case 1: 	if (isOnGround()) { //We damage the block to the left or to the right and we regen the digger
 						move(0, 0, 1);
+						directionX = direction;
 						
 						if(health+regenOnEat > maxHealth) { //regen
 							health=maxHealth;
@@ -89,7 +90,6 @@ public class EntityAnimalDigger extends EntityAnimal {
 						}
 
 						if(this.toEat != null) {
-							
 							this.toEat.damage(dmg);
 						}
 						/*
