@@ -3,6 +3,8 @@ package fr.utbm.ai;
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockType;
 import fr.utbm.entity.EntityAnimalDigger;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class AIDigger extends AIAnimal {
 	private EntityAnimalDigger animal;
@@ -55,7 +57,7 @@ public class AIDigger extends AIAnimal {
 							if(isEatable(b) && Math.random()<0.2) { //if this block is eatable
 								animal.setToEat(b);
 								hasAnObjective = true;
-								if(i<=this.animal.getWidth()/2) {rightOrLeft = -1;} else {rightOrLeft = 1;}
+								if(i<=this.animal.getWidth()/2) {rightOrLeft = -1; System.out.println("ioehrilrjk,");} else {rightOrLeft = 1;}
 								actionDecided = new Action(0,0,true);
 							}
 						}
@@ -72,13 +74,18 @@ public class AIDigger extends AIAnimal {
 					}
 				}
 
+				if((animal.getX()+16*rightOrLeft <= 16) || ((animal.getX()+16*rightOrLeft+animal.getWidth()) >= (Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16))) {
+					rightOrLeft = -rightOrLeft;
+				}
+				
 				this.pathFinder.setObjective(animal.getX()+16*rightOrLeft);
+				System.out.println("PosX = "+animal.getX()+" Objective ="+(animal.getX()+16*rightOrLeft));
 				actionDecided = this.pathFinder.updateTask();
 			}
 	
 			break;
 		case 1:
-			actionDecided = new Action(1,1*rightOrLeft,true);
+			actionDecided = new Action(1*rightOrLeft,1,true);
 			break;
 		}
 		if(actionDecided.isFinish()){
@@ -93,19 +100,15 @@ public class AIDigger extends AIAnimal {
 	public void objSwitch(){ //used to know the next objective to do
 		switch(objective){
 		case 0 :
-			
-			if(Math.random() < 0.2) {
-				rightOrLeft = -1;
+			if(hasAnObjective) {
+				hasAnObjective = false;
+				this.objective = 1;
 			} else {
-				rightOrLeft = 1;
+				this.objective = 0;
 			}
-			
-			hasAnObjective = false;
-			this.objective = 1;
 			
 			break;
 		case 1 :
-			
 			this.objective = 0;
 			break;
 		}
