@@ -45,7 +45,7 @@ public class AIDigger extends AIAnimal {
 			} else {
 				
 				b = animal.getWorldIn().getBlock(animal.getPosX()/16-1, animal.getPosY()/16); //the block to the left
-				if(isEatable(b)) { //if this block is eatable
+				if(isEatable(b) && (Math.random()<0.5)) { //if this block is eatable
 					animal.setToEat(b);
 					hasAnObjective = true;
 					rightOrLeft = -1;
@@ -57,7 +57,12 @@ public class AIDigger extends AIAnimal {
 							if(isEatable(b) && Math.random()<0.2) { //if this block is eatable
 								animal.setToEat(b);
 								hasAnObjective = true;
-								if(i<=this.animal.getWidth()/2) {rightOrLeft = -1; System.out.println("ioehrilrjk,");} else {rightOrLeft = 1;}
+								System.out.println(i+" | "+(this.animal.getWidth()/2));
+								if(i<=this.animal.getWidth()/2 && rightOrLeft == 1) {
+									rightOrLeft = -1; 
+								} else if(i>this.animal.getWidth()/2 && rightOrLeft == -1) {
+									rightOrLeft = 1;
+								}
 								actionDecided = new Action(0,0,true);
 							}
 						}
@@ -73,13 +78,17 @@ public class AIDigger extends AIAnimal {
 						rightOrLeft = 1;
 					}
 				}
-
+				
+				//If we're at the end of the map, or the beginning, we change direction
 				if((animal.getX()+16*rightOrLeft <= 16) || ((animal.getX()+16*rightOrLeft+animal.getWidth()) >= (Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16))) {
 					rightOrLeft = -rightOrLeft;
 				}
 				
 				this.pathFinder.setObjective(animal.getX()+16*rightOrLeft);
+<<<<<<< HEAD
 				//System.out.println("PosX = "+animal.getX()+" Objective ="+(animal.getX()+16*rightOrLeft));
+=======
+>>>>>>> branch 'master' of https://github.com/UTBMRidd/LO43-Vivarium.git
 				actionDecided = this.pathFinder.updateTask();
 			}
 	

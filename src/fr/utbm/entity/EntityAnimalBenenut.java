@@ -7,16 +7,20 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.utbm.ai.AIBenenut;
+import fr.utbm.ai.Action;
 import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
 public class EntityAnimalBenenut extends EntityAnimal{
 	
-	private int maturity;
-	private int growingTime;
-	private int readyToPlant;
+	private int maturity; //benenut has 3 states of maturity : 0 (younger can't move), 1 (still can't move), 2 (can move and plant until a random time)
+	private int growingTime; //time left before he gets the superior state of maturity
+	private int readyToPlant; //after a time, he will try to plant in order to generate a bennutTree
 	private boolean hasJump = false;
+	private AIBenenut brain; //little intelligence to enable movements
+	private int ttd = 500; //time to death : decrement after he is ready to be planted
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
@@ -29,13 +33,18 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(16);
 		anim[1] = TextureManager.getAnimation(17);
-		maxHealth = 100;
-		health = 100;
-		directionX = 1;
+		maxHealth = 10;
+		health = 10;
+		directionX = r.nextInt(2); //Gives a random beginning direction
+		if(directionX == 0)
+		{
+			directionX = -1;
+		}
 		activity = -1;
 		perform = false;
-		actionToPerform = 0;
+		actionToPerform = 0; 
 		directionToPerform = 1;
+		brain = new AIBenenut(this);
 	}
 	
 	public EntityAnimalBenenut(float x, float y, int m, World worldIn) {
@@ -57,16 +66,21 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(16);
 		anim[1] = TextureManager.getAnimation(17);
-		maxHealth = 100;
-		health = 100;
-		directionX = 1;
+		maxHealth = 10;
+		health = 10;
+		directionX = r.nextInt(2);
+		if(directionX == 0)
+		{
+			directionX = -1;
+		}
 		activity = -1;
 		perform = false;
 		actionToPerform = 0;
 		directionToPerform = 1;
+		brain = new AIBenenut(this);
 	}
 	
-	public int getMaturity()
+	public int getMaturity() //Useful to refresh the array of entityVegetalBenenutTree
 	{
 		return maturity;
 	}
@@ -74,13 +88,13 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	@Override
 	public void update()
 	{
-		if(maturity < 2)
+		if(maturity < 2) //Don't allow benenut to move before he gets the 3rd stage of maturity
 		{
-			if(growingTime == 0)
+			if(growingTime == 0) //if he is mature
 			{
-				maturity++;
+				maturity++; //he gets the superior maturity stage
 				Random r = new Random();
-				growingTime = r.nextInt(10000) + 5000;
+				growingTime = r.nextInt(10000) + 5000; //and another random is assigned for the time before the next stage
 			}
 			else
 			{
@@ -90,89 +104,77 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		}
 		else
 		{
-			if(readyToPlant <= 0)
+			if(readyToPlant <= 0) //if he is ready to be planted
 			{
 				text = TextureManager.getTexture(208 + maturity);
 				readyToPlant = 0;
-				planting();
+				planting(); //he will try to if conditions are there
 			}
-			else
+			else //otherwise, we continue to move
 			{
-				//System.out.println("Dans le benenut en " + (int)(x/16) + " ; " + (int)(y/16) + " et le bloc de trou est ");
-				if(!perform){
-					if(directionToPerform == 1 && (world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) == null || !world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).isSolid()))
-					{
-						actionToPerform = 1;
-						directionToPerform = 1;
-						action(actionToPerform,directionToPerform);
-					}
-					else if(directionToPerform == 1 && world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) != null && world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).isSolid())
-					{
-						actionToPerform = 3;
-						directionToPerform = 1;
-						action(actionToPerform,directionToPerform);
-					}
-					else if ((world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)) == null || !world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).isSolid())){
-						actionToPerform = 1;
-						directionToPerform = -1;
-						action(actionToPerform,directionToPerform);
-					}
-					else
-					{
-						directionToPerform = -directionToPerform;
-						activity = -1;
-					}
-				}
-				else
-				{
-		            action(actionToPerform, directionToPerform);
-		        }
+				move();
 				readyToPlant--;
 			}
+		}
+
+		if(ttd < 1)
+		{
+			dead = true;
 		}
 	}
 	
 	public void planting()
 	{
-		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && (world.getBlock((int)(x/16), (int)((y/16)-1)).getID() == 1 || world.getBlock((int)(x/16), (int)((y/16)-1)).getID() == 2))
+		ttd--; //if he is ready to be planted, but the function is still called, it means conditions weren't united, or the benenut is stuck somewhere, so we decrement the timeToDeath
+		//if there is dirt under
+		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && world.getBlock((int)(x/16), (int)((y/16)-1)).getBlockType() == BlockType.DIRT)
 		{
-			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && (world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getID() == 1 || world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getID() == 2))
+			//if there is dirt under the block on the right and there are no solid block on the right (because the BenenutTree needs 2 blocks one next to the other)
+			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && (world.getBlock((int)((x/16)+1), (int)(y/16)) == null || !world.getBlock((int)((x/16)+1), (int)(y/16)).isSolid()))
 			{
-				//ANIMATION
-				dead = true;
-				world.addEntity(new EntityVegetalBenenutTree((int)((x/16)-1), (int)(y/16), 0, world));
+				dead = true; //we kill it
+				world.addEntity(new EntityVegetalBenenutTree((int)((x/16)-1), (int)(y/16), 0, world)); //and we create a benenutTree
+			}
+			else
+			{
+				move();
 			}
 		}
 		else
 		{
-			//move();
+			move();
 		}
 	}
 	
 	public void action(int actionID, int direction) {
 		switch (actionID) {
-		case 0 :	move(0,0,0);
-					break;
-					
-		case 1 :	if(isOnGround()) {
-						move(0.1f*direction, 0, 0);
-					} else {
-						move(0, 0, 0);
-					}
-					break;
-		
-		case 2: 	if (isOnGround()) {
-						move(0, 0, 1);
-					}
-					break;
-					
-		case 3:		if (isOnGround() && !hasJump) {
-						move(0.1f, 10f, 1);
-						hasJump = true;
-					} else {
-						move(0.3f * direction, 0, activity);
-					}
-					break;
+		case -1:
+			move(0, 0, -1);
+			break;
+		case 0: //useless for now but there is a doubt : to fix
+			if (isOnGround()) {
+				move(0, 0, 0);
+			} else {
+				move(0, 0, activity);
+			}
+			break;
+		case 1: //Jump
+			if (isOnGround() && !hasJump) {
+				move(0.4f * direction, 8f, 1);
+				hasJump = true;
+			} else {
+				move(0.4f * direction, 0, activity);
+			}
+			break;
+		case 2: //Walk
+			if (isOnGround()) {
+				move(0.1f * direction, 0, 0);
+			}
+			else
+			{
+				move(0, 0, activity);
+			}
+			break;
 		}
 	}
 	
@@ -194,6 +196,26 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			} else if (directionX == 1) {
 				sp.draw(this.text, this.x + this.text.getWidth(), this.y, -this.text.getWidth(), this.text.getHeight());
 			}
+		}
+	}
+	
+	public void move()
+	{
+		if (!perform) {
+			hasJump = false;
+			Action a = brain.updateTask();
+			if (!a.isFinish()) {
+				actionToPerform = a.getAction();
+				directionToPerform = a.getDirection();
+				action(actionToPerform, directionToPerform);
+			} else {
+				actionToPerform = a.getAction();
+				directionToPerform = this.directionX;
+				action(actionToPerform, directionToPerform);
+			}
+
+		} else {
+			action(actionToPerform, directionToPerform);
 		}
 	}
 }

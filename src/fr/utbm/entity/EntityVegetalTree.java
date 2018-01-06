@@ -24,13 +24,21 @@ public class EntityVegetalTree extends EntityVegetal {
 		return this.x + (this.width/2);
 	}
 	
-	
-	
-	
-	
-	
 	public void voidUnder()
 	{
-		
+		if(width == 64)
+		{
+			if(world.getBlock((int)(x/16), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+1), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+2), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+3), (int)((y/16)-1)) == null)
+			{
+				dead = true;
+			}
+		}
+		else
+		{
+			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+2), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+3), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+4), (int)((y/16)-1)) == null)
+			{
+				dead = true;
+			}
+		}
 	}
 }

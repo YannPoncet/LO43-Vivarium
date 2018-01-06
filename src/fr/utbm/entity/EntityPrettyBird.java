@@ -49,7 +49,14 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 		switch (actionID) {
 
 		case 0:
-			move(0, 0, 1);
+			if(isOnGround())
+			{
+				move(0, 0, 1);
+			}
+			else
+			{
+				move(0, 0, 0);
+			}
 			break;
 		case 1:
 			move(0.1f * directionX, 0, 0);

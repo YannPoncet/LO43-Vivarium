@@ -27,7 +27,7 @@ public class EntityFallingBlock extends Entity{
 			world.setBlock((int) x/16, (int) y/16, block);
 			dead = true;
 		}else{
-			y-=2f;
+			y-=8f;
 		}
 	}
 
