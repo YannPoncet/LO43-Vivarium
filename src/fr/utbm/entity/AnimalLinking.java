@@ -5,7 +5,7 @@ import fr.utbm.world.World;
 public class AnimalLinking {
 
 	
-	public static void createEntityByID(int x, int y, int height, World w, int ID)
+	public static void createAnimalByID(int x, int y, int height, World w, int ID)
 	{
 		switch (ID) {				
 		/*Animals*/
@@ -28,4 +28,5 @@ public class AnimalLinking {
 				break;
 		}
 	}
+	
 }

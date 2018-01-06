@@ -126,7 +126,7 @@ public class MapGenerator {
 						
 						if(animalCave.get(i).get(j)>0)
 						{
-							AnimalLinking.createEntityByID(i, j, 0, world, animalCave.get(i).get(j));
+							AnimalLinking.createAnimalByID(i, j-1, 0, world, animalCave.get(i).get(j));
 						}
 					}
 					else
@@ -150,12 +150,12 @@ public class MapGenerator {
 							//if there is an animal we create it
 							if(animalSurface.get(i)[0]>0)
 							{
-								AnimalLinking.createEntityByID(i, j, 0, world, animalSurface.get(i)[0]);
+								AnimalLinking.createAnimalByID(i, j, 0, world, animalSurface.get(i)[0]);
 							}
 							
 							if(animalSurface.get(i)[1]>0)
 							{
-								AnimalLinking.createEntityByID(i, j, animalSurface.get(i)[2], world, animalSurface.get(i)[1]);
+								AnimalLinking.createAnimalByID(i, j, animalSurface.get(i)[2], world, animalSurface.get(i)[1]);
 							}
 						}
 						else { //dirt
