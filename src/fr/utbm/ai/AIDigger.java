@@ -57,7 +57,6 @@ public class AIDigger extends AIAnimal {
 							if(isEatable(b) && Math.random()<0.2) { //if this block is eatable
 								animal.setToEat(b);
 								hasAnObjective = true;
-								System.out.println(i+" | "+(this.animal.getWidth()/2));
 								if(i<=this.animal.getWidth()/2 && rightOrLeft == 1) {
 									rightOrLeft = -1; 
 								} else if(i>this.animal.getWidth()/2 && rightOrLeft == -1) {

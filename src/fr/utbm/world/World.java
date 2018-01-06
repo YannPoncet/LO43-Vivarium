@@ -120,7 +120,6 @@ public class World {
 		beaver = new EntityBeaver(5,325,this);
 		digger = new EntityAnimalDigger(8,325, this);
 		entities.add(test);
-		addEntity(test);
 		entities.add(pb1);
 		entities.add(pb2);
 		entities.add(pb3);
@@ -128,10 +127,7 @@ public class World {
 		entities.add(pb5);
 		entities.add(beaver);
 		entities.add(digger);
-		RenderManager.addToEntitiesRender(digger);
-		addEntity(digger);
 		render();
-		addEntity(beaver);
 	}
 	
 	public void update()
