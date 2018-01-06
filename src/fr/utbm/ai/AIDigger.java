@@ -85,10 +85,6 @@ public class AIDigger extends AIAnimal {
 				}
 				
 				this.pathFinder.setObjective(animal.getX()+16*rightOrLeft);
-<<<<<<< HEAD
-				//System.out.println("PosX = "+animal.getX()+" Objective ="+(animal.getX()+16*rightOrLeft));
-=======
->>>>>>> branch 'master' of https://github.com/UTBMRidd/LO43-Vivarium.git
 				actionDecided = this.pathFinder.updateTask();
 			}
 	
