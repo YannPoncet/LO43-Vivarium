@@ -118,18 +118,21 @@ public class AIPrettyBird extends AIAnimal {
 			actionDecided.setDirectionX(-actionDecided.getDirectionX());
 		}
 		
-		//si il rencontre un obstacle en Y, il change de direction (solide en haut, liquide en bas pour qu'il puisse se poser si il y a du sol)
-		if((actionDecided.getDirectionY()<0 && animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16-1)!=null && !animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16-1).isSolid())
-			|| (actionDecided.getDirectionY()>0 && animal.getWorldIn().getBlock(animal.getPosX()/16, (animal.getPosY()+animal.getHeight())/16+1)!=null))
-		{
-			actionDecided.setDirectionY(-actionDecided.getDirectionY());
-		}
-		
 		//si il y a de l'eau sur lui, il fui !
 		if(animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16)!=null && animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16).getBlockType()==BlockType.LIQUID)
 		{
 			actionDecided.setDirectionY(1);
 		}
+		else
+		{
+			//si il rencontre un obstacle en Y, il change de direction (solide en haut, liquide en bas pour qu'il puisse se poser si il y a du sol)
+			if((actionDecided.getDirectionY()<0 && animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16-1)!=null && !animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16-1).isSolid())
+				|| (actionDecided.getDirectionY()>0 && animal.getWorldIn().getBlock(animal.getPosX()/16, (animal.getPosY()+animal.getHeight())/16+1)!=null))
+			{
+				actionDecided.setDirectionY(-actionDecided.getDirectionY());
+			}
+		}
+		
 		
 		return actionDecided;
 	}
