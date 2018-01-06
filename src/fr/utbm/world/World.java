@@ -73,8 +73,8 @@ public class World {
 		return entities;
 	}
 	public void addEntity(Entity e){
-		entities.add(e);
-		RenderManager.addToEntitiesRender(e);
+		//entities.add(e);
+		//RenderManager.addToEntitiesRender(e);
 	}
 	public Map getMap(){
 		return map;
@@ -112,22 +112,24 @@ public class World {
 			}
 		}
 		setBlock(3,320,bs);
-		pb1 =  new EntityPrettyBird(10,325,this);
+		/*pb1 =  new EntityPrettyBird(10,325,this);
 		pb2 =  new EntityPrettyBird(15,320,this);
 		pb3 =  new EntityPrettyBird(20,315,this);
 		pb4 =  new EntityPrettyBird(25,310,this);
 		pb5 =  new EntityPrettyBird(30,305,this);
-		beaver = new EntityBeaver(5,325,this);
+		beaver = new EntityBeaver(5,325,this);*/
 		digger = new EntityAnimalDigger(8,325, this);
-		entities.add(test);
+		/*entities.add(test);
 		addEntity(test);
 		entities.add(pb1);
 		entities.add(pb2);
 		entities.add(pb3);
 		entities.add(pb4);
 		entities.add(pb5);
-		entities.add(beaver);
-		addEntity(digger);
+		entities.add(beaver);*/
+		entities.add(digger);
+		RenderManager.addToEntitiesRender(digger);
+		//addEntity(digger);
 		render();
 		//addEntity(beaver);
 	}

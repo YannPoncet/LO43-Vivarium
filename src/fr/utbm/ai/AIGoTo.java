@@ -1,6 +1,10 @@
 package fr.utbm.ai;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockWood;
 import fr.utbm.entity.EntityAnimal;
 
 public class AIGoTo extends AIBase{
@@ -31,10 +35,11 @@ public class AIGoTo extends AIBase{
 			
 			if(objX-animal.getPosX() > 0){
 				dir = 1;
-				b = animal.getWorldIn().getBlock((animal.getPosX() + animal.getWidth())/16 + 1, animal.getPosY()/16);
+				b = animal.getWorldIn().getBlock((animal.getPosX() + animal.getWidth())/16 +1, animal.getPosY()/16);
 				if(b != null){
 					if(b.isSolid()){
 						isBlock = true;
+						
 					}
 				}
 				b = animal.getWorldIn().getBlock((animal.getPosX() + animal.getWidth())/16 + 1, animal.getPosY()/16 +1);

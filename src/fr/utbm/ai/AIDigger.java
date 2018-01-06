@@ -37,7 +37,7 @@ public class AIDigger extends AIAnimal {
 		case 0:
 			Block b;
 			b = animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth()+1)/16, animal.getPosY()/16); //the block to the right
-			if(isEatable(b) && (rightOrLeft == 1 || Math.random()<0.4)) {
+			if(isEatable(b) && (rightOrLeft == 1 || Math.random()<1)) {
 				animal.setToEat(b);
 				rightOrLeft = 1;
 				hasAnObjective = true;
@@ -79,7 +79,7 @@ public class AIDigger extends AIAnimal {
 				}
 				
 				this.pathFinder.setObjective(animal.getX()+16*rightOrLeft);
-				System.out.println("PosX = "+animal.getX()+" Objective ="+(animal.getX()+16*rightOrLeft));
+				//System.out.println("PosX = "+animal.getX()+" Objective ="+(animal.getX()+16*rightOrLeft));
 				actionDecided = this.pathFinder.updateTask();
 			}
 	

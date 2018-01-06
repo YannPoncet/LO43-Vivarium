@@ -23,7 +23,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 	private Block toEat;
 	
 	public EntityAnimalDigger(float x, float y, World worldIn) {
-		super(x, y, 48, 15, worldIn);
+		super(x, y, 50, 16, worldIn);
 		text = TextureManager.getTexture(218);
 		anim = new Animation[3];
 		anim[0] = TextureManager.getAnimation(4);
@@ -72,7 +72,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 					break;
 					
 		case 0 :	if(isOnGround()) {
-						move(1f*direction, 0, 0);
+						move(0.1f*direction, 0, 0);
 						//health--;
 					} else {
 						move(0, 0, activity);
