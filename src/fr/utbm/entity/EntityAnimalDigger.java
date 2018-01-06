@@ -72,11 +72,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 					break;
 					
 		case 0 :	if(isOnGround()) {
-<<<<<<< HEAD
-						move(0.1f*direction, 0, 0);
-=======
 						move(0.5f*direction, 0, 0);
->>>>>>> branch 'master' of https://github.com/UTBMRidd/LO43-Vivarium.git
 						//health--;
 					} else {
 						move(0, 0, activity);
