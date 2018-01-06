@@ -14,14 +14,14 @@ public class AIBenenut extends AIAnimal{
 		this.animal = e;
 		
 		this.pathFinder = new AIGoTo(e);
-		this.pathFinder.setControls(1, 2);
+		this.pathFinder.setControls(0, 1);
 	}
 	
 	@Override
 	public Action updateTask() {
 		Action actionDecided = null;
-		switch (objective) {
-		case 0:
+		if(objective == 0)
+		{
 			if((animal.getX()+16*animal.getDirectionX() <= 16) || ((animal.getX()+16*animal.getDirectionX()+animal.getWidth()) >= (Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16)))
 			{
 				animal.changeDirectionX();
@@ -29,27 +29,7 @@ public class AIBenenut extends AIAnimal{
 			
 			pathFinder.setObjective((animal.getPosX()+16)*animal.getDirectionX());
 			actionDecided = this.pathFinder.updateTask();
-			break;
-		case 1:
-			actionDecided = new Action(1,1,true);
-			break;
-		}
-		if(actionDecided.isFinish()){
-			objSwitch();
 		}
 		return actionDecided;
-	}
-	
-	@Override
-	public void objSwitch(){
-		switch(objective){
-		case 0 :
-			this.objective = 1;
-			break;
-		case 1 :
-			this.objective = 0;
-			break;
-		}
-		
 	}
 }

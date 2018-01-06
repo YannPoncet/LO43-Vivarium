@@ -51,7 +51,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		
 		super(x, y, 15, 18, worldIn);
 		Random r = new Random();
-		growingTime = r.nextInt(10000) + 5000;
+		growingTime = 100;
 		readyToPlant = r.nextInt(5000) + 5000;
 		if(m > 2)
 		{
@@ -94,7 +94,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			{
 				maturity++; //he gets the superior maturity stage
 				Random r = new Random();
-				growingTime = r.nextInt(10000) + 5000; //and another random is assigned for the time before the next stage
+				growingTime = 100; //and another random is assigned for the time before the next stage
 			}
 			else
 			{
@@ -151,14 +151,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		case -1:
 			move(0, 0, -1);
 			break;
-		case 0: //useless for now but there is a doubt : to fix
-			if (isOnGround()) {
-				move(0, 0, 0);
-			} else {
-				move(0, 0, activity);
-			}
-			break;
-		case 1: //Jump
+		case 0: //Jump
 			if (isOnGround() && !hasJump) {
 				move(0.4f * direction, 8f, 1);
 				hasJump = true;
@@ -166,7 +159,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 				move(0.4f * direction, 0, activity);
 			}
 			break;
-		case 2: //Walk
+		case 1: //Walk
 			if (isOnGround()) {
 				move(0.1f * direction, 0, 0);
 			}
