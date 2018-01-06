@@ -1,9 +1,9 @@
 package fr.utbm.ai;
 
 public class Action {
-	private int direction;
-	private int action;
-	private boolean isFinish;
+	protected int direction;
+	protected int action;
+	protected boolean isFinish;
 	public Action(int d, int a, boolean finish){
 		this.direction = d;
 		this.action = a;

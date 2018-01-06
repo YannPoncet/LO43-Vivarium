@@ -5,16 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.utbm.ai.AIPrettyBird;
+import fr.utbm.ai.Action2D;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class EntityPrettyBird extends EntityAnimalFlying {
+public class EntityPrettyBird extends EntityAnimal2D {
 
-	private int tmp;
-	/*
-	 * Bird activity : -1 Dont do anything 0 Idle 1 Fly horizontaly 2 Fly
-	 * diagonally 3 Fly verticaly
-	 */
+	private AIPrettyBird brain;
 
 	public EntityPrettyBird(float x, float y, World worldIn) {
 		super(x, y, 16, 16, worldIn);
@@ -22,52 +20,39 @@ public class EntityPrettyBird extends EntityAnimalFlying {
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(14);
 		anim[1] = TextureManager.getAnimation(15);
-		directionX = -1;
-		directionY = -1;
+		directionX = (int)(Math.random()+0.5);
+		directionY = (int)(Math.random()+0.5);
 		activity = -1;
+		brain = new AIPrettyBird(this);
+		directionXToPerform = (float)(2*Math.random()-1);
+		directionYToPerform = (float)(2*Math.random()-1);
 		perform = false;
 		actionToPerform = 0;
-		tmp = 0;
+		
 	}
 
 	public void update() {
-		if (!perform) {
-
-			tmp++;
-			if (tmp > 10) {
-				actionToPerform = (actionToPerform + 1) % 4;
-				tmp = 0;
-			}
-
-			action(actionToPerform);
+		if (!perform) { //si on ne fait plus rien, on update l'action (donc les directions)
+			Action2D action = brain.updateTask();
+			directionXToPerform = action.getDirectionX();
+			directionYToPerform = action.getDirectionY();
+			
+			action(directionXToPerform, directionYToPerform);
 		} else {
-			action(actionToPerform);
+			
+			action(directionXToPerform, directionYToPerform);
 		}
 	}
-
-	public void action(int actionID) {
-		switch (actionID) {
-
-		case 0:
+	
+	public void action(float dx, float dy) {
 			if(isOnGround())
 			{
-				move(0, 0, 1);
+				move(0.1f*dx, 0.1f*dy, 1);
 			}
 			else
 			{
-				move(0, 0, 0);
+				move(0.1f*dx, 0.1f*dy, 0);
 			}
-			break;
-		case 1:
-			move(0.1f * directionX, 0, 0);
-			break;
-		case 2:
-			move(0.1f * directionX, 0.1f * directionY, 0);
-			break;
-		case 3:
-			move(0, 0.1f * directionY, 1);
-			break;
-		}
 	}
 
 	@Override

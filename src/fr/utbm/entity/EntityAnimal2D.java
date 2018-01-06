@@ -3,13 +3,13 @@ package fr.utbm.entity;
 import fr.utbm.tools.CollisionAABB;
 import fr.utbm.world.World;
 
-public abstract class EntityAnimalFlying extends EntityAnimal {
+public abstract class EntityAnimal2D extends EntityAnimal {
 
+	protected float directionXToPerform;
+	protected float directionYToPerform;
 	protected int directionY = 0;
-	protected boolean collisionX = false;
-	protected boolean collisionY = false;
 
-	public EntityAnimalFlying(float x, float y, int w, int h, World worldIn) {
+	public EntityAnimal2D(float x, float y, int w, int h, World worldIn) {
 		super(x, y, w, h, worldIn);
 	}
 
@@ -30,7 +30,6 @@ public abstract class EntityAnimalFlying extends EntityAnimal {
 			if (!CollisionAABB.enterInCollisionAt(this, xa / xStep, 0)) {
 				this.x += xa / xStep;
 			} else {
-				collisionX = true;
 				xa = 0;
 			}
 		}
@@ -39,23 +38,11 @@ public abstract class EntityAnimalFlying extends EntityAnimal {
 			if (!CollisionAABB.enterInCollisionAt(this, 0, ya / yStep)) {
 				this.y += ya / yStep;
 			} else {
-				collisionY = true;
 				ya = 0;
 			}
 		}
 
-		if (collisionX == true) {
-			dx = -dx;
-			xa += (2 * dx);
-			this.x += xa / xStep;
-		}
-
-		if (collisionY == true) {
-			dy = -dy;
-			ya += (2 * dy);
-			this.y += ya / yStep;
-		}
-
+		
 		if (dx > 0) {
 			directionX = 1;
 		} else if (dx < 0) {
@@ -69,9 +56,6 @@ public abstract class EntityAnimalFlying extends EntityAnimal {
 
 		xa *= drag;
 		ya *= drag;
-
-		collisionX = false;
-		collisionY = false;
 
 		if (activity != -1 && anim[activity].isAnimationFinished(stateTime)) {
 			stateTime = 0;
