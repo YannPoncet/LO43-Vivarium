@@ -9,6 +9,7 @@ import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
+import fr.utbm.entity.EntityAnimalBenenut;
 import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
@@ -22,14 +23,6 @@ public class World {
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
-	private EntityPrettyBird pb1;
-	private EntityPrettyBird pb2;
-	private EntityPrettyBird pb3;
-	private EntityPrettyBird pb4;
-	private EntityPrettyBird pb5;
-	private EntityBeaver beaver;
-	private EntityAnimalDigger digger;
-	
 	
 	private float gravity = -4f;
 	private FPSLogger fps;
@@ -112,21 +105,6 @@ public class World {
 			}
 		}
 		setBlock(3,320,bs);
-		pb1 =  new EntityPrettyBird(10,325,this);
-		pb2 =  new EntityPrettyBird(15,320,this);
-		pb3 =  new EntityPrettyBird(20,315,this);
-		pb4 =  new EntityPrettyBird(25,310,this);
-		pb5 =  new EntityPrettyBird(30,305,this);
-		beaver = new EntityBeaver(5,325,this);
-		digger = new EntityAnimalDigger(8,325, this);
-		entities.add(test);
-		entities.add(pb1);
-		entities.add(pb2);
-		entities.add(pb3);
-		entities.add(pb4);
-		entities.add(pb5);
-		entities.add(beaver);
-		entities.add(digger);
 		render();
 	}
 	

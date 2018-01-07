@@ -32,17 +32,16 @@ public class AIGoTo extends AIBase{
 			int dir = 0,act = 0;
 			boolean isBlock = false;
 			Block b;
-			
 			if(objX-animal.getPosX() > 0){
 				dir = 1;
-				b = animal.getWorldIn().getBlock((animal.getPosX() + animal.getWidth())/16 +1, animal.getPosY()/16);
+				b = animal.getWorldIn().getBlock(((animal.getPosX()/16) + (animal.getWidth()/16)) +1, animal.getPosY()/16);
 				if(b != null){
 					if(b.isSolid()){
 						isBlock = true;
 						
 					}
 				}
-				b = animal.getWorldIn().getBlock((animal.getPosX() + animal.getWidth())/16 + 1, animal.getPosY()/16 +1);
+				b = animal.getWorldIn().getBlock(((animal.getPosX()/16) + (animal.getWidth()/16)) + 1, animal.getPosY()/16 +1);
 				if(b != null){
 					if(b.isSolid()){
 						isBlock = true;
