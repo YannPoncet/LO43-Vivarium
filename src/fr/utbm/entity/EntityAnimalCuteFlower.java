@@ -37,6 +37,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 
 	public void update() {
 		if(!perform){
+			this.stateTime = 0;
 			hasJump = false;
 			if (Gdx.input.isKeyPressed(Input.Keys.A)){
 				actionToPerform = -1;

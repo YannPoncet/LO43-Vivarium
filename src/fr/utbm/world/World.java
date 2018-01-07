@@ -10,6 +10,7 @@ import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityAnimalBenenut;
+import fr.utbm.entity.EntityAnimalCuteFlower;
 import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
@@ -106,6 +107,7 @@ public class World {
 		}
 		setBlock(3,320,bs);
 		render();
+		addEntity(new EntityAnimalCuteFlower(5, 330, this));
 	}
 	
 	public void update()
