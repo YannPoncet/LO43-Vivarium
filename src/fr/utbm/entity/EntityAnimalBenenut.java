@@ -81,6 +81,14 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		brain = new AIBenenut(this);
 	}
 	
+	public boolean targetableBy(int id) {
+		switch(id){
+		case 219: return true; //targetable by the cuteFlower
+		case 224: return true; //targetable by mrStabby
+		default: return false;
+		}
+	}
+	
 	public int getMaturity() //Useful to refresh the array of entityVegetalBenenutTree
 	{
 		return maturity;

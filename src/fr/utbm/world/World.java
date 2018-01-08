@@ -1,5 +1,6 @@
 package fr.utbm.world;
 
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import fr.utbm.biome.Biome;
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
@@ -31,6 +33,8 @@ public class World {
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
+	
+	ArrayList<Biome> biomeList;
 	
 	private float gravity = -4f;
 	private FPSLogger fps;
@@ -100,10 +104,9 @@ public class World {
 	/* Call at the World creation */
 	public void create(){
 		gs.create();
-		MapGenerator.generate(this, 1); //0 to generate a new seed ->6 / 14
+		MapGenerator.generate(this, 3); //0 to generate a new seed ->6 / 14
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
-		this.addEntity(new EntityAnimalBeaver(4,200,this));
 		setBlock(3, 310, new BlockWater(3,310, 0,this));
 		for(int i = 0; i < 6 ; i++)
 		{
@@ -157,6 +160,25 @@ public class World {
 			currentChunkCam = cID;
 			map.render(cID);
 		}
+	}
+
+	public void setBiomeList(ArrayList<Biome> biomeList) {
+		this.biomeList = biomeList;		
+	}
+	
+	public int getBiomeIn(int xToFind)
+	{
+		int x=0;
+		for(Biome b: this.biomeList)
+		{
+			x += b.getWidth();
+			if(xToFind < x)
+			{
+				return b.getId();
+			}
+		}
+		
+		return -1;
 	}
 
 	

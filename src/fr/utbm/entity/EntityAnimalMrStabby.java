@@ -5,14 +5,17 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.utbm.ai.AIMrStabby;
+import fr.utbm.ai.Action;
 import fr.utbm.texture.TextureManager;
-import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class EntityAnimalMrStabby extends EntityAnimal {
 	
 	private boolean hasJump;
-	//private AIMrStabby brain;
+	private boolean hasMelt;
+	private AIMrStabby brain;
+	private String name = "Mr Stabby";
 
 	public EntityAnimalMrStabby(float x, float y, World worldIn) {
 		super(x, y, 48, 44, worldIn);
@@ -21,18 +24,25 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 		anim[0] = TextureManager.getAnimation(20); //walk
 		anim[1] = TextureManager.getAnimation(21); //stab
 		anim[2] = TextureManager.getAnimation(22); //melt
+		maxHealth = 300;
+		health = 100;
 		directionX = 1;
 		activity = -1;
 		perform = false;
+		hasMelt = false;
 		actionToPerform = -1;
-		//brain = new AIMrStabby(this);
+		brain = new AIMrStabby(this);
 	}
 	
 	public void update() {
 		if (!perform) {
 			hasJump = false;
+			if(hasMelt)
+			{
+				this.dead=true;
+			}
 
-			/*Action a = brain.updateTask();
+			Action a = brain.updateTask();
 			if (!a.isFinish()) {
 				actionToPerform = a.getAction();
 				directionToPerform = a.getDirection();
@@ -41,10 +51,7 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 				actionToPerform = a.getAction();
 				directionToPerform = this.directionX;
 				action(actionToPerform, directionToPerform);
-			}*/
-			directionToPerform=1;
-			actionToPerform=0;
-			action(actionToPerform, directionToPerform);
+			}
 
 		} else {
 			action(actionToPerform, directionToPerform);
@@ -63,7 +70,7 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 			break;
 		case 0:
 			if (isOnGround()) {
-				move(0.1f*direction, 0, 0);
+				move(0.2f*direction, 0, 0);
 			} else {
 				move(0, 0, activity);
 			}
@@ -79,16 +86,17 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 		case 2:
 			if (isOnGround()) {
 				move(0, 0, 2);
+				hasMelt = true;
 			} else {
 				move(0, 0, activity);
 			}
 			break;
 		case 3:
 			if (isOnGround() && !hasJump) {
-				move(0.1f, 10f, 0);
+				move(0.2f, 10f, 0);
 				hasJump = true;
 			} else {
-				move(0.1f * direction, 0, activity);
+				move(0.2f * direction, 0, activity);
 			}
 			break;
 		}
