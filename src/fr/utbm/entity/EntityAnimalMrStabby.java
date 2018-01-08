@@ -5,14 +5,16 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.utbm.ai.AIMrStabby;
+import fr.utbm.ai.Action;
 import fr.utbm.texture.TextureManager;
-import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class EntityAnimalMrStabby extends EntityAnimal {
 	
 	private boolean hasJump;
-	//private AIMrStabby brain;
+	private AIMrStabby brain;
+	private String name = "Mr Stabby";
 
 	public EntityAnimalMrStabby(float x, float y, World worldIn) {
 		super(x, y, 48, 44, worldIn);
@@ -21,18 +23,20 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 		anim[0] = TextureManager.getAnimation(20); //walk
 		anim[1] = TextureManager.getAnimation(21); //stab
 		anim[2] = TextureManager.getAnimation(22); //melt
+		maxHealth = 300;
+		health = 100;
 		directionX = 1;
 		activity = -1;
 		perform = false;
 		actionToPerform = -1;
-		//brain = new AIMrStabby(this);
+		brain = new AIMrStabby(this);
 	}
 	
 	public void update() {
 		if (!perform) {
 			hasJump = false;
 
-			/*Action a = brain.updateTask();
+			Action a = brain.updateTask();
 			if (!a.isFinish()) {
 				actionToPerform = a.getAction();
 				directionToPerform = a.getDirection();
@@ -41,9 +45,7 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 				actionToPerform = a.getAction();
 				directionToPerform = this.directionX;
 				action(actionToPerform, directionToPerform);
-			}*/
-			directionToPerform=1;
-			actionToPerform=0;
+			}
 			action(actionToPerform, directionToPerform);
 
 		} else {

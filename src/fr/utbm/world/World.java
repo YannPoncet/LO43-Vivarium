@@ -1,5 +1,6 @@
 package fr.utbm.world;
 
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import fr.utbm.biome.Biome;
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
@@ -29,6 +31,8 @@ public class World {
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
 	private BlockSand bs;
+	
+	ArrayList<Biome> biomeList;
 	
 	private float gravity = -4f;
 	private FPSLogger fps;
@@ -154,6 +158,25 @@ public class World {
 			currentChunkCam = cID;
 			map.render(cID);
 		}
+	}
+
+	public void setBiomeList(ArrayList<Biome> biomeList) {
+		this.biomeList = biomeList;		
+	}
+	
+	public int getBiomeIn(int xToFind)
+	{
+		int x=0;
+		for(Biome b: this.biomeList)
+		{
+			x += b.getWidth();
+			if(xToFind < x)
+			{
+				return b.getId();
+			}
+		}
+		
+		return -1;
 	}
 
 	
