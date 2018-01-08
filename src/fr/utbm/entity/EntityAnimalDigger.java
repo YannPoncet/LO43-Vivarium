@@ -21,6 +21,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 	private AIDigger brain;
 	private boolean hasJump;
 	private Block toEat;
+	private String name = "Digger";
 	
 	public EntityAnimalDigger(float x, float y, World worldIn) {
 		super(x, y, 50, 16, worldIn);
