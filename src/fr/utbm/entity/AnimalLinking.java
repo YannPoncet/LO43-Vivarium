@@ -26,6 +26,9 @@ public class AnimalLinking {
 				
 		case 222: w.addEntity(new EntityPrettyBird(x,y+1+height,w)); //prettyBird
 				break;
+				
+		case 224: w.addEntity(new EntityAnimalMrStabby(x,y+1+height,w)); //mrStabby
+				break;
 		}
 	}
 	
