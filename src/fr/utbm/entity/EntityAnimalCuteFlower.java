@@ -21,7 +21,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	 */
 
 	public EntityAnimalCuteFlower(float x, float y, World worldIn) {
-		super(x, y, 150, 150, worldIn);
+		super(x, y, 32, 96, worldIn);
 		this.text = TextureManager.getTexture(219);
 		anim = new Animation[6];
 		anim[0] = TextureManager.getAnimation(6); //walk
@@ -171,17 +171,17 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 			stateTime += Gdx.graphics.getDeltaTime();
 			TextureRegion currentFrame = anim[activity].getKeyFrame(stateTime, true);
 			if (directionX == -1) {
-				sp.draw(currentFrame, this.x, this.y);
+				sp.draw(currentFrame, this.x-59f, this.y);
 			} else if (directionX == 1) {
-				sp.draw(currentFrame, this.x + currentFrame.getRegionWidth(), this.y, -currentFrame.getRegionWidth(),
+				sp.draw(currentFrame, this.x-59f + currentFrame.getRegionWidth(), this.y, -currentFrame.getRegionWidth(),
 						currentFrame.getRegionHeight());
 			}
 			perform = !anim[activity].isAnimationFinished(stateTime);
 		} else {
 			if (directionX == -1) {
-				sp.draw(this.text, this.x, this.y);
+				sp.draw(this.text, this.x-59f, this.y);
 			} else if (directionX == 1) {
-				sp.draw(this.text, this.x + this.text.getWidth(), this.y, -this.text.getWidth(), this.text.getHeight());
+				sp.draw(this.text, this.x-59f + this.text.getWidth(), this.y, -this.text.getWidth(), this.text.getHeight());
 			}
 		}
 	}
