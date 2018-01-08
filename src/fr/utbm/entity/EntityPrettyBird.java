@@ -30,6 +30,14 @@ public class EntityPrettyBird extends EntityAnimal2D {
 		actionToPerform = 0;
 		
 	}
+	
+	public boolean targetableBy(int id) {
+		switch(id){
+		case 219: if(isOnGround())return true; //targetable by the cuteFlower
+		case 224: if(isOnGround())return true; //targetable by mrStabby
+		default: return false;
+		}
+	}
 
 	public void update() {
 		if (!perform) { //si on ne fait plus rien, on update l'action (donc les directions)

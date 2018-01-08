@@ -6,6 +6,7 @@
 	<animal id="219" surfaceFrequence="5" caveFrequence="0" widthNeeded="3" heightNeeded="6" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="221" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="222" surfaceFrequence="5" caveFrequence="0" widthNeeded="1" heightNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="1" water="0" lava="0"></entity>
+	<animal id="224" surfaceFrequence="100" caveFrequence="0" widthNeeded="3" heightNeeded="3" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>	
 	
 </entityAnimals>
 
@@ -16,5 +17,12 @@
 219 cuteFlower
 221 beaver
 222 prettyBird 
+224 mrStabby aka snowman
+
+biomes:
+0: forest
+1: desert
+2: mountain
+3: snow
 -->
 	

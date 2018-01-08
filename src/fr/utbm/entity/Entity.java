@@ -21,6 +21,11 @@ public abstract class Entity extends Renderable{
 		this.width = w;
 		this.height = h;
 	}
+	
+	public boolean targetableBy(int id) 
+	{
+		return false;
+	}
 
 	public boolean isOnGround(){
 		boolean b = false;

@@ -37,6 +37,14 @@ public class EntityBeaver extends EntityAnimal {
 		actionToPerform = -1;
 		brain = new AIBeaver(this);
 	}
+	
+	public boolean targetableBy(int id) {
+		switch(id){
+		case 219: return true; //targetable by the cuteFlower
+		case 224: return true; //targetable by mrStabby
+		default: return false;
+		}
+	}
 
 	public void update() {
 		if (!perform) {
