@@ -17,6 +17,7 @@ public class EntityVegetalCactus extends EntityVegetal {
 	
 	public void update()
 	{
+		suffocating();
 		voidUnder();
 	}
 	

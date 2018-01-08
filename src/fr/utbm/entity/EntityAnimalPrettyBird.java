@@ -42,6 +42,7 @@ public class EntityAnimalPrettyBird extends EntityAnimal2D {
 	}
 
 	public void update() {
+		suffocating();
 		if (!perform) { //si on ne fait plus rien, on update l'action (donc les directions)
 			Action2D action = brain.updateTask();
 			directionXToPerform = action.getDirectionX();

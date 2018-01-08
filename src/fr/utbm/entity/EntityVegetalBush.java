@@ -16,6 +16,7 @@ public class EntityVegetalBush extends EntityVegetal{
 	
 	public void update()
 	{
+		suffocating();
 		voidUnder();
 	}
 	

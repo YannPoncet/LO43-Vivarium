@@ -35,6 +35,7 @@ public class EntityAnimalHellDog extends EntityAnimal {
 	}
 
 	public void update(){
+		suffocating();
 		if(!perform){
 			hasJump = false;
 			if (Gdx.input.isKeyPressed(Input.Keys.A)){

@@ -50,6 +50,7 @@ public class EntityAnimalBeaver extends EntityAnimal {
 	}
 
 	public void update() {
+		suffocating();
 		if (!perform) {
 			hasJump = false;
 
