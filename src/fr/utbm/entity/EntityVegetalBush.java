@@ -4,11 +4,13 @@ import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
 public class EntityVegetalBush extends EntityVegetal{
+	
+	private String name = "Bush";
 
 	public EntityVegetalBush(float x, float y, World worldIn) {
 		super(x, y, 66, 35, worldIn);
-		entityHealth = 100;
-		maxHealth = 100;
+		entityHealth = 30;
+		maxHealth = 30;
 		this.text = TextureManager.getTexture(215);
 	}
 	

@@ -1,13 +1,13 @@
 package fr.utbm.ai;
 
 import fr.utbm.block.BlockWood;
-import fr.utbm.entity.EntityBeaver;
+import fr.utbm.entity.EntityAnimalBeaver;
 
 public class AIBeaverHouse extends AIBase {
 
-	private EntityBeaver animal;
+	private EntityAnimalBeaver animal;
 	
-	public AIBeaverHouse(EntityBeaver e) {
+	public AIBeaverHouse(EntityAnimalBeaver e) {
 		super(e);
 		this.animal = e;
 	}

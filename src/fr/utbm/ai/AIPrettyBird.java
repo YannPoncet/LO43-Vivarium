@@ -1,7 +1,7 @@
 package fr.utbm.ai;
 
 import fr.utbm.block.BlockType;
-import fr.utbm.entity.EntityPrettyBird;
+import fr.utbm.entity.EntityAnimalPrettyBird;
 
 public class AIPrettyBird extends AIAnimal {
 	
@@ -20,7 +20,7 @@ public class AIPrettyBird extends AIAnimal {
 	 * le prettyBird est un petit oiseau rose et il est trèèès loin d'être un corbeau (oui il est un peu con)))
 	 */
 
-	private EntityPrettyBird animal;
+	private EntityAnimalPrettyBird animal;
 	private int timeDoingAction; //combien de temps on a déjà fait l'action
 	private int timeToDoAction; //combien de temps on doit faire l'action
 	private int timeStayingOnGround; //depuis combien de temps il est au sol
@@ -30,7 +30,7 @@ public class AIPrettyBird extends AIAnimal {
 	private float directionToMoveOnGround; //<0 gauche, >0 droite
 	private Action2D actionDecided; //l'action que l'oiseau va faire
 	
-	public AIPrettyBird(EntityPrettyBird e) {
+	public AIPrettyBird(EntityAnimalPrettyBird e) {
 		super(e);
 		this.animal = e;
 		this.timeDoingAction = 0;

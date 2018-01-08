@@ -12,15 +12,16 @@ import fr.utbm.texture.TextureManager;
 import fr.utbm.tools.Rescale;
 import fr.utbm.world.World;
 
-public class EntityBeaver extends EntityAnimal {
+public class EntityAnimalBeaver extends EntityAnimal {
 
 	private boolean hasJump, isEmpty;
 	private AIBeaver brain;
+	private String name = "Beaver";
 	/*
 	 * Beaver activity : 0 EAT - 1 JUMP - 2 PUT - 3 TAKE - 4 WALK
 	 */
 
-	public EntityBeaver(float x, float y, World worldIn) {
+	public EntityAnimalBeaver(float x, float y, World worldIn) {
 		super(x, y, 54, 32, worldIn);
 		this.text = Rescale.rescale(TextureManager.getTexture(223), 0.5f, 0.5f);
 		anim = new Animation[6];
