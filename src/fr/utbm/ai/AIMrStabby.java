@@ -30,7 +30,7 @@ public class AIMrStabby extends AIAnimal {
 		for(Entity e : animal.getWorldIn().getEntities()){
 			if((e.targetableBy(224)) && (e.getPosX()<animal.getPosX()+VISION && e.getPosX()>animal.getPosX()-VISION) && (e.getPosY()<animal.getPosY()+VISION && e.getPosY()>animal.getPosY()-VISION)){
 				EntityAnimal potentialTarget = (EntityAnimal)e;
-				float newDist = Math.abs(animal.getX()-potentialTarget.getPosX());
+				float newDist = Math.abs(animal.getPosX()-potentialTarget.getPosX());
 				if(newDist < dist){
 					dist = newDist;
 					target = potentialTarget;
@@ -48,7 +48,8 @@ public class AIMrStabby extends AIAnimal {
 		}
 		else
 		{
-			if((this.animal.getPosX()+this.animal.getWidth()*16 - target.getPosX()<=3f) || target.getPosX()+this.target.getWidth()*16 - this.animal.getPosX()<=3f)
+			System.out.println((this.animal.getPosX()/16-target.getPosX()/16));
+			if((((this.animal.getPosX()+this.animal.getWidth()) - (target.getPosX()))<=3f) || (((target.getPosX()+this.target.getWidth()) - (this.animal.getPosX()))<=3f))
 			{
 				return true;
 			}
