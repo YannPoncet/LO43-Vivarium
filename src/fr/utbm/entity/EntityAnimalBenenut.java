@@ -51,7 +51,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		
 		super(x, y, 15, 18, worldIn);
 		Random r = new Random();
-		growingTime = 100;
+		growingTime = r.nextInt(10000) + 5000;
 		readyToPlant = r.nextInt(5000) + 5000;
 		if(m > 2)
 		{
@@ -94,7 +94,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			{
 				maturity++; //he gets the superior maturity stage
 				Random r = new Random();
-				growingTime = 100; //and another random is assigned for the time before the next stage
+				growingTime = r.nextInt(10000) + 5000; //and another random is assigned for the time before the next stage
 			}
 			else
 			{
