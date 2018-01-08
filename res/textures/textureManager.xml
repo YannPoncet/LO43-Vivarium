@@ -96,6 +96,13 @@
 	<texture id="1000" file="ux/depliantMenu.png"></texture>
 	<texture id="1001" file="ux/fondMenu.png"></texture>
 	<texture id="1002" file="ux/repliantMenu2.png"></texture>
+	<texture id="1003" file="ux/blocks.png"></texture>
+	<texture id="1004" file="ux/entities.png"></texture>
+	<texture id="1005" file="ux/exit.png"></texture>
+	<texture id="1006" file="ux/barreChoix.png"></texture>
+	<texture id="1007" file="ux/trash.png"></texture>
+	<texture id="1008" file="ux/trashActivated.png"></texture>
+	
 	
 	<!-- Animations -->
 	
