@@ -10,11 +10,12 @@ import fr.utbm.ai.Action2D;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
-public class EntityPrettyBird extends EntityAnimal2D {
+public class EntityAnimalPrettyBird extends EntityAnimal2D {
 
 	private AIPrettyBird brain;
+	private String name = "Pretty Bird";
 
-	public EntityPrettyBird(float x, float y, World worldIn) {
+	public EntityAnimalPrettyBird(float x, float y, World worldIn) {
 		super(x, y, 16, 16, worldIn);
 		text = TextureManager.getTexture(222);
 		anim = new Animation[2];

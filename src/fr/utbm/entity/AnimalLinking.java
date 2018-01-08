@@ -9,7 +9,7 @@ public class AnimalLinking {
 	{
 		switch (ID) {				
 		/*Animals*/
-		case 200: w.addEntity(new EntityHellDog(x,y+1+height,w)); //hellHound
+		case 200: w.addEntity(new EntityAnimalHellDog(x,y+1+height,w)); //hellHound
 				break;
 		
 		case 208: w.addEntity(new EntityAnimalBenenut(x,y+1+height,w)); //benenut
@@ -21,10 +21,10 @@ public class AnimalLinking {
 		case 219: w.addEntity(new EntityAnimalCuteFlower(x,y+1+height,w)); //cuteFlower
 				break;
 		
-		case 221: w.addEntity(new EntityBeaver(x,y+1+height,w)); //beaver
+		case 221: w.addEntity(new EntityAnimalBeaver(x,y+1+height,w)); //beaver
 				break;
 				
-		case 222: w.addEntity(new EntityPrettyBird(x,y+1+height,w)); //prettyBird
+		case 222: w.addEntity(new EntityAnimalPrettyBird(x,y+1+height,w)); //prettyBird
 				break;
 				
 		case 224: w.addEntity(new EntityAnimalMrStabby(x,y+1+height,w)); //mrStabby

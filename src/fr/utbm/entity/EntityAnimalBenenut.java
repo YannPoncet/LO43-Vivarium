@@ -21,6 +21,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	private boolean hasJump = false;
 	private AIBenenut brain; //little intelligence to enable movements
 	private int ttd = 500; //time to death : decrement after he is ready to be planted
+	private String name = "Benenut";
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
@@ -51,7 +52,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		
 		super(x, y, 15, 18, worldIn);
 		Random r = new Random();
-		growingTime = 100;
+		growingTime = r.nextInt(10000) + 5000;
 		readyToPlant = r.nextInt(5000) + 5000;
 		if(m > 2)
 		{
@@ -94,7 +95,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			{
 				maturity++; //he gets the superior maturity stage
 				Random r = new Random();
-				growingTime = 100; //and another random is assigned for the time before the next stage
+				growingTime = r.nextInt(10000) + 5000; //and another random is assigned for the time before the next stage
 			}
 			else
 			{
@@ -127,7 +128,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	{
 		ttd--; //if he is ready to be planted, but the function is still called, it means conditions weren't united, or the benenut is stuck somewhere, so we decrement the timeToDeath
 		//if there is dirt under
-		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && world.getBlock((int)(x/16), (int)((y/16)-1)).getBlockType() == BlockType.DIRT)
+		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && world.getBlock((int)(x/16), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && world.getBlock((int)(x/16), (int)(y/16)).getBlockType() != BlockType.LIQUID)
 		{
 			//if there is dirt under the block on the right and there are no solid block on the right (because the BenenutTree needs 2 blocks one next to the other)
 			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && (world.getBlock((int)((x/16)+1), (int)(y/16)) == null || !world.getBlock((int)((x/16)+1), (int)(y/16)).isSolid()))

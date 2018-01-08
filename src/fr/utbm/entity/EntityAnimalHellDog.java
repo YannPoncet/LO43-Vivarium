@@ -10,14 +10,15 @@ import fr.utbm.texture.TextureManager;
 import fr.utbm.tools.CollisionAABB;
 import fr.utbm.world.World;
 
-public class EntityHellDog extends EntityAnimal {
+public class EntityAnimalHellDog extends EntityAnimal {
 
 	private boolean hasJump;
+	private String name = "Hell Dog";
 	/*
 	 * Dog activity : -1 Dont do anything 0 Idle 1 Walk 2 Run 3 Jump
 	 */
 
-	public EntityHellDog(float x, float y, World worldIn) {
+	public EntityAnimalHellDog(float x, float y, World worldIn) {
 		super(x, y, 54, 32, worldIn);
 		this.text = TextureManager.getTexture(200);
 		anim = new Animation[4];

@@ -1,16 +1,16 @@
 package fr.utbm.ai;
 
-import fr.utbm.entity.EntityBeaver;
+import fr.utbm.entity.EntityAnimalBeaver;
 
 public class AIBeaver extends AIAnimal {
 
-	private EntityBeaver animal;
+	private EntityAnimalBeaver animal;
 	private boolean treeChoosen;
 	private boolean isHomeFinish;
 	private AIGoTo pathFinder;
 	private AIBeaverHouse construction;
 	
-	public AIBeaver(EntityBeaver e) {
+	public AIBeaver(EntityAnimalBeaver e) {
 		super(e);
 		this.animal = e;
 		

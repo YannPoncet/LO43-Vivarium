@@ -6,6 +6,7 @@ import fr.utbm.world.World;
 public class EntityVegetalBenenutTree extends EntityVegetal{
 	
 	private EntityAnimalBenenut[] fruits;
+	private String name = "Benenut Tree";
 	
 	public EntityVegetalBenenutTree(float x, float y, World worldIn) {
 		
