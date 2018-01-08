@@ -48,7 +48,6 @@ public class AIMrStabby extends AIAnimal {
 		}
 		else
 		{
-			System.out.println((this.animal.getPosX()/16-target.getPosX()/16));
 			if((((this.animal.getPosX()+this.animal.getWidth()) - (target.getPosX()))<=3f) || (((target.getPosX()+this.target.getWidth()) - (this.animal.getPosX()))<=3f))
 			{
 				return true;
