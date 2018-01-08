@@ -30,6 +30,8 @@ public class EntityAnimalHellDog extends EntityAnimal {
 		activity = -1;
 		perform = false;
 		actionToPerform = -1;
+		maxHealth = 100;
+		health = 100;
 	}
 
 	public void update(){
