@@ -2,21 +2,26 @@ package fr.utbm.world;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import fr.utbm.block.Block;
 import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
-import fr.utbm.entity.EntityAnimalBenenut;
 import fr.utbm.entity.EntityAnimalCuteFlower;
-import fr.utbm.entity.EntityAnimalDigger;
-import fr.utbm.entity.EntityBeaver;
 import fr.utbm.entity.EntityFallingBlock;
-import fr.utbm.entity.EntityPrettyBird;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
+import fr.utbm.ux.GraphicScene;
+import fr.utbm.ux.MainUX;
 
 public class World {
 	
@@ -30,13 +35,24 @@ public class World {
 	private int currentChunkCam;
 	private int currentYCam;
 	
+	private Stage stage;
+    private Texture myTexture;
+    private TextureRegion myTextureRegion;
+    private TextureRegionDrawable myTexRegionDrawable;
+    private ImageButton button;
+    
+    private GraphicScene gs;
+	
 	public World()
 	{
 		map = new Map();
 		entities = new CopyOnWriteArrayList<Entity>();
+		gs = new MainUX();
+		RenderManager.setUI(gs);
 		this.create();
 		fps = new FPSLogger();
 		currentChunkCam = 0;
+
 	}
 	
 	public Block getBlock(int i, int j)
@@ -81,6 +97,7 @@ public class World {
 	
 	/* Call at the World creation */
 	public void create(){
+		gs.create();
 		MapGenerator.generate(this, 888432309); //0 to generate a new seed ->6 / 14
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
@@ -108,6 +125,7 @@ public class World {
 		setBlock(3,320,bs);
 		render();
 		addEntity(new EntityAnimalCuteFlower(5, 330, this));
+		
 	}
 	
 	public void update()

@@ -6,11 +6,10 @@ import java.util.Iterator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.TimeUtils;
 
 import fr.utbm.biome.Biome;
-import fr.utbm.main.DesktopApplication;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.ux.GraphicScene;
 import fr.utbm.view.Camera;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
@@ -24,6 +23,7 @@ public class RenderManager {
 	private static float x=0;
 	private static float y=0;
 	private static int margin = 30;
+	private static GraphicScene ux;
 	
 	
 	
@@ -41,7 +41,9 @@ public class RenderManager {
 		renderArray(blockRender);
 		renderArray(entitiesRender);
 		//System.out.println("RENDER-MANAGER : Show " + blockRender.size() + " elements");
+		
 		batch.end();
+		ux.render();
 		//System.out.println("TIME :" + TimeUtils.timeSinceMillis(t));
 	}
 	private static void renderArray(ArrayList<Renderable> rl){
@@ -148,6 +150,9 @@ public class RenderManager {
 		
 		
 		
+	}
+	public static void setUI(GraphicScene gs){
+		ux = gs;
 	}
 	public static void setBgPos(float x, float y){
 		RenderManager.x = x;

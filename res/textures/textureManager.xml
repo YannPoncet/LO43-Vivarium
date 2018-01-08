@@ -89,6 +89,12 @@
 	<texture id="505" file="backgrounds/snow.png"></texture>
 	<texture id="506" file="backgrounds/montain.png"></texture>
 	
+	<!-- UX -->
+	
+	<texture id="1000" file="ux/depliantMenu.png"></texture>
+	<texture id="1001" file="ux/fondMenu.png"></texture>
+	<texture id="1002" file="ux/repliantMenu2.png"></texture>
+	
 	<!-- Animations -->
 	
 	<animation id="0" file="animals/hellDog/hell-hound-idle.png" wD="6" hD="1" speed="0.2"	size="1"></animation>
