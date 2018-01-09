@@ -13,11 +13,11 @@ import fr.utbm.world.World;
 public class EntityAnimalHellFish extends EntityAnimal2D {
 
 	private AIHellFish brain;
-	public final String name = "Hell Fish";
 	private boolean hasJump;
 
 	public EntityAnimalHellFish(float x, float y, World worldIn) {
 		super(x, y, 91, 38, worldIn);
+		this.name = "Hell Fish";
 		text = TextureManager.getTexture(225);
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(23);
