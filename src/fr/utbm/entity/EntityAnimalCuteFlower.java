@@ -12,7 +12,9 @@ import fr.utbm.world.World;
 
 public class EntityAnimalCuteFlower extends EntityAnimal {
 
-	private boolean hasJump, isEmpty;
+	public final int POWER = 25;
+	
+	private boolean hasJump;
 	public final String name = "Cute Flower";
 	private AICuteFlower brain;
 	
@@ -27,7 +29,6 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 		anim[0] = TextureManager.getAnimation(6); //walk
 		anim[1] = TextureManager.getAnimation(7); //eat
 		anim[2] = TextureManager.getAnimation(19); //jump
-		isEmpty = true;
 		directionX = 1;
 		activity = -1;
 		perform = false;
@@ -59,6 +60,11 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 			action(actionToPerform, directionToPerform);
 		}
 	}
+	
+	public void eat()
+	{
+		this.brain.getTarget().damage(POWER);
+	}
 
 	public void action(int actionID, int direction) {
 		switch (actionID) {
@@ -75,6 +81,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 		case 1: //eat
 			directionX = direction;
 			if (isOnGround()) {
+				eat();
 				move(0, 0, 1);
 			} else {
 				move(0, 0, activity);
@@ -93,12 +100,10 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	
 	public void setFull() {
 		this.text = TextureManager.getTexture(220);
-		this.isEmpty = false;
 	}
 
 	public void setEmpty() {
 		this.text = TextureManager.getTexture(219);
-		this.isEmpty = true;
 	}
 	
 	@Override
