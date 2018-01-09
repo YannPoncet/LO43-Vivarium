@@ -32,14 +32,6 @@ public class EntityAnimalPrettyBird extends EntityAnimal2D {
 		maxHealth = 100;
 		health = 100;
 	}
-	
-	public boolean targetableBy(int id) {
-		switch(id){
-		case 219: if(isOnGround())return true; //targetable by the cuteFlower
-		case 224: if(isOnGround())return true; //targetable by mrStabby
-		default: return false;
-		}
-	}
 
 	public void update() {
 		suffocating();

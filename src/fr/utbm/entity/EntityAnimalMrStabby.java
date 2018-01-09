@@ -12,10 +12,12 @@ import fr.utbm.world.World;
 
 public class EntityAnimalMrStabby extends EntityAnimal {
 	
+	public static final int POWER = 10;
 	private boolean hasJump;
 	private boolean hasMelt;
+	private boolean isStabbing;
 	private AIMrStabby brain;
-	private String name = "Mr Stabby";
+	public final String name = "Mr Stabby";
 
 	public EntityAnimalMrStabby(float x, float y, World worldIn) {
 		super(x, y, 48, 44, worldIn);
@@ -30,12 +32,15 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 		activity = -1;
 		perform = false;
 		hasMelt = false;
+		isStabbing = false;
 		actionToPerform = -1;
 		brain = new AIMrStabby(this);
 	}
 	
 	public void update() {
+		suffocating();
 		if (!perform) {
+			isStabbing = false;
 			hasJump = false;
 			if(hasMelt)
 			{
@@ -60,7 +65,7 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 	
 	public void stab()
 	{
-		//TODO
+		this.brain.getTarget().damage(POWER);
 	}
 
 	public void action(int actionID, int direction) {
@@ -70,15 +75,16 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 			break;
 		case 0:
 			if (isOnGround()) {
-				move(0.2f*direction, 0, 0);
+				move(0.12f*direction, 0, 0);
 			} else {
 				move(0, 0, activity);
 			}
 			break;
 		case 1:
-			if (isOnGround()) {
+			if (isOnGround() && !isStabbing) {
 				stab();
 				move(0, 0, 1);
+				isStabbing = true;
 			} else {
 				move(0, 0, activity);
 			}
@@ -93,10 +99,10 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 			break;
 		case 3:
 			if (isOnGround() && !hasJump) {
-				move(0.2f, 10f, 0);
+				move(0.12f, 10f, 0);
 				hasJump = true;
 			} else {
-				move(0.2f * direction, 0, activity);
+				move(0.12f * direction, 0, activity);
 			}
 			break;
 		}
