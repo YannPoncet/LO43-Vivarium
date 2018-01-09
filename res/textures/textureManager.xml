@@ -111,6 +111,8 @@
 	<texture id="1009" file="ux/vignettes/selected.png"></texture>
 	<texture id="1010" file="ux/mainMenu.png"></texture>
 	<texture id="1011" file="ux/generate.png"></texture>
+	<texture id="1012" file="ux/encadreEntity.png"></texture>
+	<texture id="1013" file="ux/encadreEntityClose.png"></texture>
 	
 	<texture id="1030" file="ux/vignettes/vignetteWater.png"></texture>
 	<texture id="1031" file="ux/vignettes/vignetteDirt.png"></texture>
@@ -134,8 +136,8 @@
 	<texture id="1057" file="ux/vignettes/vignettePiaf.png"></texture>
 	<texture id="1058" file="ux/vignettes/vignetteSnowman.png"></texture>
 	<texture id="1059" file="ux/vignettes/vignetteWarrior.png"></texture>
-	
-	
+	<texture id="1060" file="ux/vignettes/vignetteBenenut.png"></texture>
+	<texture id="1061" file="ux/vignettes/vignetteHellDog.png"></texture>
 	
 	
 	

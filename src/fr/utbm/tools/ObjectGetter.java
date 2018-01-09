@@ -13,6 +13,17 @@ import fr.utbm.block.BlockStone;
 import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
+import fr.utbm.entity.EntityAnimalBeaver;
+import fr.utbm.entity.EntityAnimalBenenut;
+import fr.utbm.entity.EntityAnimalCuteFlower;
+import fr.utbm.entity.EntityAnimalDigger;
+import fr.utbm.entity.EntityAnimalDwarfKing;
+import fr.utbm.entity.EntityAnimalDwarfMiner;
+import fr.utbm.entity.EntityAnimalDwarfWarrior;
+import fr.utbm.entity.EntityAnimalHellDog;
+import fr.utbm.entity.EntityAnimalHellFish;
+import fr.utbm.entity.EntityAnimalMrStabby;
+import fr.utbm.entity.EntityAnimalPrettyBird;
 import fr.utbm.world.World;
 
 public class ObjectGetter {
@@ -45,6 +56,39 @@ public class ObjectGetter {
 			return null;
 			
 		}
+	}
+	public static int getEntityV(Entity e){
+		int a = 0;
+		if(e instanceof EntityAnimalBeaver){
+			a = 1050;
+		}else if(e instanceof EntityAnimalDigger){
+			a = 1051;
+		/*}else if(e instanceof EntityAnimalFish){
+			a = 1052;*/
+		}else if(e instanceof EntityAnimalCuteFlower){
+			a = 1053;
+		}else if(e instanceof EntityAnimalDwarfKing){
+			a = 1054;
+		}else if(e instanceof EntityAnimalHellFish){
+			a = 1055;
+		}else if(e instanceof EntityAnimalDwarfMiner){
+			a = 1056;
+		}else if(e instanceof EntityAnimalPrettyBird){
+			a = 1057;
+		}else if(e instanceof EntityAnimalMrStabby){
+			a = 1058;
+		}else if(e instanceof EntityAnimalDwarfWarrior){
+			a = 1059;
+		}else if(e instanceof EntityAnimalBenenut){
+			a = 1060;
+		}else if(e instanceof EntityAnimalHellDog){
+			a = 1061;
+		}
+		
+		return a;
+		
+		
+		
 	}
 	/*public static Entity getEntity(int id, float x, float y, World w){
 		switch(id){

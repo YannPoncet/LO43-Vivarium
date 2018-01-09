@@ -71,6 +71,19 @@ public class AnimalGenerator extends PseudoRandom {
 		}
 	}
 	
+	//pour récupérer les informations du roi nain aka King Gechter
+	private int[] getKingInfos()
+	{
+		for(int[] infos: this.animalList)
+		{
+			if(infos[0]==226)
+			{
+				return infos;
+			}
+		}
+		return null;
+	}
+	
 	private ArrayList<int[]> getCaveAnimals()
 	{
 		ArrayList<int[]> caveAnimalList = new ArrayList<>();
@@ -163,6 +176,7 @@ public class AnimalGenerator extends PseudoRandom {
 		 * pour chaque block de la surface : 0 si pas d'animal, ID de l'animal sinon
 		 */
 		
+		boolean isKingPlaced = false;
 		ArrayList<int[]> surfaceAnimal = new ArrayList<>(); // à renvoyer
 		ArrayList<int[]> flyingAnimalList = getFlyingAnimals(); //liste des animaux volants
 		int sumBiomeLength=0; // pour ajuster l'index de surface
@@ -207,21 +221,47 @@ public class AnimalGenerator extends PseudoRandom {
 					int[] randomAnimal = animalList.get((int)((super.getNextRandom()+0.5)*(animalList.size()))); //animal aléatoire parmi les animaux existants
 					double randomAnimalFrequence = (super.getNextRandom()+0.5)*100; //frequence aleatoire entre 0 et 100
 					
-					if(randomAnimal[6]==1 //c'est un animal de la surface
-						&& randomAnimalFrequence<=randomAnimal[1] //la fréquence aléatoire est dans la bonne range
-						&& hasPlaceTest(randomAnimal, surface, b, hauteur, i, sumBiomeLength) //il a la place d'apparaitre 
-						&& (randomAnimal[5]==-1 || randomAnimal[5]==b.getId()) //il n'a pas de biome attitré ou est dans le bon biome
-						&& waterTest(randomAnimal, surfaceLiquid, i+sumBiomeLength)) //est dans l'eau si il est aquatique, en dehors de l'eau sinon
+					//si le roi n'est pas placé on essaye de le placer
+					if(!isKingPlaced)
 					{
-						surfaceAnimal.get(i+sumBiomeLength)[0]=randomAnimal[0]; // on ajoute l'index de l'animal à la liste
-						//on ajoute la place necessaire à l'animal-1 blocs sur lesquels on ne peut pas ajouter d'animal (ID=0)
-						//ce qui correspond à la taille de l'animal à l'écran
-						for(int k=1; k<randomAnimal[3]; k++)
+						int[] kingInfos = getKingInfos();
+						if(hasPlaceTest(kingInfos, surface, b, hauteur, i, sumBiomeLength) //il a la place d'apparaitre 
+							&& waterTest(randomAnimal, surfaceLiquid, i+sumBiomeLength)) //pour vérifier qu'il est en dehors de l'eau
 						{
-							if(i+k<b.getWidth() && i+sumBiomeLength+k<surface.size()) //pour ne pas ajouter plus que la taille de la carte
+							surfaceAnimal.get(i+sumBiomeLength)[0]=kingInfos[0]; // on ajoute l'index de l'animal à la liste
+							isKingPlaced=true; //on a placé le divin roi
+							
+							//on ajoute la place necessaire à l'animal-1 blocs sur lesquels on ne peut pas ajouter d'animal (ID=0)
+							//ce qui correspond à la taille de l'animal à l'écran
+							for(int k=1; k<kingInfos[3]; k++)
 							{
-								surfaceAnimal.add(new int[3]);
-								i++;
+								if(i+k<b.getWidth() && i+sumBiomeLength+k<surface.size()) //pour ne pas ajouter plus que la taille de la carte
+								{
+									surfaceAnimal.add(new int[3]);
+									i++;
+								}
+							}
+						}
+					}
+					else //une fois que le roi est placé, on peut placer d'autres animaux
+					{
+						if(randomAnimal[6]==1 //c'est un animal de la surface
+							&& randomAnimalFrequence<=randomAnimal[1] //la fréquence aléatoire est dans la bonne range
+							&& hasPlaceTest(randomAnimal, surface, b, hauteur, i, sumBiomeLength) //il a la place d'apparaitre 
+							&& (randomAnimal[5]==-1 || randomAnimal[5]==b.getId()) //il n'a pas de biome attitré ou est dans le bon biome
+							&& waterTest(randomAnimal, surfaceLiquid, i+sumBiomeLength)) //est dans l'eau si il est aquatique, en dehors de l'eau sinon
+						{
+							surfaceAnimal.get(i+sumBiomeLength)[0]=randomAnimal[0]; // on ajoute l'index de l'animal à la liste
+							
+							//on ajoute la place necessaire à l'animal-1 blocs sur lesquels on ne peut pas ajouter d'animal (ID=0)
+							//ce qui correspond à la taille de l'animal à l'écran
+							for(int k=1; k<randomAnimal[3]; k++)
+							{
+								if(i+k<b.getWidth() && i+sumBiomeLength+k<surface.size()) //pour ne pas ajouter plus que la taille de la carte
+								{
+									surfaceAnimal.add(new int[3]);
+									i++;
+								}
 							}
 						}
 					}

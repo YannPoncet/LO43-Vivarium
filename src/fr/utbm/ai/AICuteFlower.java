@@ -3,16 +3,19 @@ package fr.utbm.ai;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityAnimal;
 import fr.utbm.entity.EntityAnimalCuteFlower;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class AICuteFlower extends AIAnimal {
 
-	public final int VISION = 20*16;
-	public final int STEALTH_RANGE = 8*16;
+	public final int VISION = 25*16;
+	public final int STEALTH_RANGE = 15*16;
 	
 	private EntityAnimal target; //food of the flower
 	
 	private EntityAnimalCuteFlower animal;
 	private AIGoTo pathFinder;
+	private int fullTime;
 	
 	public AICuteFlower(EntityAnimalCuteFlower e) {
 		super(e);
@@ -23,6 +26,11 @@ public class AICuteFlower extends AIAnimal {
 		this.pathFinder.setObjective(20*16);
 		
 		this.target = null;
+		fullTime = 0;
+	}
+	
+	public EntityAnimal getTarget() {
+		return this.target;
 	}
 	
 	@Override
@@ -36,27 +44,33 @@ public class AICuteFlower extends AIAnimal {
 		 */
 		
 		Action actionDecided = null;
-		switch (objective) {
-		case 0:
-			if(target == null) { //on a pas de target, on en cherche un
-				this.target = getNearestTarget();
+
+		if(fullTime <= 0) {
+			EntityAnimal potentialTarget;
+			potentialTarget = getNearestTarget();
+			 
+			if(potentialTarget != null) {
+				this.target = potentialTarget;
 			}
-			target = null; //TODELETE !!!!!! Just to prevent random bugs while it is not finished !
 			
 			if(target != null) { //on a un target
 				if(Math.abs(animal.getX()-target.getX()) > STEALTH_RANGE) { //on s'en rapproche si il n'est pas trop proche
-					//TODO prendre en compte la fin de map
-					this.pathFinder.setObjective(target.getX());
+					if((int)((target.getPosX()+animal.getWidth())/16)+1>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH) //si jamais on risque d'aller sur le bord droit
+					{
+						this.pathFinder.setObjective(target.getPosX()-animal.getWidth());
+					}
+					else
+					{
+						this.pathFinder.setObjective(target.getPosX());
+					}
 					actionDecided = this.pathFinder.updateTask();
 				} else { //on l'attend et on teste si il vient sur nous
 					int whereIsTheTarget = besideTargetPos();
-					if(whereIsTheTarget != 0) { //il est à portée ! on attaque
-						System.out.println(whereIsTheTarget);
+					if(whereIsTheTarget != 0) { //il est à portée ! on attaque et on remplit le ventre de la flower
 						actionDecided = new Action(whereIsTheTarget,1,true);
-					} else {
-						
-					}
-						
+						animal.setFull();
+						fullTime = (int)(Math.random()*25000);
+					} 	
 				}
 			}
 			
@@ -64,45 +78,16 @@ public class AICuteFlower extends AIAnimal {
 				actionDecided = new Action(0,-1,false);
 			}
 			actionDecided.setFinish(false);
-			
-			break;
-		case 1:
-			//actionDecided = this.pathFinder.updateTask();
-			break;
-		case 2:
-			//actionDecided = new Action(1,0,true);
-			break;
-		case 3:
-			
-			break;
 		}
-		/*
-		if(actionDecided.isFinish()){
-			objSwitch();
-		}
-		*/
-		
-		return actionDecided;
-	}
-	
-	@Override
-	public void objSwitch(){
-		switch(objective){
-		case 0 :
-			
-			this.objective = 1;
-			break;
-		case 1 :
-			this.objective = 2;
-			break;
-		case 2 :
-			this.objective = 3;
-			break;
-		case 3 :
-			
-			this.objective = 1;
-			break;
+		else { //the flower is full, we do nothing except controlling if she's ready to eat again
+			fullTime --;
+			if(fullTime == 0) {
+				animal.setEmpty();
+			}
+			actionDecided = new Action(0, -1, false);
 		}	
+	
+		return actionDecided;
 	}
 	
 	private EntityAnimal getNearestTarget(){
@@ -130,7 +115,6 @@ public class AICuteFlower extends AIAnimal {
         }
         else
         {
-        	//System.out.println(((this.animal.getPosX()+this.animal.getWidth())/16+1)+" target: "+(target.getPosX()/16));
             if(((int)((this.animal.getPosX()+this.animal.getWidth())/16+1) == (int)(target.getPosX()/16)))
             {
                 return 1;
