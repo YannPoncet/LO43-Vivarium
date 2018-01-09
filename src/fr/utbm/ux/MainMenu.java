@@ -33,7 +33,7 @@ public class MainMenu extends GraphicScene {
 		// the
 		// button
 		// up
-		generate.setPosition(450, 30);
+		generate.setPosition(450, 0);
 		stage.addActor(generate); // Add the button to the stage to perform
 		// rendering and take input.
 		generate.addListener(new ClickListener() {
