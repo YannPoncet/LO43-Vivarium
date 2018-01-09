@@ -41,6 +41,13 @@ public class AIGoTo extends AIBase{
 						
 					}
 				}
+				b = animal.getWorldIn().getBlock(((animal.getPosX()/16) + (animal.getWidth()/16)), animal.getPosY()/16);
+				if(b != null){
+					if(b.isSolid()){
+						isBlock = true;
+						
+					}
+				}
 				b = animal.getWorldIn().getBlock(((animal.getPosX()/16) + (animal.getWidth()/16)) + 1, animal.getPosY()/16 +1);
 				if(b != null){
 					if(b.isSolid()){
