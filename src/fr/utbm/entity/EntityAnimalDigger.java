@@ -8,11 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import fr.utbm.ai.AIDigger;
 import fr.utbm.ai.Action;
 import fr.utbm.block.Block;
-import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
-import fr.utbm.tools.CollisionAABB;
-import fr.utbm.world.Chunk;
-import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class EntityAnimalDigger extends EntityAnimal {
@@ -21,7 +17,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 	private AIDigger brain;
 	private boolean hasJump;
 	private Block toEat;
-	private String name = "Digger";
+	public final String name = "Digger";
 	
 	public EntityAnimalDigger(float x, float y, World worldIn) {
 		super(x, y, 50, 16, worldIn);
@@ -94,17 +90,6 @@ public class EntityAnimalDigger extends EntityAnimal {
 						if(this.toEat != null) {
 							this.toEat.damage(dmg);
 						}
-						/*
-						if(direction == 1) { //damage
-							if(world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)) != null) {
-								world.getBlock((int)(((this.x+width)/16)), (int)(this.y/16)).damage(dmg);
-							}
-						} else {
-							if(world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)) != null) {
-								world.getBlock((int)(((this.x)/16-1)), (int)(this.y/16)).damage(dmg);
-							}
-						}*/
-						
 					} else { //We apply gravity
 						move(0, 0, activity);
 					}

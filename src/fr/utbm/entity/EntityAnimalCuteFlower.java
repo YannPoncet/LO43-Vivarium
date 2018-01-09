@@ -41,7 +41,8 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	public void update() {
 		if (!perform) {
 			hasJump = false;
-
+			this.stateTime = 0;
+			
 			Action a = brain.updateTask();
 			if (!a.isFinish()) {
 				actionToPerform = a.getAction();
@@ -71,6 +72,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 			}
 			break;
 		case 1: //eat
+			directionX = direction;
 			if (isOnGround()) {
 				move(0, 0, 1);
 			} else {

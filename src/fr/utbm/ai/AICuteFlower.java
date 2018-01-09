@@ -45,10 +45,18 @@ public class AICuteFlower extends AIAnimal {
 			
 			if(target != null) { //on a un target
 				if(Math.abs(animal.getX()-target.getX()) > STEALTH_RANGE) { //on s'en rapproche si il n'est pas trop proche
+					//TODO prendre en compte la fin de map
 					this.pathFinder.setObjective(target.getX());
 					actionDecided = this.pathFinder.updateTask();
 				} else { //on l'attend et on teste si il vient sur nous
-					System.out.println("Il est proche !");
+					int whereIsTheTarget = besideTargetPos();
+					if(whereIsTheTarget != 0) { //il est à portée ! on attaque
+						System.out.println(whereIsTheTarget);
+						actionDecided = new Action(whereIsTheTarget,1,true);
+					} else {
+						
+					}
+						
 				}
 			}
 			
@@ -98,7 +106,7 @@ public class AICuteFlower extends AIAnimal {
 		}	
 	}
 	
-	public EntityAnimal getNearestTarget(){
+	private EntityAnimal getNearestTarget(){
 		float dist = Float.MAX_VALUE;
 		EntityAnimal target = null;
 		
@@ -114,4 +122,28 @@ public class AICuteFlower extends AIAnimal {
 		}
 		return target;
 	}
+	
+	private int besideTargetPos()
+    {
+        if(this.target==null)
+        {
+            return 0;
+        }
+        else
+        {
+        	//System.out.println(((this.animal.getPosX()+this.animal.getWidth())/16+1)+" target: "+(target.getPosX()/16));
+            if(((int)((this.animal.getPosX()+this.animal.getWidth())/16+1) == (int)(target.getPosX()/16)))
+            {
+                return 1;
+            }
+            else if(((int)(((int)this.animal.getPosX())/16-1) == (int)(target.getPosX()+target.getWidth())/16))
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 }
