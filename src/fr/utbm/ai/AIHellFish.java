@@ -8,82 +8,64 @@ import fr.utbm.world.Map;
 public class AIHellFish extends AIAnimal{
 	
 	private EntityAnimalHellFish animal;
-	private int timeDoingAction = 0;
-	private int timeToDoAction = (int)(20*Math.random()+10); //entre 10 et 30
+	private Action2D actionDecided;
 	
 	public AIHellFish(EntityAnimalHellFish e) {
 		super(e);
 		this.animal = e;
+		if(animal.isInLava())
+		{
+			objective = 0;
+		}
+		else
+		{
+			objective = 1;
+		}
+		actionDecided = new Action2D(0,0,0,true);
 	}
 	
 	@Override
 	public Action2D updateTask() {
-		Action2D actionDecided = null;
-		switch(objective) //we stay in a switch if we want to implement a function to eat
+		switch(objective)
 		{
-		case 0 : //he is in lava
+		case 0 : //Managing with collisions, directions,... When in lava
 			
-			if(timeDoingAction>=timeToDoAction) //if he needs to change action
+			if(actionDecided.getDirectionX() != 0)
 			{
-				timeToDoAction = (int)(20*Math.random()+10); //we change the duration of the action (to have variable one)
-				float dx= actionDecided.getDirectionX()+(float)(Math.random()-0.5);
-				float dy= actionDecided.getDirectionY()+(float)(Math.random()-0.5);
-				
-				//if it's too fast, we slow him down
-				if(dx>1){
-					dx-=0.5;
-				}
-				else if(dx<-1){
-					dx+=0.5;
-				}
-				
-				if(dy>1){
-					dy-=0.5;
-				}
-				else if(dy<-1){
-					dy+=0.5;
-				}
-				
-				actionDecided.setDirectionX(dx);
-				actionDecided.setDirectionY(dy);
-				actionDecided.setAction(0);
-				timeDoingAction=0;
+				actionDecided.setDirectionX(1*(actionDecided.getDirectionX()/Math.abs(actionDecided.getDirectionX())));
 			}
 			else
 			{
-				timeDoingAction++;
+				actionDecided.setDirectionX(1);
 			}
 			
-			
-			//si il rencontre un obstacle en X, il change de direction
-			if((actionDecided.getDirectionX()<0 && animal.getWorldIn().getBlock(animal.getPosX()/16-1, animal.getPosY()/16)!=null)
-				|| (actionDecided.getDirectionX()>0 && animal.getWorldIn().getBlock((animal.getPosX() + animal.getWidth())/16, animal.getPosY()/16)!=null))
+			if(actionDecided.getDirectionY() != 0)
 			{
-				actionDecided.setDirectionX(-actionDecided.getDirectionX());
+				actionDecided.setDirectionY(1*(actionDecided.getDirectionY()/Math.abs(actionDecided.getDirectionY())));
 			}
-			
-			//si il y a de l'eau sur lui, il fui !
-			if(animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16)!=null && animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16).getBlockType()==BlockType.LIQUID)
+			else
 			{
 				actionDecided.setDirectionY(1);
 			}
-			else
-			{
-				//si il rencontre un obstacle en Y, il change de direction (solide en haut, liquide en bas pour qu'il puisse se poser si il y a du sol)
-				if((actionDecided.getDirectionY()<0 && animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16-1)!=null && !animal.getWorldIn().getBlock(animal.getPosX()/16, animal.getPosY()/16-1).isSolid())
-					|| (actionDecided.getDirectionY()>0 && animal.getWorldIn().getBlock(animal.getPosX()/16, (animal.getPosY()+animal.getHeight())/16+1)!=null))
-				{
-					actionDecided.setDirectionY(-actionDecided.getDirectionY());
-				}
-			}
-			break;
-		case 1 : //il n'est pas dans la lave
-			actionDecided.setDirectionX(0);
-			actionDecided.setDirectionY(5);
-			actionDecided.setAction(1);
-			break;
-		case 2 :
+			actionDecided.setAction(0);
 			
+			//Obstacle on X, change direction
+			if(hasXCollision())
+			{
+				actionDecided.setDirectionX(-actionDecided.getDirectionX());
+			}
+			//Obstacle on Y, change direction
+	        if(hasYCollision())
+	        {
+	            actionDecided.setDirectionY(-actionDecided.getDirectionY());
+	        }
+			objSwitch();
+			break;
+		case 1 : //When not in lava
+			actionDecided.setDirectionX(0);
+			actionDecided.setDirectionY(50f);
+			actionDecided.setAction(1);
+			objSwitch();
 			break;
 		}
 		return actionDecided;
@@ -93,12 +75,83 @@ public class AIHellFish extends AIAnimal{
 	public void objSwitch(){
 		switch(objective){
 		case 0 :
+			if(!animal.isInLiquid())
+			{
+				objective = 1;
+			}
+			else
+			{
+				objective = 0;
+			}
 			break;
 		case 1 :
-			break;
-		case 2 :
+			if(animal.isInLiquid())
+			{
+				objective = 0;
+			}
+			else
+			{
+				objective = 1;
+			}
 			break;
 		}
 		
 	}
+
+	
+	//Collision on the top or on the bottom
+    private boolean hasYCollision()
+    {
+        if(actionDecided.getDirectionY()>0)
+        {
+            for(int i=0; i<(int)(animal.getWidth()/16+1); i++)
+            {
+                if(animal.getWorldIn().getBlock(animal.getPosX()/16+i, ((animal.getPosY()+animal.getHeight())/16)+1)==null
+                    || animal.getWorldIn().getBlock(animal.getPosX()/16+i, ((animal.getPosY()+animal.getHeight())/16)+1).getBlockType() != BlockType.LIQUID)
+                {
+                    return true;
+                }
+            }
+        }
+        else if(actionDecided.getDirectionY()<0)//si il va vers le bas
+        {
+            for(int i=0; i<(int)(animal.getWidth()/16+1); i++)
+            {
+                if(animal.getWorldIn().getBlock(animal.getPosX()/16+i, animal.getPosY()/16-1)==null
+                    || animal.getWorldIn().getBlock(animal.getPosX()/16+i, animal.getPosY()/16-1).getBlockType() != BlockType.LIQUID)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+  //Collision on the right or on the left
+    private boolean hasXCollision()
+    {
+        if(actionDecided.getDirectionX()>0)
+        {
+            for(int i=0; i<(int)(animal.getHeight()/16+1); i++)
+            {
+                if(animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i)==null
+                    || animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i).getBlockType() != BlockType.LIQUID)
+                {
+                    return true;
+                }
+            }
+        }
+        else if(actionDecided.getDirectionX()<0)
+        {
+            for(int i=0; i<(int)(animal.getHeight()/16+1); i++)
+            {
+                if(animal.getWorldIn().getBlock(animal.getPosX()/16-1, animal.getPosY()/16+i)==null
+                        || animal.getWorldIn().getBlock(animal.getPosX()/16-1, animal.getPosY()/16+i).getBlockType() != BlockType.LIQUID)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

@@ -22,6 +22,7 @@ import fr.utbm.entity.EntityAnimalCuteFlower;
 import fr.utbm.entity.EntityAnimalDwarfKing;
 import fr.utbm.entity.EntityAnimalDwarfMiner;
 import fr.utbm.entity.EntityAnimalDwarfWarrior;
+import fr.utbm.entity.EntityAnimalHellFish;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.main.Main;

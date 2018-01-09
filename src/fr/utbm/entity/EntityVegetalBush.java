@@ -8,7 +8,7 @@ public class EntityVegetalBush extends EntityVegetal{
 	public final String name = "Bush";
 
 	public EntityVegetalBush(float x, float y, World worldIn) {
-		super(x, y, 66, 35, worldIn);
+		super(x, y, 48, 26, worldIn);
 		health = 30;
 		maxHealth = 30;
 		this.text = TextureManager.getTexture(215);

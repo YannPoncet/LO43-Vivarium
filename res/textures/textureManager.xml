@@ -176,7 +176,7 @@
 	<animation id="22" file="animals/mrStabby/mrStabby-melt.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 	
 	
-	<animation id="23" file="animals/hellFish/hellFishForward.png" wD="2" hD="1" speed="0.5" size="1"></animation>
+	<animation id="23" file="animals/hellFish/hellFishForward.png" wD="2" hD="1" speed="0.1" size="1"></animation>
 	<animation id="24" file="animals/hellFish/hellFishEat.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 	
 	<animation id="25" file="animals/dwarfs/king/dwarf-kingGechter-walk.png" wD="5" hD="1" speed="0.1" size="1"></animation>

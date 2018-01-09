@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fr.utbm.ai.AIHellFish;
 import fr.utbm.ai.Action2D;
+import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
@@ -16,7 +17,7 @@ public class EntityAnimalHellFish extends EntityAnimal2D {
 	private boolean hasJump;
 
 	public EntityAnimalHellFish(float x, float y, World worldIn) {
-		super(x, y, 91, 38, worldIn);
+		super(x, y, 64, 27, worldIn);
 		this.name = "Hell Fish";
 		text = TextureManager.getTexture(225);
 		anim = new Animation[2];
@@ -43,17 +44,68 @@ public class EntityAnimalHellFish extends EntityAnimal2D {
 		}
 	}
 	
+	public boolean isInLava()
+	{
+		boolean isInLava = false;
+		int blockWidth = (int)((x+width-1)/16) - (int)(x/16)+1;
+		int blockHeight = (int)((y+height-1)/16) - (int)(y/16)+1;
+		for(int i = 0 ; i < blockWidth ; i++)
+		{
+			for(int j = 0 ; j < blockHeight ; j++)
+			{
+				if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).getID() == 112)
+				{
+					isInLava = true;
+				}
+			}
+		}
+		return isInLava;
+	}
+	
+	public boolean isInLiquid()
+	{
+		boolean isInLiquid = false;
+		int blockWidth = (int)((x+width-1)/16) - (int)(x/16)+1;
+		int blockHeight = (int)((y+height-1)/16) - (int)(y/16)+1;
+		for(int i = 0 ; i < blockWidth ; i++)
+		{
+			for(int j = 0 ; j < blockHeight ; j++)
+			{
+				if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).getBlockType() == BlockType.LIQUID)
+				{
+					isInLiquid = true;
+				}
+			}
+		}
+		return isInLiquid;
+	}
+	
 	public void update() {
 		suffocating();
-		if (!perform) {
-			hasJump = false;
+		if (!perform)
+		{
+			if(isOnGround())
+			{
+				hasJump = false;
+			}
+			else
+			{
+				hasJump = true;
+			}
+			
 			Action2D action = brain.updateTask();
 			directionXToPerform = action.getDirectionX();
 			directionYToPerform = action.getDirectionY();
 			actionToPerform = action.getAction();
 			action(directionXToPerform, directionYToPerform, actionToPerform);
-		} else {
+		}
+		else
+		{
 			action(directionXToPerform, directionYToPerform, actionToPerform);
+		}
+		if(!isInLava())
+		{
+			damage(1);
 		}
 	}
 	
@@ -64,18 +116,22 @@ public class EntityAnimalHellFish extends EntityAnimal2D {
 		case 0: //swim
 			move(0.1f*dx, 0.1f*dy, 0);
 			break;
-		case 1: //eat
-			move(0, 0, 1);
-			break;
-		case 2: //jump (out of water)
-			if(!hasJump)
+		case 1: //jump (if out of water)
+			if(isOnGround() && !hasJump)
 			{
 				move(0, 0.1f*dy, 0);
 				hasJump = true;
 			}
 			else
 			{
-				move(0, -0.1f, activity);
+				if(isInLava())
+				{
+					move(0, 0, 0);
+				}
+				else
+				{
+					move(0, -0.2f, 0);
+				}
 			}
 			break;
 		}
