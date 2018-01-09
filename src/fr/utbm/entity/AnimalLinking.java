@@ -29,6 +29,16 @@ public class AnimalLinking {
 				
 		case 224: w.addEntity(new EntityAnimalMrStabby(x,y+1+height,w)); //mrStabby
 				break;
+				
+		case 226: w.addEntity(new EntityAnimalDwarfKing(x,y+1+height,w)); //dwarf-kingGechter
+				break;
+				
+		case 227: w.addEntity(new EntityAnimalDwarfWarrior(x,y+1+height,w)); //dwarf-warrior
+				break;
+				
+		case 228: w.addEntity(new EntityAnimalDwarfMiner(x,y+1+height,w)); //dwarf-miner
+				break;
+				
 		}
 	}
 	

@@ -75,7 +75,7 @@ public class AIMrStabby extends AIAnimal {
 			do
 			{
 				toMove = (float)(20*16*Math.random()-10*16);
-			}while(this.animal.getWorldIn().getBiomeIn((int)((this.animal.getPosX()+toMove)/16))!=3);
+			}while(this.animal.getWorldIn().getBiomeIn((int)((this.animal.getPosX()+toMove)/16))!=3 || this.animal.getWorldIn().getBiomeIn((int)((this.animal.getPosX()+this.animal.getWidth()+toMove)/16))!=3);
 			//If we're at the end of the map, or the beginning, we change direction
 			if((animal.getX()+16*animal.getDirectionX() <= 16) || ((animal.getX()+16*animal.getDirectionX()+animal.getWidth()) >= (Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH*16))) {
 				animal.changeDirectionX();

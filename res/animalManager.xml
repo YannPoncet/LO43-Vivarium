@@ -1,23 +1,29 @@
 <entityAnimals>
 
-	<animal id="200" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="3" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="208" surfaceFrequence="5" caveFrequence="0" widthNeeded="1" heightNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="218" surfaceFrequence="0" caveFrequence="20" widthNeeded="4" heightNeeded="1" biomeID="-1" surface="0" cave="1" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="219" surfaceFrequence="5" caveFrequence="0" widthNeeded="3" heightNeeded="6" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="221" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="200" surfaceFrequence="0" caveFrequence="0" widthNeeded="3" heightNeeded="2" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="208" surfaceFrequence="0" caveFrequence="0" widthNeeded="1" heightNeeded="2" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="218" surfaceFrequence="0" caveFrequence="10" widthNeeded="3" heightNeeded="1" biomeID="-1" surface="0" cave="1" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="219" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="6" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="221" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="3" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="222" surfaceFrequence="5" caveFrequence="0" widthNeeded="1" heightNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="1" water="0" lava="0"></entity>
-	<animal id="224" surfaceFrequence="5" caveFrequence="0" widthNeeded="3" heightNeeded="3" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>	
+	<animal id="224" surfaceFrequence="5" caveFrequence="0" widthNeeded="3" heightNeeded="3" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="226" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="227" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="228" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	
 </entityAnimals>
 
-<!-- width et height ne sont pas précises actuellement
-200 hellHound
-208 benenut
-218 digger
-219 cuteFlower
-221 beaver
-222 prettyBird 
-224 mrStabby aka snowman
+<!--
+200 hellDog 44x24
+208 benenut 15x18
+218 digger 46x16
+219 cuteFlower 150x150(photo), 32x96(.java) taille spéciale (tige)
+221 beaver 100x88, taille spéciale (/2)
+222 prettyBird 16x16
+224 mrStabby aka snowman 48x44
+226 dwarf-kingGechter 48x50
+227 dwarf-warrior 48x49
+228 dwarf-miner 64x64
 
 biomes:
 0: forest
