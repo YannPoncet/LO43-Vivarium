@@ -228,7 +228,7 @@ public class MainUXFull extends GraphicScene {
 			stage.addActor(selector);
 			break;
 		case 1:
-			for (int i = 0; i < 9; i++) {
+			for (int i = 0; i < 10; i++) {
 				addEntityButton(i);
 			}
 			selector = new Image(new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1009))));
