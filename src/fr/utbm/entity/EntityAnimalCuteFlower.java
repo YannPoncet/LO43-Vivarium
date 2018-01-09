@@ -1,24 +1,23 @@
 package fr.utbm.entity;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import fr.utbm.ai.AIBeaver;
+import fr.utbm.ai.AICuteFlower;
 import fr.utbm.ai.Action;
-import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
 public class EntityAnimalCuteFlower extends EntityAnimal {
 
 	private boolean hasJump, isEmpty;
-	private AIBeaver brain;
 	public final String name = "Cute Flower";
+	private AICuteFlower brain;
+	
 	/*
-	 * Beaver activity : 0 EAT - 1 JUMP - 2 PUT - 3 TAKE - 4 WALK
+	 * Flower activity : -1 WAIT - 0 WALK - 1 EAT - 2 JUMP 
 	 */
 
 	public EntityAnimalCuteFlower(float x, float y, World worldIn) {
@@ -33,54 +32,16 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 		activity = -1;
 		perform = false;
 		actionToPerform = -1;
-		//brain = new AI(this);
+		brain = new AICuteFlower(this);
 	}
 
 	public void update() {
 		suffocating();
-		if(!perform){
-			this.stateTime = 0;
-			hasJump = false;
-			if (Gdx.input.isKeyPressed(Input.Keys.A)){
-				actionToPerform = -1;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.Z)){
-				actionToPerform = 0;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.E)){
-				actionToPerform = 1;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.R)){
-				actionToPerform = 2;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.S)){
-				actionToPerform = 0;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-				actionToPerform = 1;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.F)){
-				actionToPerform = 2;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else{
-				move(0, 0, -1);
-			}
-		}else{
-			action(actionToPerform,directionToPerform);
-		}
-		
-		
-		/*
+
 		if (!perform) {
 			hasJump = false;
-
+			this.stateTime = 0;
+			
 			Action a = brain.updateTask();
 			if (!a.isFinish()) {
 				actionToPerform = a.getAction();
@@ -94,7 +55,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 
 		} else {
 			action(actionToPerform, directionToPerform);
-		}*/
+		}
 	}
 
 	public void action(int actionID, int direction) {
@@ -110,6 +71,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 			}
 			break;
 		case 1: //eat
+			directionX = direction;
 			if (isOnGround()) {
 				move(0, 0, 1);
 			} else {
@@ -135,36 +97,6 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	public void setEmpty() {
 		this.text = TextureManager.getTexture(219);
 		this.isEmpty = true;
-	}
-	
-	//TODO
-	public void eatTree(){
-		for(Entity e : this.world.getEntities()){
-			if(e instanceof EntityVegetalTree){
-				EntityVegetalTree tree = (EntityVegetalTree) e;
-				if(Math.abs(this.getX()-tree.getTrunkPos()) < 55){
-					tree.kill();
-				}
-			}
-		}
-	}
-	
-	//TODO
-	public float getNearestTree(){
-		float dist = 100000f;
-		float pos = 0f;
-		
-		for(Entity e : this.world.getEntities()){
-			if(e instanceof EntityVegetalTree){
-				EntityVegetalTree tree = (EntityVegetalTree) e;
-				float newDist = Math.abs(this.getX()-tree.getTrunkPos());
-				if(newDist < dist){
-					dist = newDist;
-					pos = tree.getPosX();
-				}
-			}
-		}
-		return pos;
 	}
 	
 	@Override
