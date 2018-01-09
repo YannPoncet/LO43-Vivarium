@@ -161,7 +161,7 @@
 	<animation id="18" file="animals/digger/digger.png" wD="1" hD="1" speed="1"	size="1"></animation>
 	<animation id="19" file="animals/cuteFlower/cuteflower.png" wD="1" hD="1" speed="1" size="1"></animation>
 	
-	<animation id="20" file="animals/mrStabby/mrStabby-walk.png" wD="2" hD="1" speed="1" size="1"></animation>
-	<animation id="21" file="animals/mrStabby/mrStabby-attack.png" wD="4" hD="1" speed="1" size="1"></animation>
-	<animation id="22" file="animals/mrStabby/mrStabby-melt.png" wD="4" hD="1" speed="1" size="1"></animation>
+	<animation id="20" file="animals/mrStabby/mrStabby-walk.png" wD="2" hD="1" speed="0.5" size="1"></animation>
+	<animation id="21" file="animals/mrStabby/mrStabby-attack.png" wD="4" hD="1" speed="0.5" size="1"></animation>
+	<animation id="22" file="animals/mrStabby/mrStabby-melt.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 </textures>

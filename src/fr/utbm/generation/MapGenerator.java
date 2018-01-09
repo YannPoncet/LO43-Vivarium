@@ -25,7 +25,7 @@ public class MapGenerator {
 			Chrono chrono2 = new Chrono();
 			
 			
-			long M = 4294967296L;
+			long M = 42949672L;
 			if (seed == 0) 
 			{
 				seed = Math.floor(Math.random() * M);
@@ -40,6 +40,7 @@ public class MapGenerator {
 				//The biomes shall not be <20 blocks large or you will have some issues
 				BiomeGenerator biomeGen = new BiomeGenerator(seed, M, Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH, 50, 100);
 				ArrayList<Biome> biomeList = biomeGen.getBiomeList();
+				world.setBiomeList(biomeList);
 			System.out.println(" "+chrono.getTime()+"ms");
 			
 			RenderManager.setBiomeList(biomeList);

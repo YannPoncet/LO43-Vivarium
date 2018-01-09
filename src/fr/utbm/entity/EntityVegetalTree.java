@@ -20,6 +20,7 @@ public class EntityVegetalTree extends EntityVegetal {
 	
 	public void update()
 	{
+		suffocating();
 		voidUnder();
 	}
 	public float getTrunkPos(){

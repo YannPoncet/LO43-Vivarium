@@ -29,7 +29,8 @@ public class EntityAnimalPrettyBird extends EntityAnimal2D {
 		directionYToPerform = (float)(2*Math.random()-1);
 		perform = false;
 		actionToPerform = 0;
-		
+		maxHealth = 100;
+		health = 100;
 	}
 	
 	public boolean targetableBy(int id) {
@@ -41,6 +42,7 @@ public class EntityAnimalPrettyBird extends EntityAnimal2D {
 	}
 
 	public void update() {
+		suffocating();
 		if (!perform) { //si on ne fait plus rien, on update l'action (donc les directions)
 			Action2D action = brain.updateTask();
 			directionXToPerform = action.getDirectionX();
