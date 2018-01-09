@@ -105,6 +105,8 @@
 	<texture id="1007" file="ux/trash.png"></texture>
 	<texture id="1008" file="ux/trashActivated.png"></texture>
 	<texture id="1009" file="ux/vignettes/selected.png"></texture>
+	<texture id="1010" file="ux/mainMenu.png"></texture>
+	<texture id="1011" file="ux/generate.png"></texture>
 	
 	<texture id="1030" file="ux/vignettes/vignetteWater.png"></texture>
 	<texture id="1031" file="ux/vignettes/vignetteDirt.png"></texture>
