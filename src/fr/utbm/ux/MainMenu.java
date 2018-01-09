@@ -47,10 +47,8 @@ public class MainMenu extends GraphicScene {
 	    skin = new Skin( Gdx.files.internal("res/skin/uiskin.json"));
 	    FileHandle atlasFile = fileHandle.sibling("res/skin/uiskin.atlas");
 	    if (atlasFile.exists()) {
-	        Gdx.app.log("MyGame", "atlas file is loaded");
 	        skin.addRegions(new TextureAtlas(atlasFile));
 	    } else {
-	        Gdx.app.log("MyGame", "atlas file is NOT loaded");
 	    }
 		
 		seed = new TextField("", skin,"default");
