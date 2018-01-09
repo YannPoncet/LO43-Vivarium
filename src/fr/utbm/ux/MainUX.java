@@ -112,7 +112,7 @@ public class MainUX extends GraphicScene{
 		life.setPosition(10 + carV.getWidth() + 20, screenHeight - 60);
 		stage.addActor(life);
 		close = new ImageButton(new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1013)))); //Set the button up
-        close.setPosition(200,screenHeight-100);
+        close.setPosition(208,screenHeight-110);
         stage.addActor(close); //Add the button to the stage to perform rendering and take input.
         close.addListener( new ClickListener() {              
             @Override
@@ -142,7 +142,7 @@ public class MainUX extends GraphicScene{
 		Entity e = this.world.getEntityAt(x, y);
 		if(e != null ){
 			if(ObjectGetter.getEntityV(e) !=0){
-		        addCaract(ObjectGetter.getEntityV(e),e.name,e.getHealth(),e.getMaxHealth());
+		        addCaract(ObjectGetter.getEntityV(e),e.getName(),e.getHealth(),e.getMaxHealth());
 			}
 		}
 

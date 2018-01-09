@@ -15,10 +15,11 @@ public abstract class Entity extends Renderable{
 	protected int maxHealth;
 	protected int health;
 	protected RigidBox hitBox;
-	public final String name ="";
+	protected final String name;
 	
 	public Entity(float x, float y, int w, int h, World worldIn) {
 		super(x*16,y*16,TextureManager.getTexture(0));
+		this.name = "";
 		this.world = worldIn;
 		this.width = w;
 		this.height = h;
@@ -115,5 +116,8 @@ public abstract class Entity extends Renderable{
 	public RigidBox getHitBox(){
 		return this.hitBox;
 	}
-
+	public String getName()
+	{
+		return this.name;
+	}
 }
