@@ -87,6 +87,8 @@
 	<texture id="227" file="animals/dwarfs/warrior/dwarf-warrior.png"></texture>
 	<texture id="228" file="animals/dwarfs/miner/dwarf-miner.png"></texture>
 	
+	<texture id="229" file="animals/redFish/redFish.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
@@ -192,4 +194,6 @@
 	<animation id="32" file="animals/dwarfs/miner/dwarf-miner-mine.png" wD="10" hD="1" speed="0.05" size="1"></animation>
 	<animation id="33" file="animals/dwarfs/miner/dwarf-miner-build.png" wD="6" hD="1" speed="0.1" size="1"></animation>
 	<animation id="34" file="animals/dwarfs/miner/dwarf-miner.png" wD="1" hD="1" speed="0.5" size="1"></animation>
+	
+	<animation id="35" file="animals/redFish/redFish_swim.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 </textures>
