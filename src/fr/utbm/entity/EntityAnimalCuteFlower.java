@@ -37,6 +37,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	}
 
 	public void update() {
+		suffocating();
 		if(!perform){
 			this.stateTime = 0;
 			hasJump = false;
