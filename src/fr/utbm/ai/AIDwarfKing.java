@@ -98,7 +98,6 @@ public class AIDwarfKing extends AIAnimal {
 							this.hasAnObjective = true;
 							
 							if(toGo/16 <= 1) { //we're to close to the left
-								System.out.println("TO CLOSE");
 								this.hasAnObjective = false;
 							} else if((toGo+animal.getWidth())/16 >= (Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1)) { //we're to close to the right
 								this.hasAnObjective = false;
