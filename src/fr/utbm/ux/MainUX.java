@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import fr.utbm.main.DesktopApplication;
 import fr.utbm.render.RenderManager;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.world.World;
 
 public class MainUX extends GraphicScene{
 	  	private Texture myTexture;
@@ -22,9 +22,10 @@ public class MainUX extends GraphicScene{
 	    private int screenHeight;
 	    private boolean deploy,undeploy;
 	    private float xTranslation;
-	    
-	public MainUX(){
+	    private World world;
+	public MainUX(World w){
 		super();
+		this.world = w;
 		screenWidth = DesktopApplication.WIDTH;
 		screenHeight = DesktopApplication.HEIGHT;
 		deploy = true;
@@ -62,7 +63,7 @@ public class MainUX extends GraphicScene{
 			xTranslation += 58/20;
 			button.setPosition(xTranslation + screenWidth - button.getWidth(), (screenHeight / 2) - (button.getHeight()/2));
 		}else{
-			MainUXFull mf = new MainUXFull();
+			MainUXFull mf = new MainUXFull(world);
             mf.create();
             RenderManager.setUI(mf);
             this.stage.dispose();

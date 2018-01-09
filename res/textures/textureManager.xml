@@ -102,6 +102,34 @@
 	<texture id="1006" file="ux/barreChoix.png"></texture>
 	<texture id="1007" file="ux/trash.png"></texture>
 	<texture id="1008" file="ux/trashActivated.png"></texture>
+	<texture id="1009" file="ux/vignettes/selected.png"></texture>
+	
+	<texture id="1030" file="ux/vignettes/vignetteWater.png"></texture>
+	<texture id="1031" file="ux/vignettes/vignetteDirt.png"></texture>
+	<texture id="1032" file="ux/vignettes/vignetteGrass.png"></texture>
+	<texture id="1033" file="ux/vignettes/vignetteSnow.png"></texture>
+	<texture id="1034" file="ux/vignettes/vignetteSand.png"></texture>
+	<texture id="1035" file="ux/vignettes/vignetteSandSurface.png"></texture>
+	<texture id="1036" file="ux/vignettes/vignetteAsh.png"></texture>
+	<texture id="1037" file="ux/vignettes/vignetteStone.png"></texture>
+	<texture id="1038" file="ux/vignettes/vignetteObsidian.png"></texture>
+	<texture id="1039" file="ux/vignettes/vignetteWood.png"></texture>
+	<texture id="1040" file="ux/vignettes/vignetteLava.png"></texture>
+	
+	<texture id="1050" file="ux/vignettes/vignetteBeaver.png"></texture>
+	<texture id="1051" file="ux/vignettes/vignetteDigger.png"></texture>
+	<texture id="1052" file="ux/vignettes/vignetteFish.png"></texture>
+	<texture id="1053" file="ux/vignettes/vignetteFlower.png"></texture>
+	<texture id="1054" file="ux/vignettes/vignetteGechter.png"></texture>
+	<texture id="1055" file="ux/vignettes/vignetteHellFish.png"></texture>
+	<texture id="1056" file="ux/vignettes/vignetteMiner.png"></texture>
+	<texture id="1057" file="ux/vignettes/vignettePiaf.png"></texture>
+	<texture id="1058" file="ux/vignettes/vignetteSnowman.png"></texture>
+	<texture id="1059" file="ux/vignettes/vignetteWarrior.png"></texture>
+	
+	
+	
+	
 	
 	
 	<!-- Animations -->
