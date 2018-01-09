@@ -30,6 +30,9 @@ public class AnimalLinking {
 		case 224: w.addEntity(new EntityAnimalMrStabby(x,y+1+height,w)); //mrStabby
 				break;
 				
+		case 225:w.addEntity(new EntityAnimalHellFish(x,y+1+height,w)); //mrStabby
+				break;
+				
 		case 226: w.addEntity(new EntityAnimalDwarfKing(x,y+1+height,w)); //dwarf-kingGechter
 				break;
 				
@@ -37,6 +40,9 @@ public class AnimalLinking {
 				break;
 				
 		case 228: w.addEntity(new EntityAnimalDwarfMiner(x,y+1+height,w)); //dwarf-miner
+				break;
+				
+		case 229:w.addEntity(new EntityAnimalRedFish(x,y+1+height,w)); //mrStabby
 				break;
 				
 		}
