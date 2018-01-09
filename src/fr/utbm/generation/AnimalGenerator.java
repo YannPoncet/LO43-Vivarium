@@ -176,7 +176,7 @@ public class AnimalGenerator extends PseudoRandom {
 		 * pour chaque block de la surface : 0 si pas d'animal, ID de l'animal sinon
 		 */
 		
-		boolean isKingPlaced = false;
+		boolean needToPlaceKing = true;
 		ArrayList<int[]> surfaceAnimal = new ArrayList<>(); // à renvoyer
 		ArrayList<int[]> flyingAnimalList = getFlyingAnimals(); //liste des animaux volants
 		int sumBiomeLength=0; // pour ajuster l'index de surface
@@ -218,18 +218,26 @@ public class AnimalGenerator extends PseudoRandom {
 						
 					/*Animaux terrestres et aquatiques*/
 					hauteur = surface.get(i+sumBiomeLength);
+					
+					int[] kingInfos = getKingInfos();
+					int kingPosition = (int)((Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-kingInfos[3])*super.getNextRandom()+0.5);
+					
 					int[] randomAnimal = animalList.get((int)((super.getNextRandom()+0.5)*(animalList.size()))); //animal aléatoire parmi les animaux existants
 					double randomAnimalFrequence = (super.getNextRandom()+0.5)*100; //frequence aleatoire entre 0 et 100
 					
-					//si le roi n'est pas placé on essaye de le placer
-					if(!isKingPlaced)
+					if(i==kingPosition)
 					{
-						int[] kingInfos = getKingInfos();
+						needToPlaceKing=false;
+					}
+					
+					//si le roi n'est pas placé on essaye de le placer
+					if(!needToPlaceKing)
+					{
 						if(hasPlaceTest(kingInfos, surface, b, hauteur, i, sumBiomeLength) //il a la place d'apparaitre 
 							&& waterTest(randomAnimal, surfaceLiquid, i+sumBiomeLength)) //pour vérifier qu'il est en dehors de l'eau
 						{
 							surfaceAnimal.get(i+sumBiomeLength)[0]=kingInfos[0]; // on ajoute l'index de l'animal à la liste
-							isKingPlaced=true; //on a placé le divin roi
+							needToPlaceKing=true; //on a placé le divin roi
 							
 							//on ajoute la place necessaire à l'animal-1 blocs sur lesquels on ne peut pas ajouter d'animal (ID=0)
 							//ce qui correspond à la taille de l'animal à l'écran

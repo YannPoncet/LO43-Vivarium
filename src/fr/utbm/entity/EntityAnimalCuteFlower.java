@@ -14,7 +14,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 
 	public final int POWER = 25;
 	
-	private boolean hasJump;
+	private boolean hasJump, isAttacking;
 	private AICuteFlower brain;
 	
 	/*
@@ -32,6 +32,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 		directionX = 1;
 		activity = -1;
 		perform = false;
+		isAttacking = false;
 		actionToPerform = -1;
 		brain = new AICuteFlower(this);
 		health = 100;
@@ -43,6 +44,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 
 		if (!perform) {
 			hasJump = false;
+			isAttacking = false;
 			this.stateTime = 0;
 			
 			Action a = brain.updateTask();
@@ -80,9 +82,10 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 			break;
 		case 1: //eat
 			directionX = direction;
-			if (isOnGround()) {
+			if (isOnGround() && !isAttacking) {
 				eat();
 				move(0, 0, 1);
+				isAttacking = true;
 			} else {
 				move(0, 0, activity);
 			}

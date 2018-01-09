@@ -13,8 +13,7 @@ import fr.utbm.world.World;
 
 public abstract class EntityAnimalDwarf extends EntityAnimal {
 
-	private boolean hasJump;
-	private AICuteFlower brain;
+	protected boolean hasJump;
 	
 	/*
 	 * DWARF activity : -1 DO NOTHING, 0 WALK, 1 JUMP, 2 SPECIAL ACTIVITY 
@@ -32,7 +31,6 @@ public abstract class EntityAnimalDwarf extends EntityAnimal {
 		activity = -1;
 		perform = false;
 		actionToPerform = -1;
-		//brain = new AI(this);
 	}
 	
 	public EntityAnimalDwarf(float x, float y, int w, int h, World worldIn, int normalId, int walkId, int jumpId, int specialId, int specialId2) {
@@ -49,72 +47,6 @@ public abstract class EntityAnimalDwarf extends EntityAnimal {
 		perform = false;
 		actionToPerform = -1;
 		//brain = new AI(this);
-	}
-
-	public void update() {
-		suffocating();
-		
-		if(!perform){
-			hasJump = false;
-			if (Gdx.input.isKeyPressed(Input.Keys.A)){
-				actionToPerform = 1;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.Z)){
-				actionToPerform = 2;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.E)){
-				actionToPerform = 3;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.R)){
-				actionToPerform = 0;
-				directionToPerform = 1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.Q)){
-				actionToPerform = 1;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.S)){
-				actionToPerform = 2;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-				actionToPerform = 3;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else if(Gdx.input.isKeyPressed(Input.Keys.F)){
-				actionToPerform = 0;
-				directionToPerform = -1;
-				action(actionToPerform,directionToPerform);
-			}else{
-				move(0, 0, -1);
-			}
-		}else{
-			action(actionToPerform,directionToPerform);
-		}
-		
-		/*
-		if (!perform) {
-			hasJump = false;
-			this.stateTime = 0;
-			
-			Action a = brain.updateTask();
-			if (!a.isFinish()) {
-				actionToPerform = a.getAction();
-				directionToPerform = a.getDirection();
-				action(actionToPerform, directionToPerform);
-			} else {
-				actionToPerform = a.getAction();
-				directionToPerform = this.directionX;
-				action(actionToPerform, directionToPerform);
-			}
-
-		} else {
-			action(actionToPerform, directionToPerform);
-		}
-		*/
 	}
 
 	public void action(int actionID, int direction) {

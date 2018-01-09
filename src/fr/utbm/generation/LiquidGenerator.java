@@ -2,7 +2,11 @@ package fr.utbm.generation;
 
 import java.util.ArrayList;
 
-
+/*
+ * This class is used to return the liquids in our world.
+ * The method caveLiquidGen returns the table of liquids for the caves
+ * The method surfaceLiquidGen returns the height of liquids at the surface
+ */
 public class LiquidGenerator extends PseudoRandom {
 	public LiquidGenerator(double seed, long M) {
 		super(seed, M);

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockGlass;
 import fr.utbm.entity.Entity;
 import fr.utbm.main.DesktopApplication;
 import fr.utbm.render.RenderManager;
@@ -267,7 +268,7 @@ public class MainUXFull extends GraphicScene {
 			int rX = (int) (x / 16);
 			int rY = (int) (y / 16);
 			Block b = this.world.getBlock(rX, rY);
-			if(b != null){
+			if(b != null && !(b instanceof BlockGlass)){
 				b.kill();
 			}
 		}

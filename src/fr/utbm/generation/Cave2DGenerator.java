@@ -2,6 +2,10 @@ package fr.utbm.generation;
 
 import java.util.ArrayList;
 
+/*
+ * This class uses the game of life to build caves in our world.
+ * Two main rules are used, see below.
+ */
 public class Cave2DGenerator extends PseudoRandom{
 	private int width;
 	private int height;
@@ -15,7 +19,7 @@ public class Cave2DGenerator extends PseudoRandom{
 		initializeCells(initialPercentageOfFill);
 	}
 	
-	//The constructor below is used to combine 2 different caves
+	//The constructor below is used to combine 2 different percentage of fill (ex of use: cave and hell together)
 	public Cave2DGenerator(double seed, long M, double initialPercentageOfFill, double initialPercentageOfFill2, int width, int height, int height2) 
 	{
 		super(seed, M);
@@ -24,7 +28,7 @@ public class Cave2DGenerator extends PseudoRandom{
 		initializeCells(initialPercentageOfFill, initialPercentageOfFill2, height2);
 	}
 	
-	
+	//Creates and initialize the arrayList that will be returned at the end with pseudo random values
     public void initializeCells(double initialPercentageOfFill) {
     	this.caves = new ArrayList<>();
         for (int i=0; i<width; i++) {
@@ -38,8 +42,9 @@ public class Cave2DGenerator extends PseudoRandom{
             }
             caves.add(tmp);
         }
-     }
-     public void initializeCells(double initialPercentageOfFill, double initialPercentageOfFill2, int height2) {
+    }
+    //Same but with two different percentage of fill (cave / hell)
+    public void initializeCells(double initialPercentageOfFill, double initialPercentageOfFill2, int height2) {
     	this.caves = new ArrayList<>();
         for (int i=0; i<width; i++) {
         	ArrayList<Integer> tmp = new ArrayList<>();
@@ -55,8 +60,9 @@ public class Cave2DGenerator extends PseudoRandom{
             }
             caves.add(tmp);
         }
-     }
+    }
     
+    //Launches the atomatons and returns the caves
     public ArrayList<ArrayList<Integer>> generateAndGetCaves()
     {
     	launchAutomaton(1,20);
@@ -65,6 +71,7 @@ public class Cave2DGenerator extends PseudoRandom{
     	return this.caves;
     }
     
+    //This method applies the indicated automaton a certain number of time
 	public void launchAutomaton(int mode, int numIterations) {
 
 		ArrayList<ArrayList<Integer>> tmpCaves = new ArrayList<>();
