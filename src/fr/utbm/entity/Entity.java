@@ -15,6 +15,7 @@ public abstract class Entity extends Renderable{
 	protected int maxHealth;
 	protected int health;
 	protected RigidBox hitBox;
+	public final String name ="";
 	
 	public Entity(float x, float y, int w, int h, World worldIn) {
 		super(x*16,y*16,TextureManager.getTexture(0));
@@ -22,7 +23,12 @@ public abstract class Entity extends Renderable{
 		this.width = w;
 		this.height = h;
 	}
-	
+	public int getHealth(){
+		return this.health;
+	}
+	public int getMaxHealth(){
+		return this.maxHealth;
+	}
 	public void damage(int dmg)
     {
         if(this.health > 0)
