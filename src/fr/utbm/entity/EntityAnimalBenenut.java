@@ -21,11 +21,11 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	private boolean hasJump = false;
 	private AIBenenut brain; //little intelligence to enable movements
 	private int ttd = 500; //time to death : decrement after he is ready to be planted
-	public final String name = "Benenut";
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		
 		super(x, y, 15, 18, worldIn);
+		this.name = "Benenut";
 		growingTime = 0;
 		Random r = new Random();
 		readyToPlant = r.nextInt(5000) + 5000;
@@ -51,6 +51,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	public EntityAnimalBenenut(float x, float y, int m, World worldIn) {
 		
 		super(x, y, 15, 18, worldIn);
+		this.name = "Benenut";
 		Random r = new Random();
 		growingTime = r.nextInt(10000) + 5000;
 		readyToPlant = r.nextInt(5000) + 5000;

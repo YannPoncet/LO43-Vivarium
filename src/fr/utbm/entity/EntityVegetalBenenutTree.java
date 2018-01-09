@@ -6,11 +6,11 @@ import fr.utbm.world.World;
 public class EntityVegetalBenenutTree extends EntityVegetal{
 	
 	private EntityAnimalBenenut[] fruits;
-	public final String name = "Benenut Tree";
 	
 	public EntityVegetalBenenutTree(float x, float y, World worldIn) {
 		
 		super(x, y, 96, 144, worldIn);
+		this.name = "Benenut Tree";
 		maturity = 6;
 		text = TextureManager.getTexture(201 + maturity);
 		fruits = new EntityAnimalBenenut[6];
@@ -22,6 +22,7 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 	public EntityVegetalBenenutTree(float x, float y, int m, World worldIn)
 	{
 		super(x, y, 96, 144, worldIn);
+		this.name = "Benenut Tree";
 		if(m > 6)
 		{
 			m = 6;
