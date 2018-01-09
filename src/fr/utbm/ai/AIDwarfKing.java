@@ -9,8 +9,6 @@ import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 
 public class AIDwarfKing extends AIAnimal {
-
-	public final int VISION = 25*16;
 	public final int NB_MINER = 2;
 	public final int NB_WARRIOR = 2;
 	public final int HOME_SPAWN_FACTOR = 15*16;
@@ -24,6 +22,7 @@ public class AIDwarfKing extends AIAnimal {
 	private ArrayList<EntityAnimalDwarfWarrior> warriors;
 	
 	private int blockerInteger;
+	private int noInfiniteTimer;
 	
 	private boolean hasAnObjective;
 	
@@ -41,11 +40,12 @@ public class AIDwarfKing extends AIAnimal {
 		this.hasAnObjective = false;
 		
 		this.blockerInteger = 0;
+		this.noInfiniteTimer = 0;
 		
-		EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn());
+		EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 		animal.getWorldIn().addEntity(tempWarrior);
 		
-		EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn());
+		EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 		animal.getWorldIn().addEntity(tempMiner);
 	}
 	
@@ -60,12 +60,12 @@ public class AIDwarfKing extends AIAnimal {
 		Action actionDecided = null;
 		if(blockerInteger <= 0) {
 			if(!hasAnObjective) {
-				if(this.miners.size() <= NB_MINER && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
-					EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn());
+				if(this.warriors.size() <= NB_WARRIOR && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
+					EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 					animal.getWorldIn().addEntity(tempWarrior);
 				}
-				else if(this.warriors.size() <= NB_WARRIOR && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
-					EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn());
+				else if(this.miners.size() <= NB_MINER && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
+					EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 					animal.getWorldIn().addEntity(tempMiner);
 				}
 				else {
@@ -102,6 +102,7 @@ public class AIDwarfKing extends AIAnimal {
 							} else if((toGo+animal.getWidth())/16 >= (Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1)) { //we're to close to the right
 								this.hasAnObjective = false;
 							}
+							this.noInfiniteTimer = 20;
 						} else if (whatToDo < 0.7){ //he commands
 							if(Math.random() < 0.5) { //he commands to the right
 								actionDecided = new Action(1,2, false);
@@ -117,9 +118,10 @@ public class AIDwarfKing extends AIAnimal {
 				}	
 			} else {
 				actionDecided = this.pathFinder.updateTask();
-				if(actionDecided.isFinish()) {
+				if(actionDecided.isFinish() || noInfiniteTimer <= 0) {
 					this.hasAnObjective = false;
 				}
+				noInfiniteTimer--;
 			}
 		}
 		else {

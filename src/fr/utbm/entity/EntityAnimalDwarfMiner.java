@@ -3,12 +3,29 @@ package fr.utbm.entity;
 import fr.utbm.world.World;
 
 public class EntityAnimalDwarfMiner extends EntityAnimalDwarf {
+	private  EntityAnimalDwarfKing king;
+	
+	public EntityAnimalDwarfMiner(float x, float y, World worldIn,  EntityAnimalDwarfKing king) {
+		/* super(x, y, worldIn, normal, walkId, jumpId, specialId)*/
+		super(x, y, 64, 64, worldIn, 228, 31, 34, 32, 33);
+		this.name = "Dwarf miner";
+		this.king = king;
+	}
 	
 	public EntityAnimalDwarfMiner(float x, float y, World worldIn) {
 		/* super(x, y, worldIn, normal, walkId, jumpId, specialId)*/
 		super(x, y, 64, 64, worldIn, 228, 31, 34, 32, 33);
 		this.name = "Dwarf miner";
-
+		
+		for(Entity e : worldIn.getEntities()){
+			if(e instanceof EntityAnimalDwarfKing){
+				this.king = (EntityAnimalDwarfKing) e;
+			}
+		}
+	}
+	
+	public EntityAnimalDwarfKing getKing() {
+		return this.king;
 	}
 
 	@Override
