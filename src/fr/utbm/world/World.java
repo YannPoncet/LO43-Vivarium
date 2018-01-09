@@ -27,6 +27,7 @@ import fr.utbm.generation.MapGenerator;
 import fr.utbm.main.Main;
 import fr.utbm.render.RenderManager;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.tools.CollisionAABB;
 import fr.utbm.ux.GraphicScene;
 import fr.utbm.ux.MainUX;
 import fr.utbm.view.Camera;
@@ -81,6 +82,15 @@ public class World implements Screen{
 	public Block getBlock(float i, float j)
 	{
 		return map.getBlock((int)i,(int)j);
+	}
+	public Entity getEntityAt(float x, float y){
+		Entity entity = null;
+		for(Entity e : entities){
+			if(CollisionAABB.isCol(e.getPosX(),e.getPosY(),e.getWidth(),e.getHeight(),x,y,1,1)){
+				entity = e;
+			}
+		}
+		return entity;
 	}
 	
 	public void setBlock(int i, int j, Block block)

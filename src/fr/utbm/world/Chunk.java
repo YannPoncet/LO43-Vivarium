@@ -37,7 +37,12 @@ public class Chunk {
 	
 	public void setBlock(int i, int j, Block block)
 	{
+		Block b = this.blocks[i][j];
+		if(b != null){
+			b.kill();
+		}
 		this.blocks[i][j] = block;
+		
 	}
 	
 	public void render()

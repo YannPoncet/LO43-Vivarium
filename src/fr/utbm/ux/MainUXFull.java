@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import fr.utbm.block.Block;
+import fr.utbm.entity.Entity;
 import fr.utbm.main.DesktopApplication;
 import fr.utbm.render.RenderManager;
 import fr.utbm.texture.TextureManager;
@@ -28,6 +30,7 @@ public class MainUXFull extends GraphicScene {
 	private Texture bg;
 	private float xTranslation;
 	private int category;
+	public boolean trashMode;
 
 	private Image menuBar;
 	private ImageButton reduc;
@@ -35,6 +38,7 @@ public class MainUXFull extends GraphicScene {
 	private ImageButton blocks;
 	private ImageButton entities;
 	private ImageButton exit;
+	private ImageButton trash;
 
 	private int selected;
 
@@ -54,6 +58,7 @@ public class MainUXFull extends GraphicScene {
 		elems = new PanelBase();
 		this.category = 0;
 		this.selected = 1;
+		this.trashMode = false;
 	}
 
 	@Override
@@ -135,6 +140,22 @@ public class MainUXFull extends GraphicScene {
 				setMenu(2);
 			};
 		});
+		trash = new ImageButton(new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1007))),
+				new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1008))),
+				new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1008)))); // Set
+		// the
+		// button
+		// up
+		trash.setPosition(10 + xTranslation + screenWidth / 2, 10);
+		elems.addElement(trash);
+		stage.addActor(trash); // Add the button to the stage to perform
+		// rendering and take input.
+		trash.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				changeTrashMode();
+			};
+		});
 		addActorCat(category);
 		Gdx.input.setInputProcessor(stage);
 	}
@@ -184,6 +205,16 @@ public class MainUXFull extends GraphicScene {
 
 	}
 
+	public void changeTrashMode() {
+		if (trashMode) {
+			trash.setChecked(false);
+			trashMode = false;
+		} else {
+			trash.setChecked(true);
+			trashMode = true;
+		}
+	}
+
 	public void addActorCat(int cat) {
 		switch (cat) {
 		case 0:
@@ -211,17 +242,35 @@ public class MainUXFull extends GraphicScene {
 
 	public void actionOnClick(float x, float y) {
 		if (x < screenWidth / 2) {
-			switch (category) {
-			case 0:
-				int rX = (int)((x + world.getXCam())/16);
-				int rY = (int)((y + world.getYCam())/16);
-				world.setBlock(rX, rY, ObjectGetter.getBlock(selected, rX, rY, world));
-				break;
-			case 1:
-				break;
+			if (!trashMode) {
+				switch (category) {
+				case 0:
+					int rX = (int) ((x + world.getXCam()) / 16);
+					int rY = (int) ((y + world.getYCam()) / 16);
+					world.setBlock(rX, rY, ObjectGetter.getBlock(selected, rX, rY, world));
+					break;
+				case 1:
+					break;
+				}
+			}else{
+				
+				destroyElement(x + world.getXCam(),y + world.getYCam());
 			}
 		}
 
+	}
+	public void destroyElement(float x, float y){
+		Entity e = this.world.getEntityAt(x, y);
+		if(e != null){
+			e.kill();
+		}else{
+			int rX = (int) (x / 16);
+			int rY = (int) (y / 16);
+			Block b = this.world.getBlock(rX, rY);
+			if(b != null){
+				b.kill();
+			}
+		}
 	}
 
 	public void addBlockButton(int nb) {
