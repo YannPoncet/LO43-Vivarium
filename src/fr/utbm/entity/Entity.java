@@ -1,6 +1,7 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
+import fr.utbm.block.BlockType;
 import fr.utbm.physics.RigidBox;
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;
@@ -20,6 +21,41 @@ public abstract class Entity extends Renderable{
 		this.world = worldIn;
 		this.width = w;
 		this.height = h;
+	}
+	
+	public void damage(int dmg)
+    {
+        if(this.health > 0)
+        {
+            health -= dmg;
+            if(health < 0){
+            	health = 0;
+            }
+        }
+        if(health <= 0) {
+            dead = true;
+        }
+    }
+	
+	public void suffocating()
+	{
+		boolean isInBlock = false;
+		int blockWidth = (int)((x+width)/16) - (int)(x/16);
+		int blockHeight = (int)((y+height)/16) - (int)(y/16);
+		for(int i = 0 ; i < blockWidth ; i++)
+		{
+			for(int j = 0 ; j < blockHeight ; j++)
+			{
+				if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).isSolid())
+				{
+					isInBlock = true;
+				}
+			}
+		}
+		if(isInBlock)
+		{
+			damage(1);
+		}
 	}
 	
 	public boolean targetableBy(int id) 

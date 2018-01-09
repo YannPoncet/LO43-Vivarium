@@ -37,6 +37,8 @@ public class EntityAnimalBeaver extends EntityAnimal {
 		perform = false;
 		actionToPerform = -1;
 		brain = new AIBeaver(this);
+		health = 100;
+		maxHealth = 100;
 	}
 	
 	public boolean targetableBy(int id) {
@@ -48,6 +50,7 @@ public class EntityAnimalBeaver extends EntityAnimal {
 	}
 
 	public void update() {
+		suffocating();
 		if (!perform) {
 			hasJump = false;
 

@@ -97,6 +97,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	@Override
 	public void update()
 	{
+		suffocating();
 		if(maturity < 2) //Don't allow benenut to move before he gets the 3rd stage of maturity
 		{
 			if(growingTime == 0) //if he is mature
@@ -136,7 +137,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	{
 		ttd--; //if he is ready to be planted, but the function is still called, it means conditions weren't united, or the benenut is stuck somewhere, so we decrement the timeToDeath
 		//if there is dirt under
-		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && world.getBlock((int)(x/16), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && world.getBlock((int)(x/16), (int)(y/16)).getBlockType() != BlockType.LIQUID)
+		if(world.getBlock((int)(x/16), (int)((y/16)-1)) != null && world.getBlock((int)(x/16), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && (world.getBlock((int)(x/16), (int)(y/16)) == null || world.getBlock((int)(x/16), (int)(y/16)).getBlockType() != BlockType.LIQUID))
 		{
 			//if there is dirt under the block on the right and there are no solid block on the right (because the BenenutTree needs 2 blocks one next to the other)
 			if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) != null && world.getBlock((int)((x/16)+1), (int)((y/16)-1)).getBlockType() == BlockType.DIRT && (world.getBlock((int)((x/16)+1), (int)(y/16)) == null || !world.getBlock((int)((x/16)+1), (int)(y/16)).isSolid()))

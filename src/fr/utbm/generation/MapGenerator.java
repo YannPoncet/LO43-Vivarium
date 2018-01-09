@@ -25,7 +25,7 @@ public class MapGenerator {
 			Chrono chrono2 = new Chrono();
 			
 			
-			long M = 4294967296L;
+			long M = 42949672L;
 			if (seed == 0) 
 			{
 				seed = Math.floor(Math.random() * M);

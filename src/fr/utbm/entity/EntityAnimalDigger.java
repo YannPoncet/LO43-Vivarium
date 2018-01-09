@@ -44,6 +44,7 @@ public class EntityAnimalDigger extends EntityAnimal {
 	}
 	
 	public void update(){
+		suffocating();
 		if(health <= 0) {
 			dead = true;
 		}

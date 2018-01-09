@@ -17,7 +17,8 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 		text = TextureManager.getTexture(201 + maturity);
 		fruits = new EntityAnimalBenenut[6];
 		spawnFruits();
-		
+		maxHealth = 100;
+		health = 100;
 	}
 	
 	public EntityVegetalBenenutTree(float x, float y, int m, World worldIn)
@@ -41,6 +42,7 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 	
 	public void update()
 	{
+		suffocating();
 		for(int i = 0 ; i < fruits.length ; i++)
 		{
 			if(fruits[i] != null)
