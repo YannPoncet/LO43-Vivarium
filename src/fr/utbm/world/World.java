@@ -48,12 +48,14 @@ public class World {
     private ImageButton button;
     
     private GraphicScene gs;
+    
+    private float xCam,yCam;
 	
 	public World()
 	{
 		map = new Map();
 		entities = new CopyOnWriteArrayList<Entity>();
-		gs = new MainUX();
+		gs = new MainUX(this);
 		RenderManager.setUI(gs);
 		this.create();
 		fps = new FPSLogger();
@@ -160,6 +162,16 @@ public class World {
 			currentChunkCam = cID;
 			map.render(cID);
 		}
+	}
+	public void setCamPos(float x, float y){
+		this.xCam = x;
+		this.yCam = y;
+	}
+	public float getXCam(){
+		return this.xCam;
+	}
+	public float getYCam(){
+		return this.yCam;
 	}
 
 	public void setBiomeList(ArrayList<Biome> biomeList) {

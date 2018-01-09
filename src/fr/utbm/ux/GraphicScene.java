@@ -19,11 +19,17 @@ public class GraphicScene {
 	public void addActors(){
 		
 	}
+	public void translate(float dx){
+		
+	}
 
 	
 	public void render(){
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
+	}
+	public Stage getStage(){
+		return this.stage;
 	}
 
 }

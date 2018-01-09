@@ -55,6 +55,7 @@ public class Camera {
 			   actualChunk = (int) (gameCam.position.x / (50*16));
 			   w.cameraSwitchChunkChunk(actualChunk);
 		   }
+		   w.setCamPos(gameCam.position.x - WIDTH / 2f, gameCam.position.y-HEIGHT / 2f);
 		   RenderManager.setBgPos(gameCam.position.x - gameCam.viewportWidth/2, gameCam.position.y - gameCam.viewportHeight/2);
 		   gameCam.update();
 	}
