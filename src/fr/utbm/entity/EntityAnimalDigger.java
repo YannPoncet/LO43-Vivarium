@@ -17,10 +17,10 @@ public class EntityAnimalDigger extends EntityAnimal {
 	private AIDigger brain;
 	private boolean hasJump;
 	private Block toEat;
-	public final String name = "Digger";
 	
 	public EntityAnimalDigger(float x, float y, World worldIn) {
 		super(x, y, 50, 16, worldIn);
+		this.name = "Digger";
 		text = TextureManager.getTexture(218);
 		anim = new Animation[3];
 		anim[0] = TextureManager.getAnimation(4);

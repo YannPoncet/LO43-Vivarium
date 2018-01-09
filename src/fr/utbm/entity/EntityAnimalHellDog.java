@@ -13,13 +13,13 @@ import fr.utbm.world.World;
 public class EntityAnimalHellDog extends EntityAnimal {
 
 	private boolean hasJump;
-	public final String name = "Hell Dog";
 	/*
 	 * Dog activity : -1 Dont do anything 0 Idle 1 Walk 2 Run 3 Jump
 	 */
 
 	public EntityAnimalHellDog(float x, float y, World worldIn) {
 		super(x, y, 54, 32, worldIn);
+		this.name = "Hell Dog";
 		this.text = TextureManager.getTexture(200);
 		anim = new Animation[4];
 		anim[0] = TextureManager.getAnimation(0);
