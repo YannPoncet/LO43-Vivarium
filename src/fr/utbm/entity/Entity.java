@@ -40,8 +40,8 @@ public abstract class Entity extends Renderable{
 	public void suffocating()
 	{
 		boolean isInBlock = false;
-		int blockWidth = (int)((x+width-1)/16) - (int)(x/16) + 1;
-		int blockHeight = (int)((y+height)/16) - (int)(y/16) + 1;
+		int blockWidth = (int)((x+width-1)/16) - (int)(x/16)+1;
+		int blockHeight = (int)((y+height-1)/16) - (int)(y/16)+1;
 		for(int i = 0 ; i < blockWidth ; i++)
 		{
 			for(int j = 0 ; j < blockHeight ; j++)
