@@ -33,6 +33,8 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 		perform = false;
 		actionToPerform = -1;
 		brain = new AICuteFlower(this);
+		health = 100;
+		maxHealth = 100;
 	}
 
 	public void update() {

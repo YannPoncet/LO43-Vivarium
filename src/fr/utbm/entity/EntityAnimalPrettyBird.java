@@ -29,8 +29,8 @@ public class EntityAnimalPrettyBird extends EntityAnimal2D {
 		directionYToPerform = (float)(2*Math.random()-1);
 		perform = false;
 		actionToPerform = 0;
-		maxHealth = 100;
-		health = 100;
+		maxHealth = 50;
+		health = 50;
 	}
 
 	public void update() {

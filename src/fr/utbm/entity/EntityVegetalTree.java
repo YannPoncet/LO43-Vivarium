@@ -13,7 +13,7 @@ public class EntityVegetalTree extends EntityVegetal {
 		if(bigOrSmall == 2 || bigOrSmall == 3){
 			width = 96;
 		}
-		entityHealth = 100;
+		health = 100;
 		maxHealth = 100;
 		this.text = TextureManager.getTexture(211+bigOrSmall);
 	}

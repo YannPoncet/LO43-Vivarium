@@ -40,8 +40,8 @@ public abstract class Entity extends Renderable{
 	public void suffocating()
 	{
 		boolean isInBlock = false;
-		int blockWidth = (int)((x+width)/16) - (int)(x/16);
-		int blockHeight = (int)((y+height)/16) - (int)(y/16);
+		int blockWidth = (int)((x+width-1)/16) - (int)(x/16) + 1;
+		int blockHeight = (int)((y+height)/16) - (int)(y/16) + 1;
 		for(int i = 0 ; i < blockWidth ; i++)
 		{
 			for(int j = 0 ; j < blockHeight ; j++)
@@ -54,9 +54,7 @@ public abstract class Entity extends Renderable{
 		}
 		if(isInBlock)
 		{
-			System.out.println("My life before : " + this.health);
 			damage(2);
-			System.out.println("My life after : " + this.health);
 		}
 	}
 	

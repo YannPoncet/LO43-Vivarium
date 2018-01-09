@@ -34,8 +34,8 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(16);
 		anim[1] = TextureManager.getAnimation(17);
-		maxHealth = 10;
-		health = 10;
+		maxHealth = 20;
+		health = 20;
 		directionX = r.nextInt(2); //Gives a random beginning direction
 		if(directionX == 0)
 		{
@@ -67,8 +67,8 @@ public class EntityAnimalBenenut extends EntityAnimal{
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(16);
 		anim[1] = TextureManager.getAnimation(17);
-		maxHealth = 10;
-		health = 10;
+		maxHealth = 20;
+		health = 20;
 		directionX = r.nextInt(2);
 		if(directionX == 0)
 		{

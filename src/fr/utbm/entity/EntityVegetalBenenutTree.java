@@ -11,8 +11,6 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 	public EntityVegetalBenenutTree(float x, float y, World worldIn) {
 		
 		super(x, y, 96, 144, worldIn);
-		entityHealth = 100;
-		maxHealth = 100;
 		maturity = 6;
 		text = TextureManager.getTexture(201 + maturity);
 		fruits = new EntityAnimalBenenut[6];
@@ -24,8 +22,6 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 	public EntityVegetalBenenutTree(float x, float y, int m, World worldIn)
 	{
 		super(x, y, 96, 144, worldIn);
-		entityHealth = 100;
-		maxHealth = 100;
 		if(m > 6)
 		{
 			m = 6;
@@ -37,6 +33,8 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 		maturity = m;
 		text = TextureManager.getTexture(201 + maturity);
 		fruits = new EntityAnimalBenenut[6];
+		maxHealth = 100;
+		health = 100;
 		spawnFruits();
 	}
 	
