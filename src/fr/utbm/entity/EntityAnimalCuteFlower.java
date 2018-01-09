@@ -15,7 +15,6 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	public final int POWER = 25;
 	
 	private boolean hasJump;
-	public final String name = "Cute Flower";
 	private AICuteFlower brain;
 	
 	/*
@@ -24,6 +23,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 
 	public EntityAnimalCuteFlower(float x, float y, World worldIn) {
 		super(x, y, 32, 96, worldIn);
+		this.name = "Cute Flower";
 		this.text = TextureManager.getTexture(219);
 		anim = new Animation[6];
 		anim[0] = TextureManager.getAnimation(6); //walk

@@ -13,10 +13,10 @@ import fr.utbm.world.World;
 public class EntityAnimalPrettyBird extends EntityAnimal2D {
 
 	private AIPrettyBird brain;
-	public final String name = "Pretty Bird";
 
 	public EntityAnimalPrettyBird(float x, float y, World worldIn) {
 		super(x, y, 16, 16, worldIn);
+		this.name = "Pretty bird";
 		text = TextureManager.getTexture(222);
 		anim = new Animation[2];
 		anim[0] = TextureManager.getAnimation(14);

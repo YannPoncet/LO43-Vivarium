@@ -7,7 +7,7 @@ public class EntityAnimalDwarfKing extends EntityAnimalDwarf {
 	public EntityAnimalDwarfKing(float x, float y, World worldIn) {
 		/* super(x, y, worldIn, normal, walkId, jumpId, specialId)*/
 		super(x, y, 48, 50, worldIn, 226, 25, 27, 26);
-		this.name = "Roi nain";
+		this.name = "Dwarf king";
 
 	}
 

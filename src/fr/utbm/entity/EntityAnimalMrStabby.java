@@ -17,10 +17,10 @@ public class EntityAnimalMrStabby extends EntityAnimal {
 	private boolean hasMelt;
 	private boolean isStabbing;
 	private AIMrStabby brain;
-	public final String name = "Mr Stabby";
 
 	public EntityAnimalMrStabby(float x, float y, World worldIn) {
 		super(x, y, 48, 44, worldIn);
+		this.name = "Mr Stabby";
 		this.text = TextureManager.getTexture(224);
 		anim = new Animation[3];
 		anim[0] = TextureManager.getAnimation(20); //walk
