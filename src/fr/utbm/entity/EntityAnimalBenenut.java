@@ -21,7 +21,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 	private boolean hasJump = false;
 	private AIBenenut brain; //little intelligence to enable movements
 	private int ttd = 500; //time to death : decrement after he is ready to be planted
-	private String name = "Benenut";
+	public final String name = "Benenut";
 	
 	public EntityAnimalBenenut(float x, float y, World worldIn) {
 		

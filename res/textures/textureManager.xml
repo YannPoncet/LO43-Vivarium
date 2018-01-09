@@ -81,6 +81,8 @@
 	
 	<texture id="224" file="animals/mrStabby/mrStabby.png"></texture>
 	
+	<texture id="225" file="animals/hellFish/hellFish.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
@@ -164,4 +166,8 @@
 	<animation id="20" file="animals/mrStabby/mrStabby-walk.png" wD="2" hD="1" speed="0.5" size="1"></animation>
 	<animation id="21" file="animals/mrStabby/mrStabby-attack.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 	<animation id="22" file="animals/mrStabby/mrStabby-melt.png" wD="4" hD="1" speed="0.5" size="1"></animation>
+	
+	
+	<animation id="23" file="animals/hellFish/hellFishForward.png" wD="2" hD="1" speed="0.5" size="1"></animation>
+	<animation id="24" file="animals/hellFish/hellFishEat.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 </textures>

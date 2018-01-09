@@ -13,7 +13,7 @@ import fr.utbm.world.World;
 public class EntityAnimalPrettyBird extends EntityAnimal2D {
 
 	private AIPrettyBird brain;
-	private String name = "Pretty Bird";
+	public final String name = "Pretty Bird";
 
 	public EntityAnimalPrettyBird(float x, float y, World worldIn) {
 		super(x, y, 16, 16, worldIn);

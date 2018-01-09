@@ -16,7 +16,7 @@ public class EntityAnimalBeaver extends EntityAnimal {
 
 	private boolean hasJump, isEmpty;
 	private AIBeaver brain;
-	private String name = "Beaver";
+	public final String name = "Beaver";
 	/*
 	 * Beaver activity : 0 EAT - 1 JUMP - 2 PUT - 3 TAKE - 4 WALK
 	 */
