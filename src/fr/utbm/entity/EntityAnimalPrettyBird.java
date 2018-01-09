@@ -13,7 +13,7 @@ import fr.utbm.world.World;
 public class EntityAnimalPrettyBird extends EntityAnimal2D {
 
 	private AIPrettyBird brain;
-	private String name = "Pretty Bird";
+	public final String name = "Pretty Bird";
 
 	public EntityAnimalPrettyBird(float x, float y, World worldIn) {
 		super(x, y, 16, 16, worldIn);
@@ -31,14 +31,6 @@ public class EntityAnimalPrettyBird extends EntityAnimal2D {
 		actionToPerform = 0;
 		maxHealth = 100;
 		health = 100;
-	}
-	
-	public boolean targetableBy(int id) {
-		switch(id){
-		case 219: if(isOnGround())return true; //targetable by the cuteFlower
-		case 224: if(isOnGround())return true; //targetable by mrStabby
-		default: return false;
-		}
 	}
 
 	public void update() {

@@ -5,7 +5,7 @@ import fr.utbm.world.World;
 
 public class EntityVegetalBush extends EntityVegetal{
 	
-	private String name = "Bush";
+	public final String name = "Bush";
 
 	public EntityVegetalBush(float x, float y, World worldIn) {
 		super(x, y, 66, 35, worldIn);
