@@ -3,14 +3,12 @@ package fr.utbm.world;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import fr.utbm.biome.Biome;
 import fr.utbm.block.Block;
@@ -18,9 +16,7 @@ import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
-import fr.utbm.entity.EntityAnimalBeaver;
 import fr.utbm.entity.EntityAnimalCuteFlower;
-import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.render.RenderManager;
