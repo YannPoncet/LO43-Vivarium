@@ -14,14 +14,15 @@ import fr.utbm.texture.TextureManager;
 public class MainMenu extends GraphicScene {
 	private Image menuBG;
 	private ImageButton generate;
-	public MainMenu() {
+	private Main main;
+	public MainMenu(Main m) {
+		this.main = m;
 	}
 
 	public void addActors() {
 		menuBG = new Image(new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1010))));
 		menuBG.setPosition(0, 0);
 		stage.addActor(menuBG);
-
 		generate = new ImageButton(new TextureRegionDrawable(new TextureRegion(TextureManager.getTexture(1011)))); // Set
 		// the
 		// button
@@ -32,6 +33,7 @@ public class MainMenu extends GraphicScene {
 		generate.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				main.startGame(0);
 			};
 		});
 		Gdx.input.setInputProcessor(stage);
