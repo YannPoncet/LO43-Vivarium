@@ -33,7 +33,7 @@ public class Main extends Game {
 	   
    }
    public void startGame(double seed){
-	   this.setScreen(new World(this,batch));
+	   this.setScreen(new World(this,batch,seed));
    }
    public void backMenu(){
 	   this.setScreen(new MainMenuScreen(this));
