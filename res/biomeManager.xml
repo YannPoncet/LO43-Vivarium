@@ -1,15 +1,15 @@
 <biomes>
 
-	<biome id="0" name="forest" textureId="501" surfaceAmplitude="46" surfaceWavelength="64">
+	<biome id="0" name="forest" textureId="501" surfaceAmplitude="20" surfaceWavelength="64">
 		<vegetalList>
-			<vegetal id="201" frequence="8" placeNeeded="6"></vegetal>
-			<vegetal id="211" frequence="20" placeNeeded="4"></vegetal>
-			<vegetal id="212" frequence="10" placeNeeded="4"></vegetal>
+			<vegetal id="201" frequence="15" placeNeeded="6"></vegetal>
+			<vegetal id="211" frequence="25" placeNeeded="4"></vegetal>
+			<vegetal id="212" frequence="15" placeNeeded="4"></vegetal>
 			<vegetal id="215" frequence="20" placeNeeded="3"></vegetal>
 		</vegetalList>
 	</biome>
 	
-	<biome id="1" name="desert" textureId="504" surfaceAmplitude="15" surfaceWavelength="128">
+	<biome id="1" name="desert" textureId="504" surfaceAmplitude="35" surfaceWavelength="128">
 		<vegetalList>
 			<vegetal id="216" frequence="20" placeNeeded="3"></vegetal>
 			<vegetal id="217" frequence="15" placeNeeded="3"></vegetal>

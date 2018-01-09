@@ -37,7 +37,6 @@ public class World implements Screen{
 	private Map map;
 	private CopyOnWriteArrayList<Entity> entities;
 	private EntityFallingBlock test;
-	private BlockSand bs;
 	
 	ArrayList<Biome> biomeList;
 	
@@ -129,10 +128,7 @@ public class World implements Screen{
 		gs.create();
 		MapGenerator.generate(this, seed); //0 to generate a new seed ->6 / 14
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
-		bs = new BlockSand(3,320,this);
-		setBlock(3,320,bs);
 		map.render(0);
-		addEntity(new EntityAnimalDwarfKing(5, 330, this));
 		
 	}
 	

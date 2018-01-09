@@ -1,12 +1,12 @@
 <entityAnimals>
 
 	<animal id="200" surfaceFrequence="0" caveFrequence="0" widthNeeded="3" heightNeeded="2" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="208" surfaceFrequence="0" caveFrequence="0" widthNeeded="1" heightNeeded="2" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="208" surfaceFrequence="2" caveFrequence="0" widthNeeded="1" heightNeeded="2" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="218" surfaceFrequence="0" caveFrequence="10" widthNeeded="3" heightNeeded="1" biomeID="-1" surface="0" cave="1" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="219" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="6" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="221" surfaceFrequence="5" caveFrequence="0" widthNeeded="4" heightNeeded="3" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
-	<animal id="222" surfaceFrequence="5" caveFrequence="0" widthNeeded="1" heightNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="1" water="0" lava="0"></entity>
-	<animal id="224" surfaceFrequence="5" caveFrequence="0" widthNeeded="3" heightNeeded="3" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="219" surfaceFrequence="20" caveFrequence="0" widthNeeded="4" heightNeeded="6" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="221" surfaceFrequence="20" caveFrequence="0" widthNeeded="4" heightNeeded="3" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="222" surfaceFrequence="8" caveFrequence="0" widthNeeded="1" heightNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="1" water="0" lava="0"></entity>
+	<animal id="224" surfaceFrequence="20" caveFrequence="0" widthNeeded="3" heightNeeded="3" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="226" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="227" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="228" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
