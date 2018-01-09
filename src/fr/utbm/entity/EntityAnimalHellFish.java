@@ -55,14 +55,7 @@ public class EntityAnimalHellFish extends EntityAnimal2D {
 	}
 	
 	public void action(float dx, float dy) {
-			if(isOnGround())
-			{
-				move(0.1f*dx, 0.1f*dy, 1);
-			}
-			else
-			{
-				move(0.1f*dx, 0.1f*dy, 0);
-			}
+		move(0.1f*dx, 0.1f*dy, 0);
 	}
 
 	@Override

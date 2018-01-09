@@ -120,27 +120,6 @@ public class World implements Screen{
 		MapGenerator.generate(this, seed); //0 to generate a new seed ->6 / 14
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
-		setBlock(3, 310, new BlockWater(3,310, 0,this));
-		for(int i = 0; i < 6 ; i++)
-		{
-			setBlock(i+20, 320, new BlockWood(i+20,320, 0,this));
-			setBlock(i+20, 325, new BlockWood(i+20,325, 0,this));
-			setBlock(i+20, 319, new BlockWood(i+20,319, 0,this));
-			if(i == 0)
-			{
-				setBlock(i+20, 321, new BlockWood(i+20,321, 0,this));
-				setBlock(i+20, 322, new BlockWood(i+20,322, 0,this));
-				setBlock(i+20, 323, new BlockWood(i+20,323, 0,this));
-				setBlock(i+20, 324, new BlockWood(i+20,324, 0,this));
-			}
-			if(i == 5)
-			{
-				setBlock(i+20, 321, new BlockWood(i+20,321, 0,this));
-				setBlock(i+20, 322, new BlockWood(i+20,322, 0,this));
-				setBlock(i+20, 323, new BlockWood(i+20,323, 0,this));
-				setBlock(i+20, 324, new BlockWood(i+20,324, 0,this));
-			}
-		}
 		setBlock(3,320,bs);
 		map.render(0);
 		addEntity(new EntityAnimalDwarfKing(5, 330, this));
