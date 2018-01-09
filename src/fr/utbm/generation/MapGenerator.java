@@ -16,6 +16,9 @@ import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
+/*
+ * This class combines the different sub generators to create our world at the first place, depending on the seed
+ */
 public class MapGenerator {
 	public final static int DIRT_SURFACE = 20; //Height of the dirt at the surface
 	

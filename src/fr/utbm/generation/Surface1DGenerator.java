@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import fr.utbm.biome.Biome;
 
+/*
+ * This class uses Perlin Noise to return a surface variation depending on the biome
+ */
 public class Surface1DGenerator extends PseudoRandom {
 	private ArrayList<Integer> noise;
 
