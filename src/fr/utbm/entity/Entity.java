@@ -54,7 +54,9 @@ public abstract class Entity extends Renderable{
 		}
 		if(isInBlock)
 		{
+			System.out.println("My life before : " + this.health);
 			damage(2);
+			System.out.println("My life after : " + this.health);
 		}
 	}
 	

@@ -69,6 +69,17 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 		}
 		spawnFruits();
 		voidUnder();
+		if(dead == true)
+		{
+			for(int i = 0 ; i < fruits.length ; i++)
+			{
+				if(fruits[i] != null)
+				{
+					fruits[i].kill();
+					fruits[i] = null;
+				}
+			}
+		}
 	}
 	
 	public void spawnFruits()
@@ -118,14 +129,6 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 	{
 		if(world.getBlock((int)((x/16)+1), (int)((y/16)-1)) == null || world.getBlock((int)((x/16)+2), (int)((y/16)-1)) == null)
 		{
-			for(int i = 0 ; i < fruits.length ; i++)
-			{
-				if(fruits[i] != null)
-				{
-					fruits[i].kill();
-					fruits[i] = null;
-				}
-			}
 			dead = true;
 		}
 	}

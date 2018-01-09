@@ -29,7 +29,7 @@ public class BlockSand extends Block{
 	
 	@Override
 	public void update(){
-		if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null)
+		if(world.getBlock((int)(this.x/16), (int)((this.y/16)-1)) == null || !world.getBlock((int)(this.x/16), (int)((this.y/16)-1)).isSolid)
 		{
 			EntityFallingBlock e = new EntityFallingBlock(x/16,y/16,16,16,world, new BlockSand(x/16,y/16,world));
 			world.addEntity(e);
