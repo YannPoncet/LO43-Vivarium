@@ -19,6 +19,9 @@ import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityAnimalCuteFlower;
+import fr.utbm.entity.EntityAnimalDwarfKing;
+import fr.utbm.entity.EntityAnimalDwarfMiner;
+import fr.utbm.entity.EntityAnimalDwarfWarrior;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.generation.MapGenerator;
 import fr.utbm.main.Main;
@@ -140,7 +143,7 @@ public class World implements Screen{
 		}
 		setBlock(3,320,bs);
 		map.render(0);
-		addEntity(new EntityAnimalCuteFlower(5, 330, this));
+		addEntity(new EntityAnimalDwarfKing(5, 330, this));
 		
 	}
 	

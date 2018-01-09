@@ -41,7 +41,7 @@ public class AICuteFlower extends AIAnimal {
 			if(target == null) { //on a pas de target, on en cherche un
 				this.target = getNearestTarget();
 			}
-			
+			target = null; //TODELETE !!!!!! Just to prevent random bugs while it is not finished !
 			
 			if(target != null) { //on a un target
 				if(Math.abs(animal.getX()-target.getX()) > STEALTH_RANGE) { //on s'en rapproche si il n'est pas trop proche
@@ -89,7 +89,6 @@ public class AICuteFlower extends AIAnimal {
 	public void objSwitch(){
 		switch(objective){
 		case 0 :
-			this.pathFinder.setObjective(this.animal.getNearestTree());
 			
 			this.objective = 1;
 			break;
@@ -100,7 +99,7 @@ public class AICuteFlower extends AIAnimal {
 			this.objective = 3;
 			break;
 		case 3 :
-			this.pathFinder.setObjective(this.animal.getNearestTree());
+			
 			this.objective = 1;
 			break;
 		}	

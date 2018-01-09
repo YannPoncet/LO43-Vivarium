@@ -1,15 +1,12 @@
 package fr.utbm.entity;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import fr.utbm.ai.AIBeaver;
 import fr.utbm.ai.AICuteFlower;
 import fr.utbm.ai.Action;
-import fr.utbm.block.BlockType;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.world.World;
 
@@ -20,7 +17,7 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	private AICuteFlower brain;
 	
 	/*
-	 * Beaver activity : 0 EAT - 1 JUMP - 2 PUT - 3 TAKE - 4 WALK
+	 * Flower activity : -1 WAIT - 0 WALK - 1 EAT - 2 JUMP 
 	 */
 
 	public EntityAnimalCuteFlower(float x, float y, World worldIn) {
@@ -100,36 +97,6 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	public void setEmpty() {
 		this.text = TextureManager.getTexture(219);
 		this.isEmpty = true;
-	}
-	
-	//TODO
-	public void eatTree(){
-		for(Entity e : this.world.getEntities()){
-			if(e instanceof EntityVegetalTree){
-				EntityVegetalTree tree = (EntityVegetalTree) e;
-				if(Math.abs(this.getX()-tree.getTrunkPos()) < 55){
-					tree.kill();
-				}
-			}
-		}
-	}
-	
-	//TODO
-	public float getNearestTree(){
-		float dist = 100000f;
-		float pos = 0f;
-		
-		for(Entity e : this.world.getEntities()){
-			if(e instanceof EntityVegetalTree){
-				EntityVegetalTree tree = (EntityVegetalTree) e;
-				float newDist = Math.abs(this.getX()-tree.getTrunkPos());
-				if(newDist < dist){
-					dist = newDist;
-					pos = tree.getPosX();
-				}
-			}
-		}
-		return pos;
 	}
 	
 	@Override
