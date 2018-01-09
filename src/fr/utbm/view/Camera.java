@@ -20,7 +20,6 @@ public class Camera {
 	private int actualChunk;
 	
 	
-	
 	public Camera(World w){
 			this.w = w;
 		   this.gameCam = new OrthographicCamera();

@@ -81,6 +81,8 @@
 	
 	<texture id="224" file="animals/mrStabby/mrStabby.png"></texture>
 	
+	<texture id="225" file="animals/hellFish/hellFish.png"></texture>
+	
 	<!-- Backgrounds textures -->
 	
 	<texture id="500" file="backgrounds/sky.png"></texture>
@@ -103,6 +105,8 @@
 	<texture id="1007" file="ux/trash.png"></texture>
 	<texture id="1008" file="ux/trashActivated.png"></texture>
 	<texture id="1009" file="ux/vignettes/selected.png"></texture>
+	<texture id="1010" file="ux/mainMenu.png"></texture>
+	<texture id="1011" file="ux/generate.png"></texture>
 	
 	<texture id="1030" file="ux/vignettes/vignetteWater.png"></texture>
 	<texture id="1031" file="ux/vignettes/vignetteDirt.png"></texture>
@@ -162,6 +166,10 @@
 	<animation id="19" file="animals/cuteFlower/cuteflower.png" wD="1" hD="1" speed="1" size="1"></animation>
 	
 	<animation id="20" file="animals/mrStabby/mrStabby-walk.png" wD="2" hD="1" speed="0.5" size="1"></animation>
-	<animation id="21" file="animals/mrStabby/mrStabby-attack.png" wD="4" hD="1" speed="0.5" size="1"></animation>
+	<animation id="21" file="animals/mrStabby/mrStabby-attack.png" wD="4" hD="1" speed="0.1" size="1"></animation>
 	<animation id="22" file="animals/mrStabby/mrStabby-melt.png" wD="4" hD="1" speed="0.5" size="1"></animation>
+	
+	
+	<animation id="23" file="animals/hellFish/hellFishForward.png" wD="2" hD="1" speed="0.5" size="1"></animation>
+	<animation id="24" file="animals/hellFish/hellFishEat.png" wD="4" hD="1" speed="0.5" size="1"></animation>
 </textures>

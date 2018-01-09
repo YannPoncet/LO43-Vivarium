@@ -1,6 +1,7 @@
 package fr.utbm.main;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.utbm.render.RenderManager;
@@ -8,31 +9,20 @@ import fr.utbm.texture.TextureManager;
 import fr.utbm.view.Camera;
 import fr.utbm.world.World;
 
-public class Main extends ApplicationAdapter {
+public class Main extends Game {
 	
 	private SpriteBatch batch;
-	private Camera camera;
-	private World w;
+
    @Override
    public void create() {
 	   TextureManager.loadTextures();
 	   batch = new SpriteBatch();
-	   RenderManager.setBatch(batch);
-	   w = new World();
-	   camera = new Camera(w);
-	   
+	   this.setScreen(new MainMenuScreen(this));
    }
-   public void update(){
 
-	   w.update();
-	   camera.update();
-	   batch.setProjectionMatrix(camera.getProjectionMatrix());
-	   
-   }
    @Override
    public void render() {
-	   update();
-	   RenderManager.renderAll();
+	   super.render();
    }
    @Override
    public void dispose() {
@@ -40,7 +30,14 @@ public class Main extends ApplicationAdapter {
    }
    @Override
    public void resize(int width,int height){
-	   camera.resize(width,height);
+	   
+   }
+   public void startGame(double seed){
+	   this.setScreen(new World(this,batch));
+   }
+   public void backMenu(){
+	   this.setScreen(new MainMenuScreen(this));
+	   RenderManager.cleanAllRender();
    }
    
 }

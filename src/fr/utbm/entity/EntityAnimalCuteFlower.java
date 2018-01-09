@@ -16,7 +16,7 @@ import fr.utbm.world.World;
 public class EntityAnimalCuteFlower extends EntityAnimal {
 
 	private boolean hasJump, isEmpty;
-	private String name = "Cute Flower";
+	public final String name = "Cute Flower";
 	private AICuteFlower brain;
 	
 	/*
@@ -39,6 +39,8 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 	}
 
 	public void update() {
+		suffocating();
+
 		if (!perform) {
 			hasJump = false;
 			this.stateTime = 0;

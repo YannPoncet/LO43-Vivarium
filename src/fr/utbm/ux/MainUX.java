@@ -30,7 +30,7 @@ public class MainUX extends GraphicScene{
 		screenHeight = DesktopApplication.HEIGHT;
 		deploy = true;
 		undeploy = false;
-		xTranslation = 58;
+		xTranslation = 0;
 	}
 	@Override
 	public void addActors(){
@@ -46,6 +46,12 @@ public class MainUX extends GraphicScene{
 	                undeploy = true;
 	            };
 	        });
+	        
+	        
+	        
+	        
+	        
+	        
 	        Gdx.input.setInputProcessor(stage);
 	}
 	public void deploy(){
@@ -81,5 +87,6 @@ public class MainUX extends GraphicScene{
 		}
 		stage.draw();
 	}
+	
 
 }

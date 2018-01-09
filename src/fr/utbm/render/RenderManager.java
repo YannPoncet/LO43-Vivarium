@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
 
 import fr.utbm.biome.Biome;
 import fr.utbm.texture.TextureManager;
@@ -17,6 +18,7 @@ import fr.utbm.world.Map;
 public class RenderManager {
 
 	private static SpriteBatch batch;
+	private static Matrix4 projection;
 	private static ArrayList<Biome> biomeList;
 	private static ArrayList<Renderable> blockRender =  new ArrayList<Renderable>();
 	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
@@ -30,9 +32,13 @@ public class RenderManager {
 	public static void setBatch(SpriteBatch sb){
 		RenderManager.batch = sb;
 	}
+	public static void setProjectionMatrix(Matrix4 m4){
+		projection = m4;
+	}
 	//public static long t;
 	public static void renderAll(){
 		//t =  TimeUtils.millis();
+		batch.setProjectionMatrix(projection);
 		Gdx.gl.glClearColor(0.52f,0.66f,0.97f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -60,6 +66,12 @@ public class RenderManager {
 	public static void cleanRender(){
 		blockRender.clear();
 	}
+	public static void cleanAllRender(){
+		blockRender.clear();
+		entitiesRender.clear();
+		biomeList.clear();
+	}
+	
 	public static void addToBlockRender(Renderable r){
 		RenderManager.blockRender.add(r);
 	}

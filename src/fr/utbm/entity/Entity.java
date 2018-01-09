@@ -54,7 +54,7 @@ public abstract class Entity extends Renderable{
 		}
 		if(isInBlock)
 		{
-			damage(1);
+			damage(2);
 		}
 	}
 	

@@ -178,7 +178,7 @@ public class MainUXFull extends GraphicScene {
 			menuBar.setPosition(xTranslation + screenWidth / 2 + blocks.getWidth() + 40, screenHeight - 54);
 			break;
 		case 2:
-			Gdx.app.exit();
+			this.world.backMenu();
 			break;
 		}
 

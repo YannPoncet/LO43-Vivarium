@@ -3,14 +3,14 @@ package fr.utbm.world;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import fr.utbm.biome.Biome;
 import fr.utbm.block.Block;
@@ -18,16 +18,17 @@ import fr.utbm.block.BlockSand;
 import fr.utbm.block.BlockWater;
 import fr.utbm.block.BlockWood;
 import fr.utbm.entity.Entity;
-import fr.utbm.entity.EntityAnimalBeaver;
 import fr.utbm.entity.EntityAnimalCuteFlower;
-import fr.utbm.entity.EntityAnimalDigger;
 import fr.utbm.entity.EntityFallingBlock;
 import fr.utbm.generation.MapGenerator;
+import fr.utbm.main.Main;
 import fr.utbm.render.RenderManager;
+import fr.utbm.texture.TextureManager;
 import fr.utbm.ux.GraphicScene;
 import fr.utbm.ux.MainUX;
+import fr.utbm.view.Camera;
 
-public class World {
+public class World implements Screen{
 	
 	private Map map;
 	private CopyOnWriteArrayList<Entity> entities;
@@ -50,9 +51,14 @@ public class World {
     private GraphicScene gs;
     
     private float xCam,yCam;
+	private Camera camera;
+	private Main main;
 	
-	public World()
+	public World(Main m,SpriteBatch batch)
 	{
+		this.main = m;
+		RenderManager.setBatch(batch);
+		camera = new Camera(this);
 		map = new Map();
 		entities = new CopyOnWriteArrayList<Entity>();
 		gs = new MainUX(this);
@@ -100,7 +106,7 @@ public class World {
 	
 	public void render()//ici mettre l'ID du chunk sur lequel se trouve la camera
 	{
-		map.render(0);
+		
 	}
 	
 	/* Call at the World creation */
@@ -131,7 +137,7 @@ public class World {
 			}
 		}
 		setBlock(3,320,bs);
-		render();
+		map.render(0);
 		addEntity(new EntityAnimalCuteFlower(5, 330, this));
 		
 	}
@@ -147,6 +153,10 @@ public class World {
                 e.update();
             }
         }
+        camera.update();
+        RenderManager.setProjectionMatrix(camera.getProjectionMatrix());
+        RenderManager.renderAll();
+        
     }
 	
 	public void resize(){
@@ -191,6 +201,54 @@ public class World {
 		}
 		
 		return -1;
+	}
+	public void backMenu(){
+		main.backMenu();
+	}
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(float arg0) {
+		update();
+		
+		
+		
+		
+		
+		
+	}
+
+	@Override
+	public void resize(int width,int height) {
+		camera.resize(width,height);
+		
+	}
+
+	@Override
+	public void resume() {
+		
+	}
+
+	@Override
+	public void show() {
+		
+		
 	}
 
 	
