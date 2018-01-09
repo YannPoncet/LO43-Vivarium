@@ -53,9 +53,11 @@ public class World implements Screen{
     private float xCam,yCam;
 	private Camera camera;
 	private Main main;
+	private double seed;
 	
-	public World(Main m,SpriteBatch batch)
+	public World(Main m,SpriteBatch batch, double seed)
 	{
+		this.seed =seed;
 		this.main = m;
 		RenderManager.setBatch(batch);
 		camera = new Camera(this);
@@ -112,7 +114,7 @@ public class World implements Screen{
 	/* Call at the World creation */
 	public void create(){
 		gs.create();
-		MapGenerator.generate(this, 3); //0 to generate a new seed ->6 / 14
+		MapGenerator.generate(this, seed); //0 to generate a new seed ->6 / 14
 		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		bs = new BlockSand(3,320,this);
 		setBlock(3, 310, new BlockWater(3,310, 0,this));

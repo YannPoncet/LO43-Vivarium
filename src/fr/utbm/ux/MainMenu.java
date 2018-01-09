@@ -39,7 +39,7 @@ public class MainMenu extends GraphicScene {
 		generate.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				main.startGame(0);
+				createWorld();
 			};
 		});
 	    FileHandle fileHandle = Gdx.files.internal("res/skin/uiskin.json");
@@ -60,8 +60,16 @@ public class MainMenu extends GraphicScene {
 		stage.addActor(seed);
 		Gdx.input.setInputProcessor(stage);
 	}
-
-	public void translate(float dx) {
-
+	public void createWorld(){
+		double seedN = 0;
+		if(!seed.getText().equals("Random seed")){
+			 try {
+				 seedN = Double.valueOf(seed.getText());
+			 }catch (NumberFormatException e) {
+			  }
+			 
+		}
+		main.startGame(seedN);
 	}
+	
 }
