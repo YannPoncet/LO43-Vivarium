@@ -95,7 +95,6 @@ public class World implements Screen{
 	public void setBlock(int i, int j, Block block)
 	{
 		this.map.setBlock(i, j, block);
-		RenderManager.addToBlockRender(block);
 	}
 	
 	public Chunk getChunk(int i)
