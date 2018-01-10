@@ -1,7 +1,6 @@
 package fr.utbm.entity;
 
 import fr.utbm.block.Block;
-import fr.utbm.block.BlockType;
 import fr.utbm.physics.RigidBox;
 import fr.utbm.render.Renderable;
 import fr.utbm.texture.TextureManager;

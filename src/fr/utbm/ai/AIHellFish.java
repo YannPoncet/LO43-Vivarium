@@ -2,8 +2,6 @@ package fr.utbm.ai;
 
 import fr.utbm.block.BlockType;
 import fr.utbm.entity.EntityAnimalHellFish;
-import fr.utbm.world.Chunk;
-import fr.utbm.world.Map;
 
 public class AIHellFish extends AIAnimal{
 	
