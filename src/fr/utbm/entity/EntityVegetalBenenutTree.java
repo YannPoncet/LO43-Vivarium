@@ -68,6 +68,11 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 		}
 		spawnFruits();
 		voidUnder();
+		despawnFruitsOnDeadTree();
+	}
+	
+	public void despawnFruitsOnDeadTree()
+	{
 		if(dead == true)
 		{
 			for(int i = 0 ; i < fruits.length ; i++)
@@ -80,6 +85,22 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 			}
 		}
 	}
+	
+	@Override
+	public void damage(int dmg)
+    {
+        if(this.health > 0)
+        {
+            health -= dmg;
+            if(health < 0){
+            	health = 0;
+            }
+        }
+        if(health <= 0) {
+            dead = true;
+            despawnFruitsOnDeadTree();
+        }
+    }
 	
 	public void spawnFruits()
 	{

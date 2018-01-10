@@ -76,6 +76,7 @@ public abstract class Entity extends Renderable{
 	
 	public boolean isSensitiveTo(int id) {
 		switch(id){
+		case 104: return true; //sensitive to water (they will try to swim)
 		case 112: return true; //sensitive to lava
 		default: return false;
 		}
@@ -99,6 +100,24 @@ public abstract class Entity extends Renderable{
 			p+=1;
 		}
 		return b;
+	}
+	
+	public boolean isInWater()
+	{
+		boolean isInWater = false;
+		int blockWidth = (int)((x+width-1)/16) - (int)(x/16)+1;
+		int blockHeight = (int)((y+height-1)/16) - (int)(y/16)+1;
+		for(int i = 0 ; i < blockWidth ; i++)
+		{
+			for(int j = 0 ; j < blockHeight ; j++)
+			{
+				if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).getID() == 104)
+				{
+					isInWater = true;
+				}
+			}
+		}
+		return isInWater;
 	}
 	
 	public void update(){

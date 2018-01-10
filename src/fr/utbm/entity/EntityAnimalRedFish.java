@@ -57,6 +57,14 @@ public class EntityAnimalRedFish extends EntityAnimal2D {
 			break;
 		}
 	}
+	
+	@Override
+	public boolean isSensitiveTo(int id) {
+		switch(id){
+		case 112: return true; //sensitive to lava
+		default: return false;
+		}
+	}
 
 	@Override
 	public void render(SpriteBatch sp) {
