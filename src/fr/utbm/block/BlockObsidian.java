@@ -8,8 +8,8 @@ public class BlockObsidian extends Block {
 	{
 		super(x, y, TextureManager.getTexture(8), w);
 		this.blockId = 8;
-		this.blockHealth = 300;
-		this.maxHealth = 300;
+		this.blockHealth = 1000;
+		this.maxHealth = 1000;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;
 		isSolid = true;
@@ -18,7 +18,7 @@ public class BlockObsidian extends Block {
 	public BlockObsidian (float x, float y, int bH, World w) {
 		super(x, y, TextureManager.getTexture(8), w);
 		this.blockId = 8;
-		this.maxHealth = 300;
+		this.maxHealth = 1000;
 		this.blockHealth = bH;
 		this.blockType = BlockType.DIRT;
 		this.isGravitySensitive = false;

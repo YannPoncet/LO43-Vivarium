@@ -44,6 +44,14 @@ public class EntityAnimalHellFish extends EntityAnimal2D {
 		}
 	}
 	
+	@Override
+	public boolean isSensitiveTo(int id){
+		switch(id){
+		
+		default: return false;
+		}
+	}
+	
 	public boolean isInLava()
 	{
 		boolean isInLava = false;

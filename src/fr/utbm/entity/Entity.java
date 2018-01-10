@@ -52,9 +52,19 @@ public abstract class Entity extends Renderable{
 		{
 			for(int j = 0 ; j < blockHeight ; j++)
 			{
-				if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).isSolid())
+				if(isSensitiveTo(112))
 				{
-					isInBlock = true;
+					if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && (world.getBlock((int)(x/16) + i, (int)(y/16) + j).isSolid() || world.getBlock((int)(x/16) + i, (int)(y/16) + j).getID() == 112))
+					{
+						isInBlock = true;
+					}
+				}
+				else
+				{
+					if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).isSolid())
+					{
+						isInBlock = true;
+					}
 				}
 			}
 		}
@@ -64,26 +74,10 @@ public abstract class Entity extends Renderable{
 		}
 	}
 	
-	public void suffocating(boolean t) //debug function
-	{
-		boolean isInBlock = false;
-		int blockWidth = (int)((x+width-1)/16) - (int)(x/16)+1;
-		int blockHeight = (int)((y+height-1)/16) - (int)(y/16)+1;
-		System.out.println("width : " + blockWidth + ", height : " + blockHeight);
-		for(int i = 0 ; i < blockWidth ; i++)
-		{
-			for(int j = 0 ; j < blockHeight ; j++)
-			{
-				System.out.println(((x/16)+i) + " ; " + ((y/16)+j));
-				if(world.getBlock((int)(x/16) + i, (int)(y/16) + j) != null && world.getBlock((int)(x/16) + i, (int)(y/16) + j).isSolid())
-				{
-					isInBlock = true;
-				}
-			}
-		}
-		if(isInBlock)
-		{
-			damage(2);
+	public boolean isSensitiveTo(int id) {
+		switch(id){
+		case 112: return true; //sensitive to lava
+		default: return false;
 		}
 	}
 	
