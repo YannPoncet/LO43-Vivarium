@@ -7,6 +7,7 @@
 	<animal id="221" surfaceFrequence="20" caveFrequence="0" widthNeeded="4" heightNeeded="3" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="222" surfaceFrequence="8" caveFrequence="0" widthNeeded="1" heightNeeded="1" biomeID="-1" surface="1" cave="0" hell="0" flying="1" water="0" lava="0"></entity>
 	<animal id="224" surfaceFrequence="20" caveFrequence="0" widthNeeded="3" heightNeeded="3" biomeID="3" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
+	<animal id="225" surfaceFrequence="0" caveFrequence="1" widthNeeded="6" heightNeeded="3" biomeID="-1" surface="0" cave="0" hell="1" flying="0" water="0" lava="1"></entity>
 	<animal id="226" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="227" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
 	<animal id="228" surfaceFrequence="0" caveFrequence="0" widthNeeded="4" heightNeeded="4" biomeID="-1" surface="1" cave="0" hell="0" flying="0" water="0" lava="0"></entity>
@@ -14,8 +15,7 @@
 	
 </entityAnimals>
 
-<!--<animal id="225" surfaceFrequence="0" caveFrequence="20" widthNeeded="6" heightNeeded="3" biomeID="-1" surface="0" cave="0" hell="1" flying="0" water="0" lava="1"></entity>
-	
+<!--	
 200 hellDog 44x24
 208 benenut 15x18
 218 digger 46x16

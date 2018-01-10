@@ -195,5 +195,5 @@
 	<animation id="33" file="animals/dwarfs/miner/dwarf-miner-build.png" wD="6" hD="1" speed="0.1" size="1"></animation>
 	<animation id="34" file="animals/dwarfs/miner/dwarf-miner.png" wD="1" hD="1" speed="0.5" size="1"></animation>
 	
-	<animation id="35" file="animals/redFish/redFish_swim.png" wD="4" hD="1" speed="0.5" size="1"></animation>
+	<animation id="35" file="animals/redFish/redFish_swim.png" wD="4" hD="1" speed="0.25" size="1"></animation>
 </textures>
