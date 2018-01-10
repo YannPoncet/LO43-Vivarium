@@ -30,7 +30,16 @@ public class AIHellFish extends AIAnimal{
 			
 			if(actionDecided.getDirectionX() != 0)
 			{
-				actionDecided.setDirectionX(1*(actionDecided.getDirectionX()/Math.abs(actionDecided.getDirectionX())));
+				double r = Math.random()*100;
+				if(r < 90)
+				{
+					actionDecided.setDirectionX(1*(actionDecided.getDirectionX()/Math.abs(actionDecided.getDirectionX())));
+				}
+				else
+				{
+					actionDecided.setDirectionX(-actionDecided.getDirectionX());
+				}
+				
 			}
 			else
 			{
@@ -39,7 +48,16 @@ public class AIHellFish extends AIAnimal{
 			
 			if(actionDecided.getDirectionY() != 0)
 			{
-				actionDecided.setDirectionY(1*(actionDecided.getDirectionY()/Math.abs(actionDecided.getDirectionY())));
+				double r = Math.random()*100;
+				if(r < 90)
+				{
+					actionDecided.setDirectionY(1*(actionDecided.getDirectionY()/Math.abs(actionDecided.getDirectionY())));
+				}
+				else
+				{
+					actionDecided.setDirectionY(-actionDecided.getDirectionY());
+				}
+				
 			}
 			else
 			{

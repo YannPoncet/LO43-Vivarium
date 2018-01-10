@@ -269,7 +269,7 @@ public class MainUXFull extends GraphicScene {
 	public void destroyElement(float x, float y){
 		Entity e = this.world.getEntityAt(x, y);
 		if(e != null){
-			e.kill();
+			e.damage(e.getMaxHealth());
 		}else{
 			int rX = (int) (x / 16);
 			int rY = (int) (y / 16);

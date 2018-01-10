@@ -164,7 +164,7 @@ public class EntityAnimalBenenut extends EntityAnimal{
 			break;
 		case 0: //Jump
 			if (isOnGround() && !hasJump) {
-				move(0.4f * direction, 8f, 1);
+				move(0.5f * direction, 8f, 1);
 				hasJump = true;
 			} else {
 				move(0.4f * direction, 0, activity);
