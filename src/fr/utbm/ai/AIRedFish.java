@@ -1,6 +1,8 @@
 package fr.utbm.ai;
 
 import fr.utbm.entity.EntityAnimalRedFish;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class AIRedFish extends AIAnimal{
 	
@@ -53,6 +55,7 @@ public class AIRedFish extends AIAnimal{
 				actionDecided.setAction(0);
 				actionDecided.setDirectionX(0);
 				actionDecided.setDirectionY(animal.getWorldIn().getGravity());
+				this.animal.damage(1);
 			}
 		}
 		else //il est dans l'eau
@@ -66,16 +69,16 @@ public class AIRedFish extends AIAnimal{
 				float dy= actionDecided.getDirectionY()+(float)(Math.random()-0.5);
 				
 				//on vérifie que le poisson ne va pas trop vite, on le ralenti le cas échéant
-				while(dx>1){
+				if(dx>1){
 					dx-=0.5;
 				}
-				while(dx<1){
+				if(dx<1){
 					dx+=0.5;
 				}
-				while(dy>1){
+				if(dy>1){
 					dy-=0.5;
 				}
-				while(dy<1){
+				if(dy<1){
 					dy+=0.5;
 				}
 				
@@ -134,8 +137,9 @@ public class AIRedFish extends AIAnimal{
 		{
 			for(int i=0; i<(int)(animal.getHeight()/16+1); i++) //+1 en cas de chevauchement
 			{
-				if(animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i)==null //et que le bloc de droite est null
-					|| animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i).getID()!=104)//ou que le bloc dde droite n'est pas un bloc d'eau
+				if(((animal.getPosX()+animal.getWidth())/16+1<=Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH) //pour ne pas dépasser de la map à droite
+					&& (animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i)==null //et que le bloc de droite est null
+						|| animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i).getID()!=104))//ou que le bloc dde droite n'est pas un bloc d'eau
 				{
 					return true;
 				}
