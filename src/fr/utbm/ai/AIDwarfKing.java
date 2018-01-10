@@ -9,8 +9,8 @@ import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 
 public class AIDwarfKing extends AIAnimal {
-	public final int NB_MINER = 2;
-	public final int NB_WARRIOR = 2;
+	public final int NB_MINER = 3;
+	public final int NB_WARRIOR = 3;
 	public final int HOME_SPAWN_FACTOR = 15*16;
 	
 	private float homeCenter; 
