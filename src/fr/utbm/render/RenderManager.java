@@ -82,13 +82,13 @@ public class RenderManager {
 		RenderManager.blockRender.add(r);
 	}
 	public static void addToEntitiesRender(Renderable r){
-		if(r instanceof EntityVegetal){
-			if(!RenderManager.entitiesVegetalRender.contains(r)){
-				RenderManager.entitiesVegetalRender.add(r);
-			}
-		}else if(r instanceof EntityAnimal){
+		if(r instanceof EntityAnimal){
 			if(!RenderManager.entitiesAnimalRender.contains(r)){
 				RenderManager.entitiesAnimalRender.add(r);
+			}
+		}else{
+			if(!RenderManager.entitiesVegetalRender.contains(r)){
+				RenderManager.entitiesVegetalRender.add(r);
 			}
 		}
 		
