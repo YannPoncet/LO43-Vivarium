@@ -86,16 +86,16 @@ public class AIPrettyBird extends AIAnimal {
 				float dy= actionDecided.getDirectionY()+(float)(Math.random()-0.5);
 				
 				//on vérifie que l'oiseau ne va pas trop vite, on le ralenti le cas échéant
-				while(dx>1){
+				if(dx>1){
 					dx-=0.5;
 				}
-				while(dx<1){
+				if(dx<1){
 					dx+=0.5;
 				}
-				while(dy>1){
+				if(dy>1){
 					dy-=0.5;
 				}
-				while(dy<1){
+				if(dy<1){
 					dy+=0.5;
 				}
 				
