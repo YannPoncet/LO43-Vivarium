@@ -20,14 +20,14 @@ public class AIBeaverHouse extends AIBase {
 								(int) this.animal.getPosY() / 16 - 1, this.animal.getWorldIn()));
 			}
 				this.animal.getWorldIn().setBlock((int) this.animal.getPosX() / 16 ,
-						(int) this.animal.getPosY() / 16 +3, new BlockWood((int) this.animal.getPosX() / 16,
-								(int) this.animal.getPosY() / 16 +3, this.animal.getWorldIn()));
-				this.animal.getWorldIn().setBlock((int) this.animal.getPosX() / 16 +1 ,
-						(int) this.animal.getPosY() / 16 +4, new BlockWood((int) this.animal.getPosX() / 16 + 1,
+						(int) this.animal.getPosY() / 16 +4, new BlockWood((int) this.animal.getPosX() / 16,
 								(int) this.animal.getPosY() / 16 +4, this.animal.getWorldIn()));
+				this.animal.getWorldIn().setBlock((int) this.animal.getPosX() / 16 +1 ,
+						(int) this.animal.getPosY() / 16 +5, new BlockWood((int) this.animal.getPosX() / 16 + 1,
+								(int) this.animal.getPosY() / 16 +5, this.animal.getWorldIn()));
 				this.animal.getWorldIn().setBlock((int) this.animal.getPosX() / 16 +2 ,
-						(int) this.animal.getPosY() / 16 +2, new BlockWood((int) this.animal.getPosX() / 16 + 2,
-								(int) this.animal.getPosY() / 16 +3, this.animal.getWorldIn()));
+						(int) this.animal.getPosY() / 16 +4, new BlockWood((int) this.animal.getPosX() / 16 + 2,
+								(int) this.animal.getPosY() / 16 +4, this.animal.getWorldIn()));
 			this.animal.setCapacity(0);
 		}
 		return new Action(1, 2, true);

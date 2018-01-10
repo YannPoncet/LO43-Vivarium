@@ -64,9 +64,7 @@ public class AIBeaver extends AIAnimal {
 			if(this.animal.getCapacity() <=4){
 				this.pathFinder.setObjective(this.animal.getNearestTree());
 				this.objective = 1;
-				System.out.println("TEST");
 			}else{
-				System.out.println("TEST");
 				this.objective = 3;
 			}
 			break;
