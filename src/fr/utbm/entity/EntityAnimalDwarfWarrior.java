@@ -18,6 +18,7 @@ public class EntityAnimalDwarfWarrior extends EntityAnimalDwarf {
 		this.brain = new AIDwarfWarrior(this);
 		this.isAttacking = false;
 		health = 100;
+		maxHealth = 100;
 	}
 	
 	public EntityAnimalDwarfWarrior(float x, float y, World worldIn) {

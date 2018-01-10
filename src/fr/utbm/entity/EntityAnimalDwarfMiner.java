@@ -13,7 +13,8 @@ public class EntityAnimalDwarfMiner extends EntityAnimalDwarf {
 		super(x, y, 64, 64, worldIn, 228, 31, 34, 32, 33);
 		this.name = "Dwarf miner";
 		this.king = king;
-		
+		health = 100;
+		maxHealth = 100;
 		this.brain = new AIDwarfMiner(this, king);
 	}
 	
@@ -21,7 +22,8 @@ public class EntityAnimalDwarfMiner extends EntityAnimalDwarf {
 		/* super(x, y, worldIn, normal, walkId, jumpId, specialId)*/
 		super(x, y, 64, 64, worldIn, 228, 31, 34, 32, 33);
 		this.name = "Dwarf miner";
-		
+		health = 100;
+		maxHealth = 100;
 		for(Entity e : worldIn.getEntities()){
 			if(e instanceof EntityAnimalDwarfKing){
 				this.king = (EntityAnimalDwarfKing) e;
