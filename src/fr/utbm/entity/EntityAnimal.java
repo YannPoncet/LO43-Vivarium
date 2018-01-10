@@ -25,7 +25,12 @@ public abstract class EntityAnimal extends Entity{
 		this.activity = act;
 		xa += dx;
 		ya += dy;
-		if (isOnGround()) {
+		if(isSensitiveTo(104) && isInWater())
+		{
+			drag = 0.7f;
+			ya *= 1.3;
+		}
+		else if (isOnGround()) {
 			drag = 0.85f;
 		} else {
 			drag = 0.95f;
