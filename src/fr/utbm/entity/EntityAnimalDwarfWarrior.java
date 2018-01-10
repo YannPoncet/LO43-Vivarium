@@ -34,6 +34,10 @@ public class EntityAnimalDwarfWarrior extends EntityAnimalDwarf {
 				this.king = (EntityAnimalDwarfKing) e;
 			}
 		}
+		if (king == null) {
+			EntityAnimalDwarfKing tempKing = new EntityAnimalDwarfKing(x/16, y/16, worldIn);
+			worldIn.addEntity(tempKing);
+		}
 	}
 	
 	public void update() {
@@ -65,7 +69,6 @@ public class EntityAnimalDwarfWarrior extends EntityAnimalDwarf {
 		this.brain.getTarget().damage(POWER);
 	}
 	
-
 	public EntityAnimalDwarfKing getKing() {
 		return this.king;
 	}
