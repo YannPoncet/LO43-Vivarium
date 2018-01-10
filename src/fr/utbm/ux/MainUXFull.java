@@ -254,7 +254,6 @@ public class MainUXFull extends GraphicScene {
 					break;
 				case 1:
 					Entity e = ObjectGetter.getEntity(selected,rX, rY, world);
-					System.out.println("TEST");
 					if(!CollisionAABB.enterInCollisionAt(e, 0, 0)){
 						world.addEntity(e);
 					}
