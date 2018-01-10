@@ -20,6 +20,7 @@ import fr.utbm.texture.TextureManager;
 import fr.utbm.tools.CollisionAABB;
 import fr.utbm.tools.ObjectGetter;
 import fr.utbm.ux.panels.PanelBase;
+import fr.utbm.world.Chunk;
 import fr.utbm.world.World;
 
 public class MainUXFull extends GraphicScene {
@@ -249,13 +250,18 @@ public class MainUXFull extends GraphicScene {
 				int rY = (int) ((y + world.getYCam()) / 16);
 				switch (category) {
 				case 0:
-
-					world.setBlock(rX, rY, ObjectGetter.getBlock(selected, rX, rY, world));
+					if(rX > 0 && rY > 0 && rX < ((world.getMap().NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH)-1) && rY < (Chunk.CHUNK_HEIGHT-1))
+					{
+						world.setBlock(rX, rY, ObjectGetter.getBlock(selected, rX, rY, world));
+					}
 					break;
 				case 1:
-					Entity e = ObjectGetter.getEntity(selected,rX, rY, world);
-					if(!CollisionAABB.enterInCollisionAt(e, 0, 0)){
-						world.addEntity(e);
+					if(rX > 0 && rY > 0 && rX < ((world.getMap().NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH)-1) && rY < (Chunk.CHUNK_HEIGHT-1))
+					{
+						Entity e = ObjectGetter.getEntity(selected,rX, rY, world);
+						if(!CollisionAABB.enterInCollisionAt(e, 0, 0)){
+							world.addEntity(e);
+						}
 					}
 					break;
 				}
