@@ -103,8 +103,8 @@ public class World implements Screen{
 		return entities;
 	}
 	public void addEntity(Entity e){
-		entities.add(e);
-		RenderManager.addToEntitiesRender(e);
+			entities.add(e);
+			RenderManager.addToEntitiesRender(e);
 	}
 	public Map getMap(){
 		return map;
