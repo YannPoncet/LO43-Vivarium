@@ -1,5 +1,7 @@
 package fr.utbm.entity;
 
+import java.util.ArrayList;
+
 import fr.utbm.ai.AIDwarfKing;
 import fr.utbm.ai.Action;
 import fr.utbm.world.World;
@@ -11,7 +13,7 @@ public class EntityAnimalDwarfKing extends EntityAnimalDwarf {
 		/* super(x, y, worldIn, normal, walkId, jumpId, specialId)*/
 		super(x, y, 48, 50, worldIn, 226, 25, 27, 26);
 		this.name = "Dwarf king";
-		brain = new AIDwarfKing(this);
+		this.brain = new AIDwarfKing(this);
 		health = 200;
 		maxHealth = 200;
 	}
@@ -49,6 +51,18 @@ public class EntityAnimalDwarfKing extends EntityAnimalDwarf {
 		} else {
 			action(actionToPerform, directionToPerform);
 		}
+	}
+	
+	public float getHomeCenter() {
+		return this.brain.getHomeCenter();
+	}
+	
+	public ArrayList<EntityAnimalDwarfMiner> getMiners() {
+		return brain.getMiners();
+	}
+	
+	public ArrayList<EntityAnimalDwarfWarrior> getWarriors() {
+		return brain.getWarriors();
 	}
 
 }
