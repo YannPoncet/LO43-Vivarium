@@ -51,10 +51,6 @@ public class EntityVegetalBenenutTree extends EntityVegetal{
 					fruits[i] = null;
 				}
 			}
-			if(fruits[i].isDead())
-			{
-				fruits[i] = null;
-			}
 		}
 		
 		if(maturity < 6)
