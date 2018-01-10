@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 
 import fr.utbm.biome.Biome;
+import fr.utbm.entity.EntityAnimal;
+import fr.utbm.entity.EntityVegetal;
 import fr.utbm.texture.TextureManager;
 import fr.utbm.ux.GraphicScene;
 import fr.utbm.view.Camera;
@@ -21,7 +23,9 @@ public class RenderManager {
 	private static Matrix4 projection;
 	private static ArrayList<Biome> biomeList;
 	private static ArrayList<Renderable> blockRender =  new ArrayList<Renderable>();
-	private static ArrayList<Renderable> entitiesRender =  new ArrayList<Renderable>();
+	private static ArrayList<Renderable> entitiesAnimalRender =  new ArrayList<Renderable>();
+	private static ArrayList<Renderable> entitiesVegetalRender =  new ArrayList<Renderable>();
+	
 	private static float x=0;
 	private static float y=0;
 	private static int margin = 30;
@@ -45,7 +49,8 @@ public class RenderManager {
 		batch.begin();
 		drawBackground();
 		renderArray(blockRender);
-		renderArray(entitiesRender);
+		renderArray(entitiesVegetalRender);
+		renderArray(entitiesAnimalRender);
 		//System.out.println("RENDER-MANAGER : Show " + blockRender.size() + " elements");
 		
 		batch.end();
@@ -68,7 +73,8 @@ public class RenderManager {
 	}
 	public static void cleanAllRender(){
 		blockRender.clear();
-		entitiesRender.clear();
+		entitiesAnimalRender.clear();
+		entitiesVegetalRender.clear();
 		biomeList.clear();
 	}
 	
@@ -76,13 +82,25 @@ public class RenderManager {
 		RenderManager.blockRender.add(r);
 	}
 	public static void addToEntitiesRender(Renderable r){
-		if(!RenderManager.entitiesRender.contains(r)){
-			RenderManager.entitiesRender.add(r);
+		if(r instanceof EntityVegetal){
+			if(!RenderManager.entitiesVegetalRender.contains(r)){
+				RenderManager.entitiesVegetalRender.add(r);
+			}
+		}else if(r instanceof EntityAnimal){
+			if(!RenderManager.entitiesAnimalRender.contains(r)){
+				RenderManager.entitiesAnimalRender.add(r);
+			}
 		}
+		
+		
+		
+		
+		
 
 	}
 	public static void removeEntityRender(Renderable r){
-		RenderManager.entitiesRender.remove(r);
+		RenderManager.entitiesAnimalRender.remove(r);
+		RenderManager.entitiesVegetalRender.remove(r);
 	}
 	public static void setBiomeList(ArrayList<Biome> biomeList) {
 		RenderManager.biomeList = biomeList;
