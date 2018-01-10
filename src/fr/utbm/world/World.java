@@ -29,7 +29,6 @@ public class World implements Screen{
 	
 	private Map map;
 	private CopyOnWriteArrayList<Entity> entities;
-	private EntityFallingBlock test;
 	
 	ArrayList<Biome> biomeList;
 	
@@ -119,7 +118,6 @@ public class World implements Screen{
 	public void create(){
 		gs.create();
 		MapGenerator.generate(this, seed); //0 to generate a new seed ->6 / 14
-		test = new EntityFallingBlock(4,320,16,16,this, new BlockSand(4,320,this));
 		map.render(0);
 		
 	}
