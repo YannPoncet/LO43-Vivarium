@@ -2,6 +2,8 @@ package fr.utbm.ai;
 
 import fr.utbm.block.BlockType;
 import fr.utbm.entity.EntityAnimalHellFish;
+import fr.utbm.world.Chunk;
+import fr.utbm.world.Map;
 
 public class AIHellFish extends AIAnimal{
 	
@@ -150,8 +152,9 @@ public class AIHellFish extends AIAnimal{
         {
             for(int i=0; i<(int)(animal.getHeight()/16+1); i++)
             {
-                if(animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i)==null
-                    || animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i).getBlockType() != BlockType.LIQUID)
+                if(((animal.getPosX()+animal.getWidth())/16+1<=Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH) //pour ne pas dépasser de la map à droite
+                	&& (animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i)==null
+                    	|| animal.getWorldIn().getBlock((animal.getPosX()+animal.getWidth())/16+1, animal.getPosY()/16+i).getBlockType() != BlockType.LIQUID))
                 {
                     return true;
                 }

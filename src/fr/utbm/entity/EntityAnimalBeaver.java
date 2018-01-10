@@ -16,6 +16,7 @@ public class EntityAnimalBeaver extends EntityAnimal {
 
 	private boolean hasJump, isEmpty;
 	private AIBeaver brain;
+	private int capacity;
 	/*
 	 * Beaver activity : 0 EAT - 1 JUMP - 2 PUT - 3 TAKE - 4 WALK
 	 */
@@ -32,6 +33,7 @@ public class EntityAnimalBeaver extends EntityAnimal {
 		anim[4] = TextureManager.getAnimation(12);
 		anim[5] = TextureManager.getAnimation(13);
 		isEmpty = true;
+		capacity = 0;
 		directionX = 1;
 		activity = -1;
 		perform = false;
@@ -120,7 +122,7 @@ public class EntityAnimalBeaver extends EntityAnimal {
 				if (isEmpty) {
 					move(0.1f * direction, 0, 4);
 				} else {
-					move(0, 0, 5);
+					move(0.1f * direction, 0, 5);
 				}
 
 			} else {
@@ -134,10 +136,22 @@ public class EntityAnimalBeaver extends EntityAnimal {
 			if(e instanceof EntityVegetalTree){
 				EntityVegetalTree tree = (EntityVegetalTree) e;
 				if(Math.abs(this.getX()-tree.getTrunkPos()) < 55){
+					this.setCapacity(getCapacity() + 1);
 					tree.kill();
 				}
 			}
 		}
+	}
+	public void setCapacity(int newC){
+		this.capacity = newC;
+		if(this.capacity != 0){
+			this.setFull();
+		}else{
+			this.setEmpty();
+		}
+	}
+	public int getCapacity(){
+		return this.capacity;
 	}
 	
 	

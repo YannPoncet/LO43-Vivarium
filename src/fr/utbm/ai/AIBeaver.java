@@ -19,7 +19,7 @@ public class AIBeaver extends AIAnimal {
 		
 		this.pathFinder = new AIGoTo(e);
 		this.pathFinder.setControls(1, 4);
-		this.pathFinder.setObjective(20*16);
+		this.pathFinder.setObjective(this.animal.getNearestTree());
 		
 		this.construction = new AIBeaverHouse(e);
 
@@ -55,18 +55,24 @@ public class AIBeaver extends AIAnimal {
 		switch(objective){
 		case 0 :
 			this.pathFinder.setObjective(this.animal.getNearestTree());
-			
 			this.objective = 1;
 			break;
 		case 1 :
 			this.objective = 2;
 			break;
 		case 2 :
-			this.objective = 3;
+			if(this.animal.getCapacity() <=4){
+				this.pathFinder.setObjective(this.animal.getNearestTree());
+				this.objective = 1;
+				System.out.println("TEST");
+			}else{
+				System.out.println("TEST");
+				this.objective = 3;
+			}
 			break;
 		case 3 :
 			this.pathFinder.setObjective(this.animal.getNearestTree());
-			this.objective = 1;
+			this.objective = 0;
 			break;
 		}
 		
