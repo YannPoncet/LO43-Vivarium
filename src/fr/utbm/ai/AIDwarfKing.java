@@ -9,7 +9,7 @@ import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 
 public class AIDwarfKing extends AIAnimal {
-	public final int NB_MINER = 3;
+	public final int NB_MINER = 1;
 	public final int NB_WARRIOR = 3;
 	public final int HOME_SPAWN_FACTOR = 15*16;
 	
@@ -42,6 +42,7 @@ public class AIDwarfKing extends AIAnimal {
 		this.blockerInteger = 0;
 		this.noInfiniteTimer = 0;
 		
+		
 		EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 		animal.getWorldIn().addEntity(tempWarrior);
 		
@@ -62,10 +63,12 @@ public class AIDwarfKing extends AIAnimal {
 			if(!hasAnObjective) {
 				if(this.warriors.size() <= NB_WARRIOR && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
 					EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
+					warriors.add(tempWarrior);
 					animal.getWorldIn().addEntity(tempWarrior);
 				}
 				else if(this.miners.size() <= NB_MINER && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
 					EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
+					miners.add(tempMiner);
 					animal.getWorldIn().addEntity(tempMiner);
 				}
 				else {
@@ -84,7 +87,7 @@ public class AIDwarfKing extends AIAnimal {
 					else //the king has a home, he needs to turn around and command
 					{
 						double whatToDo = Math.random();
-						if(whatToDo < 0.2) { //he turns around
+						if(whatToDo < 0.1) { //he turns around
 							int leftToTheHome;
 							if (Math.random() < 0.5) {
 								leftToTheHome = -1;
@@ -103,7 +106,7 @@ public class AIDwarfKing extends AIAnimal {
 								this.hasAnObjective = false;
 							}
 							this.noInfiniteTimer = 20;
-						} else if (whatToDo < 0.7){ //he commands
+						} else if (whatToDo < 0.8){ //he commands
 							if(Math.random() < 0.5) { //he commands to the right
 								actionDecided = new Action(1,2, false);
 							} else { //he commands to the left
@@ -135,4 +138,15 @@ public class AIDwarfKing extends AIAnimal {
 		return actionDecided;
 	}
 	
+	public float getHomeCenter() {
+		return this.homeCenter;
+	}
+	
+	public ArrayList<EntityAnimalDwarfMiner> getMiners() {
+		return this.miners;
+	}
+	
+	public ArrayList<EntityAnimalDwarfWarrior> getWarriors() {
+		return this.warriors;
+	}
 }
