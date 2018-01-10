@@ -17,6 +17,7 @@ import fr.utbm.entity.Entity;
 import fr.utbm.main.DesktopApplication;
 import fr.utbm.render.RenderManager;
 import fr.utbm.texture.TextureManager;
+import fr.utbm.tools.CollisionAABB;
 import fr.utbm.tools.ObjectGetter;
 import fr.utbm.ux.panels.PanelBase;
 import fr.utbm.world.World;
@@ -244,13 +245,19 @@ public class MainUXFull extends GraphicScene {
 	public void actionOnClick(float x, float y) {
 		if (x < screenWidth / 2) {
 			if (!trashMode) {
+				int rX = (int) ((x + world.getXCam()) / 16);
+				int rY = (int) ((y + world.getYCam()) / 16);
 				switch (category) {
 				case 0:
-					int rX = (int) ((x + world.getXCam()) / 16);
-					int rY = (int) ((y + world.getYCam()) / 16);
+
 					world.setBlock(rX, rY, ObjectGetter.getBlock(selected, rX, rY, world));
 					break;
 				case 1:
+					Entity e = ObjectGetter.getEntity(selected,rX, rY, world);
+					System.out.println("TEST");
+					if(!CollisionAABB.enterInCollisionAt(e, 0, 0)){
+						world.addEntity(e);
+					}
 					break;
 				}
 			}else{
@@ -258,7 +265,6 @@ public class MainUXFull extends GraphicScene {
 				destroyElement(x + world.getXCam(),y + world.getYCam());
 			}
 		}
-
 	}
 	public void destroyElement(float x, float y){
 		Entity e = this.world.getEntityAt(x, y);

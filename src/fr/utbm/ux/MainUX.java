@@ -142,10 +142,14 @@ public class MainUX extends GraphicScene {
 	}
 
 	public void actionOnClick(float x, float y) {
-		if (!isCaractOpen) {
-			Entity e = this.world.getEntityAt(x, y);
-			if (e != null) {
-				if (ObjectGetter.getEntityV(e) != 0) {
+		Entity e = this.world.getEntityAt(x, y);
+		if (e != null) {
+			if (ObjectGetter.getEntityV(e) != 0) {
+				if (isCaractOpen) {
+					addActors();
+					addCaract(ObjectGetter.getEntityV(e), e.getName(), e.getHealth(), e.getMaxHealth());
+					isCaractOpen = true;
+				}else{
 					addCaract(ObjectGetter.getEntityV(e), e.getName(), e.getHealth(), e.getMaxHealth());
 					isCaractOpen = true;
 				}

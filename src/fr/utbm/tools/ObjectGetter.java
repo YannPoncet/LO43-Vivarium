@@ -24,6 +24,7 @@ import fr.utbm.entity.EntityAnimalHellDog;
 import fr.utbm.entity.EntityAnimalHellFish;
 import fr.utbm.entity.EntityAnimalMrStabby;
 import fr.utbm.entity.EntityAnimalPrettyBird;
+import fr.utbm.entity.EntityAnimalRedFish;
 import fr.utbm.world.World;
 
 public class ObjectGetter {
@@ -57,14 +58,20 @@ public class ObjectGetter {
 			
 		}
 	}
+	
+	
+	
+	
+	
+	
 	public static int getEntityV(Entity e){
 		int a = 0;
 		if(e instanceof EntityAnimalBeaver){
 			a = 1050;
 		}else if(e instanceof EntityAnimalDigger){
 			a = 1051;
-		/*}else if(e instanceof EntityAnimalFish){
-			a = 1052;*/
+		}else if(e instanceof EntityAnimalRedFish){
+			a = 1052;
 		}else if(e instanceof EntityAnimalCuteFlower){
 			a = 1053;
 		}else if(e instanceof EntityAnimalDwarfKing){
@@ -90,34 +97,36 @@ public class ObjectGetter {
 		
 		
 	}
-	/*public static Entity getEntity(int id, float x, float y, World w){
+	public static Entity getEntity(int id, float x, float y, World w){
 		switch(id){
 		case 0:
-			return new BlockWater(x,y,0,w);
+			return new EntityAnimalBeaver(x, y, w);
 		case 1:
-			return new BlockDirt(x,y,w);
+			return new EntityAnimalDigger(x, y, w);
 		case 2:
-			return new BlockDirtSurface(x,y,w);
+			return new EntityAnimalRedFish(x, y, w);
 		case 3:
-			return new BlockSnowSurface(x,y,w);
+			return new EntityAnimalCuteFlower(x, y, w);
 		case 4:
-			return new BlockSand(x,y,w);
+			return new EntityAnimalDwarfKing(x, y, w);
 		case 5:
-			return new BlockSandSurface(x,y,w);
+			return new EntityAnimalHellFish(x,y,w);
 		case 6:
-			return new BlockAsh(x,y,w);
+			return new EntityAnimalDwarfMiner(x,y,w);
 		case 7:
-			return new BlockStone(x,y,w);
+			return new EntityAnimalPrettyBird(x,y,w);
 		case 8:
-			return new BlockObsidian(x,y,w);
+			return new EntityAnimalMrStabby(x,y,w);
 		case 9:
-			return new BlockWood(x,y,w);
+			return new EntityAnimalDwarfWarrior(x,y,w);
 		case 10:
-			return new BlockLava(x,y,0,w);
+			return new EntityAnimalBenenut(x,y,w);
+		case 11:
+			return new EntityAnimalHellDog(x,y,w);
 		default:
 			return null;
 			
 		}
-	}*/
+	}
 
 }
