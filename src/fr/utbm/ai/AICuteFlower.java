@@ -64,13 +64,16 @@ public class AICuteFlower extends AIAnimal {
 						this.pathFinder.setObjective(target.getPosX());
 					}
 					actionDecided = this.pathFinder.updateTask();
-				} else { //on l'attend et on teste si il vient sur nous
+				} else if(!voidUnder()){ //on l'attend et on teste si il vient sur nous
 					int whereIsTheTarget = besideTargetPos();
-					if(whereIsTheTarget != 0 /*&& !voidUnder()*/) { //il est à portée ! on attaque et on remplit le ventre de la flower
+					if(whereIsTheTarget != 0) { //il est à portée ! on attaque et on remplit le ventre de la flower
 						actionDecided = new Action(whereIsTheTarget,1,true);
 						animal.setFull();
 						fullTime = (int)(Math.random()*25000);
 					}
+				}
+				else{
+					actionDecided = this.pathFinder.updateTask();
 				}
 			}
 			
@@ -79,13 +82,17 @@ public class AICuteFlower extends AIAnimal {
 			}
 			actionDecided.setFinish(false);
 		}
-		else { //the flower is full, we do nothing except controlling if she's ready to eat again
+		else if(!voidUnder()){ //the flower is full, we do nothing except controlling if she's ready to eat again
 			fullTime --;
 			if(fullTime == 0) {
 				animal.setEmpty();
 			}
 			actionDecided = new Action(0, -1, false);
-		}	
+		}
+		else
+		{
+			actionDecided = this.pathFinder.updateTask();
+		}
 	
 		return actionDecided;
 	}
