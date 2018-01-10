@@ -38,6 +38,13 @@ public class EntityAnimalCuteFlower extends EntityAnimal {
 		health = 100;
 		maxHealth = 100;
 	}
+	
+	public boolean targetableBy(int id) {
+		switch(id){
+		case 227: return true; //targetable by the dwarf warrior
+		default: return false;
+		}
+	}
 
 	public void update() {
 		suffocating();

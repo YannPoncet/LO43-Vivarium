@@ -12,7 +12,8 @@ public class EntityAnimalDwarfKing extends EntityAnimalDwarf {
 		super(x, y, 48, 50, worldIn, 226, 25, 27, 26);
 		this.name = "Dwarf king";
 		brain = new AIDwarfKing(this);
-		this.health = 200;
+		health = 200;
+		maxHealth = 200;
 	}
 	
 

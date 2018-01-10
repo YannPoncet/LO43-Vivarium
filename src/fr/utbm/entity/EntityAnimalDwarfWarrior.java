@@ -17,6 +17,7 @@ public class EntityAnimalDwarfWarrior extends EntityAnimalDwarf {
 		this.name = "Dwarf warrior";
 		this.brain = new AIDwarfWarrior(this);
 		this.isAttacking = false;
+		health = 100;
 	}
 	
 	public EntityAnimalDwarfWarrior(float x, float y, World worldIn) {
@@ -25,6 +26,8 @@ public class EntityAnimalDwarfWarrior extends EntityAnimalDwarf {
 		this.name = "Dwarf warrior";
 		this.brain = new AIDwarfWarrior(this);
 		this.isAttacking = false;
+		health = 100;
+		maxHealth = 100;
 		
 		for(Entity e : worldIn.getEntities()){
 			if(e instanceof EntityAnimalDwarfKing){
@@ -60,7 +63,6 @@ public class EntityAnimalDwarfWarrior extends EntityAnimalDwarf {
 	public void attack()
 	{
 		this.brain.getTarget().damage(POWER);
-		System.out.println("damaged");
 	}
 	
 
