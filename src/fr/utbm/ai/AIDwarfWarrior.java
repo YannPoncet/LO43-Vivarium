@@ -79,8 +79,14 @@ public class AIDwarfWarrior extends AIAnimal {
 					}
 					
 					float toGo = (float)(kingPos+Math.random()*AROUND_KING_MAX*leftToTheKing);
+					if(((toGo+animal.getWidth()))>=(Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-3)*16) //si jamais on risque d'aller sur le bord droit
+					{
+						this.hasAnObjective = false;
+					} else {
+						this.hasAnObjective = true;
+					}
 					this.pathFinder.setObjective(toGo);
-					this.hasAnObjective = true;
+					
 					
 					if(toGo/16 <= 1) { //we're to close to the left
 						this.hasAnObjective = false;

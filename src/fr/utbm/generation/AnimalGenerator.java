@@ -226,7 +226,7 @@ public class AnimalGenerator extends PseudoRandom {
 					int[] randomAnimal = animalList.get((int)((super.getNextRandom()+0.5)*(animalList.size()))); //animal aléatoire parmi les animaux existants
 					double randomAnimalFrequence = (super.getNextRandom()+0.5)*100; //frequence aleatoire entre 0 et 100
 					
-					if(!isKingPlaced && i>=kingPosition)
+					if(!isKingPlaced && i+sumBiomeLength>=kingPosition)
 					{
 						needToPlaceKing=true;
 					}

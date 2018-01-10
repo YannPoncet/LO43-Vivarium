@@ -45,9 +45,11 @@ public class AIDwarfKing extends AIAnimal {
 		
 		EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 		animal.getWorldIn().addEntity(tempWarrior);
+		warriors.add(tempWarrior);
 		
 		EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 		animal.getWorldIn().addEntity(tempMiner);
+		miners.add(tempMiner);
 	}
 	
 	@Override
@@ -61,12 +63,12 @@ public class AIDwarfKing extends AIAnimal {
 		Action actionDecided = null;
 		if(blockerInteger <= 0) {
 			if(!hasAnObjective) {
-				if(this.warriors.size() <= NB_WARRIOR && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
+				if(this.warriors.size() < NB_WARRIOR && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
 					EntityAnimalDwarfWarrior tempWarrior = new EntityAnimalDwarfWarrior(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 					warriors.add(tempWarrior);
 					animal.getWorldIn().addEntity(tempWarrior);
 				}
-				else if(this.miners.size() <= NB_MINER && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
+				else if(this.miners.size() < NB_MINER && Math.random()<0.005) { //si il n'y a pas le maxi on a une chance sur 500 d'en faire pop un
 					EntityAnimalDwarfMiner tempMiner = new EntityAnimalDwarfMiner(animal.getX()/16, (animal.getY())/16, animal.getWorldIn(), animal);
 					miners.add(tempMiner);
 					animal.getWorldIn().addEntity(tempMiner);
@@ -97,6 +99,10 @@ public class AIDwarfKing extends AIAnimal {
 							
 							
 							float toGo = (float)(homeCenter+Math.random()*HOME_SPAWN_FACTOR*leftToTheHome);
+							if((int)((toGo+animal.getWidth())/16)+1>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1) //si jamais on risque d'aller sur le bord droit
+							{
+								toGo = toGo -32;
+							}
 							this.pathFinder.setObjective(toGo);
 							this.hasAnObjective = true;
 							

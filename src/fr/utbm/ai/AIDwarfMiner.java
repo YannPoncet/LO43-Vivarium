@@ -10,14 +10,15 @@ import fr.utbm.entity.Entity;
 import fr.utbm.entity.EntityAnimalDwarfKing;
 import fr.utbm.entity.EntityAnimalDwarfMiner;
 import fr.utbm.entity.EntityAnimalDwarfWarrior;
+import fr.utbm.tools.CollisionAABB;
 import fr.utbm.world.Chunk;
 import fr.utbm.world.Map;
 import fr.utbm.world.World;
 
 public class AIDwarfMiner extends AIAnimal{
 
-	public final int HOUSE_RIGHT_WIDTH = 5;
-	public final int POWER = 24;
+	public final int HOUSE_RIGHT_WIDTH = 7;
+	public final int POWER = 100;
 	
 	private EntityAnimalDwarfMiner animal;
 	private AIGoTo pathFinder;
@@ -31,6 +32,7 @@ public class AIDwarfMiner extends AIAnimal{
 	
 	private boolean isMining;
 	private boolean isConstructing;
+	private boolean houseConstructed;
 	
 	private float homeCenter;
 
@@ -38,6 +40,7 @@ public class AIDwarfMiner extends AIAnimal{
 	private int heighestBlock;
 	private int middleHeight;
 	
+	private int houseState;
 	
 	public AIDwarfMiner(EntityAnimalDwarfMiner e, EntityAnimalDwarfKing king) {
 		super(e);
@@ -50,8 +53,10 @@ public class AIDwarfMiner extends AIAnimal{
 		this.hasAnObjective = false;
 		this.isInitialized = false;
 		this.isConstructing = false;
+		this.houseConstructed = false;
 		this.isMining = false;
 		
+		this.houseState = 0;
 		this.blockerInteger = 0;
 		this.noInfiniteTimer = 0;
 	}
@@ -72,8 +77,8 @@ public class AIDwarfMiner extends AIAnimal{
 		}
 		
 		if(this.isInitialized) {
-			resetMaxMin();
 			if(!(heighestBlock == lowestBlock)) {
+				resetMaxMin();
 				if(blockerInteger <= 0) {
 					int leftOrRight;
 					if (Math.random() < 0.5) {
@@ -136,7 +141,7 @@ public class AIDwarfMiner extends AIAnimal{
 						}
 					}
 				}
-			} else {
+			} else { //le terrain est plat, on peut construire la maison
 				if(blockerInteger <= 0) {
 					int leftOrRight;
 					if (Math.random() < 0.5) {
@@ -147,14 +152,18 @@ public class AIDwarfMiner extends AIAnimal{
 					
 					if(!hasAnObjective) {
 						double whatToDo = Math.random();
-						if (whatToDo < 0.5){ //we construct 
+						if (whatToDo < 0.5 && !houseConstructed){ //we construct 
 							actionDecided = new Action(leftOrRight,3,false);
 							isConstructing = true;
-							//constructRandom();
+							constructHouse();
 							this.blockerInteger = (int)(Math.random()*10);
 						} 
 						else if (whatToDo < 0.8){ //we move
 							float toGo = (float)(homeCenter+Math.random()*HOUSE_RIGHT_WIDTH*16*leftOrRight);
+							if((int)((toGo+animal.getWidth())/16)+1>Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1) //si jamais on risque d'aller sur le bord droit
+							{
+								toGo = toGo -32;
+							}
 							this.pathFinder.setObjective(toGo);
 							this.hasAnObjective = true;
 							
@@ -225,7 +234,7 @@ public class AIDwarfMiner extends AIAnimal{
 		int count = 0;
 		
 		for(int i = (int)(b.getX()/16-HOUSE_RIGHT_WIDTH); i<(int)(b.getX()/16+HOUSE_RIGHT_WIDTH); i++) {
-			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH) {
+			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-2) {
 				tmp = getHeighestBlockAt(i, animal.getWorldIn());
 				if(tmp != null) {
 					if(max<=tmp.getY()/16) {
@@ -251,7 +260,7 @@ public class AIDwarfMiner extends AIAnimal{
 		int min = Integer.MAX_VALUE;
 		
 		for(int i = (int)(b.getX()/16-HOUSE_RIGHT_WIDTH); i<(int)(b.getX()/16+HOUSE_RIGHT_WIDTH); i++) {
-			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-1) {
+			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-2) {
 				tmp = getHeighestBlockAt(i, animal.getWorldIn());
 				if(tmp != null && tmp.isSolid()) {
 					if(max<=tmp.getY()/16) {
@@ -285,7 +294,7 @@ public class AIDwarfMiner extends AIAnimal{
 		Block toDamage = null;
 		
 		for(int i = (int)(homeBlock.getX()/16-HOUSE_RIGHT_WIDTH); i<(int)(homeBlock.getX()/16+HOUSE_RIGHT_WIDTH); i++) {
-			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH) {
+			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-2) {
 				tmp = getHeighestBlockAt(i, animal.getWorldIn());
 				if(tmp != null) {
 					if(this.middleHeight<tmp.getY()/16) {
@@ -305,7 +314,7 @@ public class AIDwarfMiner extends AIAnimal{
 		Block toConstruct = null;
 		
 		for(int i = (int)(homeBlock.getX()/16-HOUSE_RIGHT_WIDTH); i<(int)(homeBlock.getX()/16+HOUSE_RIGHT_WIDTH); i++) {
-			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH) {
+			if(i>0 && i<Map.NUMBER_OF_CHUNKS*Chunk.CHUNK_WIDTH-2) {
 				tmp = getHeighestBlockAt(i, animal.getWorldIn());
 				if(tmp != null) {
 					if(this.middleHeight>tmp.getY()/16) {
@@ -317,22 +326,92 @@ public class AIDwarfMiner extends AIAnimal{
 			}
 		}
 		if(toConstruct != null) {
-			if(!isADwarfOn(toConstruct.getX())) {
+			if(!isADwarfOn(toConstruct.getX(), toConstruct.getY())) {
 				animal.getWorldIn().setBlock((int)(toConstruct.getX()/16),(int)(toConstruct.getY()/16+1), new BlockStone((int)(toConstruct.getX()/16),(int)(toConstruct.getY()/16+1), animal.getWorldIn()));
 			}
 		}
 	}
-	
-	public boolean isADwarfOn(float x) {
-		ArrayList<EntityAnimalDwarfMiner> miners = this.king.getMiners();
+
+	public boolean isADwarfOn(float x, float y) {
 		ArrayList<EntityAnimalDwarfWarrior> warriors = this.king.getWarriors();
 		
+		if(!isAnEntityOn(x, y, king) && !isAnEntityOn(x, y, this.animal)) { //si le roi ne dérange pas
+			for(EntityAnimalDwarfWarrior e: warriors) { //si les warriors ne dérangent pas
+				if(isAnEntityOn(x, y, e)) {
+					return true;
+				}
+			}
+		} else {
+			return true;
+		}
 		
 		return false;
 	}
 	
-	public boolean isAnEntityOn(float x, Entity e) {
+	public boolean isAnEntityOn(float x, float y, Entity e) {
+        if(CollisionAABB.isCol(e.getPosX(),e.getPosY(),e.getWidth(),e.getHeight(),x,y,16,16)){
+            return true;
+        }
 		return false;
+		/*
+		System.out.println("test inc:"+e.getX()/16+" : "+(e.getX()+e.getWidth())/16+" : "+x/16);
+		if(e.getX()<=x && e.getX()+e.getWidth()>=x) { //L'entité est dedans en x
+			if(e.getY()<=y && e.getY()+e.getHeight()>=y) { //L'entité est dedans en y
+				System.out.println("entité!");
+				return true;
+			}
+		}
+		return false;*/
 	}
 	
+	public void constructHouse() {
+		int constructY = middleHeight +1;
+		if(constructY < Chunk.CHUNK_HEIGHT-2) { //si on est pas trop haut
+			if(constructBlock(houseState)) {
+				houseState++;
+			}
+		}
+	}
+	
+	public boolean constructBlock(int index) {
+		boolean done = false;
+		switch(index) {
+		case 0: done=constructBlock(homeCenter-5*16,middleHeight*16+1*16); break;
+		case 1: done=constructBlock(homeCenter-5*16,middleHeight*16+2*16); break;
+		case 2: done=constructBlock(homeCenter-4*16,middleHeight*16+1*16); break;
+		case 3: done=constructBlock(homeCenter-4*16,middleHeight*16+2*16); break;
+		case 4: done=constructBlock(homeCenter-4*16,middleHeight*16+3*16); break;
+		case 5: done=constructBlock(homeCenter-4*16,middleHeight*16+4*16); break;
+		case 6: done=constructBlock(homeCenter-4*16,middleHeight*16+5*16); break;
+		case 7: done=constructBlock(homeCenter-3*16,middleHeight*16+5*16); break;
+		case 8: done=constructBlock(homeCenter-3*16,middleHeight*16+6*16); break;
+		case 9: done=constructBlock(homeCenter-2*16,middleHeight*16+5*16); break;
+		case 10: done=constructBlock(homeCenter-2*16,middleHeight*16+6*16); break;
+		case 11: done=constructBlock(homeCenter-1*16,middleHeight*16+5*16); break;
+		case 12: done=constructBlock(homeCenter-1*16,middleHeight*16+6*16); break;
+		case 13: done=constructBlock(homeCenter,middleHeight*16+5*16); break;
+		case 14: done=constructBlock(homeCenter,middleHeight*16+6*16); break;
+		case 15: done=constructBlock(homeCenter+1*16,middleHeight*16+5*16); break;
+		case 16: done=constructBlock(homeCenter+1*16,middleHeight*16+6*16); break;
+		case 17: done=constructBlock(homeCenter+2*16,middleHeight*16+5*16); break;
+		case 18: done=constructBlock(homeCenter+2*16,middleHeight*16+6*16); break;
+		case 19: done=constructBlock(homeCenter+3*16,middleHeight*16+5*16); break;
+		case 20: done=constructBlock(homeCenter+3*16,middleHeight*16+6*16);  
+				if(done) { 
+					houseConstructed = true;
+				}
+				break;
+
+		}
+		
+		return done;
+	}
+	
+	public boolean constructBlock(float x, float y) {
+		if(!isADwarfOn(x,y)) {
+			this.animal.getWorldIn().setBlock((int)(x/16),(int)(y/16), new BlockStone((int)(x/16),(int)(y/16), animal.getWorldIn()));
+			return true;
+		}
+		return false;
+	}
 }
