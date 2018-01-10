@@ -66,11 +66,11 @@ public class AICuteFlower extends AIAnimal {
 					actionDecided = this.pathFinder.updateTask();
 				} else { //on l'attend et on teste si il vient sur nous
 					int whereIsTheTarget = besideTargetPos();
-					if(whereIsTheTarget != 0) { //il est à portée ! on attaque et on remplit le ventre de la flower
+					if(whereIsTheTarget != 0 /*&& !voidUnder()*/) { //il est à portée ! on attaque et on remplit le ventre de la flower
 						actionDecided = new Action(whereIsTheTarget,1,true);
 						animal.setFull();
 						fullTime = (int)(Math.random()*25000);
-					} 	
+					}
 				}
 			}
 			
@@ -88,6 +88,19 @@ public class AICuteFlower extends AIAnimal {
 		}	
 	
 		return actionDecided;
+	}
+	
+	private boolean voidUnder()
+	{
+		int blockWidth = (int)((animal.getX()+animal.getWidth()-1)/16) - (int)(animal.getX()/16)+1;
+		for(int i = 0 ; i < blockWidth ; i++)
+		{
+			if(animal.getWorldIn().getBlock((int)(animal.getX()/16) + i, (int)(animal.getY()/16)-1) == null || !animal.getWorldIn().getBlock((int)(animal.getX()/16) + i, (int)(animal.getY()/16)-1).isSolid())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private EntityAnimal getNearestTarget(){
